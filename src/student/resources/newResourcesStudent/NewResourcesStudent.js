@@ -180,10 +180,19 @@ const NewResourcesStudent = () => {
         setDdlShift(newResourcesStudent.searchFilterModel.ddlAcademicShift);
         setDdlSection(newResourcesStudent.searchFilterModel.ddlSection);
         setDdlFacultySubject(newResourcesStudent.searchFilterModel.ddlSubject);
-        
       });
       if (subjectIdFromDashboard) {
-        setFacultySubject(subjectIdFromDashboard);
+        unstable_batchedUpdates(() => {
+          setFacultySubject(subjectIdFromDashboard);
+          setAcaYear(newResourcesStudent.searchFilterModel.idAcademicYear);
+          setProgramValue(
+            newResourcesStudent.searchFilterModel.idFacultyProgramLink
+          );
+          setClassId(newResourcesStudent.searchFilterModel.level);
+          setSection(newResourcesStudent.searchFilterModel.section);
+          setShift(newResourcesStudent.searchFilterModel.idShift);
+        });
+
         dispatch(
           getNewResourcesStudentListAction(
             subjectIdFromDashboard,
@@ -191,7 +200,7 @@ const NewResourcesStudent = () => {
             newResourcesStudent.searchFilterModel.idFacultyProgramLink,
             newResourcesStudent.searchFilterModel.level,
             newResourcesStudent.searchFilterModel.section,
-            (newResourcesStudent.searchFilterModel.idShift)
+            newResourcesStudent.searchFilterModel.idShift
           )
         );
       }
@@ -224,7 +233,7 @@ const NewResourcesStudent = () => {
       <CustomContainer>
         <Toolbar>
           <Grid container style={{ fontSize: "12px" }}>
-            <Grid item xs={3}>
+            {/* <Grid item xs={3}>
               <SelectControl
                 name="Academic Year"
                 label="Academic Year"
@@ -275,9 +284,8 @@ const NewResourcesStudent = () => {
                 options={ddlShift}
                 errors={errors.shift1}
               />
-            </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
+            </Grid> */}
+            <Grid item container>
               <SelectControl
                 name="facultySubject"
                 label="Faculty Subject"
@@ -287,8 +295,7 @@ const NewResourcesStudent = () => {
                 errors={errors.facultySubject}
               />
             </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
+            <Grid item container>
               <Button
                 variant="contained"
                 color="primary"

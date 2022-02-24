@@ -4,8 +4,18 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  makeStyles,
 } from "@material-ui/core";
 import React from "react";
+
+const useStyles = makeStyles((theme) => ({
+  // select: {
+  //   fontSize: "12px",
+  //   "& div": {
+  //     padding: "12px",
+  //   },
+  // },
+}));
 
 const SelectControl = ({
   name,
@@ -15,21 +25,26 @@ const SelectControl = ({
   onChange,
   options,
 }) => {
+  const classes = useStyles();
   return (
     <FormControl
-      style={{ minWidth: "80%" }}
+      style={{ minWidth: "100%" }}
       variant="outlined"
       {...(errors && { error: true })}
     >
       <InputLabel>{label}</InputLabel>
-      <Select label={label} name={name} value={value} onChange={onChange}>
-        {/* <MenuItem value="">None</MenuItem> */}
-        {options.length > 0 &&
-          options.map((item) => (
-            <MenuItem value={item.Key} key={item.Key}>
-              {item.Value}
-            </MenuItem>
-          ))}
+      <Select
+        label={label}
+        name={name}
+        value={value}
+        onChange={onChange}
+        className={classes.select}
+      >
+        {options?.map((item) => (
+          <MenuItem value={item.Key} key={item.Key}>
+            {item.Value}
+          </MenuItem>
+        ))}
       </Select>
       {errors && <FormHelperText>{errors}</FormHelperText>}
     </FormControl>

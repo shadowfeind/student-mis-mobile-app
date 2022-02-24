@@ -35,15 +35,15 @@ import AssignmentEditForm from "./AssignmentEditForm";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
-    width: "75%",
+    width: "100%",
     fontSize: "12px",
+  },
+  input: {
+    margin: "5px",
   },
   button: {
     position: "absolute",
     right: "10px",
-  },
-  customInput: {
-    minWidth: "200px",
   },
 }));
 
@@ -272,7 +272,7 @@ const Assignment = () => {
       <CustomContainer>
         <Toolbar>
           <Grid container style={{ fontSize: "12px" }}>
-            <Grid item xs={3}>
+            {/* <Grid item sm={12} className={classes.input}>
               <SelectControl
                 name="Academic Year"
                 label="Academic Year"
@@ -282,7 +282,7 @@ const Assignment = () => {
                 errors={errors.acaYear}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item sm={12} className={classes.input}>
               <SelectControl
                 name="Program/Faculty"
                 label="Program/Faculty"
@@ -292,7 +292,7 @@ const Assignment = () => {
                 errors={errors.programValue}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item sm={12} className={classes.input}>
               <SelectControl
                 name="Classes"
                 label="Classes"
@@ -302,7 +302,7 @@ const Assignment = () => {
                 errors={errors.classId}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item sm={12} className={classes.input}>
               <SelectControl
                 name="Shift"
                 label="Shift"
@@ -311,9 +311,8 @@ const Assignment = () => {
                 options={ddlShift}
                 errors={errors.shift1}
               />
-            </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
+            </Grid> */}
+            <Grid item container>
               <SelectControl
                 name="facultySubject"
                 label="Faculty Subject"
@@ -323,8 +322,7 @@ const Assignment = () => {
                 errors={errors.facultySubject}
               />
             </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
+            <Grid item container>
               <Button
                 variant="contained"
                 color="primary"

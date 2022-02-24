@@ -11,8 +11,9 @@ import React, { useState } from "react";
 
 const useStyles = makeStyles((theme) => ({
   table: {
-    margin: "2vw 0.5vw",
-    padding: "24px 0",
+    display: "block",
+    overflowX: "auto",
+    whiteSpace: "nowrap",
 
     "& thead th": {
       fontWeight: "600",

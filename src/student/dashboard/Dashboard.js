@@ -12,8 +12,7 @@ import { getDashboardContentAction } from "./DashboardActions";
 
 const useStyles = makeStyles((theme) => ({
   dashboardContainer: {
-    padding: "40px",
-    maxWidth: "1600px",
+    padding: "10px",
   },
   gridStyle: {
     "&:hover": {
@@ -54,8 +53,8 @@ const Dashboard = () => {
         <Grid container>
           {dashboardContent &&
             dashboardContent.searchFilterModel.ddlSubject.map((s) => (
-              <Grid key={s.id} item xs={3} className={classes.gridStyle}>
-                <DashboardCard subject={s} />
+              <Grid key={s.id} item sm={6} className={classes.gridStyle}>
+                <DashboardCard subject={s} key={s.id} />
               </Grid>
             ))}
         </Grid>

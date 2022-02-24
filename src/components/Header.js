@@ -1,7 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Badge,
+  Box,
   Fade,
   Grid,
   IconButton,
@@ -13,24 +14,23 @@ import { ClickAwayListener } from "@material-ui/core";
 import { useSelector } from "react-redux";
 import { API_URL } from "../constants";
 import { useHistory } from "react-router-dom";
+import MenuIcon from "@material-ui/icons/Menu";
+import SideMenu from "./SideMenu";
+import { useDispatch } from "react-redux";
+import { getHeaderContentAction } from "../student/dashboard/DashboardActions";
+import Drawer from "@material-ui/core/Drawer";
 
 const useStyles = makeStyles({
   root: {
-    backgroundColor: "#fff",
+    display: "flex",
+    justifyContent: "space-between",
+    backgroundColor: "#253053",
     transform: "translate(0)",
-    color: "#272c34",
+    color: "#fff",
     "& h6": {
       fontSize: "13px",
       display: "inline-block",
       paddingRight: "1.5vw",
-    },
-  },
-  searchInput: {
-    fontSize: "12px",
-    padding: "0 8px",
-    opacity: "0.6",
-    "&:hover": {
-      backgroundColor: "#f2f2f2",
     },
   },
   list: {
@@ -78,12 +78,12 @@ const useStyles = makeStyles({
 
 const Header = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const [openDrawer, setOpenDrawer] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
   const classes = useStyles();
-
+  const dispatch = useDispatch();
   const history = useHistory();
-
   const { headerContent, error: headerContentError } = useSelector(
     (state) => state.getHeaderContent
   );
@@ -98,89 +98,91 @@ const Header = () => {
     history.push("/pid");
     setOpen(false);
   };
+
+  useEffect(() => {
+    if (!headerContent) {
+      dispatch(getHeaderContentAction());
+    }
+  }, [headerContent, dispatch]);
   return (
     <div>
-      <AppBar position="static" className={classes.root}>
-        <Toolbar>
-          <Grid container alignItems="center">
-            <Grid item></Grid>
-            <Grid item sm></Grid>
-            <Grid item>
-              <ClickAwayListener onClickAway={() => setOpen(false)}>
-                <IconButton>
+      <AppBar position="static">
+        <Toolbar className={classes.root}>
+          <IconButton
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            onClick={() => setOpenDrawer(true)}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Drawer
+            anchor={"left"}
+            open={openDrawer}
+            PaperProps={{
+              width: "90%",
+            }}
+            onClose={() => setOpenDrawer(false)}
+            onClick={() => setOpenDrawer(false)}
+          >
+            {<SideMenu header={headerContent && headerContent} />}
+          </Drawer>
+
+          <ClickAwayListener onClickAway={() => setOpen(false)}>
+            <IconButton onClick={handleClick("top-end")}>
+              <Badge badgeContent={2} color="secondary">
+                {headerContent && (
+                  <img
+                    src={`${API_URL}${headerContent.FullPath}`}
+                    width="30px"
+                    height="30px"
+                    style={{ borderRadius: "50%" }}
+                  />
+                )}
+              </Badge>
+            </IconButton>
+          </ClickAwayListener>
+          <Popper
+            open={open}
+            anchorEl={anchorEl}
+            placement={placement}
+            transition
+          >
+            {({ TransitionProps }) => (
+              <Fade {...TransitionProps} timeout={350}>
+                <div className={classes.popUp}>
                   {headerContent && (
                     <div>
-                      <span style={{ fontSize: "12px" }}>Welcome</span>{" "}
-                      <span
+                      <div
                         style={{
-                          fontSize: "14px",
-                          fontWeight: "bold",
-                          paddingRight: "10px",
+                          padding: "40px 40px 0px 40px",
+                          borderBottom: "1px solid #d3d3d3",
                         }}
                       >
-                        {headerContent.FullName}
-                      </span>
+                        <img
+                          src={`${API_URL}${headerContent.FullPath}`}
+                          width="70px"
+                          height="70px"
+                          style={{ borderRadius: "50%" }}
+                        />
+                        <h3
+                          style={{
+                            fontSize: "14px",
+                            fontWeight: "bold",
+                            paddingRight: "10px",
+                          }}
+                        >
+                          {headerContent.FullName}
+                        </h3>
+                      </div>
+                      <h4 onClick={handleProfileClick}>Profile</h4>
+                      <h4>Logout</h4>
                     </div>
                   )}
-                  <Badge
-                    badgeContent={2}
-                    color="secondary"
-                    onClick={handleClick("top-end")}
-                  >
-                    {headerContent && (
-                      <img
-                        src={`${API_URL}${headerContent.FullPath}`}
-                        width="30px"
-                        height="30px"
-                        style={{ borderRadius: "50%" }}
-                      />
-                    )}
-                  </Badge>
-                </IconButton>
-              </ClickAwayListener>
-              <Popper
-                open={open}
-                anchorEl={anchorEl}
-                placement={placement}
-                transition
-              >
-                {({ TransitionProps }) => (
-                  <Fade {...TransitionProps} timeout={350}>
-                    <div className={classes.popUp}>
-                      {headerContent && (
-                        <div>
-                          <div
-                            style={{
-                              padding: "40px 40px 0px 40px",
-                              borderBottom: "1px solid #d3d3d3",
-                            }}
-                          >
-                            <img
-                              src={`${API_URL}${headerContent.FullPath}`}
-                              width="70px"
-                              height="70px"
-                              style={{ borderRadius: "50%" }}
-                            />
-                            <h3
-                              style={{
-                                fontSize: "14px",
-                                fontWeight: "bold",
-                                paddingRight: "10px",
-                              }}
-                            >
-                              {headerContent.FullName}
-                            </h3>
-                          </div>
-                          <h4 onClick={handleProfileClick}>Profile</h4>
-                          <h4>Logout</h4>
-                        </div>
-                      )}
-                    </div>
-                  </Fade>
-                )}
-              </Popper>
-            </Grid>
-          </Grid>
+                </div>
+              </Fade>
+            )}
+          </Popper>
         </Toolbar>
       </AppBar>
     </div>

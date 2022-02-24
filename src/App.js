@@ -10,6 +10,7 @@ import {
 } from "@material-ui/core";
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 
+import BottomNavigationMis from "./components/BottomNavigationMis";
 const PageNotFound = lazy(() => import("./student/pageNotFound/PageNotFound"));
 const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
 const Pid = lazy(() => import("./student/pid/UserProfile"));
@@ -38,6 +39,12 @@ const theme = createTheme({
     background: {
       default: "#eaeff5",
     },
+    customColor: {
+      main: "#253053",
+    },
+  },
+  status: {
+    danger: "orange",
   },
   MuiButtonRoot: {
     minWidth: "10px",
@@ -47,7 +54,6 @@ const theme = createTheme({
 
 const useStyles = makeStyles({
   appMain: {
-    paddingLeft: "7%",
     width: "100%",
   },
 });
@@ -57,7 +63,7 @@ const App = () => {
   return (
     <Router>
       <ThemeProvider theme={theme}>
-        <SideMenu />
+        {/* <SideMenu /> */}
         <div className={classes.appMain}>
           <Header />
           <Suspense fallback={<div></div>}>
@@ -84,6 +90,7 @@ const App = () => {
               <Route path="*" component={PageNotFound} />
             </Switch>
           </Suspense>
+          <BottomNavigationMis />
         </div>
         <CssBaseline />
       </ThemeProvider>

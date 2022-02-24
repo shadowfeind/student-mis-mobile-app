@@ -16,10 +16,10 @@ import SettingsIcon from "@material-ui/icons/Settings";
 export const DashboardCard = ({ subject }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
-      maxWidth: 345,
       borderRadius: "10px",
       boxShadow: "5px 5px 5px #d3d3d3",
-      margin: "10px",
+      margin: "5px",
+      width: "160px",
     },
     CardContent: {
       marginBottom: "-25px",
@@ -27,13 +27,12 @@ export const DashboardCard = ({ subject }) => {
     media: {
       height: 0,
       backgroundColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
-      paddingTop: "45.25%", // 16:9
+      paddingTop: "5.25%", // 16:9
     },
     topHeading: {
       color: "#000",
-      fontSize: "18px",
+      fontSize: "12px",
       paddingBottom: "3px",
-      marginBottom: "-10px",
     },
   }));
   const classes = useStyles();
@@ -45,9 +44,10 @@ export const DashboardCard = ({ subject }) => {
     history.push(`/resources/${id}`);
   };
   return subject ? (
-    <Card className={classes.root}>
+    <Card className={classes.root} key={subject.Value}>
       <CardMedia
         className={classes.media}
+        component="img"
         // image="https://i.ibb.co/5s20zQR/ss.jpg"
         title="Paella dish"
       />
@@ -65,27 +65,34 @@ export const DashboardCard = ({ subject }) => {
           </span>
         </Typography>
 
-        <Typography variant="body2" color="textSecondary" component="h6">
+        <Typography
+          variant="body2"
+          color="textSecondary"
+          component="h6"
+          style={{ fontSize: "12px" }}
+        >
           Suresh M. Sanu
-          <IconButton aria-label="add to favorites">
-            <PhoneIphoneIcon />
-          </IconButton>
-          9841479789
         </Typography>
       </CardContent>
       <CardActions>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon onClick={() => handleAssignmentHandler(subject.Key)} />
+        <IconButton
+          aria-label="add to favorites"
+          onClick={() => handleAssignmentHandler(subject.Key)}
+        >
+          <FavoriteIcon style={{ fontSize: "12px" }} />
+        </IconButton>
+        <IconButton
+          aria-label="share"
+          onClick={() => handleResouceHandler(subject.Key)}
+        >
+          <ShareIcon style={{ fontSize: "12px" }} />
         </IconButton>
         <IconButton aria-label="share">
-          <ShareIcon onClick={() => handleResouceHandler(subject.Key)} />
+          <NotificationsActiveIcon style={{ fontSize: "12px" }} />
         </IconButton>
-        <IconButton aria-label="share">
-          <NotificationsActiveIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <SettingsIcon />
-        </IconButton>
+        {/* <IconButton aria-label="share">
+          <SettingsIcon style={{ fontSize: "12px" }} />
+        </IconButton> */}
       </CardActions>
     </Card>
   ) : (
