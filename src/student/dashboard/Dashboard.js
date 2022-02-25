@@ -9,10 +9,14 @@ import { subject } from "./SubjectData";
 import { GET_STUDENT_DASHBOARD_RESET } from "./DashboardConstants";
 import { useEffect } from "react";
 import { getDashboardContentAction } from "./DashboardActions";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   dashboardContainer: {
-    padding: "10px",
+    padding: "10px 10px 60px 10px",
+    "& a": {
+      textDecoration: "none",
+    },
   },
   gridStyle: {
     "&:hover": {
@@ -50,14 +54,12 @@ const Dashboard = () => {
   return (
     <>
       <div className={classes.dashboardContainer}>
-        <Grid container>
-          {dashboardContent &&
-            dashboardContent.searchFilterModel.ddlSubject.map((s) => (
-              <Grid key={s.id} item sm={6} className={classes.gridStyle}>
-                <DashboardCard subject={s} key={s.id} />
-              </Grid>
-            ))}
-        </Grid>
+        {dashboardContent &&
+          dashboardContent.searchFilterModel.ddlSubject.map((s) => (
+            <Link key={s.id} to={`/subject-view/${s.Key}`}>
+              <DashboardCard subject={s} key={s.id} />
+            </Link>
+          ))}
       </div>
       <Notification notify={notify} setNotify={setNotify} />
     </>

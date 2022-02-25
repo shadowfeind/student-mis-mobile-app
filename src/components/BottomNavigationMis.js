@@ -14,6 +14,7 @@ const useStyles = makeStyles({
     width: "100%",
     position: "fixed",
     bottom: "0",
+    boxShadow: "0 0 5px #d3d3d3",
     "& .Mui-selected": {
       fontSize: "10px",
       color: "#253053",

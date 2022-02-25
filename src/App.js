@@ -11,6 +11,10 @@ import {
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 
 import BottomNavigationMis from "./components/BottomNavigationMis";
+
+const DashboardSubjectView = lazy(() =>
+  import("./student/dashboard/DashboardSubjectView")
+);
 const PageNotFound = lazy(() => import("./student/pageNotFound/PageNotFound"));
 const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
 const Pid = lazy(() => import("./student/pid/UserProfile"));
@@ -85,6 +89,11 @@ const App = () => {
                 exact
                 path={"/academic-grading"}
                 component={AcademicGrading}
+              />
+              <Route
+                exact
+                path={"/subject-view/:id"}
+                component={DashboardSubjectView}
               />
               <Route exact path={"/"} component={Dashboard} />
               <Route path="*" component={PageNotFound} />
