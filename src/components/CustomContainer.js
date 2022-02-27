@@ -3,8 +3,7 @@ import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
-    margin: "12px",
-    padding: " 12px",
+    height: "90vh",
   },
 }));
 

@@ -2,18 +2,14 @@ import React, { useEffect, useState } from "react";
 import {
   AppBar,
   Badge,
-  Box,
-  Fade,
-  Grid,
   IconButton,
   makeStyles,
-  Popper,
   Toolbar,
 } from "@material-ui/core";
-import { ClickAwayListener } from "@material-ui/core";
+
 import { useSelector } from "react-redux";
 import { API_URL } from "../constants";
-import { useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import SideMenu from "./SideMenu";
 import { useDispatch } from "react-redux";
@@ -83,7 +79,7 @@ const Header = () => {
   const [placement, setPlacement] = React.useState();
   const classes = useStyles();
   const dispatch = useDispatch();
-  const history = useHistory();
+
   const { headerContent, error: headerContentError } = useSelector(
     (state) => state.getHeaderContent
   );
@@ -92,11 +88,6 @@ const Header = () => {
     setAnchorEl(event.currentTarget);
     setOpen((prev) => placement !== newPlacement || !prev);
     setPlacement(newPlacement);
-  };
-
-  const handleProfileClick = () => {
-    history.push("/pid");
-    setOpen(false);
   };
 
   useEffect(() => {
@@ -128,7 +119,7 @@ const Header = () => {
             {<SideMenu header={headerContent && headerContent} />}
           </Drawer>
 
-          <ClickAwayListener onClickAway={() => setOpen(false)}>
+          <Link to={"/pid"}>
             <IconButton onClick={handleClick("top-end")}>
               <Badge badgeContent={2} color="secondary">
                 {headerContent && (
@@ -141,48 +132,7 @@ const Header = () => {
                 )}
               </Badge>
             </IconButton>
-          </ClickAwayListener>
-          <Popper
-            open={open}
-            anchorEl={anchorEl}
-            placement={placement}
-            transition
-          >
-            {({ TransitionProps }) => (
-              <Fade {...TransitionProps} timeout={350}>
-                <div className={classes.popUp}>
-                  {headerContent && (
-                    <div>
-                      <div
-                        style={{
-                          padding: "40px 40px 0px 40px",
-                          borderBottom: "1px solid #d3d3d3",
-                        }}
-                      >
-                        <img
-                          src={`${API_URL}${headerContent.FullPath}`}
-                          width="70px"
-                          height="70px"
-                          style={{ borderRadius: "50%" }}
-                        />
-                        <h3
-                          style={{
-                            fontSize: "14px",
-                            fontWeight: "bold",
-                            paddingRight: "10px",
-                          }}
-                        >
-                          {headerContent.FullName}
-                        </h3>
-                      </div>
-                      <h4 onClick={handleProfileClick}>Profile</h4>
-                      <h4>Logout</h4>
-                    </div>
-                  )}
-                </div>
-              </Fade>
-            )}
-          </Popper>
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

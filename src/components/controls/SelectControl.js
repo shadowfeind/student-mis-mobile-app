@@ -9,12 +9,12 @@ import {
 import React from "react";
 
 const useStyles = makeStyles((theme) => ({
-  // select: {
-  //   fontSize: "12px",
-  //   "& div": {
-  //     padding: "12px",
-  //   },
-  // },
+  select: {
+    fontSize: "16px",
+    "& div": {
+      padding: "16px",
+    },
+  },
 }));
 
 const SelectControl = ({

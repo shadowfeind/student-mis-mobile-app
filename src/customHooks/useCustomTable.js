@@ -88,6 +88,7 @@ const useCustomTable = (tableData, tableHeader, filterFn) => {
   const TblPagination = () => (
     <TablePagination
       component="div"
+      labelRowsPerPage="Rows"
       rowsPerPageOptions={pages}
       rowsPerPage={rowsPerPage}
       page={page}

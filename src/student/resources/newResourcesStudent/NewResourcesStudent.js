@@ -27,6 +27,8 @@ import {
   getNewResourcesStudentListAction,
 } from "./NewResourcesStudentActions";
 import NewResourcesStudentTableCollapse from "./NewResourcesStudentTableCollapse";
+import MobileTopSelectContainer from "../../../components/MobileTopSelectContainer";
+import NewResourcesListCollapse from "./NewResourcesListCollapse";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -198,9 +200,9 @@ const NewResourcesStudent = () => {
             subjectIdFromDashboard,
             newResourcesStudent.searchFilterModel.idAcademicYear,
             newResourcesStudent.searchFilterModel.idFacultyProgramLink,
-            newResourcesStudent.searchFilterModel.level,
             newResourcesStudent.searchFilterModel.section,
-            newResourcesStudent.searchFilterModel.idShift
+            newResourcesStudent.searchFilterModel.idShift,
+            newResourcesStudent.searchFilterModel.level
           )
         );
       }
@@ -213,129 +215,40 @@ const NewResourcesStudent = () => {
     }
   }, [newResourcesStudentList]);
 
-  const handleExamScheduleSearch = () => {
-    if (validate()) {
-      dispatch(
-        getNewResourcesStudentListAction(
-          facultySubject,
-          acaYear,
-          programValue,
-          classId,
-          section,
-          shift
-        )
-      );
-    }
+  const handleExamScheduleSearch = (value) => {
+    dispatch(
+      getNewResourcesStudentListAction(
+        value,
+        newResourcesStudent.searchFilterModel.idAcademicYear,
+        newResourcesStudent.searchFilterModel.idFacultyProgramLink,
+        newResourcesStudent.searchFilterModel.section,
+        newResourcesStudent.searchFilterModel.idShift,
+        newResourcesStudent.searchFilterModel.level
+      )
+    );
+    setFacultySubject(value);
   };
 
   return (
     <>
       <CustomContainer>
-        <Toolbar>
+        <MobileTopSelectContainer>
           <Grid container style={{ fontSize: "12px" }}>
-            {/* <Grid item xs={3}>
-              <SelectControl
-                name="Academic Year"
-                label="Academic Year"
-                value={acaYear}
-                onChange={(e) => setAcaYear(e.target.value)}
-                options={academicYearDdl}
-                errors={errors.acaYear}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <SelectControl
-                name="Program/Faculty"
-                label="Program/Faculty"
-                value={programValue}
-                onChange={(e) => setProgramValue(e.target.value)}
-                options={programDdl}
-                errors={errors.programValue}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <SelectControl
-                name="Classes"
-                label="Classes"
-                value={classId}
-                onChange={(e) => setClassId(e.target.value)}
-                options={ddlClass}
-                errors={errors.classId}
-              />
-            </Grid>
-
-            <Grid item xs={3}>
-              <SelectControl
-                name="section"
-                label="Section"
-                value={section}
-                onChange={(e) => setSection(e.target.value)}
-                options={ddlSection}
-                errors={errors.section}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
-              <SelectControl
-                name="Shift"
-                label="Shift"
-                value={shift}
-                onChange={(e) => setShift(e.target.value)}
-                options={ddlShift}
-                errors={errors.shift1}
-              />
-            </Grid> */}
             <Grid item container>
               <SelectControl
                 name="facultySubject"
-                label="Faculty Subject"
+                label="Resource Subject"
                 value={facultySubject}
-                onChange={(e) => setFacultySubject(e.target.value)}
+                onChange={(e) => handleExamScheduleSearch(e.target.value)}
                 options={ddlFacultySubject}
                 errors={errors.facultySubject}
               />
             </Grid>
-            <Grid item container>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                style={{ margin: "10px 0 0 10px" }}
-                onClick={handleExamScheduleSearch}
-              >
-                SEARCH
-              </Button>
-            </Grid>
           </Grid>
-        </Toolbar>
-        <div style={{ height: "15px" }}></div>
-        <Toolbar>
-          <InputControl
-            className={classes.searchInput}
-            label="Search New Resources Student"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleSearch}
-          />
-        </Toolbar>
-        {newResourcesStudentList && (
-          <TableContainer className={classes.table}>
-            <TblHead />
-
-            <TableBody>
-              {tableDataAfterPagingAndSorting().map((item) => (
-                <NewResourcesStudentTableCollapse item={item} key={item.$id} />
-              ))}
-            </TableBody>
-          </TableContainer>
-        )}
-
-        {newResourcesStudentList && <TblPagination />}
+        </MobileTopSelectContainer>
+        {newResourcesStudentList?.courseDeliveyPlanStudentLst.map((item) => (
+          <NewResourcesListCollapse item={item} key={item.$id} />
+        ))}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

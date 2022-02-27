@@ -32,6 +32,8 @@ import {
 } from "./AssignmentActions";
 import AssignmentTableCollapse from "./AssignmentTableCollapse";
 import AssignmentEditForm from "./AssignmentEditForm";
+import AssignmentListCollapse from "./AssignmentListCollapse";
+import MobileTopSelectContainer from "../../../components/MobileTopSelectContainer";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -241,132 +243,48 @@ const Assignment = () => {
     }
   }, [assignmentList]);
 
-  const validate = () => {
-    let temp = {};
-    temp.acaYear = !acaYear ? "This feild is required" : "";
-    temp.programValue = !programValue ? "This feild is required" : "";
-    temp.classId = !classId ? "This feild is required" : "";
-    temp.shift1 = !shift ? "This feild is required" : "";
-    temp.facultySubject = !facultySubject ? "This feild is required" : "";
-
-    setErrors({ ...temp });
-    return Object.values(temp).every((x) => x === "");
-  };
-
-  const handleExamScheduleSearch = () => {
-    if (validate()) {
-      dispatch(
-        getAssignmentListAction(
-          acaYear,
-          programValue,
-          classId,
-          shift,
-          facultySubject
-        )
-      );
-    }
+  const handleExamScheduleSearch = (value) => {
+    dispatch(
+      getAssignmentListAction(acaYear, programValue, classId, shift, value)
+    );
+    setFacultySubject(value);
   };
 
   return (
     <>
       <CustomContainer>
-        <Toolbar>
-          <Grid container style={{ fontSize: "12px" }}>
-            {/* <Grid item sm={12} className={classes.input}>
-              <SelectControl
-                name="Academic Year"
-                label="Academic Year"
-                value={acaYear}
-                onChange={(e) => setAcaYear(e.target.value)}
-                options={academicYearDdl}
-                errors={errors.acaYear}
-              />
-            </Grid>
-            <Grid item sm={12} className={classes.input}>
-              <SelectControl
-                name="Program/Faculty"
-                label="Program/Faculty"
-                value={programValue}
-                onChange={(e) => setProgramValue(e.target.value)}
-                options={programDdl}
-                errors={errors.programValue}
-              />
-            </Grid>
-            <Grid item sm={12} className={classes.input}>
-              <SelectControl
-                name="Classes"
-                label="Classes"
-                value={classId}
-                onChange={(e) => setClassId(e.target.value)}
-                options={ddlClass}
-                errors={errors.classId}
-              />
-            </Grid>
-            <Grid item sm={12} className={classes.input}>
-              <SelectControl
-                name="Shift"
-                label="Shift"
-                value={shift}
-                onChange={(e) => setShift(e.target.value)}
-                options={ddlShift}
-                errors={errors.shift1}
-              />
-            </Grid> */}
-            <Grid item container>
+        <MobileTopSelectContainer>
+          <Grid container>
+            <Grid item xs={12}>
               <SelectControl
                 name="facultySubject"
-                label="Faculty Subject"
+                label="Assignment Subject"
                 value={facultySubject}
-                onChange={(e) => setFacultySubject(e.target.value)}
+                onChange={(e) => handleExamScheduleSearch(e.target.value)}
                 options={ddlFacultySubject}
                 errors={errors.facultySubject}
               />
             </Grid>
-            <Grid item container>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                style={{ margin: "10px 0 0 10px" }}
-                onClick={handleExamScheduleSearch}
-              >
-                SEARCH
-              </Button>
-            </Grid>
           </Grid>
-        </Toolbar>
-        <div style={{ height: "15px" }}></div>
-        <Toolbar>
-          <InputControl
-            className={classes.searchInput}
-            label="Search Assignment"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleSearch}
+        </MobileTopSelectContainer>
+
+        {/* <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "-12px",
+          }}
+        >
+          {assignmentList && <TblPagination />}
+        </div> */}
+
+        {assignmentList?.dbstuentSubmissionLst.map((item) => (
+          <AssignmentListCollapse
+            item={item}
+            key={item.$id}
+            // setOpenPopup={setOpenPopup}
           />
-        </Toolbar>
-        {assignmentList && (
-          <TableContainer className={classes.table}>
-            <TblHead />
-
-            <TableBody>
-              {tableDataAfterPagingAndSorting().map((item) => (
-                <AssignmentTableCollapse
-                  item={item}
-                  key={item.$id}
-                  setOpenPopup={setOpenPopup}
-                />
-              ))}
-            </TableBody>
-          </TableContainer>
-        )}
-
-        {assignmentList && <TblPagination />}
+        ))}
       </CustomContainer>
       <Popup
         openPopup={openPopup}

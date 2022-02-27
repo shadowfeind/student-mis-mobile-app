@@ -64,7 +64,7 @@ const UserProfile = () => {
   };
   return (
     <div>
-      <AppBar position="static" style={{ background: "#253053" }}>
+      {/* <AppBar position="static" style={{ background: "#253053" }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -136,11 +136,11 @@ const UserProfile = () => {
             {...a11yProps(11)}
           />
         </Tabs>
-      </AppBar>
+      </AppBar> */}
       <Suspense fallback={<div></div>}>
-        <TabPanel value={value} index={0}>
-          <PersonalInformation />
-        </TabPanel>
+        {/* <TabPanel value={value} index={0}> */}
+        <PersonalInformation />
+        {/* </TabPanel>
         <TabPanel value={value} index={1}>
           <UploadPhoto />
         </TabPanel>
@@ -173,7 +173,7 @@ const UserProfile = () => {
         </TabPanel>
         <TabPanel value={value} index={11}>
           <Skill />
-        </TabPanel>
+        </TabPanel> */}
       </Suspense>
     </div>
   );

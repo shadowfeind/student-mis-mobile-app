@@ -40,18 +40,18 @@ const NewResourcesStudentTableCollapse = ({
       <TableCell>{item.CourseName}</TableCell>
       <TableCell>{item.CourseDescription}</TableCell>
       <TableCell>{item.PostedBy}</TableCell>
-      <TableCell>{item.EffectiveForm.slice(0,10)}</TableCell>
+      <TableCell>{item.EffectiveForm?.slice(0, 10)}</TableCell>
       <TableCell>{item.isActive}</TableCell>
       <TableCell>
-          <Button
-            variant="contained"
-            color="default"
-            className={classes.button}
-            onClick={() => downloadHandler(item.Id)}
-          >
-            <CloudDownloadIcon style={{ fontSize: 12 }} />
-          </Button>
-          </TableCell>
+        <Button
+          variant="contained"
+          color="default"
+          className={classes.button}
+          onClick={() => downloadHandler(item.Id)}
+        >
+          <CloudDownloadIcon style={{ fontSize: 12 }} />
+        </Button>
+      </TableCell>
     </TableRow>
   );
 };
