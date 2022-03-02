@@ -268,22 +268,8 @@ const Assignment = () => {
           </Grid>
         </MobileTopSelectContainer>
 
-        {/* <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            marginTop: "-12px",
-          }}
-        >
-          {assignmentList && <TblPagination />}
-        </div> */}
-
         {assignmentList?.dbstuentSubmissionLst.map((item) => (
-          <AssignmentListCollapse
-            item={item}
-            key={item.$id}
-            // setOpenPopup={setOpenPopup}
-          />
+          <AssignmentListCollapse item={item} key={item.$id} />
         ))}
       </CustomContainer>
       <Popup

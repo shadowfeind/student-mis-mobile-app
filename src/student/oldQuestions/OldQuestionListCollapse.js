@@ -5,7 +5,7 @@ import ExpandMore from "@material-ui/icons/ExpandMore";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
-import ListForTable from "../../../components/ListForTable";
+import ListForTable from "../../components/ListForTable";
 
 const useStyles = makeStyles((theme) => ({
   collapse: {
@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NewResourcesListCollapse = ({ item }) => {
+const OldQuestionListCollapse = ({ item }) => {
   const [open, setOpen] = useState(false);
   const classes = useStyles();
   const handleClick = () => {
@@ -42,25 +42,25 @@ const NewResourcesListCollapse = ({ item }) => {
               backgroundColor: "#253053",
             }}
           >
-            {item.CourseName[0]}
+            {item.OldQuestionName[0]}
           </span>
-          <span style={{ paddingLeft: "12px" }}>{item.CourseName}</span>{" "}
+          <span style={{ paddingLeft: "12px" }}>{item.OldQuestionName}</span>{" "}
         </p>
         <div>{open ? <ExpandLess /> : <ExpandMore />}</div>
       </ListForTable>
       <Collapse in={open} timeout="auto" unmountOnExit>
         <div className={classes.collapse}>
           <p>
-            <span>CourseDescription</span> : {item.CourseDescription}
+            <span>Description</span> : {item.OldQuestionDescription}
           </p>
           <p>
-            <span>PostedBy</span> : {item.PostedBy}
+            <span>Created On</span> : {item.Created_On?.slice(0, 10)}
           </p>
           <p>
-            <span>EffectiveForm</span> :{item.EffectiveForm?.slice(0, 10)}
+            <span>Active Status</span> :{item.IsActive ? "active" : "notactive"}
           </p>
           <p>
-            <span>IsActive</span> : {item.isActive ? "Active" : "InActive"}
+            <span>Name</span> : {item.FirstName} {item.LastName}
           </p>
           <p>
             <Button
@@ -71,21 +71,6 @@ const NewResourcesListCollapse = ({ item }) => {
             >
               <CloudDownloadIcon style={{ fontSize: 12 }} />
             </Button>
-            {/* <Button
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              //   onClick={() => updateHandler(item.IDAssignment)}
-            >
-              <EditIcon style={{ fontSize: 12 }} />
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-            >
-              <DeleteIcon style={{ fontSize: 12 }} />
-            </Button> */}
           </p>
         </div>
       </Collapse>
@@ -93,4 +78,4 @@ const NewResourcesListCollapse = ({ item }) => {
   );
 };
 
-export default NewResourcesListCollapse;
+export default OldQuestionListCollapse;

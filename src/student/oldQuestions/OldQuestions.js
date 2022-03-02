@@ -1,16 +1,6 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  InputAdornment,
-  makeStyles,
-  TableBody,
-  Toolbar,
-  Grid,
-} from "@material-ui/core";
+import { makeStyles, TableBody, Grid } from "@material-ui/core";
 import useCustomTable from "../../customHooks/useCustomTable";
-import InputControl from "../../components/controls/InputControl";
-import { Search } from "@material-ui/icons";
-import Popup from "../../components/Popup";
 import CustomContainer from "../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
@@ -27,6 +17,8 @@ import {
   getSubjectOptionsForOldQuestionsAction,
 } from "./OldQuestionsActions";
 import OldQuestionsTableCollapse from "./OldQuestionsTableCollapse";
+import MobileTopSelectContainer from "../../components/MobileTopSelectContainer";
+import OldQuestionListCollapse from "./OldQuestionListCollapse";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -55,11 +47,6 @@ const OldQuestions = () => {
   const [facultySubject, setFacultySubject] = useState("");
   const [tableData, setTableData] = useState([]);
   const [errors, setErrors] = useState([]);
-  const [filterFn, setFilterFn] = useState({
-    fn: (item) => {
-      return item;
-    },
-  });
 
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -73,27 +60,6 @@ const OldQuestions = () => {
   });
   const classes = useStyles();
   const dispatch = useDispatch();
-
-  const {
-    TableContainer,
-    TblHead,
-    TblPagination,
-    tableDataAfterPagingAndSorting,
-  } = useCustomTable(tableData, tableHeader, filterFn);
-
-  const handleSearch = (e) => {
-    setFilterFn({
-      fn: (item) => {
-        if (e.target.value === "") {
-          return item;
-        } else {
-          return item.filter((x) =>
-            x.OldQuestionName.toLowerCase().includes(e.target.value)
-          );
-        }
-      },
-    });
-  };
 
   const { oldQuestions, oldQuestionsError } = useSelector(
     (state) => state.getAllOldQuestions
@@ -174,22 +140,26 @@ const OldQuestions = () => {
     }
   }, [subjectOptions]);
 
-  const listSearchHandler = () => {
-    if (validate()) {
-      dispatch(getListOldQuestionsStudentAction(classId, facultySubject));
+  const handleClassIdChange = (value) => {
+    setClassId(value);
+    if (!subjectOptions) {
+      dispatch(getSubjectOptionsForOldQuestionsAction(value));
+    }
+    if (facultySubject) {
+      dispatch(getListOldQuestionsStudentAction(value, facultySubject));
     }
   };
 
-  const handleClassIdChange = (value) => {
-    setClassId(value);
-    dispatch(getSubjectOptionsForOldQuestionsAction(value));
+  const handleSubjectChange = (value) => {
+    setFacultySubject(value);
+    dispatch(getListOldQuestionsStudentAction(classId, value));
   };
   return (
     <>
       <CustomContainer>
-        <Toolbar>
+        <MobileTopSelectContainer>
           <Grid container style={{ fontSize: "12px" }}>
-            <Grid item xs={3}>
+            <Grid item xs={5} style={{ marginRight: "10px" }}>
               <SelectControl
                 name="classes"
                 label="Class"
@@ -199,58 +169,23 @@ const OldQuestions = () => {
                 errors={errors.classId}
               />
             </Grid>
-            <Grid item xs={3}>
+            <Grid item xs={5} style={{ marginLeft: "10px" }}>
               <SelectControl
                 name="subject"
                 label="Subject"
                 value={facultySubject}
-                onChange={(e) => setFacultySubject(e.target.value)}
+                onChange={(e) => handleSubjectChange(e.target.value)}
                 options={ddlFacultySubject}
                 errors={errors.facultySubject}
               />
             </Grid>
-
-            <Grid item xs={3}>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                style={{ margin: "10px 0 0 10px" }}
-                onClick={listSearchHandler}
-                type="submit"
-              >
-                SEARCH
-              </Button>
-            </Grid>
           </Grid>
-        </Toolbar>
-        <div style={{ height: "15px" }}></div>
-        <Toolbar>
-          <InputControl
-            className={classes.searchInput}
-            label="Search Old Questions"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleSearch}
-          />
-        </Toolbar>
-        {listOldQuestionsStudent && (
-          <TableContainer className={classes.table}>
-            <TblHead />
+        </MobileTopSelectContainer>
 
-            <TableBody>
-              {tableDataAfterPagingAndSorting().map((item) => (
-                <OldQuestionsTableCollapse item={item} key={item.$id} />
-              ))}
-            </TableBody>
-          </TableContainer>
-        )}
-        {listOldQuestionsStudent && <TblPagination />}
+        {listOldQuestionsStudent &&
+          listOldQuestionsStudent.dbModelStudentLst.map((s) => (
+            <OldQuestionListCollapse item={s} key={s.$id} />
+          ))}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

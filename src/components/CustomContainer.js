@@ -3,7 +3,7 @@ import React from "react";
 
 const useStyles = makeStyles((theme) => ({
   pageContent: {
-    height: "90vh",
+    height: "100%",
   },
 }));
 

@@ -67,7 +67,7 @@ const NavigationSideMenu = () => {
           Profile
         </Typography>
       </NavLink>
-      <NavLink
+      {/* <NavLink
         to={"/academic-grading"}
         activeStyle={isActive}
         className={classes.textBox}
@@ -86,7 +86,7 @@ const NavigationSideMenu = () => {
           <Accessible fontSize="medium" />
           Exam Division
         </Typography>
-      </NavLink>
+      </NavLink> */}
 
       <NavLink
         to={"/class-schedule"}

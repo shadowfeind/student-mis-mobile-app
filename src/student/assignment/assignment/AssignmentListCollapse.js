@@ -80,21 +80,6 @@ const AssignmentListCollapse = ({ item }) => {
             >
               <CloudDownloadIcon style={{ fontSize: 12 }} />
             </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              //   onClick={() => updateHandler(item.IDAssignment)}
-            >
-              <EditIcon style={{ fontSize: 12 }} />
-            </Button>
-            <Button
-              variant="contained"
-              color="secondary"
-              className={classes.button}
-            >
-              <DeleteIcon style={{ fontSize: 12 }} />
-            </Button>
           </p>
         </div>
       </Collapse>

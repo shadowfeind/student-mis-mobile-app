@@ -24,6 +24,9 @@ import {
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
+import { unstable_batchedUpdates } from "react-dom";
+import MobileTopSelectContainer from "../../../components/MobileTopSelectContainer";
+import StudentMonthlyPresentSheetListCollapse from "./StudentMonthlyPresentSheetListCollapse";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -77,10 +80,8 @@ const StudentMonthlyPresentSheet = () => {
 
   const test = [{ Key: "", Value: "" }];
 
-  const {
-    allStudentAttendanceData,
-    error: allStudentAttendanceDataError,
-  } = useSelector((state) => state.getAllStudentAttendance);
+  const { allStudentAttendanceData, error: allStudentAttendanceDataError } =
+    useSelector((state) => state.getAllStudentAttendance);
 
   const { allOtherOptions, error: allOtherOptionsError } = useSelector(
     (state) => state.getAllOtherOptionsForStudent
@@ -90,10 +91,8 @@ const StudentMonthlyPresentSheet = () => {
     (state) => state.getEnglishDateStudent
   );
 
-
   const { getListStudentAttendance, error: getListStudentAttendanceError } =
     useSelector((state) => state.getListStudentAttendance);
-
 
   if (allStudentAttendanceDataError) {
     setNotify({
@@ -103,7 +102,7 @@ const StudentMonthlyPresentSheet = () => {
     });
     dispatch({ type: GET_ALL_STUDENT_ATTENDANCE_RESET });
   }
-  
+
   if (allOtherOptionsError) {
     setNotify({
       isOpen: true,
@@ -127,101 +126,26 @@ const StudentMonthlyPresentSheet = () => {
       dispatch(getAllStudentAttendanceAction());
     }
     if (allStudentAttendanceData) {
-      setProgramDdl(
-        allStudentAttendanceData.searchFilterModel
-          .ddlFacultyProgramLink
-      );
-      setDdlClass(allStudentAttendanceData.searchFilterModel.ddlClass);
-      setAcademicYearDdl(
-        allStudentAttendanceData.searchFilterModel.ddlAcademicYear
-      );
-      setDdlShift(
-        allStudentAttendanceData.searchFilterModel.ddlAcademicShift
-      );
-      setDdlSubject(
-        allStudentAttendanceData.searchFilterModel.ddlSubjectAttendance
-      );
-      setDdlSection(
-        allStudentAttendanceData.searchFilterModel.ddlSection
-      );
-      setDdlNepMonth(
-        allStudentAttendanceData.searchFilterModel.ddlnpMonth
-      );
-      setDdlNepYear(
-        allStudentAttendanceData.searchFilterModel.ddlnpYear
-      );
-      setDate(
-        allStudentAttendanceData.searchFilterModel.currentDate.slice(
-          0,
-          10
-        )
-      );
-      setNepMonth(allStudentAttendanceData.searchFilterModel.npMonth);
-      setNepYear(allStudentAttendanceData.searchFilterModel.npYear);
+      unstable_batchedUpdates(() => {
+        setDdlSubject(
+          allStudentAttendanceData.searchFilterModel.ddlSubjectAttendance
+        );
+        setDdlNepMonth(allStudentAttendanceData.searchFilterModel.ddlnpMonth);
+        setDate(
+          allStudentAttendanceData.searchFilterModel.currentDate.slice(0, 10)
+        );
+        setNepMonth(allStudentAttendanceData.searchFilterModel.npMonth);
+        setNepYear(allStudentAttendanceData.searchFilterModel.npYear);
+        setAcaYear(allStudentAttendanceData.searchFilterModel.idAcademicYear);
+        setProgramValue(
+          allStudentAttendanceData.searchFilterModel.idFacultyProgramLink
+        );
+        setClassId(allStudentAttendanceData.searchFilterModel.level);
+        setShift(allStudentAttendanceData.searchFilterModel.idShift);
+        setSection(allStudentAttendanceData.searchFilterModel.section);
+      });
     }
   }, [allStudentAttendanceData, dispatch]);
-
-  // useEffect(() => {
-  //   if (subjectOptions) {
-  //     setDdlSubject(subjectOptions);
-  //   }
-  // }, [subjectOptions]);
-
-  const validate = () => {
-    let temp = {};
-    temp.acaYear = !acaYear ? "This feild is required" : "";
-    temp.programValue = !programValue ? "This feild is required" : "";
-    temp.classId = !classId ? "This feild is required" : "";
-    temp.shift = !shift ? "This feild is required" : "";
-    temp.section = !section ? "This feild is required" : "";
-    temp.subject = !subject ? "This feild is required" : "";
-    temp.nepMonth = !nepMonth ? "This feild is required" : "";
-    temp.nepYear = !nepYear ? "This feild is required" : "";
-    temp.date = !date ? "This feild is required" : "";
-
-    setErrors({ ...temp });
-    return Object.values(temp).every((x) => x === "");
-  };
-
-  const handleSearchAttendance = () => {
-    if (validate()) {
-      dispatch(
-        getListStudentAttendanceAction(
-          date,
-          nepYear,
-          nepMonth,
-          acaYear,
-          programValue,
-          classId,
-          subject,
-          section,
-          shift,
-          
-        )
-      );
-    }
-  };
-
-  // const handleYearChange = (value) => {
-  //   setAcaYear(value);
-  //   if ((programValue, classId)) {
-  //     dispatch(getSubjectOptionsForSelectAction(value, programValue, classId));
-  //   }
-  // };
-
-  // const handleProgramChange = (value) => {
-  //   setProgramValue(value);
-  //   if ((acaYear, classId)) {
-  //     dispatch(getSubjectOptionsForSelectAction(acaYear, value, classId));
-  //   }
-  // };
-
-  // const handleClassIdChange = (value) => {
-  //   setClassId(value);
-  //   if ((acaYear, programValue)) {
-  //     dispatch(getSubjectOptionsForSelectAction(acaYear, programValue, value));
-  //   }
-  // };
 
   const nepMonthHandler = (value) => {
     setNepMonth(value);
@@ -256,130 +180,77 @@ const StudentMonthlyPresentSheet = () => {
     }
   }, [allOtherOptions]);
 
+  const onChangeSubject = (value) => {
+    setSubject(value);
+
+    dispatch(
+      getListStudentAttendanceAction(
+        date,
+        nepYear,
+        nepMonth,
+        acaYear,
+        programValue,
+        classId,
+        value,
+        section,
+        shift
+      )
+    );
+  };
+
+  const onChangeNpMonth = (value) => {
+    setNepMonth(value);
+
+    dispatch(
+      getListStudentAttendanceAction(
+        date,
+        nepYear,
+        value,
+        acaYear,
+        programValue,
+        classId,
+        subject,
+        section,
+        shift
+      )
+    );
+  };
+
   return (
     <>
       <CustomContainer>
-        <Toolbar>
+        <MobileTopSelectContainer>
           <Grid container style={{ fontSize: "12px" }}>
-            <Grid item xs={3}>
-              <SelectControl
-                name="Academic Year"
-                label="Academic Year"
-                value={acaYear}
-                onChange={(e) => setAcaYear(e.target.value)}
-                options={academicYearDdl ? academicYearDdl : test}
-                errors={errors.acaYear}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <SelectControl
-                name="Program/Faculty"
-                label="Program/Faculty"
-                value={programValue}
-                onChange={(e) => setProgramValue(e.target.value)}
-                options={programDdl ? programDdl : test}
-                errors={errors.programValue}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <SelectControl
-                name="Classes"
-                label="Classes"
-                value={classId}
-                onChange={(e) => setClassId(e.target.value)}
-                options={ddlClass ? ddlClass : test}
-                errors={errors.classId}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <SelectControl
-                name="Shift"
-                label="Shift"
-                value={shift}
-                onChange={(e) => setShift(e.target.value)}
-                options={ddlShift ? ddlShift : test}
-                errors={errors.shift}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
-              <SelectControl
-                name="Section"
-                label="Section"
-                value={section}
-                onChange={(e) => setSection(e.target.value)}
-                options={ddlSection ? ddlSection : test}
-                errors={errors.section}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
+            <Grid item xs={5} style={{ marginRight: "10px" }}>
               <SelectControl
                 name="Subject"
                 label="Subject"
                 value={subject}
-                onChange={(e) => setSubject(e.target.value)}
+                onChange={(e) => onChangeSubject(e.target.value)}
                 options={ddlSubjectAttendance ? ddlSubjectAttendance : test}
                 errors={errors.subject}
               />
             </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
+            <Grid item xs={5} style={{ marginLeft: "10px" }}>
               <SelectControl
                 name="NepaliMonth"
                 label="Nepali Month"
                 value={nepMonth}
-                onChange={(e) => nepMonthHandler(e.target.value)}
+                onChange={(e) => onChangeNpMonth(e.target.value)}
                 options={ddlNepMonth ? ddlNepMonth : test}
                 errors={errors.nepMonth}
               />
             </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
-              <SelectControl
-                name="NepaliYear"
-                label="Nepali Year"
-                value={nepYear}
-                onChange={(e) => nepYearHandler(e.target.value)}
-                options={ddlNepYear ? ddlNepYear : test}
-                errors={errors.nepYear}
-              />
-            </Grid>
-            <Grid item xs={3}>
-              <div style={{ height: "10px" }}></div>
-
-             <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  disableToolbar
-                  variant="inline"
-                  inputVariant="outlined"
-                  format="dd-MM-yyyy"
-                  name="CurrentYear"
-                  label="Current Year"
-                  value={date}
-                  onChange={(e) => {
-                    const newDate = new Date(e);
-                    setDate(newDate.toLocaleDateString().slice(0, 10));
-                  }}
-                />
-              </MuiPickersUtilsProvider>
-            </Grid>
-            <Grid item xs={3}>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                style={{ margin: "10px 0 0 10px" }}
-                onClick={handleSearchAttendance}
-              >
-                SEARCH
-              </Button>
-            </Grid>
           </Grid>
-        </Toolbar>
-        {getListStudentAttendance && (
+        </MobileTopSelectContainer>
+        {/* {getListStudentAttendance && (
           <StudentMonthlyPresentSheetTableCollapse
             students={getListStudentAttendance && getListStudentAttendance}
+          />
+        )} */}
+        {getListStudentAttendance && (
+          <StudentMonthlyPresentSheetListCollapse
+            attendance={getListStudentAttendance}
           />
         )}
       </CustomContainer>

@@ -63,8 +63,8 @@ const DashboardSubjectView = () => {
       icon: AssignmentIcon,
     },
     { id: 2, name: "Resources", route: "resources", icon: ImportContactsIcon },
-    { id: 3, name: "Syllabus", route: "resources", icon: SettingsIcon },
-    { id: 4, name: "Old Question", route: "resources", icon: ShareIcon },
+    { id: 3, name: "Syllabus", route: "syllabus", icon: SettingsIcon },
+    { id: 4, name: "Old Question", route: "old-questions", icon: ShareIcon },
     {
       id: 5,
       name: "Notification",

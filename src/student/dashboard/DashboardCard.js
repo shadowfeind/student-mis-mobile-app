@@ -8,10 +8,8 @@ import CardActions from "@material-ui/core/CardActions";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
-import ShareIcon from "@material-ui/icons/Share";
 import AssignmentIcon from "@material-ui/icons/Assignment";
 import NotificationsActiveIcon from "@material-ui/icons/NotificationsActive";
-import SettingsIcon from "@material-ui/icons/Settings";
 
 export const DashboardCard = ({ subject }) => {
   const useStyles = makeStyles((theme) => ({
