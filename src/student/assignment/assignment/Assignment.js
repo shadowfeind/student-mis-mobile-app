@@ -20,6 +20,7 @@ import ConfirmDialog from "../../../components/ConfirmDialog";
 import SelectControl from "../../../components/controls/SelectControl";
 import {
   DOWNLOAD_ASSIGNMENT_RESET,
+  DOWNLOAD_SUBMITTED_ASSIGNMENT_RESET,
   GET_ALL_ASSIGNMENT_RESET,
   GET_ASSIGNMENT_LIST_FAIL,
   GET_ASSIGNMENT_LIST_RESET,
@@ -59,7 +60,9 @@ const tableHeader = [
   { id: "SubmittedDate", label: "SubmittedDate" },
   { id: "TotalMark", label: "FullMarks" },
   { id: "ObtainedMarks", label: "Obtained Marks" },
-  { id: "Actions", label: "Actions", disableSorting: true },
+  { id: "DocumentName", label: "Assignment" },
+  { id: "DocumentSubmitted", label: "Submitted Files" },
+  { id: "Actions", label: "Submission", disableSorting: true },
 ];
 
 const Assignment = () => {
@@ -140,11 +143,25 @@ const Assignment = () => {
     error: downloadAssignmentError,
   } = useSelector((state) => state.downloadAssignment);
 
+  const {
+    success: downloadSubmittedAssignmentSuccess,
+    file: downloadSubmmitedFile,
+    error: downloadSubmittedAssignmentError,
+  } = useSelector((state) => state.downloadSubmittedAssignment);
+
+
   if (downloadFile) {
     var blob = new Blob([downloadFile]);
     var url = window.URL.createObjectURL(blob);
     window.open(url, "_blank");
   }
+
+  if (downloadSubmmitedFile) {
+    var blob = new Blob([downloadSubmmitedFile]);
+    var url = window.URL.createObjectURL(blob);
+    window.open(url, "_blank");
+  }
+
 
   if (assignmentError) {
     setNotify({
@@ -162,6 +179,16 @@ const Assignment = () => {
     });
     dispatch({ type: DOWNLOAD_ASSIGNMENT_RESET });
   }
+
+  if (downloadSubmittedAssignmentError) {
+    setNotify({
+      isOpen: true,
+      message: downloadSubmittedAssignmentError,
+      type: "error",
+    });
+    dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_RESET });
+  }
+
 
   if (putSingleAssignmentError) {
     setNotify({
