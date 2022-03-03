@@ -11,6 +11,9 @@ import {
 import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
 
 import BottomNavigationMis from "./components/BottomNavigationMis";
+const AssignmentEditForm = lazy(() =>
+  import("./student/assignment/assignment/AssignmentEditForm")
+);
 
 const DashboardSubjectView = lazy(() =>
   import("./student/dashboard/DashboardSubjectView")
@@ -78,6 +81,10 @@ const App = () => {
               <Route path={"/pid"} component={Pid} />
               <Route path={"/quick-links"} component={QuickLinks} />
               <Route path={"/resources/:id?"} component={Resources} />
+              <Route
+                path={"/assignment-front/edit/:id"}
+                component={AssignmentEditForm}
+              />
               <Route
                 path={"/assignment-front/:id?"}
                 component={AssignmentFront}

@@ -6,6 +6,10 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ListForTable from "../../../components/ListForTable";
+import { getSingleAssignmentAction } from "./AssignmentActions";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
+import LockIcon from "@material-ui/icons/Lock";
 
 const useStyles = makeStyles((theme) => ({
   collapse: {
@@ -23,12 +27,36 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AssignmentListCollapse = ({ item }) => {
+const dateInPast = (firstDate, secondDate) => {
+  if (
+    new Date(firstDate).setHours(0, 0, 0, 0) <=
+    new Date(secondDate).setHours(0, 0, 0, 0)
+  ) {
+    return true;
+  }
+
+  return false;
+};
+
+const AssignmentListCollapse = ({ item, facultySubject }) => {
   const [open, setOpen] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
   const classes = useStyles();
+  const downloadHandler = (id) => {
+    dispatch(downloadAssignmentAction(id));
+  };
+  const updateHandler = (id) => {
+    dispatch(getSingleAssignmentAction(id));
+    history.push(`/assignment-front/edit/${facultySubject}`);
+  };
+  const downloadSubmittedHandler = (id) => {
+    dispatch(downloadSubmittedAssignmentAction(id));
+  };
   const handleClick = () => {
     setOpen(!open);
   };
+
   return (
     <>
       <ListForTable onClick={handleClick}>
@@ -76,10 +104,38 @@ const AssignmentListCollapse = ({ item }) => {
               variant="contained"
               color="default"
               className={classes.button}
-              //   onClick={() => downloadHandler(item.IDAssignment)}
+              onClick={() => downloadHandler(item.IDAssignment)}
             >
               <CloudDownloadIcon style={{ fontSize: 12 }} />
             </Button>
+            {item.DocumentSubmitted !== null && (
+              <Button
+                variant="outlined"
+                color="primary"
+                className={classes.button}
+                onClick={() => downloadSubmittedHandler(item.IDAssignment)}
+              >
+                <CloudDownloadIcon style={{ fontSize: 12 }} />
+              </Button>
+            )}
+            {dateInPast(item.DueDate, Date.now()) ? (
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+              >
+                <LockIcon style={{ fontSize: 12 }} />
+              </Button>
+            ) : (
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={() => updateHandler(item.IDAssignment)}
+              >
+                <EditIcon style={{ fontSize: 12 }} />
+              </Button>
+            )}
           </p>
         </div>
       </Collapse>

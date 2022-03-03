@@ -149,7 +149,6 @@ const Assignment = () => {
     error: downloadSubmittedAssignmentError,
   } = useSelector((state) => state.downloadSubmittedAssignment);
 
-
   if (downloadFile) {
     var blob = new Blob([downloadFile]);
     var url = window.URL.createObjectURL(blob);
@@ -161,7 +160,6 @@ const Assignment = () => {
     var url = window.URL.createObjectURL(blob);
     window.open(url, "_blank");
   }
-
 
   if (assignmentError) {
     setNotify({
@@ -188,7 +186,6 @@ const Assignment = () => {
     });
     dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_RESET });
   }
-
 
   if (putSingleAssignmentError) {
     setNotify({
@@ -296,21 +293,14 @@ const Assignment = () => {
         </MobileTopSelectContainer>
 
         {assignmentList?.dbstuentSubmissionLst.map((item) => (
-          <AssignmentListCollapse item={item} key={item.$id} />
+          <AssignmentListCollapse
+            item={item}
+            key={item.$id}
+            facultySubject={facultySubject && facultySubject}
+          />
         ))}
       </CustomContainer>
-      <Popup
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-        title="Edit Assignment"
-      >
-        <AssignmentEditForm
-          setOpenPopup={setOpenPopup}
-          singleAssignment={
-            singleAssignment && singleAssignment.dbStudentSubmissionModel
-          }
-        />
-      </Popup>
+
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
         confirmDialog={confirmDialog}
