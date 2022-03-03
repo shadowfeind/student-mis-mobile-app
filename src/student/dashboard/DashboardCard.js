@@ -15,7 +15,7 @@ export const DashboardCard = ({ subject }) => {
   const useStyles = makeStyles((theme) => ({
     root: {
       borderRadius: "10px",
-      boxShadow: "5px 5px 5px #d3d3d3",
+      boxShadow: "2px 2px 2px 2px #d3d3d3",
       margin: "10px 5px",
       width: "98%",
     },

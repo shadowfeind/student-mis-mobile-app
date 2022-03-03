@@ -41,7 +41,8 @@ const Attendance = lazy(() => import("./student/attendance/Attendance"));
 const theme = createTheme({
   palette: {
     background: {
-      default: "#eaeff5",
+      // default: "#eaeff5",
+      default: "#fff",
     },
     customColor: {
       main: "#253053",

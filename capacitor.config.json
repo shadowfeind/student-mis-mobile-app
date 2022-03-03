@@ -1,0 +1,8 @@
+{
+  "appId": "io.ionic.student-mis-mobile-app",
+  "appName": "nameofyourapp",
+  "bundledWebRuntime": false,
+  "npmClient": "yarn",
+  "webDir": "build",
+  "cordova": {}
+}
