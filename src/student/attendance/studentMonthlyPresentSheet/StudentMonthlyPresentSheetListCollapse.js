@@ -4,9 +4,9 @@ import StudentAttendanceListDesign from "./StudentAttendanceListDesign";
 const StudentMonthlyPresentSheetListCollapse = ({ attendance }) => {
   const attendanceObjectFromArray = attendance && attendance.dbModelLst[0];
 
-  const arrayFromKeys = Object.keys(attendanceObjectFromArray).filter(
-    (x) => x[0] === "C"
-  );
+  const arrayFromKeys =
+    attendance.dbModelLst.length > 0 &&
+    Object.keys(attendanceObjectFromArray).filter((x) => x[0] === "C");
 
   const addDays = (originalDate, days) => {
     let cloneDate = new Date(originalDate.valueOf());
@@ -26,7 +26,9 @@ const StudentMonthlyPresentSheetListCollapse = ({ attendance }) => {
 
           return (
             <StudentAttendanceListDesign
-              attendance={attendance.dbModelLst[0]}
+              attendance={
+                attendance.dbModelLst.length > 0 && attendance.dbModelLst[0]
+              }
               s={s}
               key={s}
               date={date}
