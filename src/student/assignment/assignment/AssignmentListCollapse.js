@@ -118,7 +118,7 @@ const AssignmentListCollapse = ({ item, facultySubject }) => {
                 <CloudDownloadIcon style={{ fontSize: 12 }} />
               </Button>
             )}
-            {dateInPast(item.DueDate, Date.now()) ? (
+            {dateInPast(item.DueDate, Date.now() + 1) ? (
               <Button
                 variant="contained"
                 color="primary"
