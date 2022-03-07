@@ -8,13 +8,19 @@ import {
   makeStyles,
   ThemeProvider,
 } from "@material-ui/core";
-import { HashRouter as Router, Link, Route, Switch } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 
 import BottomNavigationMis from "./components/BottomNavigationMis";
+
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+
 const AssignmentEditForm = lazy(() =>
   import("./student/assignment/assignment/AssignmentEditForm")
 );
 
+
+const Login = lazy(() => import("./student/login/Login"));
 const DashboardSubjectView = lazy(() =>
   import("./student/dashboard/DashboardSubjectView")
 );
@@ -68,50 +74,49 @@ const useStyles = makeStyles({
 
 const App = () => {
   const classes = useStyles();
+  const location = useLocation();
+
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        {/* <SideMenu /> */}
-        <div className={classes.appMain}>
-          <Header />
-          <Suspense fallback={<div></div>}>
-            <Switch>
-              <Route path={"/exam-division"} component={ExamDivision} />
-              {/* <Route path={"/exam-schedule"} component={ExamSchedule} /> */}
-              <Route path={"/pid"} component={Pid} />
-              <Route path={"/quick-links"} component={QuickLinks} />
-              <Route path={"/resources/:id?"} component={Resources} />
-              <Route
-                path={"/assignment-front/edit/:id"}
-                component={AssignmentEditForm}
-              />
-              <Route
-                path={"/assignment-front/:id?"}
-                component={AssignmentFront}
-              />
-              <Route path={"/syllabus"} component={Syllabus} />
-              <Route path={"/class-schedule"} component={ClassSchedule} />
-              <Route path={"/old-questions"} component={OldQuestions} />
-              <Route path={"/attendance"} component={Attendance} />
-              <Route
-                exact
-                path={"/academic-grading"}
-                component={AcademicGrading}
-              />
-              <Route
-                exact
-                path={"/subject-view/:id"}
-                component={DashboardSubjectView}
-              />
-              <Route exact path={"/"} component={Dashboard} />
-              <Route path="*" component={PageNotFound} />
-            </Switch>
-          </Suspense>
-          <BottomNavigationMis />
-        </div>
-        <CssBaseline />
-      </ThemeProvider>
-    </Router>
+
+    <ThemeProvider theme={theme}>
+      {/* <SideMenu /> */}
+      <div className={classes.appMain}>
+        {location.pathname !== "/login" && <Header />}
+        <Suspense fallback={<div></div>}>
+          <Switch>
+            <Route path={"/exam-division"} component={ExamDivision} />
+            {/* <Route path={"/exam-schedule"} component={ExamSchedule} /> */}
+            <Route path={"/pid"} component={Pid} />
+            <Route path={"/quick-links"} component={QuickLinks} />
+            <Route path={"/resources/:id?"} component={Resources} />
+            <Route
+              path={"/assignment-front/:id?"}
+              component={AssignmentFront}
+            />
+            <Route path={"/syllabus"} component={Syllabus} />
+            <Route path={"/class-schedule"} component={ClassSchedule} />
+            <Route path={"/old-questions"} component={OldQuestions} />
+            <Route path={"/attendance"} component={Attendance} />
+            <Route path={"/login"} component={Login} />
+            <Route
+              exact
+              path={"/academic-grading"}
+              component={AcademicGrading}
+            />
+            <Route
+              exact
+              path={"/subject-view/:id"}
+              component={DashboardSubjectView}
+            />
+            <Route exact path={"/"} component={Dashboard} />
+            <Route path="*" component={PageNotFound} />
+          </Switch>
+        </Suspense>
+        {location.pathname !== "/login" && <BottomNavigationMis />}
+      </div>
+      <CssBaseline />
+    </ThemeProvider>
+
   );
 };
 
