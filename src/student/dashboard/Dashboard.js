@@ -10,6 +10,7 @@ import { GET_STUDENT_DASHBOARD_RESET } from "./DashboardConstants";
 import { useEffect } from "react";
 import { getDashboardContentAction } from "./DashboardActions";
 import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   dashboardContainer: {
@@ -33,9 +34,11 @@ const Dashboard = () => {
   });
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
   const { dashboardContent, error } = useSelector(
     (state) => state.getDashboardContent
   );
+  const { userInfo } = useSelector((state) => state.userLogin);
 
   if (error) {
     setNotify({
@@ -50,7 +53,10 @@ const Dashboard = () => {
     if (!dashboardContent) {
       dispatch(getDashboardContentAction());
     }
-  }, [dispatch, dashboardContent]);
+    if (!userInfo) {
+      history.push("/login");
+    }
+  }, [dispatch, dashboardContent, userInfo]);
   return (
     <>
       <div className={classes.dashboardContainer}>

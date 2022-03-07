@@ -1,3 +1,4 @@
+import axios from "axios";
 import { API_URL } from "../../constants";
 import {
   USER_LOGIN_FAIL,
@@ -18,9 +19,15 @@ export const login = (userName, password) => async (dispatch) => {
       },
     };
 
+    const jsonData = JSON.stringify({
+      UserName: userName,
+      Password: password,
+      RememberMe: true,
+    });
+
     const { data } = await axios.post(
-      `${API_URL}/api/users/login`,
-      { userName, password },
+      `${API_URL}/api/AccountRemote/PostLogon`,
+      jsonData,
       config
     );
 
@@ -44,5 +51,5 @@ export const login = (userName, password) => async (dispatch) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem("blueberryToken");
   dispatch({ type: USER_LOGOUT });
-  document.location.href = "/login";
+  document.location.href = "/#/login";
 };

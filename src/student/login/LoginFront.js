@@ -1,7 +1,10 @@
-import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core";
+import React, { useEffect, useState } from "react";
+import { CircularProgress, makeStyles } from "@material-ui/core";
 import { useDispatch } from "react-redux";
 import { login } from "./LoginActions";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { tokenConfigFunc } from "../../constants";
 
 const useStyles = makeStyles((theme) => ({
   LoginFront: {
@@ -53,7 +56,11 @@ const LoginFront = ({ setReg }) => {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
 
+  const { loading, error, userInfo } = useSelector((state) => state.userLogin);
+
   const dispatch = useDispatch();
+
+  const history = useHistory();
 
   const validate = () => {
     let temp = {};
@@ -79,6 +86,13 @@ const LoginFront = ({ setReg }) => {
     }
   };
 
+  useEffect(() => {
+    if (userInfo) {
+      tokenConfigFunc(userInfo.AccessToken);
+      history.push("/");
+    }
+  }, [userInfo]);
+
   const classes = useStyles();
   return (
     <div className={classes.LoginFront}>
@@ -103,7 +117,11 @@ const LoginFront = ({ setReg }) => {
       {errors.password && (
         <p className={classes.errors}>password is required</p>
       )}
-      <button onClick={handleLogin}>Sign In</button>
+      {loading ? (
+        <CircularProgress />
+      ) : (
+        <button onClick={handleLogin}>Sign In</button>
+      )}
       <span onClick={() => setReg(true)}>forgot password</span>
     </div>
   );

@@ -15,6 +15,7 @@ import SideMenu from "./SideMenu";
 import { useDispatch } from "react-redux";
 import { getHeaderContentAction } from "../student/dashboard/DashboardActions";
 import Drawer from "@material-ui/core/Drawer";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const useStyles = makeStyles({
   root: {
@@ -79,10 +80,13 @@ const Header = () => {
   const [placement, setPlacement] = React.useState();
   const classes = useStyles();
   const dispatch = useDispatch();
+  const history = useHistory();
 
   const { headerContent, error: headerContentError } = useSelector(
     (state) => state.getHeaderContent
   );
+
+  const { userInfo } = useSelector((state) => state.userLogin);
 
   const handleClick = (newPlacement) => (event) => {
     setAnchorEl(event.currentTarget);
@@ -94,7 +98,10 @@ const Header = () => {
     if (!headerContent) {
       dispatch(getHeaderContentAction());
     }
-  }, [headerContent, dispatch]);
+    if (!userInfo) {
+      history.push("/login");
+    }
+  }, [headerContent, dispatch, userInfo]);
   return (
     <div>
       <AppBar position="static">

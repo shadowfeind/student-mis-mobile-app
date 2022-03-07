@@ -1,5 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 import React from "react";
+import { useDispatch } from "react-redux";
+import { logout } from "../student/login/LoginActions";
 import NavigationSideMenu from "./sideMenuComponents/NavigationSideMenu";
 import NavProfileContainer from "./sideMenuComponents/NavProfileContainer";
 
@@ -25,12 +27,13 @@ const useStyles = makeStyles((theme) => ({
 
 const SideMenu = ({ header }) => {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <div className={classes.sideMenu}>
       <NavProfileContainer header={header} />
       <NavigationSideMenu />
-      <h4>Log out</h4>
+      <h4 onClick={() => dispatch(logout())}>Log out</h4>
     </div>
   );
 };
