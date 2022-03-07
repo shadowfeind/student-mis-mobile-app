@@ -61,6 +61,7 @@ import {
   getAllExamScheduleInitialDataReducer,
   getExamScheduleListReducer,
 } from "./student/examSchedule/ExamScheduleReducers";
+import { userLoginReducer } from "./student/login/LoginReducers";
 
 import {
   downloadOldQuestionsReducer,
@@ -163,6 +164,7 @@ import {
 } from "./student/syllabus/SyllabusReducers";
 
 export const reducers = combineReducers({
+  userLogin: userLoginReducer,
   getHeaderContent: getHeaderContentReducer,
   getDashboardContent: getDashboardContentReducer,
   academicGrading: getAllAcademicGradingReducer,
@@ -251,7 +253,7 @@ export const reducers = combineReducers({
   getSingleAssignment: getSingleAssignmentReducer,
   putSingleAssignment: putSingleAssignmentReducer,
   downloadAssignment: downloadAssignmentReducer,
-  downloadSubmittedAssignment : downloadSubmittedAssignmentReducer,
+  downloadSubmittedAssignment: downloadSubmittedAssignmentReducer,
   //ClassSchedule Reducer
   getAllClassSchedule: getAllClassScheduleReducer,
   //OldQuestions Reducers

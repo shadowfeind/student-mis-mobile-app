@@ -21,15 +21,18 @@ const NavProfileContainer = ({ header }) => {
   return (
     <div className={classes.profileContainer}>
       {header && (
-        <img
-          src={`${API_URL}${header.FullPath}`}
-          width="60px"
-          height="60px"
-          style={{ borderRadius: "50%" }}
-        />
+        <>
+          <img
+            src={`${API_URL}${header.FullPath}`}
+            width="60px"
+            height="60px"
+            style={{ borderRadius: "50%" }}
+          />
+
+          <h2>{header.FullName}</h2>
+          <p>mis@gmail.com</p>
+        </>
       )}
-      <h2>{header.FullName}</h2>
-      <p>mis@gmail.com</p>
     </div>
   );
 };

@@ -19,7 +19,6 @@ const AssignmentEditForm = lazy(() =>
   import("./student/assignment/assignment/AssignmentEditForm")
 );
 
-
 const Login = lazy(() => import("./student/login/Login"));
 const DashboardSubjectView = lazy(() =>
   import("./student/dashboard/DashboardSubjectView")
@@ -77,7 +76,6 @@ const App = () => {
   const location = useLocation();
 
   return (
-
     <ThemeProvider theme={theme}>
       {/* <SideMenu /> */}
       <div className={classes.appMain}>
@@ -116,7 +114,6 @@ const App = () => {
       </div>
       <CssBaseline />
     </ThemeProvider>
-
   );
 };
 

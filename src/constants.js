@@ -1,8 +1,6 @@
-// export const API_URL = "http://103.90.86.151:84";
 export const API_URL = "http://103.90.86.151:100";
-// export const API_URL = "http://192.168.1.85:88";
 
-export const USER_SESSION = sessionStorage.getItem("blueberrytoken");
+export const USER_SESSION = JSON.parse(localStorage.getItem("blueberryToken"));
 
 export const tokenConfig = {
   headers: {

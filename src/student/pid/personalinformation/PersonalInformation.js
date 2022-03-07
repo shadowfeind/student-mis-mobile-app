@@ -192,84 +192,69 @@ const PersonalInformation = () => {
   }, [listPersonalInformation]);
   return (
     <CustomContainer>
-      {/* <Button
-        variant="contained"
-        color="primary"
-        startIcon={<Edit />}
-        className={classes.button}
-        onClick={editHandler}
-      >
-        Edit{" "}
-      </Button>
-      {getAllPersonalInformation && (
-        <ListPersonalInformation
-          list={getAllPersonalInformation && getAllPersonalInformation.dbModel}
-        />
-      )}
-      <Popup
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-        title="Personal Information Edit Form"
-      >
-        {" "}
-        <PersonalInformationForm
-          personalInformation={
-            singlePersonalInformation && singlePersonalInformation
-          }
-          setOpenPopup={setOpenPopup}
-        />
-      </Popup>
-      <Notification notify={notify} setNotify={setNotify} /> */}
       <div className={classes.profileContainer}>
         <h3>Profile</h3>
-        <div className={classes.profileImageContainer}>
-          <img
-            src={`${API_URL}${headerContent.FullPath}`}
-            width="80px"
-            height="80px"
-            style={{ borderRadius: "50%", border: "2px solid #fff" }}
-          />
-          <h2>{headerContent.FullName}</h2>
-          <h4>mis@gmail.com</h4>
-        </div>
-        <div className={classes.profileOtherContainer}>
-          <div>
-            <h5>Class</h5>
-            <p>9</p>
-          </div>
-          <div
-            style={{ height: "40px", width: "1px", backgroundColor: "#d3d3d3" }}
-          ></div>
-          <div>
-            <h5>Roll No</h5>
-            <p>1</p>
-          </div>
-          <div
-            style={{ height: "40px", width: "1px", backgroundColor: "#d3d3d3" }}
-          ></div>
-          <div>
-            <h5>Section</h5>
-            <p>A</p>
-          </div>
-        </div>
-        <div className={classes.profileContainerDetails}>
-          <h4>About</h4>
-          <p>
-            <LocationOnIcon /> <span>Lives at </span>Tinkune, Kathmandu
-          </p>
-          <p>
-            <DraftsIcon /> <span>Email at </span>mis@gmail.com
-          </p>
-          <p>
-            <MobileScreenShareIcon /> <span>Call at </span>9841253245
-          </p>
-          <p>
-            <PermIdentityIcon /> <span>Main Guardian Name </span>Suresh M. Sanu
-          </p>
-          <p>
-            <ContactPhoneIcon /> <span>Guardian Contact </span>9812345678
-          </p>
-        </div>
+        {headerContent && (
+          <>
+            <div className={classes.profileImageContainer}>
+              <img
+                src={`${API_URL}${headerContent.FullPath}`}
+                width="80px"
+                height="80px"
+                style={{ borderRadius: "50%", border: "2px solid #fff" }}
+              />
+              <h2>{headerContent.FullName}</h2>
+              <h4>mis@gmail.com</h4>
+            </div>
+            <div className={classes.profileOtherContainer}>
+              <div>
+                <h5>Class</h5>
+                <p>9</p>
+              </div>
+              <div
+                style={{
+                  height: "40px",
+                  width: "1px",
+                  backgroundColor: "#d3d3d3",
+                }}
+              ></div>
+              <div>
+                <h5>Roll No</h5>
+                <p>1</p>
+              </div>
+              <div
+                style={{
+                  height: "40px",
+                  width: "1px",
+                  backgroundColor: "#d3d3d3",
+                }}
+              ></div>
+              <div>
+                <h5>Section</h5>
+                <p>A</p>
+              </div>
+            </div>
+            <div className={classes.profileContainerDetails}>
+              <h4>About</h4>
+              <p>
+                <LocationOnIcon /> <span>Lives at </span>Tinkune, Kathmandu
+              </p>
+              <p>
+                <DraftsIcon /> <span>Email at </span>mis@gmail.com
+              </p>
+              <p>
+                <MobileScreenShareIcon /> <span>Call at </span>9841253245
+              </p>
+              <p>
+                <PermIdentityIcon /> <span>Main Guardian Name </span>Suresh M.
+                Sanu
+              </p>
+              <p>
+                <ContactPhoneIcon /> <span>Guardian Contact </span>9812345678
+              </p>
+            </div>
+          </>
+        )}
       </div>
     </CustomContainer>
   );

@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core";
+import { useDispatch } from "react-redux";
+import { login } from "./LoginActions";
 
 const useStyles = makeStyles((theme) => ({
   LoginFront: {
@@ -40,18 +42,68 @@ const useStyles = makeStyles((theme) => ({
       width: "100%",
     },
   },
+  errors: {
+    fontSize: "10px",
+    color: "red",
+  },
 }));
 
 const LoginFront = ({ setReg }) => {
+  const [userName, setUserName] = useState("");
+  const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState({});
+
+  const dispatch = useDispatch();
+
+  const validate = () => {
+    let temp = {};
+    temp.userName = !userName
+      ? "This feild is required"
+      : !userName.trim()
+      ? "This feild is required"
+      : "";
+
+    temp.password = !password
+      ? "This feild is required"
+      : !password.trim()
+      ? "This feild is required"
+      : "";
+
+    setErrors({ ...temp });
+    return Object.values(temp).every((x) => x === "");
+  };
+
+  const handleLogin = () => {
+    if (validate()) {
+      dispatch(login(userName, password));
+    }
+  };
+
   const classes = useStyles();
   return (
     <div className={classes.LoginFront}>
       <h1>School MIS</h1>
       <label>username:</label>
-      <input type="text" placeholder="username" />
+      <input
+        type="text"
+        placeholder="username"
+        value={userName}
+        onChange={(e) => setUserName(e.target.value)}
+      />
+      {errors.userName && (
+        <p className={classes.errors}>username is required</p>
+      )}
       <label>password:</label>
-      <input type="password" placeholder="password" />
-      <button>Sign In</button>
+      <input
+        type="password"
+        placeholder="password"
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
+      />
+      {errors.password && (
+        <p className={classes.errors}>password is required</p>
+      )}
+      <button onClick={handleLogin}>Sign In</button>
       <span onClick={() => setReg(true)}>forgot password</span>
     </div>
   );

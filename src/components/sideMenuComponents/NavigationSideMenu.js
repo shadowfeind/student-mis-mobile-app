@@ -99,7 +99,7 @@ const NavigationSideMenu = () => {
         </Typography>
       </NavLink>
 
-      <NavLink
+      {/* <NavLink
         to={"/quick-links"}
         activeStyle={isActive}
         className={classes.textBox}
@@ -109,7 +109,7 @@ const NavigationSideMenu = () => {
           <Face fontSize="medium" />
           Quick Links
         </Typography>
-      </NavLink>
+      </NavLink> */}
       <NavLink
         to={"/resources"}
         activeStyle={isActive}
