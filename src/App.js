@@ -11,8 +11,14 @@ import {
 import { Link, Route, Switch } from "react-router-dom";
 
 import BottomNavigationMis from "./components/BottomNavigationMis";
+
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+
+const AssignmentEditForm = lazy(() =>
+  import("./student/assignment/assignment/AssignmentEditForm")
+);
+
 
 const Login = lazy(() => import("./student/login/Login"));
 const DashboardSubjectView = lazy(() =>
@@ -71,6 +77,7 @@ const App = () => {
   const location = useLocation();
 
   return (
+
     <ThemeProvider theme={theme}>
       {/* <SideMenu /> */}
       <div className={classes.appMain}>
@@ -109,6 +116,7 @@ const App = () => {
       </div>
       <CssBaseline />
     </ThemeProvider>
+
   );
 };
 
