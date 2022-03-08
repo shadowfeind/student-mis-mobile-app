@@ -15,8 +15,7 @@ export const getHeaderContentAction = () => async (dispatch) => {
     dispatch({ type: GET_HEADER_CONTENT_REQUEST });
 
     const { data } = await axios.get(
-      `${API_URL}/api/Home/GetHeaderContent
-      `,
+      `${API_URL}/api/Home/GetHeaderContent`,
       tokenConfig
     );
 
