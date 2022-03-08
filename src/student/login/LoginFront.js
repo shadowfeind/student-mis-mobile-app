@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import { login } from "./LoginActions";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { tokenConfigFunc } from "../../constants";
 import Notification from "../../components/Notification";
 
 const useStyles = makeStyles((theme) => ({
@@ -104,7 +103,6 @@ const LoginFront = ({ setReg }) => {
 
   useEffect(() => {
     if (userInfo) {
-      tokenConfigFunc(userInfo.AccessToken);
       history.push("/");
     }
   }, [userInfo]);

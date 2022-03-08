@@ -19,7 +19,7 @@ export const getAllNewResourcesStudentAction = () => async (dispatch) => {
     const { data } = await axios.get(
       `${API_URL}/api/CourseDeliveryPlanStudent/GetAllCourseDeliveryPlan
           `,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -35,13 +35,14 @@ export const getAllNewResourcesStudentAction = () => async (dispatch) => {
 };
 
 export const getNewResourcesStudentListAction =
-  (facultySubject,year,program,section,shift,classId) => async (dispatch) => {
+  (facultySubject, year, program, section, shift, classId) =>
+  async (dispatch) => {
     try {
       dispatch({ type: GET_NEW_SOURCES_STUDENT_LIST_REQUEST });
 
       const { data } = await axios.get(
         `${API_URL}/api/CourseDeliveryPlanStudent/GetListCourseDeliveryPlan?idAcademicFacultySubjectLink=${facultySubject}&idAcademicYear=${year}&idFacultyProgramLink=${program}&level=${classId}&section=${section}&idShift=${shift}`,
-        tokenConfig
+        tokenConfig()
       );
 
       dispatch({
@@ -56,22 +57,21 @@ export const getNewResourcesStudentListAction =
     }
   };
 
-  export const downloadNewResourcesAction = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: DOWNLOAD_NEW_SOURCES_REQUEST });
-  
-      const test = `${API_URL}/api/CourseDeliveryPlanStudent/DownloadDoc/${id}`;
-  
-      window.open(test, "_blank");
-      dispatch({
-        type: DOWNLOAD_NEW_SOURCES_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: DOWNLOAD_NEW_SOURCES_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
-    }
-  };
-  
+export const downloadNewResourcesAction = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DOWNLOAD_NEW_SOURCES_REQUEST });
+
+    const test = `${API_URL}/api/CourseDeliveryPlanStudent/DownloadDoc/${id}`;
+
+    window.open(test, "_blank");
+    dispatch({
+      type: DOWNLOAD_NEW_SOURCES_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DOWNLOAD_NEW_SOURCES_FAIL,
+      payload: error.message ? error.message : error.Message,
+    });
+  }
+};

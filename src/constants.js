@@ -1,16 +1,16 @@
 export const API_URL = "http://103.90.86.151:100";
 
-export const tokenConfigFunc = (token) => {
-  localStorage.setItem("blueberryToken", JSON.stringify(token));
-};
-
-const USER_SESSION = localStorage.getItem("blueberryToken")
-  ? JSON.parse(localStorage.getItem("blueberryToken"))
-  : null;
-
-export const tokenConfig = {
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${USER_SESSION}`,
-  },
+export const tokenConfig = () => {
+  const user = JSON.parse(localStorage.getItem("blueberryToken"));
+  if (user && user.AccessToken) {
+    const tokenReturn = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.AccessToken}`,
+      },
+    };
+    return tokenReturn;
+  } else {
+    return {};
+  }
 };

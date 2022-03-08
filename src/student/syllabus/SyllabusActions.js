@@ -12,7 +12,7 @@ export const getAllSyllabusAction = () => async (dispatch) => {
 
     const { data } = await axios.get(
       `${API_URL}/api/SyllabusStudent/GetAllSyllabus`,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({

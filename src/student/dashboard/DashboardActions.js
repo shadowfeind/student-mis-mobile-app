@@ -16,7 +16,7 @@ export const getHeaderContentAction = () => async (dispatch) => {
 
     const { data } = await axios.get(
       `${API_URL}/api/Home/GetHeaderContent`,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({ type: GET_HEADER_CONTENT_SUCCESS, payload: data });
@@ -34,7 +34,7 @@ export const getDashboardContentAction = () => async (dispatch) => {
 
     const { data } = await axios.get(
       `${API_URL}/api/StudentDashboard/GetAllStudentSubmission`,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({ type: GET_STUDENT_DASHBOARD_SUCCESS, payload: data });

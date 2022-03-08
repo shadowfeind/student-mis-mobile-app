@@ -28,7 +28,7 @@ export const getAllAssignmentAction = () => async (dispatch) => {
     const { data } = await axios.get(
       `${API_URL}/api/StudentSubmission/GetAllStudentSubmission
             `,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -50,7 +50,7 @@ export const getAssignmentListAction =
 
       const { data } = await axios.get(
         `${API_URL}/api/StudentSubmission/GetListStudentSubmission?idAcademicYear=${year}&idFacultyProgramLink=${program}&level=${classId}&idShift=${shift}&idAcademicFacultySubjectLink=${facultySubject}`,
-        tokenConfig
+        tokenConfig()
       );
 
       dispatch({
@@ -71,7 +71,7 @@ export const getSingleAssignmentAction = (id) => async (dispatch) => {
 
     const { data } = await axios.get(
       `${API_URL}/api/StudentSubmission/GetSignleToEditStudentSubmission/${id}`,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({
@@ -97,7 +97,7 @@ export const putSingleAssignmentAction =
       const { data } = await axios.post(
         `${API_URL}/api/StudentSubmission/FileUpload`,
         formData,
-        tokenConfig
+        tokenConfig()
       );
 
       if (data) {
@@ -114,7 +114,7 @@ export const putSingleAssignmentAction =
         await axios.put(
           `${API_URL}/api/StudentSubmission/PutStudentSubmission`,
           jsonData,
-          tokenConfig
+          tokenConfig()
         );
       }
 
@@ -130,41 +130,39 @@ export const putSingleAssignmentAction =
     }
   };
 
-  export const downloadAssignmentAction = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: DOWNLOAD_ASSIGNMENT_REQUEST });
-  
-      const test = `${API_URL}/api/StudentSubmission/DownloadDoc/${id}`;
-  
-      window.open(test, "_blank");
-      dispatch({
-        type: DOWNLOAD_ASSIGNMENT_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: DOWNLOAD_ASSIGNMENT_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
-    }
-  };
-  
-  export const downloadSubmittedAssignmentAction = (id) => async (dispatch) => {
-    try {
-      dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_REQUEST });
-  
-      const test = `${API_URL}/api/StudentSubmission/DownloadSubmittedDoc/${id}`;
-  
-      window.open(test, "_blank");
-      dispatch({
-        type: DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
-       
-      });
-    } catch (error) {
-      dispatch({
-        type: DOWNLOAD_SUBMITTED_ASSIGNMENT_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
-    }
-  };
-  
+export const downloadAssignmentAction = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DOWNLOAD_ASSIGNMENT_REQUEST });
+
+    const test = `${API_URL}/api/StudentSubmission/DownloadDoc/${id}`;
+
+    window.open(test, "_blank");
+    dispatch({
+      type: DOWNLOAD_ASSIGNMENT_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: DOWNLOAD_ASSIGNMENT_FAIL,
+      payload: error.message ? error.message : error.Message,
+    });
+  }
+};
+
+export const downloadSubmittedAssignmentAction = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_REQUEST });
+
+    const test = `${API_URL}/api/StudentSubmission/DownloadSubmittedDoc/${id}`;
+
+    window.open(test, "_blank");
+    dispatch({
+      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
+    });
+  } catch (error) {
+    dispatch({
+      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_FAIL,
+      payload: error.message ? error.message : error.Message,
+    });
+  }
+};
