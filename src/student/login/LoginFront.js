@@ -5,6 +5,7 @@ import { login } from "./LoginActions";
 import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { tokenConfigFunc } from "../../constants";
+import Notification from "../../components/Notification";
 
 const useStyles = makeStyles((theme) => ({
   LoginFront: {
@@ -55,8 +56,23 @@ const LoginFront = ({ setReg }) => {
   const [userName, setUserName] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
 
   const { loading, error, userInfo } = useSelector((state) => state.userLogin);
+
+  useEffect(() => {
+    if (error) {
+      setNotify({
+        isOpen: true,
+        message: error,
+        type: "error",
+      });
+    }
+  }, [error]);
 
   const dispatch = useDispatch();
 
@@ -95,35 +111,38 @@ const LoginFront = ({ setReg }) => {
 
   const classes = useStyles();
   return (
-    <div className={classes.LoginFront}>
-      <h1>School MIS</h1>
-      <label>username:</label>
-      <input
-        type="text"
-        placeholder="username"
-        value={userName}
-        onChange={(e) => setUserName(e.target.value)}
-      />
-      {errors.userName && (
-        <p className={classes.errors}>username is required</p>
-      )}
-      <label>password:</label>
-      <input
-        type="password"
-        placeholder="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      {errors.password && (
-        <p className={classes.errors}>password is required</p>
-      )}
-      {loading ? (
-        <CircularProgress />
-      ) : (
-        <button onClick={handleLogin}>Sign In</button>
-      )}
-      <span onClick={() => setReg(true)}>forgot password</span>
-    </div>
+    <>
+      <div className={classes.LoginFront}>
+        <h1>School MIS</h1>
+        <label>username:</label>
+        <input
+          type="text"
+          placeholder="username"
+          value={userName}
+          onChange={(e) => setUserName(e.target.value)}
+        />
+        {errors.userName && (
+          <p className={classes.errors}>username is required</p>
+        )}
+        <label>password:</label>
+        <input
+          type="password"
+          placeholder="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        {errors.password && (
+          <p className={classes.errors}>password is required</p>
+        )}
+        {loading ? (
+          <CircularProgress />
+        ) : (
+          <button onClick={handleLogin}>Sign In</button>
+        )}
+        <span onClick={() => setReg(true)}>forgot password</span>
+      </div>
+      <Notification notify={notify} setNotify={setNotify} />
+    </>
   );
 };
 
