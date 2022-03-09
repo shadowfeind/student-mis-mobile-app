@@ -1,7 +1,0 @@
-{
-  "name": "student-mis-mobile-app",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "react"
-}

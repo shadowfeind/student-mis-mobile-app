@@ -10,6 +10,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@capacitor/android": "^3.4.3",
+    "@capacitor/cli": "^3.4.3",
+    "@capacitor/core": "^3.4.3",
     "@date-io/date-fns": "1.x",
     "@material-ui/core": "^4.12.3",
     "@material-ui/icons": "^4.11.2",
