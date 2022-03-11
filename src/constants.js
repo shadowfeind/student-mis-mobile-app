@@ -14,3 +14,7 @@ export const tokenConfig = () => {
     return {};
   }
 };
+
+export const fireToken = () => {
+  return "AAAACB9i9IE:APA91bEuqomtN9gss5UOVzngtIofWkWo9tUWAZ_2LYBNeKbuZXXns-S6NuBWEgYCnQj8gsI6YbvlbxKIByeYvHjgf2U-GjTTPCB44_K6yjcPhvDHqQD5WaUCshNEDzAuz3r91MeBJe3D";
+};
