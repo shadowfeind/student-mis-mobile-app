@@ -12,6 +12,12 @@ import { getDashboardContentAction } from "./DashboardActions";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import PushNotificationsContainer from "../../PushNotificationsContainer";
+import {
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from "@capacitor/push-notifications";
 
 const useStyles = makeStyles((theme) => ({
   dashboardContainer: {
@@ -58,10 +64,11 @@ const Dashboard = () => {
       history.push("/login");
     }
   }, [dispatch, dashboardContent, userInfo]);
+
   return (
     <>
-      <PushNotificationsContainer />
-      {/* <div className={classes.dashboardContainer}>
+      {/* <PushNotificationsContainer /> */}
+      <div className={classes.dashboardContainer}>
         {dashboardContent &&
           dashboardContent.searchFilterModel.ddlSubject.map((s) => (
             <Link key={s.id} to={`/subject-view/${s.Key}`}>
@@ -69,7 +76,7 @@ const Dashboard = () => {
             </Link>
           ))}
       </div>
-      <Notification notify={notify} setNotify={setNotify} /> */}
+      <Notification notify={notify} setNotify={setNotify} />
     </>
   );
 };

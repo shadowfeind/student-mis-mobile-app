@@ -31,22 +31,22 @@ export default function PushNotificationsContainer() {
   const nullEntry = [];
   const [notifications, setnotifications] = useState(nullEntry);
 
-  // useEffect(() => {
-  //   PushNotifications.checkPermissions().then((res) => {
-  //     if (res.receive !== "granted") {
-  //       PushNotifications.requestPermissions().then((res) => {
-  //         if (res.receive === "denied") {
-  //           showToast("Push Notification permission denied");
-  //         } else {
-  //           showToast("Push Notification permission granted");
-  //           register();
-  //         }
-  //       });
-  //     } else {
-  //       register();
-  //     }
-  //   });
-  // }, []);
+  useEffect(() => {
+    PushNotifications.checkPermissions().then((res) => {
+      if (res.receive !== "granted") {
+        PushNotifications.requestPermissions().then((res) => {
+          if (res.receive === "denied") {
+            showToast("Push Notification permission denied");
+          } else {
+            showToast("Push Notification permission granted");
+            register();
+          }
+        });
+      } else {
+        register();
+      }
+    });
+  }, []);
 
   // const tokenFromConst = fireToken()
 
