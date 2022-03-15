@@ -24,6 +24,15 @@
             </intent-filter>
 
         </activity>
+        <service
+            android:name="io.ionic.studentmis.MyFirebaseMessagingService"
+            android:exported="true"
+            android:enabled="true"
+            android:directBootAware="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
 
         <provider
             android:name="androidx.core.content.FileProvider"
