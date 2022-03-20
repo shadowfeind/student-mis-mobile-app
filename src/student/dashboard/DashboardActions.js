@@ -1,6 +1,5 @@
 import axios from "axios";
 import { API_URL, tokenConfig } from "../../constants";
-
 import {
   GET_HEADER_CONTENT_FAIL,
   GET_HEADER_CONTENT_REQUEST,

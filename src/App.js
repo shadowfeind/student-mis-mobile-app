@@ -136,7 +136,6 @@ const App = () => {
         <Suspense fallback={<div></div>}>
           <Switch>
             <Route path={"/exam-division"} component={ExamDivision} />
-            {/* <Route path={"/exam-schedule"} component={ExamSchedule} /> */}
             <Route path={"/pid"} component={Pid} />
             <Route path={"/quick-links"} component={QuickLinks} />
             <Route path={"/resources/:id?"} component={Resources} />

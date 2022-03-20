@@ -24,11 +24,11 @@ import {
 import AcademicGradingTableCollapse from "./AcademicGradingTableCollapse";
 
 import {
-  CREATE_ACADEMIC_GRADING_RESET,
-  GET_SINGLE_ACADEMIC_GRADING_RESET,
-  GET_SINGLE_ACADEMIC_GRADING_EDIT_RESET,
+  STUDENT_CREATE_ACADEMIC_GRADING_RESET,
+  STUDENT_GET_SINGLE_ACADEMIC_GRADING_RESET,
+  STUDENT_GET_SINGLE_ACADEMIC_GRADING_EDIT_RESET,
   UPDATE_SINGLE_ACADEMIC_GADING_RESET,
-  GET_ALL_ACADEMIC_GRADING_RESET,
+  STUDENT_GET_ALL_ACADEMIC_GRADING_RESET,
 } from "./AcademicGradingConstants";
 import AcademicGradingForm from "./AcademicGradingForm";
 
@@ -76,30 +76,25 @@ const AcademicGrading = () => {
   const dispatch = useDispatch();
 
   const { academicGrading, error } = useSelector(
-    (state) => state.academicGrading
+    (state) => state.studentAcademicGrading
   );
-
-  // const { academicGrading: singleAcademicGrading, error: singleAcademicGradingError } = useSelector(
-  //     (state) => state.getSingleAcademicGrading
-  // );
 
   const {
     academicGradingEdit: singleAcademicGrading,
     error: singleAcademicGradingError,
-  } = useSelector((state) => state.getSingleAcademicGradingforEdit);
+  } = useSelector((state) => state.studentGetSingleAcademicGradingforEdit);
 
   const {
     success: createAcademicGradingSuccess,
     error: createAcademicGradingError,
-  } = useSelector((state) => state.createAcademicGrading);
+  } = useSelector((state) => state.studentCreateAcademicGrading);
 
   const {
     success: updateSingleAcademicGradingSuccess,
     error: updateSingleAcademicGradingError,
-  } = useSelector((state) => state.updateSingleAcademicGrading);
+  } = useSelector((state) => state.studentUpdateSingleAcademicGrading);
 
   if (createAcademicGradingSuccess) {
-    // alert("sent")
     dispatch(getAllAcademicGradingAction());
     setNotify({
       isOpen: true,
@@ -107,7 +102,7 @@ const AcademicGrading = () => {
       type: "success",
     });
     setOpenPopup(false);
-    dispatch({ type: CREATE_ACADEMIC_GRADING_RESET });
+    dispatch({ type: STUDENT_CREATE_ACADEMIC_GRADING_RESET });
   }
 
   if (error) {
@@ -116,7 +111,7 @@ const AcademicGrading = () => {
       message: error,
       type: "error",
     });
-    dispatch({ type: GET_ALL_ACADEMIC_GRADING_RESET });
+    dispatch({ type: STUDENT_GET_ALL_ACADEMIC_GRADING_RESET });
   }
 
   if (createAcademicGradingError) {
@@ -125,7 +120,7 @@ const AcademicGrading = () => {
       message: createAcademicGradingError,
       type: "error",
     });
-    dispatch({ type: CREATE_ACADEMIC_GRADING_RESET });
+    dispatch({ type: STUDENT_CREATE_ACADEMIC_GRADING_RESET });
   }
 
   if (updateSingleAcademicGradingSuccess) {
@@ -193,7 +188,7 @@ const AcademicGrading = () => {
   };
 
   const addHandler = () => {
-    dispatch({ type: GET_SINGLE_ACADEMIC_GRADING_EDIT_RESET });
+    dispatch({ type: STUDENT_GET_SINGLE_ACADEMIC_GRADING_EDIT_RESET });
     //dispatch(getSingleAcademicGradingAction());
     setOpenPopup(true);
   };
