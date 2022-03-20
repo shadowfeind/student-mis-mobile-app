@@ -1,23 +1,23 @@
 import axios from "axios";
 import { API_URL, tokenConfig } from "../../constants";
 import {
-  DOWNLOAD_OLD_QUESTIONS_FAIL,
-  DOWNLOAD_OLD_QUESTIONS_REQUEST,
-  DOWNLOAD_OLD_QUESTIONS_SUCCESS,
-  GET_ALL_OLD_QUESTIONS_FAIL,
-  GET_ALL_OLD_QUESTIONS_REQUEST,
-  GET_ALL_OLD_QUESTIONS_SUCCESS,
+  DOWNLOAD_OLD_QUESTIONS_STUDENT_FAIL,
+  DOWNLOAD_OLD_QUESTIONS_STUDENT_REQUEST,
+  DOWNLOAD_OLD_QUESTIONS_STUDENT_SUCCESS,
+  GET_ALL_OLD_QUESTIONS_STUDENT_FAIL,
+  GET_ALL_OLD_QUESTIONS_STUDENT_REQUEST,
+  GET_ALL_OLD_QUESTIONS_STUDENT_SUCCESS,
   GET_LIST_OLD_QUESTIONS_STUDENT_FAIL,
   GET_LIST_OLD_QUESTIONS_STUDENT_REQUEST,
   GET_LIST_OLD_QUESTIONS_STUDENT_SUCCESS,
-  GET_SUBJECT_OPTIONS_OLD_QUESTIONS_FAIL,
-  GET_SUBJECT_OPTIONS_OLD_QUESTIONS_REQUEST,
-  GET_SUBJECT_OPTIONS_OLD_QUESTIONS_SUCCESS,
+  GET_SUBJECT_OPTIONS_OLD_QUESTIONS_STUDENT_FAIL,
+  GET_SUBJECT_OPTIONS_OLD_QUESTIONS_STUDENT_REQUEST,
+  GET_SUBJECT_OPTIONS_OLD_QUESTIONS_STUDENT_SUCCESS,
 } from "./OldQuestionsConstants";
 
-export const getAllOldQuestionsAction = () => async (dispatch) => {
+export const getAllOldQuestionsStudentAction = () => async (dispatch) => {
   try {
-    dispatch({ type: GET_ALL_OLD_QUESTIONS_REQUEST });
+    dispatch({ type: GET_ALL_OLD_QUESTIONS_STUDENT_REQUEST });
 
     const { data } = await axios.get(
       `${API_URL}/api/OldQuestionStudent/GetAllOldQuestion`,
@@ -25,21 +25,21 @@ export const getAllOldQuestionsAction = () => async (dispatch) => {
     );
 
     dispatch({
-      type: GET_ALL_OLD_QUESTIONS_SUCCESS,
+      type: GET_ALL_OLD_QUESTIONS_STUDENT_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: GET_ALL_OLD_QUESTIONS_FAIL,
+      type: GET_ALL_OLD_QUESTIONS_STUDENT_FAIL,
       payload: error.message ? error.message : error.Message,
     });
   }
 };
 
-export const getSubjectOptionsForOldQuestionsAction =
+export const getSubjectOptionsForOldQuestionsStudentAction =
   (classId) => async (dispatch) => {
     try {
-      dispatch({ type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_REQUEST });
+      dispatch({ type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_STUDENT_REQUEST });
 
       const subject = await axios.get(
         `${API_URL}/api/OldQuestionStudent/GetSubjectByIDLevel?level=${classId}`,
@@ -49,12 +49,12 @@ export const getSubjectOptionsForOldQuestionsAction =
         subject: subject.data,
       };
       dispatch({
-        type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_SUCCESS,
+        type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_STUDENT_SUCCESS,
         payload: data,
       });
     } catch (error) {
       dispatch({
-        type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_FAIL,
+        type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_STUDENT_FAIL,
         payload: error.message ? error.message : error.Message,
       });
     }
@@ -82,19 +82,19 @@ export const getListOldQuestionsStudentAction =
     }
   };
 
-export const downloadOldQuestionsAction = (id) => async (dispatch) => {
+export const downloadOldQuestionsStudentAction = (id) => async (dispatch) => {
   try {
-    dispatch({ type: DOWNLOAD_OLD_QUESTIONS_REQUEST });
+    dispatch({ type: DOWNLOAD_OLD_QUESTIONS_STUDENT_REQUEST });
 
     const test = `${API_URL}/api/OldQuestionStudent/DownloadOldQuestion/${id}`;
 
     window.open(test, "_blank");
     dispatch({
-      type: DOWNLOAD_OLD_QUESTIONS_SUCCESS,
+      type: DOWNLOAD_OLD_QUESTIONS_STUDENT_SUCCESS,
     });
   } catch (error) {
     dispatch({
-      type: DOWNLOAD_OLD_QUESTIONS_FAIL,
+      type: DOWNLOAD_OLD_QUESTIONS_STUDENT_FAIL,
       payload: error.message ? error.message : error.Message,
     });
   }

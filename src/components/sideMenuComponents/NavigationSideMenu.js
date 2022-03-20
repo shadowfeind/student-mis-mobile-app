@@ -50,7 +50,7 @@ const NavigationSideMenu = () => {
   return (
     <div className={classes.root}>
       <NavLink
-        to={"/"}
+        to={"/student-dashboard"}
         exact={true}
         activeStyle={isActive}
         className={classes.textBox}
@@ -61,7 +61,7 @@ const NavigationSideMenu = () => {
           DashBoard
         </Typography>
       </NavLink>
-      <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}>
+      <NavLink to={"/student-pid"} activeStyle={isActive} className={classes.textBox}>
         <Typography variant="h6">
           <ChromeReaderMode fontSize="medium" />
           Profile
@@ -89,7 +89,7 @@ const NavigationSideMenu = () => {
       </NavLink> */}
 
       <NavLink
-        to={"/class-schedule"}
+        to={"/student-class-schedule"}
         activeStyle={isActive}
         className={classes.textBox}
       >
@@ -111,7 +111,7 @@ const NavigationSideMenu = () => {
         </Typography>
       </NavLink> */}
       <NavLink
-        to={"/resources"}
+        to={"/student-resources"}
         activeStyle={isActive}
         className={classes.textBox}
       >
@@ -121,7 +121,7 @@ const NavigationSideMenu = () => {
         </Typography>
       </NavLink>
       <NavLink
-        to={"/assignment-front"}
+        to={"/student-assignment-front"}
         activeStyle={isActive}
         className={classes.textBox}
       >
@@ -131,7 +131,7 @@ const NavigationSideMenu = () => {
         </Typography>
       </NavLink>
       <NavLink
-        to={"/syllabus"}
+        to={"/student-syllabus"}
         activeStyle={isActive}
         className={classes.textBox}
       >
@@ -141,7 +141,7 @@ const NavigationSideMenu = () => {
         </Typography>
       </NavLink>
       <NavLink
-        to={"/old-questions"}
+        to={"/student-old-questions"}
         activeStyle={isActive}
         className={classes.textBox}
       >
@@ -152,7 +152,7 @@ const NavigationSideMenu = () => {
         </Typography>
       </NavLink>
       <NavLink
-        to={"/attendance"}
+        to={"/student-attendance"}
         activeStyle={isActive}
         className={classes.textBox}
       >

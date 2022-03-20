@@ -1,19 +1,19 @@
 import {
-  GET_ALL_CLASS_SCHEDULE_FAIL,
-  GET_ALL_CLASS_SCHEDULE_REQUEST,
-  GET_ALL_CLASS_SCHEDULE_RESET,
-  GET_ALL_CLASS_SCHEDULE_SUCCESS,
+  GET_ALL_CLASS_SCHEDULE_STUDENT_FAIL,
+  GET_ALL_CLASS_SCHEDULE_STUDENT_REQUEST,
+  GET_ALL_CLASS_SCHEDULE_STUDENT_RESET,
+  GET_ALL_CLASS_SCHEDULE_STUDENT_SUCCESS,
 } from "./ClassScheduleConstant";
 
-export const getAllClassScheduleReducer = (state = {}, action) => {
+export const getAllClassScheduleStudentReducer = (state = {}, action) => {
   switch (action.type) {
-    case GET_ALL_CLASS_SCHEDULE_REQUEST:
+    case GET_ALL_CLASS_SCHEDULE_STUDENT_REQUEST:
       return { loading: true };
-    case GET_ALL_CLASS_SCHEDULE_SUCCESS:
+    case GET_ALL_CLASS_SCHEDULE_STUDENT_SUCCESS:
       return { loading: false, classSchedule: action.payload };
-    case GET_ALL_CLASS_SCHEDULE_FAIL:
+    case GET_ALL_CLASS_SCHEDULE_STUDENT_FAIL:
       return { loading: false, error: action.payload };
-    case GET_ALL_CLASS_SCHEDULE_RESET:
+    case GET_ALL_CLASS_SCHEDULE_STUDENT_RESET:
       return {};
     default:
       return state;

@@ -4,11 +4,11 @@ import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
 import {
-  GET_ALL_UPLOADPHOTO_RESET,
-  UPLOADPHOTO_RESET,
+  GET_ALL_UPLOADPHOTO_STUDENT_RESET,
+  UPLOADPHOTO_STUDENT_RESET,
 } from "./UploadPhotoConstants";
 import {
-  getAllUploadPhotoAction,
+  getAllUploadPhotoStudentAction,
   uploadPhotoActionAction,
 } from "./UploadPhotoActions";
 import { API_URL } from "../../../constants";
@@ -37,9 +37,9 @@ const UploadPhoto = () => {
 
   const dispatch = useDispatch();
 
-  const { allUploadPhoto, allUploadPhotoError } = useSelector((state) => state.getAllUploadPhoto);
+  const { allUploadPhoto, allUploadPhotoError } = useSelector((state) => state.getAllUploadPhotoStudent);
   const { success: uploadPhotoSuccess, error: uploadPhotoError } = useSelector(
-    (state) => state.uploadPhoto
+    (state) => state.uploadPhotoStudent
   );
   if (allUploadPhotoError) {
     setNotify({
@@ -47,7 +47,7 @@ const UploadPhoto = () => {
       message: allUploadPhotoError,
       type: "error",
     });
-    dispatch({ type: GET_ALL_UPLOADPHOTO_RESET });
+    dispatch({ type: GET_ALL_UPLOADPHOTO_STUDENT_RESET });
   }
   if (uploadPhotoSuccess) {
     setNotify({
@@ -55,8 +55,8 @@ const UploadPhoto = () => {
       message: "Successfully Uploaded",
       type: "success",
     });
-    dispatch({ type: UPLOADPHOTO_RESET });
-    dispatch(getAllUploadPhotoAction());
+    dispatch({ type: UPLOADPHOTO_STUDENT_RESET });
+    dispatch(getAllUploadPhotoStudentAction());
   }
   if (uploadPhotoError) {
     setNotify({
@@ -64,13 +64,13 @@ const UploadPhoto = () => {
       message: "Image Required",
       type: "error",
     });
-    dispatch({ type: UPLOADPHOTO_RESET });
+    dispatch({ type: UPLOADPHOTO_STUDENT_RESET });
   }
 
   useEffect(() => {
     dispatch({ type: "GET_LINK", payload: "/" });
     if (!allUploadPhoto) {
-      dispatch(getAllUploadPhotoAction());
+      dispatch(getAllUploadPhotoStudentAction());
     }
   }, [dispatch, allUploadPhoto]);
 

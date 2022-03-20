@@ -19,37 +19,84 @@ import {
 } from "@capacitor/push-notifications";
 import { useLocation } from "react-router-dom";
 
-const AssignmentEditForm = lazy(() =>
+const AssignmentEditFormStudent = lazy(() =>
   import("./student/assignment/assignment/AssignmentEditForm")
 );
 
 const Login = lazy(() => import("./student/login/Login"));
-const DashboardSubjectView = lazy(() =>
+const DashboardSubjectViewStudent  = lazy(() =>
   import("./student/dashboard/DashboardSubjectView")
 );
 const PageNotFound = lazy(() => import("./student/pageNotFound/PageNotFound"));
-const Dashboard = lazy(() => import("./student/dashboard/Dashboard"));
-const Pid = lazy(() => import("./student/pid/UserProfile"));
-const QuickLinks = lazy(() => import("./student/quickLinks/QuickLinks"));
-const Resources = lazy(() => import("./student/resources/Resources"));
-const Syllabus = lazy(() => import("./student/syllabus/Syllabus"));
-const OldQuestions = lazy(() => import("./student/oldQuestions/OldQuestions"));
-const AcademicGrading = lazy(() =>
+const DashboardStudent = lazy(() => import("./student/dashboard/Dashboard"));
+const PidStudent = lazy(() => import("./student/pid/UserProfile"));
+const QuickLinksStudent  = lazy(() => import("./student/quickLinks/QuickLinks"));
+const ResourcesStudent  = lazy(() => import("./student/resources/Resources"));
+const SyllabusStudent  = lazy(() => import("./student/syllabus/Syllabus"));
+const OldQuestionsStudent  = lazy(() => import("./student/oldQuestions/OldQuestions"));
+const AcademicGradingStudent  = lazy(() =>
   import("./student/academicGrading/AcademicGrading")
 );
-const ExamDivision = lazy(() => import("./student/examDivision/ExamDivision"));
+const ExamDivisionStudent  = lazy(() => import("./student/examDivision/ExamDivision"));
 // const ExamSchedule = lazy(() => import("./student/examSchedule/ExamSchedule"));
-const ClassSchedule = lazy(() =>
+const ClassScheduleStudent  = lazy(() =>
   import("./student/classSchedule/ClassSchedule")
 );
 
 // const ExamMarkEntry = lazy(() =>
 //   import("./student/examMarkEntry/ExamMarkEntry")
 
-const AssignmentFront = lazy(() =>
+const AssignmentFrontStudent  = lazy(() =>
   import("./student/assignment/AssignmentFront")
 );
-const Attendance = lazy(() => import("./student/attendance/Attendance"));
+const AttendanceStudent  = lazy(() => import("./student/attendance/Attendance"));
+
+//Teacher App Starts:
+const StudentMonthlyPresentSheetUpdateForm = lazy(() =>
+  import(
+    "./teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetUpdateForm"
+  )
+);
+const StudentMonthlyPresentSheetMobileTable = lazy(() =>
+  import(
+    "./teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetMobileTable"
+  )
+);
+const DashboardSubjectView = lazy(() =>
+  import("./teacher/dashboard/DashboardSubjectView")
+);
+const VideoConference = lazy(() =>
+  import("./teacher/videoConference/VideoConference")
+);
+const Assignment = lazy(() => import("./teacher/assignment/Assignment"));
+const Attendance = lazy(() => import("./teacher/attendance/Attendance"));
+const DashboardTeacher = lazy(() => import("./teacher/dashboard/Dashboard"));
+const Pid = lazy(() => import("./teacher/pid/Pid"));
+const QuickLinks = lazy(() => import("./teacher/quickLinks/QuickLinks"));
+const Resources = lazy(() => import("./teacher/resources/Resources"));
+const Syllabus = lazy(() => import("./teacher/syllabus/syllabusMain"));
+const OldQuestions = lazy(() =>
+  import("./teacher/oldQuestions/OldQuestions")
+);
+const AcademicGrading = lazy(() =>
+  import("./teacher/academicGrading/AcademicGrading")
+);
+const ExamDivision = lazy(() =>
+  import("./teacher/examDivision/ExamDivision")
+);
+const ExamSchedule = lazy(() =>
+  import("./teacher/examSchedule/ExamSchedule")
+);
+const ClassSchedule = lazy(() =>
+  import("./teacher/classSchedule/ClassSchedule")
+);
+const ExamMarkEntry = lazy(() =>
+  import("./teacher/examMarkEntry/ExamMarkEntry")
+);
+const ExamMarkApprovalTeacher = lazy(() =>
+  import("./teacher/examMarkApprovalTeacher/ExamMarkApprovalTeacher")
+);
+
 const theme = createTheme({
   palette: {
     background: {
@@ -135,32 +182,72 @@ const App = () => {
         {location.pathname !== "/login" && <Header />}
         <Suspense fallback={<div></div>}>
           <Switch>
-            <Route path={"/exam-division"} component={ExamDivision} />
-            <Route path={"/pid"} component={Pid} />
-            <Route path={"/quick-links"} component={QuickLinks} />
-            <Route path={"/resources/:id?"} component={Resources} />
+            <Route path={"/student-exam-division"} component={ExamDivisionStudent} />
+            <Route path={"/student-pid"} component={PidStudent} />
+            <Route path={"/student-quick-links"} component={QuickLinksStudent} />
+            <Route path={"/student-resources/:id?"} component={ResourcesStudent} />
             <Route
-              path={"/assignment-front/:id?"}
-              component={AssignmentFront}
+              path={"/student-assignment-front/:id?"}
+              component={AssignmentFrontStudent}
             />
-            <Route path={"/syllabus"} component={Syllabus} />
-            <Route path={"/class-schedule"} component={ClassSchedule} />
-            <Route path={"/old-questions"} component={OldQuestions} />
-            <Route path={"/attendance"} component={Attendance} />
+            <Route path={"/student-syllabus"} component={SyllabusStudent} />
+            <Route path={"/student-class-schedule"} component={ClassScheduleStudent} />
+            <Route path={"/student-old-questions"} component={OldQuestionsStudent} />
+            <Route path={"/student-attendance"} component={AttendanceStudent} />
             <Route path={"/login"} component={Login} />
             <Route
               exact
-              path={"/academic-grading"}
-              component={AcademicGrading}
+              path={"/student-academic-grading"}
+              component={AcademicGradingStudent}
             />
             <Route
               exact
-              path={"/subject-view/:id"}
-              component={DashboardSubjectView}
+              path={"/student-subject-view/:id"}
+              component={DashboardSubjectViewStudent}
             />
-            <Route exact path={"/"} component={Dashboard} />
+              <Route exact path={"/student-dashboard"} component={DashboardStudent} />
+           
+{/* TEACHERS COMPONET */}
+<Route path={"/exam-division"} component={ExamDivision} />
+              <Route path={"/exam-schedule"} component={ExamSchedule} />
+              <Route path={"/exam-mark-entry"} component={ExamMarkEntry} />
+              <Route path={"/pid"} component={Pid} />
+              <Route path={"/quick-links"} component={QuickLinks} />
+              <Route path={"/resources/:id?"} component={Resources} />
+              <Route path={"/syllabus"} component={Syllabus} />
+              <Route path={"/class-schedule"} component={ClassSchedule} />
+              <Route path={"/old-questions"} component={OldQuestions} />
+              <Route path={"/attendance"} exact component={Attendance} />
+              <Route
+                path={"/attendance/table-details"}
+                component={StudentMonthlyPresentSheetMobileTable}
+              />
+              <Route
+                path={"/attendance/table-edit"}
+                component={StudentMonthlyPresentSheetUpdateForm}
+              />
+              <Route
+                path={"/exam-mark-approval"}
+                component={ExamMarkApprovalTeacher}
+              />
+              <Route path={"/assignment/:id?"} component={Assignment} />
+              <Route path={"/video-conference"} component={VideoConference} />
+              <Route
+                exact
+                path={"/academic-grading"}
+                component={AcademicGrading}
+              />
+              <Route
+                exact
+                path={"/subject-view/:id"}
+                component={DashboardSubjectView}
+              />
+               <Route path={"/teacher-dashboard"} component={DashboardTeacher} />   
+             
+             
             <Route path="*" component={PageNotFound} />
           </Switch>
+          
         </Suspense>
         {location.pathname !== "/login" && <BottomNavigationMis />}
       </div>

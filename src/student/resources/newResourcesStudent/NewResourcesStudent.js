@@ -18,7 +18,7 @@ import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import SelectControl from "../../../components/controls/SelectControl";
 import {
-  DOWNLOAD_NEW_SOURCES_RESET,
+  DOWNLOAD_NEW_SOURCES_STUDENT_RESET,
   GET_ALL_NEW_SOURCES_STUDENT_RESET,
   GET_NEW_SOURCES_STUDENT_LIST_RESET,
 } from "./NewResourcesStudentConstant";
@@ -120,7 +120,7 @@ const NewResourcesStudent = () => {
     success: downloadNewResourcesSuccess,
     file: downloadFile,
     error: downloadNewResourcesError,
-  } = useSelector((state) => state.downloadOldQuestions);
+  } = useSelector((state) => state.downloadNewResourcesStudent);
 
   if (downloadFile) {
     var blob = new Blob([downloadFile]);
@@ -133,7 +133,7 @@ const NewResourcesStudent = () => {
       message: downloadNewResourcesError,
       type: "error",
     });
-    dispatch({ type: DOWNLOAD_NEW_SOURCES_RESET });
+    dispatch({ type: DOWNLOAD_NEW_SOURCES_STUDENT_RESET });
   }
   if (newResourcesStudentError) {
     setNotify({

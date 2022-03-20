@@ -19,17 +19,17 @@ import Notification from "../../../components/Notification";
 import ConfirmDialog from "../../../components/ConfirmDialog";
 import SelectControl from "../../../components/controls/SelectControl";
 import {
-  DOWNLOAD_ASSIGNMENT_RESET,
-  DOWNLOAD_SUBMITTED_ASSIGNMENT_RESET,
-  GET_ALL_ASSIGNMENT_RESET,
-  GET_ASSIGNMENT_LIST_FAIL,
-  GET_ASSIGNMENT_LIST_RESET,
-  GET_SINGLE_ASSIGNMENT_RESET,
-  PUT_SINGLE_ASSIGNMENT_RESET,
+  DOWNLOAD_ASSIGNMENT_STUDENT_RESET,
+  DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_RESET,
+  GET_ALL_ASSIGNMENT_STUDENT_RESET,
+  GET_ASSIGNMENT_LIST_STUDENT_FAIL,
+  GET_ASSIGNMENT_LIST_STUDENT_RESET,
+  GET_SINGLE_ASSIGNMENT_STUDENT_RESET,
+  PUT_SINGLE_ASSIGNMENT_STUDENT_RESET,
 } from "./AssignmentConstant";
 import {
-  getAllAssignmentAction,
-  getAssignmentListAction,
+  getAllAssignmentStudentAction,
+  getAssignmentListStudentAction,
 } from "./AssignmentActions";
 import AssignmentTableCollapse from "./AssignmentTableCollapse";
 import AssignmentEditForm from "./AssignmentEditForm";
@@ -121,33 +121,33 @@ const Assignment = () => {
   };
 
   const { assignment, error: assignmentError } = useSelector(
-    (state) => state.getAllAssignment
+    (state) => state.getAllAssignmentStudent
   );
 
   const { assignmentList, error: assignmentListError } = useSelector(
-    (state) => state.getAssignmentList
+    (state) => state.getAssignmentListStudent
   );
 
   const { singleAssignment, error: singleAssignmentError } = useSelector(
-    (state) => state.getSingleAssignment
+    (state) => state.getSingleAssignmentStudent
   );
 
   const {
     success: putSingleAssignmentSuccess,
     error: putSingleAssignmentError,
-  } = useSelector((state) => state.putSingleAssignment);
+  } = useSelector((state) => state.putSingleAssignmentStudent);
 
   const {
     success: downloadAssignmentSuccess,
     file: downloadFile,
     error: downloadAssignmentError,
-  } = useSelector((state) => state.downloadAssignment);
+  } = useSelector((state) => state.downloadAssignmentStudent);
 
   const {
     success: downloadSubmittedAssignmentSuccess,
     file: downloadSubmmitedFile,
     error: downloadSubmittedAssignmentError,
-  } = useSelector((state) => state.downloadSubmittedAssignment);
+  } = useSelector((state) => state.downloadSubmittedAssignmentStudent);
 
   if (downloadFile) {
     var blob = new Blob([downloadFile]);
@@ -167,7 +167,7 @@ const Assignment = () => {
       message: assignmentError,
       type: "error",
     });
-    dispatch({ type: GET_ALL_ASSIGNMENT_RESET });
+    dispatch({ type: GET_ALL_ASSIGNMENT_STUDENT_RESET });
   }
   if (downloadAssignmentError) {
     setNotify({
@@ -175,7 +175,7 @@ const Assignment = () => {
       message: downloadAssignmentError,
       type: "error",
     });
-    dispatch({ type: DOWNLOAD_ASSIGNMENT_RESET });
+    dispatch({ type: DOWNLOAD_ASSIGNMENT_STUDENT_RESET });
   }
 
   if (downloadSubmittedAssignmentError) {
@@ -184,7 +184,7 @@ const Assignment = () => {
       message: downloadSubmittedAssignmentError,
       type: "error",
     });
-    dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_RESET });
+    dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_RESET });
   }
 
   if (putSingleAssignmentError) {
@@ -193,7 +193,7 @@ const Assignment = () => {
       message: putSingleAssignmentError,
       type: "error",
     });
-    dispatch({ type: PUT_SINGLE_ASSIGNMENT_RESET });
+    dispatch({ type: PUT_SINGLE_ASSIGNMENT_STUDENT_RESET });
   }
   if (putSingleAssignmentSuccess) {
     setNotify({
@@ -201,10 +201,10 @@ const Assignment = () => {
       message: "Successfully Submitted",
       type: "success",
     });
-    dispatch({ type: PUT_SINGLE_ASSIGNMENT_RESET });
+    dispatch({ type: PUT_SINGLE_ASSIGNMENT_STUDENT_RESET });
     setOpenPopup(false);
     dispatch(
-      getAssignmentListAction(
+      getAssignmentListStudentAction(
         acaYear,
         programValue,
         classId,
@@ -219,7 +219,7 @@ const Assignment = () => {
       message: singleAssignmentError,
       type: "error",
     });
-    dispatch({ type: GET_SINGLE_ASSIGNMENT_RESET });
+    dispatch({ type: GET_SINGLE_ASSIGNMENT_STUDENT_RESET });
   }
   if (assignmentListError) {
     setNotify({
@@ -227,12 +227,12 @@ const Assignment = () => {
       message: assignmentListError,
       type: "error",
     });
-    dispatch({ type: GET_ASSIGNMENT_LIST_RESET });
+    dispatch({ type: GET_ASSIGNMENT_LIST_STUDENT_RESET });
   }
 
   useEffect(() => {
     if (!assignment) {
-      dispatch(getAllAssignmentAction());
+      dispatch(getAllAssignmentStudentAction());
     }
     if (assignment) {
       unstable_batchedUpdates(() => {
@@ -249,7 +249,7 @@ const Assignment = () => {
       if (subjectIdFromDashboard) {
         setFacultySubject(subjectIdFromDashboard);
         dispatch(
-          getAssignmentListAction(
+          getAssignmentListStudentAction(
             assignment.searchFilterModel.idAcademicYear,
             assignment.searchFilterModel.idFacultyProgramLink,
             assignment.searchFilterModel.level,
@@ -269,7 +269,7 @@ const Assignment = () => {
 
   const handleExamScheduleSearch = (value) => {
     dispatch(
-      getAssignmentListAction(acaYear, programValue, classId, shift, value)
+      getAssignmentListStudentAction(acaYear, programValue, classId, shift, value)
     );
     setFacultySubject(value);
   };

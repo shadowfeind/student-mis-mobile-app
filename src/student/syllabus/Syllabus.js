@@ -7,8 +7,8 @@ import CustomContainer from "../../components/CustomContainer";
 import { Button, Toolbar } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import Popup from "../../components/Popup";
-import { GET_ALL_SYLLABUS_RESET } from "./SyllabusConstants";
-import { getAllSyllabusAction } from "./SyllabusActions";
+import { GET_ALL_SYLLABUS_STUDENT_RESET } from "./SyllabusConstants";
+import { getAllSyllabusStudentAction } from "./SyllabusActions";
 
 
 const Syllabus=()=>{
@@ -29,7 +29,7 @@ const Syllabus=()=>{
   const dispatch = useDispatch();
 
   const { allSyllabus, error: allSyllabusError } = useSelector(
-    (state) => state.getAllSyllabus
+    (state) => state.getAllSyllabusStudent
   );
 
   if (allSyllabusError) {
@@ -38,7 +38,7 @@ const Syllabus=()=>{
       message: allSyllabusError,
       type: "error",
     });
-    dispatch({ type: GET_ALL_SYLLABUS_RESET });
+    dispatch({ type: GET_ALL_SYLLABUS_STUDENT_RESET });
   }
 
   useEffect(() => {
@@ -46,12 +46,12 @@ const Syllabus=()=>{
         setUrl(`${API_URL}${allSyllabus.FullPath}`);
       }  
       if (!allSyllabus) {
-        dispatch(getAllSyllabusAction());
+        dispatch(getAllSyllabusStudentAction());
       }
    
   }, [allSyllabus]);
 // useEffect(()=>{
-//     dispatch(getAllClassScheduleAction(1));
+//     dispatch(getAllClassScheduleStudentAction(1));
 // })
 return (
     <>

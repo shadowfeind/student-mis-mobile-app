@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import InputControl from "../../../components/controls/InputControl";
 import { API_URL } from "../../../constants";
-import { putUploadPhotoAction } from "./UploadPhotoActions";
+import { putUploadPhotoStudentAction } from "./UploadPhotoActions";
 
 const UploadPhotoForm = ({ uploadPhoto }) => {
   const [image, setImage] = useState(null);
@@ -22,7 +22,7 @@ const UploadPhotoForm = ({ uploadPhoto }) => {
 
   const handleUploadImage = () => {
     if(uploadPhoto){
-      dispatch(putUploadPhotoAction(image,uploadPhoto.dbModel))
+      dispatch(putUploadPhotoStudentAction(image,uploadPhoto.dbModel))
     }else{
       console.log("failed")
     }

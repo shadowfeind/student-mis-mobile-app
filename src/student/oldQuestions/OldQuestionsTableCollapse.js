@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import { useDispatch } from "react-redux";
-import { downloadOldQuestionsAction } from "./OldQuestionsActions";
+import { downloadOldQuestionsStudentAction } from "./OldQuestionsActions";
 
 const useStyles = makeStyles({
   button: {
@@ -28,7 +28,7 @@ const OldQuestionsTableCollapse = ({ item }) => {
   const classes = useStyles();
 
   const downloadHandler = (id) => {
-    dispatch(downloadOldQuestionsAction(id));
+    dispatch(downloadOldQuestionsStudentAction(id));
   };
 
   return (

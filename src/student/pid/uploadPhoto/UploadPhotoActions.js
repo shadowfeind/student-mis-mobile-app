@@ -2,17 +2,17 @@ import axios from "axios";
 import { API_URL,tokenConfig } from "../../../constants";
 
 import {
-  GET_ALL_UPLOADPHOTO_FAIL,
-  GET_ALL_UPLOADPHOTO_REQUEST,
-  GET_ALL_UPLOADPHOTO_SUCCESS,
-  UPLOADPHOTO_FAIL,
-  UPLOADPHOTO_REQUEST,
-  UPLOADPHOTO_SUCCESS,
+  GET_ALL_UPLOADPHOTO_STUDENT_FAIL,
+  GET_ALL_UPLOADPHOTO_STUDENT_REQUEST,
+  GET_ALL_UPLOADPHOTO_STUDENT_SUCCESS,
+  UPLOADPHOTO_STUDENT_FAIL,
+  UPLOADPHOTO_STUDENT_REQUEST,
+  UPLOADPHOTO_STUDENT_SUCCESS,
 } from "./UploadPhotoConstants";
 
-export const getAllUploadPhotoAction = () => async (dispatch) => {
+export const getAllUploadPhotoStudentAction = () => async (dispatch) => {
   try {
-    dispatch({ type: GET_ALL_UPLOADPHOTO_REQUEST });
+    dispatch({ type: GET_ALL_UPLOADPHOTO_STUDENT_REQUEST });
 
     const { data } = await axios.get(
       `${API_URL}/api/PID_PhotoUpload/GetSingleToEditPhoto`,
@@ -20,20 +20,20 @@ export const getAllUploadPhotoAction = () => async (dispatch) => {
     );
 
     dispatch({
-      type: GET_ALL_UPLOADPHOTO_SUCCESS,
+      type: GET_ALL_UPLOADPHOTO_STUDENT_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: GET_ALL_UPLOADPHOTO_FAIL,
+      type: GET_ALL_UPLOADPHOTO_STUDENT_FAIL,
       payload: error.message ? error.message : error.Message,
     });
   }
 };
 
-export const putUploadPhotoAction = (image, dbData) => async (dispatch) => {
+export const putUploadPhotoStudentAction = (image, dbData) => async (dispatch) => {
   try {
-    dispatch({ type: UPLOADPHOTO_REQUEST });
+    dispatch({ type: UPLOADPHOTO_STUDENT_REQUEST });
 
     let formData = new FormData();
     formData.append("ImageUploaded", image);
@@ -61,11 +61,11 @@ export const putUploadPhotoAction = (image, dbData) => async (dispatch) => {
     }
 
     dispatch({
-      type: UPLOADPHOTO_SUCCESS,
+      type: UPLOADPHOTO_STUDENT_SUCCESS,
     });
   } catch (error) {
     dispatch({
-      type: UPLOADPHOTO_FAIL,
+      type: UPLOADPHOTO_STUDENT_FAIL,
       payload: error.message ? error.message : error.Message,
     });
   }

@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { getDashboardContentAction } from "./DashboardActions";
+import { getDashboardContentAction, getDashboardContentStudentAction } from "./DashboardActions";
 import DashboardSubjectViewList from "./DashboardSubjectViewList";
 import ImportContactsIcon from "@material-ui/icons/ImportContacts";
 import ShareIcon from "@material-ui/icons/Share";
@@ -44,7 +44,7 @@ const DashboardSubjectView = () => {
   let currentSubjectHolder;
   useEffect(() => {
     if (!dashboardContent) {
-      dispatch(getDashboardContentAction());
+      dispatch(getDashboardContentStudentAction());
     }
     if (dashboardContent) {
       currentSubjectHolder =
@@ -59,16 +59,16 @@ const DashboardSubjectView = () => {
     {
       id: 1,
       name: "Assignment",
-      route: "assignment-front",
+      route: "student-assignment-front",
       icon: AssignmentIcon,
     },
-    { id: 2, name: "Resources", route: "resources", icon: ImportContactsIcon },
-    { id: 3, name: "Syllabus", route: "syllabus", icon: SettingsIcon },
-    { id: 4, name: "Old Question", route: "old-questions", icon: ShareIcon },
+    { id: 2, name: "Resources", route: "student-resources", icon: ImportContactsIcon },
+    { id: 3, name: "Syllabus", route: "student-syllabus", icon: SettingsIcon },
+    { id: 4, name: "Old Question", route: "student-old-questions", icon: ShareIcon },
     {
       id: 5,
       name: "Notification",
-      route: "notification",
+      route: "student-notification",
       icon: NotificationsActiveIcon,
     },
   ];

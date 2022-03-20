@@ -24,7 +24,7 @@ export const getHeaderContentReducer = (state = {}, action) => {
   }
 };
 
-export const getDashboardContentReducer = (state = {}, action) => {
+export const getDashboardContentStudentReducer = (state = {}, action) => {
   switch (action.type) {
     case GET_STUDENT_DASHBOARD_REQUEST:
       return { loading: true };

@@ -1,29 +1,29 @@
 import axios from "axios";
 import { API_URL, tokenConfig } from "../../../constants";
 import {
-  DOWNLOAD_ASSIGNMENT_FAIL,
-  DOWNLOAD_ASSIGNMENT_REQUEST,
-  DOWNLOAD_ASSIGNMENT_SUCCESS,
-  DOWNLOAD_SUBMITTED_ASSIGNMENT_FAIL,
-  DOWNLOAD_SUBMITTED_ASSIGNMENT_REQUEST,
-  DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
-  GET_ALL_ASSIGNMENT_FAIL,
-  GET_ALL_ASSIGNMENT_REQUEST,
-  GET_ALL_ASSIGNMENT_SUCCESS,
-  GET_ASSIGNMENT_LIST_FAIL,
-  GET_ASSIGNMENT_LIST_REQUEST,
-  GET_ASSIGNMENT_LIST_SUCCESS,
-  GET_SINGLE_ASSIGNMENT_FAIL,
-  GET_SINGLE_ASSIGNMENT_REQUEST,
-  GET_SINGLE_ASSIGNMENT_SUCCESS,
-  PUT_SINGLE_ASSIGNMENT_FAIL,
-  PUT_SINGLE_ASSIGNMENT_REQUEST,
-  PUT_SINGLE_ASSIGNMENT_SUCCESS,
+  DOWNLOAD_ASSIGNMENT_STUDENT_FAIL,
+  DOWNLOAD_ASSIGNMENT_STUDENT_REQUEST,
+  DOWNLOAD_ASSIGNMENT_STUDENT_SUCCESS,
+  DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_FAIL,
+  DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_REQUEST,
+  DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_SUCCESS,
+  GET_ALL_ASSIGNMENT_STUDENT_FAIL,
+  GET_ALL_ASSIGNMENT_STUDENT_REQUEST,
+  GET_ALL_ASSIGNMENT_STUDENT_SUCCESS,
+  GET_ASSIGNMENT_LIST_STUDENT_FAIL,
+  GET_ASSIGNMENT_LIST_STUDENT_REQUEST,
+  GET_ASSIGNMENT_LIST_STUDENT_SUCCESS,
+  GET_SINGLE_ASSIGNMENT_STUDENT_FAIL,
+  GET_SINGLE_ASSIGNMENT_STUDENT_REQUEST,
+  GET_SINGLE_ASSIGNMENT_STUDENT_SUCCESS,
+  PUT_SINGLE_ASSIGNMENT_STUDENT_FAIL,
+  PUT_SINGLE_ASSIGNMENT_STUDENT_REQUEST,
+  PUT_SINGLE_ASSIGNMENT_STUDENT_SUCCESS,
 } from "./AssignmentConstant";
 
-export const getAllAssignmentAction = () => async (dispatch) => {
+export const getAllAssignmentStudentAction = () => async (dispatch) => {
   try {
-    dispatch({ type: GET_ALL_ASSIGNMENT_REQUEST });
+    dispatch({ type: GET_ALL_ASSIGNMENT_STUDENT_REQUEST });
 
     const { data } = await axios.get(
       `${API_URL}/api/StudentSubmission/GetAllStudentSubmission
@@ -32,21 +32,21 @@ export const getAllAssignmentAction = () => async (dispatch) => {
     );
 
     dispatch({
-      type: GET_ALL_ASSIGNMENT_SUCCESS,
+      type: GET_ALL_ASSIGNMENT_STUDENT_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: GET_ALL_ASSIGNMENT_FAIL,
+      type: GET_ALL_ASSIGNMENT_STUDENT_FAIL,
       payload: error.message ? error.message : error.Message,
     });
   }
 };
 
-export const getAssignmentListAction =
+export const getAssignmentListStudentAction =
   (year, program, classId, shift, facultySubject) => async (dispatch) => {
     try {
-      dispatch({ type: GET_ASSIGNMENT_LIST_REQUEST });
+      dispatch({ type: GET_ASSIGNMENT_LIST_STUDENT_REQUEST });
 
       const { data } = await axios.get(
         `${API_URL}/api/StudentSubmission/GetListStudentSubmission?idAcademicYear=${year}&idFacultyProgramLink=${program}&level=${classId}&idShift=${shift}&idAcademicFacultySubjectLink=${facultySubject}`,
@@ -54,20 +54,20 @@ export const getAssignmentListAction =
       );
 
       dispatch({
-        type: GET_ASSIGNMENT_LIST_SUCCESS,
+        type: GET_ASSIGNMENT_LIST_STUDENT_SUCCESS,
         payload: data,
       });
     } catch (error) {
       dispatch({
-        type: GET_ASSIGNMENT_LIST_FAIL,
+        type: GET_ASSIGNMENT_LIST_STUDENT_FAIL,
         payload: error.message ? error.message : error.Message,
       });
     }
   };
 
-export const getSingleAssignmentAction = (id) => async (dispatch) => {
+export const getSingleAssignmentStudentAction = (id) => async (dispatch) => {
   try {
-    dispatch({ type: GET_SINGLE_ASSIGNMENT_REQUEST });
+    dispatch({ type: GET_SINGLE_ASSIGNMENT_STUDENT_REQUEST });
 
     const { data } = await axios.get(
       `${API_URL}/api/StudentSubmission/GetSignleToEditStudentSubmission/${id}`,
@@ -75,21 +75,21 @@ export const getSingleAssignmentAction = (id) => async (dispatch) => {
     );
 
     dispatch({
-      type: GET_SINGLE_ASSIGNMENT_SUCCESS,
+      type: GET_SINGLE_ASSIGNMENT_STUDENT_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: GET_SINGLE_ASSIGNMENT_FAIL,
+      type: GET_SINGLE_ASSIGNMENT_STUDENT_FAIL,
       payload: error.message ? error.message : error.Message,
     });
   }
 };
 
-export const putSingleAssignmentAction =
+export const putSingleAssignmentStudentAction =
   (image, assignment) => async (dispatch) => {
     try {
-      dispatch({ type: PUT_SINGLE_ASSIGNMENT_REQUEST });
+      dispatch({ type: PUT_SINGLE_ASSIGNMENT_STUDENT_REQUEST });
 
       let formData = new FormData();
       formData.append("ImageUploaded", image);
@@ -119,49 +119,49 @@ export const putSingleAssignmentAction =
       }
 
       dispatch({
-        type: PUT_SINGLE_ASSIGNMENT_SUCCESS,
+        type: PUT_SINGLE_ASSIGNMENT_STUDENT_SUCCESS,
         payload: data,
       });
     } catch (error) {
       dispatch({
-        type: PUT_SINGLE_ASSIGNMENT_FAIL,
+        type: PUT_SINGLE_ASSIGNMENT_STUDENT_FAIL,
         payload: error.message ? error.message : error.Message,
       });
     }
   };
 
-export const downloadAssignmentAction = (id) => async (dispatch) => {
+export const downloadAssignmentStudentAction = (id) => async (dispatch) => {
   try {
-    dispatch({ type: DOWNLOAD_ASSIGNMENT_REQUEST });
+    dispatch({ type: DOWNLOAD_ASSIGNMENT_STUDENT_REQUEST });
 
     const test = `${API_URL}/api/StudentSubmission/DownloadDoc/${id}`;
 
     window.open(test, "_blank");
     dispatch({
-      type: DOWNLOAD_ASSIGNMENT_SUCCESS,
+      type: DOWNLOAD_ASSIGNMENT_STUDENT_SUCCESS,
       payload: data,
     });
   } catch (error) {
     dispatch({
-      type: DOWNLOAD_ASSIGNMENT_FAIL,
+      type: DOWNLOAD_ASSIGNMENT_STUDENT_FAIL,
       payload: error.message ? error.message : error.Message,
     });
   }
 };
 
-export const downloadSubmittedAssignmentAction = (id) => async (dispatch) => {
+export const downloadSubmittedAssignmentStudentAction = (id) => async (dispatch) => {
   try {
-    dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_REQUEST });
+    dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_REQUEST });
 
     const test = `${API_URL}/api/StudentSubmission/DownloadSubmittedDoc/${id}`;
 
     window.open(test, "_blank");
     dispatch({
-      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
+      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_SUCCESS,
     });
   } catch (error) {
     dispatch({
-      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_FAIL,
+      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_FAIL,
       payload: error.message ? error.message : error.Message,
     });
   }

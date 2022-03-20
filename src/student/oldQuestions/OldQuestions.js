@@ -7,14 +7,14 @@ import Notification from "../../components/Notification";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import SelectControl from "../../components/controls/SelectControl";
 import {
-  DOWNLOAD_OLD_QUESTIONS_RESET,
-  GET_ALL_OLD_QUESTIONS_RESET,
-  GET_SUBJECT_OPTIONS_OLD_QUESTIONS_RESET,
+  DOWNLOAD_OLD_QUESTIONS_STUDENT_RESET,
+  GET_ALL_OLD_QUESTIONS_STUDENT_RESET,
+  GET_SUBJECT_OPTIONS_OLD_QUESTIONS_STUDENT_RESET,
 } from "./OldQuestionsConstants";
 import {
-  getAllOldQuestionsAction,
+  getAllOldQuestionsStudentAction,
   getListOldQuestionsStudentAction,
-  getSubjectOptionsForOldQuestionsAction,
+  getSubjectOptionsForOldQuestionsStudentAction,
 } from "./OldQuestionsActions";
 import OldQuestionsTableCollapse from "./OldQuestionsTableCollapse";
 import MobileTopSelectContainer from "../../components/MobileTopSelectContainer";
@@ -62,10 +62,10 @@ const OldQuestions = () => {
   const dispatch = useDispatch();
 
   const { oldQuestions, oldQuestionsError } = useSelector(
-    (state) => state.getAllOldQuestions
+    (state) => state.getAllOldQuestionsStudent
   );
   const { subjectOptions, error: subjectOptionsError } = useSelector(
-    (state) => state.getSubjectOptionsForOldQuestions
+    (state) => state.getSubjectOptionsForOldQuestionsStudent
   );
 
   const { listOldQuestionsStudent } = useSelector(
@@ -76,7 +76,7 @@ const OldQuestions = () => {
     success: downloadOldQuestionsSuccess,
     file: downloadFile,
     error: downloadOldQuestionsError,
-  } = useSelector((state) => state.downloadOldQuestions);
+  } = useSelector((state) => state.downloadOldQuestionsStudent);
 
   if (downloadFile) {
     var blob = new Blob([downloadFile]);
@@ -90,7 +90,7 @@ const OldQuestions = () => {
       message: oldQuestionsError,
       type: "error",
     });
-    dispatch({ type: GET_ALL_OLD_QUESTIONS_RESET });
+    dispatch({ type: GET_ALL_OLD_QUESTIONS_STUDENT_RESET });
   }
 
   if (downloadOldQuestionsError) {
@@ -99,7 +99,7 @@ const OldQuestions = () => {
       message: downloadOldQuestionsError,
       type: "error",
     });
-    dispatch({ type: DOWNLOAD_OLD_QUESTIONS_RESET });
+    dispatch({ type: DOWNLOAD_OLD_QUESTIONS_STUDENT_RESET });
   }
   if (subjectOptionsError) {
     setNotify({
@@ -107,7 +107,7 @@ const OldQuestions = () => {
       message: subjectOptionsError,
       type: "error",
     });
-    dispatch({ type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_RESET });
+    dispatch({ type: GET_SUBJECT_OPTIONS_OLD_QUESTIONS_STUDENT_RESET });
   }
 
   const validate = () => {
@@ -121,7 +121,7 @@ const OldQuestions = () => {
 
   useEffect(() => {
     if (!oldQuestions) {
-      dispatch(getAllOldQuestionsAction());
+      dispatch(getAllOldQuestionsStudentAction());
     }
     if (oldQuestions) {
       setDdlClass(oldQuestions.searchFilterModel.ddlClass);
@@ -143,7 +143,7 @@ const OldQuestions = () => {
   const handleClassIdChange = (value) => {
     setClassId(value);
     if (!subjectOptions) {
-      dispatch(getSubjectOptionsForOldQuestionsAction(value));
+      dispatch(getSubjectOptionsForOldQuestionsStudentAction(value));
     }
     if (facultySubject) {
       dispatch(getListOldQuestionsStudentAction(value, facultySubject));

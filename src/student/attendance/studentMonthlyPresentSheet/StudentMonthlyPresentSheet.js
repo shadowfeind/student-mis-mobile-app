@@ -13,7 +13,6 @@ import {
 } from "./StudentMonthlyPresentSheetConstants";
 import {
   getAllStudentAttendanceAction,
-  getEngDateStudentAction,
   getListStudentAttendanceAction,
 } from "./StudentMonthlyPresentSheetActions";
 import DatePickerControl from "../../../components/controls/DatePickerControl";
@@ -87,10 +86,6 @@ const StudentMonthlyPresentSheet = () => {
     (state) => state.getAllOtherOptionsForStudent
   );
 
-  const { engDateStudent, error: engDateStudentError } = useSelector(
-    (state) => state.getEnglishDateStudent
-  );
-
   const { getListStudentAttendance, error: getListStudentAttendanceError } =
     useSelector((state) => state.getListStudentAttendance);
 
@@ -147,18 +142,18 @@ const StudentMonthlyPresentSheet = () => {
     }
   }, [allStudentAttendanceData, dispatch]);
 
-  const nepMonthHandler = (value) => {
-    setNepMonth(value);
-    if (nepYear) {
-      dispatch(getEngDateStudentAction(value, nepYear));
-    }
-  };
-  const nepYearHandler = (value) => {
-    setNepYear(value);
-    if (nepMonth) {
-      dispatch(getEngDateStudentAction(nepMonth, value));
-    }
-  };
+  // const nepMonthHandler = (value) => {
+  //   setNepMonth(value);
+  //   if (nepYear) {
+  //     dispatch(getEngDateStudentAction(value, nepYear));
+  //   }
+  // };
+  // const nepYearHandler = (value) => {
+  //   setNepYear(value);
+  //   if (nepMonth) {
+  //     dispatch(getEngDateStudentAction(nepMonth, value));
+  //   }
+  // };
 
   useEffect(() => {
     if (allOtherOptions) {

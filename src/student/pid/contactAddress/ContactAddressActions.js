@@ -1,51 +1,51 @@
 import axios from "axios";
 import { API_URL, tokenConfig } from "../../../constants";
-import { GET_ALL_CONTACTADDRESS_FAIL,
-     GET_ALL_CONTACTADDRESS_REQUEST,
-      GET_ALL_CONTACTADDRESS_SUCCESS, 
-      GET_SINGLE_CONTACTADDRESS_FAIL, 
-      GET_SINGLE_CONTACTADDRESS_REQUEST,
-      GET_SINGLE_CONTACTADDRESS_SUCCESS,
-      UPDATE_SINGLE_CONTACTADDRESS_FAIL,
-      UPDATE_SINGLE_CONTACTADDRESS_REQUEST,
-      UPDATE_SINGLE_CONTACTADDRESS_SUCCESS} from "./ContactAddressConstants";
+import { GET_ALL_CONTACTADDRESS_STUDENT_FAIL,
+     GET_ALL_CONTACTADDRESS_STUDENT_REQUEST,
+      GET_ALL_CONTACTADDRESS_STUDENT_SUCCESS, 
+      GET_SINGLE_CONTACTADDRESS_STUDENT_FAIL, 
+      GET_SINGLE_CONTACTADDRESS_STUDENT_REQUEST,
+      GET_SINGLE_CONTACTADDRESS_STUDENT_SUCCESS,
+      UPDATE_SINGLE_CONTACTADDRESS_STUDENT_FAIL,
+      UPDATE_SINGLE_CONTACTADDRESS_STUDENT_REQUEST,
+      UPDATE_SINGLE_CONTACTADDRESS_STUDENT_SUCCESS} from "./ContactAddressConstants";
 
-export const getAllContactAddressAction = () => async (dispatch) => {
+export const getAllContactAddressStudentAction = () => async (dispatch) => {
     try {
-      dispatch({ type: GET_ALL_CONTACTADDRESS_REQUEST });
+      dispatch({ type: GET_ALL_CONTACTADDRESS_STUDENT_REQUEST });
   
       const { data } = await axios.get(`${API_URL}/api/PID_Address/GetAllPIDAddress`,tokenConfig)
   
-      dispatch({ type: GET_ALL_CONTACTADDRESS_SUCCESS, payload: data });
+      dispatch({ type: GET_ALL_CONTACTADDRESS_STUDENT_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
-        type: GET_ALL_CONTACTADDRESS_FAIL,
+        type: GET_ALL_CONTACTADDRESS_STUDENT_FAIL,
         payload: error.message ? error.message : error.Message,
       });
     }
   };
 
-  export const getSingleContactAddressAction = () => async (dispatch) => {
+  export const getSingleContactAddressStudentAction = () => async (dispatch) => {
     try {
-      dispatch({ type: GET_SINGLE_CONTACTADDRESS_REQUEST });
+      dispatch({ type: GET_SINGLE_CONTACTADDRESS_STUDENT_REQUEST });
   
       const { data } = await axios.get(
         `${API_URL}/api/PID_Address/GetSingleEdit`,tokenConfig
       );
   
-      dispatch({ type: GET_SINGLE_CONTACTADDRESS_SUCCESS, payload: data });
+      dispatch({ type: GET_SINGLE_CONTACTADDRESS_STUDENT_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
-        type: GET_SINGLE_CONTACTADDRESS_FAIL,
+        type: GET_SINGLE_CONTACTADDRESS_STUDENT_FAIL,
         payload: error.message ? error.message : error.Message,
       });
     }
   };
   
 
-  export const updateSingleContactAddressAction = (contact) => async (dispatch) => {
+  export const updateSingleContactAddressStudentAction = (contact) => async (dispatch) => {
     try {
-      dispatch({ type: UPDATE_SINGLE_CONTACTADDRESS_REQUEST });
+      dispatch({ type: UPDATE_SINGLE_CONTACTADDRESS_STUDENT_REQUEST });
   
       const jsonData = JSON.stringify({ dbModel: contact });
   
@@ -61,10 +61,10 @@ export const getAllContactAddressAction = () => async (dispatch) => {
         tokenConfig
       );
   
-      dispatch({ type: UPDATE_SINGLE_CONTACTADDRESS_SUCCESS, payload: data });
+      dispatch({ type: UPDATE_SINGLE_CONTACTADDRESS_STUDENT_SUCCESS, payload: data });
     } catch (error) {
       dispatch({
-        type: UPDATE_SINGLE_CONTACTADDRESS_FAIL,
+        type: UPDATE_SINGLE_CONTACTADDRESS_STUDENT_FAIL,
         payload: error.message ? error.message : error.Message,
       });
     }

@@ -27,7 +27,7 @@ export const getHeaderContentAction = () => async (dispatch) => {
   }
 };
 
-export const getDashboardContentAction = () => async (dispatch) => {
+export const getDashboardContentStudentAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_STUDENT_DASHBOARD_REQUEST });
 

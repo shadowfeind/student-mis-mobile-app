@@ -8,7 +8,7 @@ import DashboardCard from "./DashboardCard";
 import { subject } from "./SubjectData";
 import { GET_STUDENT_DASHBOARD_RESET } from "./DashboardConstants";
 import { useEffect } from "react";
-import { getDashboardContentAction } from "./DashboardActions";
+import { getDashboardContentStudentAction } from "./DashboardActions";
 import { Link } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import PushNotificationsContainer from "../../PushNotificationsContainer";
@@ -43,7 +43,7 @@ const Dashboard = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const { dashboardContent, error } = useSelector(
-    (state) => state.getDashboardContent
+    (state) => state.getDashboardContentStudent
   );
   const { userInfo } = useSelector((state) => state.userLogin);
 
@@ -58,7 +58,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     if (!dashboardContent) {
-      dispatch(getDashboardContentAction());
+      dispatch(getDashboardContentStudentAction());
     }
     if (!userInfo) {
       history.push("/login");
@@ -71,7 +71,7 @@ const Dashboard = () => {
       <div className={classes.dashboardContainer}>
         {dashboardContent &&
           dashboardContent.searchFilterModel.ddlSubject.map((s) => (
-            <Link key={s.id} to={`/subject-view/${s.Key}`}>
+            <Link key={s.id} to={`/student-subject-view/${s.Key}`}>
               <DashboardCard subject={s} key={s.id} />
             </Link>
           ))}

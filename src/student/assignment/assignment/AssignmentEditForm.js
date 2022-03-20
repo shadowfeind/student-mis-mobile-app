@@ -3,7 +3,7 @@ import { Button, Grid, makeStyles } from "@material-ui/core";
 import { useDispatch, useSelector } from "react-redux";
 import InputControl from "../../../components/controls/InputControl";
 import { useForm, Form } from "../../../customHooks/useForm";
-import { putSingleAssignmentAction } from "./AssignmentActions";
+import { putSingleAssignmentStudentAction } from "./AssignmentActions";
 import { Link, useParams } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
 
@@ -88,7 +88,7 @@ const AssignmentEditForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (validate()) {
-      dispatch(putSingleAssignmentAction(image, values));
+      dispatch(putSingleAssignmentStudentAction(image, values));
     }
   };
 

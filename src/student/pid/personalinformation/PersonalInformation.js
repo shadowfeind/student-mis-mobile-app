@@ -117,9 +117,6 @@ const PersonalInformation = () => {
   const { singlePersonalInformation, error: singlePersonalInformationError } =
     useSelector((state) => state.getSinglePersonalInformation);
 
-  const { listPersonalInformation, error: listPersonalInformationError } =
-    useSelector((state) => state.getListPersonalInformation);
-
   const { headerContent, error: headerContentError } = useSelector(
     (state) => state.getHeaderContent
   );
@@ -147,14 +144,7 @@ const PersonalInformation = () => {
     setOpenPopup(false);
   }
 
-  if (listPersonalInformationError) {
-    setNotify({
-      isOpen: true,
-      message: listPersonalInformationError,
-      type: "error",
-    });
-    dispatch({ type: GET_LIST_PERSONALINFORMATION_RESET });
-  }
+  
   if (updateSinglePersonalInformationError) {
     setNotify({
       isOpen: true,
@@ -173,10 +163,10 @@ const PersonalInformation = () => {
     dispatch({ type: GET_SINGLE_PERSONALINFORMATION_RESET });
     setOpenPopup(false);
   }
-  const editHandler = () => {
-    dispatch(getSinglePersonalInformationAction());
-    setOpenPopup(true);
-  };
+  // const editHandler = () => {
+  //   dispatch(getSinglePersonalInformationAction());
+  //   setOpenPopup(true);
+  // };
 
   useEffect(() => {
     dispatch({ type: "GET_LINK", payload: "/" });
@@ -185,11 +175,11 @@ const PersonalInformation = () => {
     }
   }, [dispatch, getAllPersonalInformation]);
 
-  useEffect(() => {
-    if (listPersonalInformation) {
-      setTableData([...listPersonalInformation.dbModel]);
-    }
-  }, [listPersonalInformation]);
+  // useEffect(() => {
+  //   if (listPersonalInformation) {
+  //     setTableData([...listPersonalInformation.dbModel]);
+  //   }
+  // }, [listPersonalInformation]);
   return (
     <CustomContainer>
       <div className={classes.profileContainer}>

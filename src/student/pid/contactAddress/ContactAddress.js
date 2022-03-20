@@ -14,8 +14,8 @@ import Popup from "../../../components/Popup";
 import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
-import { GET_ALL_CONTACTADDRESS_RESET, GET_ALL_CONTACTADDRESS_SUCCESS, UPDATE_SINGLE_CONTACTADDRESS_RESET } from "./ContactAddressConstants";
-import { getAllContactAddressAction, getSingleContactAddressAction } from "./ContactAddressActions";
+import { GET_ALL_CONTACTADDRESS_STUDENT_RESET, GET_ALL_CONTACTADDRESS_STUDENT_SUCCESS, UPDATE_SINGLE_CONTACTADDRESS_STUDENT_RESET } from "./ContactAddressConstants";
+import { getAllContactAddressStudentAction, getSingleContactAddressStudentAction } from "./ContactAddressActions";
 import ListComponent from "../listComponent/ListComponent";
 import ContactAddressForm from "./ContactAddressForm";
 
@@ -38,7 +38,7 @@ import ContactAddressForm from "./ContactAddressForm";
   
       const dispatch = useDispatch();
   
-      const { getAllContactAddress, error } = useSelector((state) => state.getAllContactAddress);
+      const { getAllContactAddressStudent, error } = useSelector((state) => state.getAllContactAddressStudent);
       const { singleContactAddress, error: singleContactAddressError} = useSelector(
         (state) => state.getSingleContactAddress
       );
@@ -53,7 +53,7 @@ import ContactAddressForm from "./ContactAddressForm";
             message: error,
             type: "error",
         });
-        dispatch({ type: GET_ALL_CONTACTADDRESS_RESET });
+        dispatch({ type: GET_ALL_CONTACTADDRESS_STUDENT_RESET });
     }
     if (updateSingleContactAddressSuccess) {
       setNotify({
@@ -61,8 +61,8 @@ import ContactAddressForm from "./ContactAddressForm";
         message: "Successfully Updated",
         type: "success",
       });
-      dispatch({type : GET_ALL_CONTACTADDRESS_SUCCESS});
-      dispatch({ type: UPDATE_SINGLE_CONTACTADDRESS_RESET });
+      dispatch({type : GET_ALL_CONTACTADDRESS_STUDENT_SUCCESS});
+      dispatch({ type: UPDATE_SINGLE_CONTACTADDRESS_STUDENT_RESET });
       setOpenPopup(false);
     }
     if (updateSingleContactAddressError) {
@@ -71,21 +71,21 @@ import ContactAddressForm from "./ContactAddressForm";
         message: updateSingleContactAddressError,
         type: "error",
       });
-      dispatch({ type: UPDATE_SINGLE_CONTACTADDRESS_RESET });
+      dispatch({ type: UPDATE_SINGLE_CONTACTADDRESS_STUDENT_RESET });
       setOpenPopup(false);
     }
   
     const editHandler = () => {
-      dispatch(getSingleContactAddressAction());
+      dispatch(getSingleContactAddressStudentAction());
       setOpenPopup(true);
     };
 
     useEffect(() => {
       dispatch({ type: "GET_LINK", payload: "/" });
-      if (!getAllContactAddress) {
-          dispatch(getAllContactAddressAction());
+      if (!getAllContactAddressStudent) {
+          dispatch(getAllContactAddressStudentAction());
       }
-  }, [dispatch, getAllContactAddress]);
+  }, [dispatch, getAllContactAddressStudent]);
 
   return(
     <CustomContainer>
@@ -98,7 +98,7 @@ import ContactAddressForm from "./ContactAddressForm";
     >
       Edit{" "}
     </Button>
-      {getAllContactAddress && <ListComponent list={getAllContactAddress && getAllContactAddress.dbModel}/>}
+      {getAllContactAddressStudent && <ListComponent list={getAllContactAddressStudent && getAllContactAddressStudent.dbModel}/>}
       <Popup
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}

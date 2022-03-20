@@ -4,9 +4,9 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import AddIcon from "@material-ui/icons/Add";
 import DeleteIcon from "@material-ui/icons/Delete";
 import {
-  downloadAssignmentAction,
-  downloadSubmittedAssignmentAction,
-  getSingleAssignmentAction,
+  downloadAssignmentStudentAction,
+  downloadSubmittedAssignmentStudentAction,
+  getSingleAssignmentStudentAction,
 } from "./AssignmentActions";
 import { useDispatch } from "react-redux";
 
@@ -23,15 +23,15 @@ const AssignmentTableCollapse = ({ item, setOpenPopup }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const updateHandler = (id) => {
-    dispatch(getSingleAssignmentAction(id));
+    dispatch(getSingleAssignmentStudentAction(id));
     setOpenPopup(true);
   };
   const downloadHandler = (id) => {
-    dispatch(downloadAssignmentAction(id));
+    dispatch(downloadAssignmentStudentAction(id));
   };
 
   const downloadSubmittedHandler = (id) => {
-    dispatch(downloadSubmittedAssignmentAction(id));
+    dispatch(downloadSubmittedAssignmentStudentAction(id));
   };
   return (
     <TableRow>

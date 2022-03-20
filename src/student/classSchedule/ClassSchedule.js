@@ -7,8 +7,8 @@ import CustomContainer from "../../components/CustomContainer";
 import { Button, Toolbar } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 import Popup from "../../components/Popup";
-import { GET_ALL_CLASS_SCHEDULE_RESET } from "./ClassScheduleConstant";
-import { getAllClassScheduleAction } from "./ClassScheduleAction";
+import { GET_ALL_CLASS_SCHEDULE_STUDENT_RESET } from "./ClassScheduleConstant";
+import { getAllClassScheduleStudentAction } from "./ClassScheduleAction";
 
 const ClassSchedule=()=>{
 
@@ -28,7 +28,7 @@ const ClassSchedule=()=>{
   const dispatch = useDispatch();
 
   const { classSchedule, error: classScheduleError } = useSelector(
-    (state) => state.getAllClassSchedule
+    (state) => state.getAllClassScheduleStudent
   );
 
   if (classScheduleError) {
@@ -37,7 +37,7 @@ const ClassSchedule=()=>{
       message: classScheduleError,
       type: "error",
     });
-    dispatch({ type: GET_ALL_CLASS_SCHEDULE_RESET });
+    dispatch({ type: GET_ALL_CLASS_SCHEDULE_STUDENT_RESET });
   }
 
   useEffect(() => {
@@ -45,12 +45,12 @@ const ClassSchedule=()=>{
         setUrl(`${API_URL}${classSchedule.FullPath}`);
       }  
       if (!classSchedule) {
-        dispatch(getAllClassScheduleAction());
+        dispatch(getAllClassScheduleStudentAction());
       }
    
   }, [classSchedule]);
 // useEffect(()=>{
-//     dispatch(getAllClassScheduleAction(1));
+//     dispatch(getAllClassScheduleStudentAction(1));
 // })
 return (
     <>

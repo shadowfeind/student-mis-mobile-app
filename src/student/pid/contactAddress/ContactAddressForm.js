@@ -4,7 +4,7 @@ import InputControl from "../../../components/controls/InputControl";
 import { useForm, Form } from "../../../customHooks/useForm";
 import { useDispatch } from "react-redux";
 import SelectControl from "../../../components/controls/SelectControl";
-import { updateSingleContactAddressAction } from "./ContactAddressActions";
+import { updateSingleContactAddressStudentAction } from "./ContactAddressActions";
 
 
 const initialFormValues = {
@@ -126,7 +126,7 @@ const ContactAddressForm =({contactAddress, setOpenPopup})=>{
     e.preventDefault();
 
     if (validate()) {
-      dispatch(updateSingleContactAddressAction(values));
+      dispatch(updateSingleContactAddressStudentAction(values));
       // alert("working");
     }
   };  

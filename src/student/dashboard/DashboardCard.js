@@ -79,13 +79,13 @@ export const DashboardCard = ({ subject }) => {
         </Typography>
       </CardContent>
       <CardActions className={classes.cardAction}>
-        <Link to={`/assignment-front/${subject.Key}`}>
+        <Link to={`/student-assignment-front/${subject.Key}`}>
           <IconButton aria-label="add to favorites">
             <AssignmentIcon style={{ fontSize: "16px" }} />
             <h6>Assignment</h6>
           </IconButton>
         </Link>
-        <Link to={`/resources/${subject.Key}`}>
+        <Link to={`/student-resources/${subject.Key}`}>
           <IconButton aria-label="share">
             <ImportContactsIcon style={{ fontSize: "16px" }} />
             <h6>Resources</h6>

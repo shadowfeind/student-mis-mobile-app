@@ -1,38 +1,38 @@
 import {
-  GET_ALL_UPLOADPHOTO_FAIL,
-  GET_ALL_UPLOADPHOTO_REQUEST,
-  GET_ALL_UPLOADPHOTO_RESET,
-  GET_ALL_UPLOADPHOTO_SUCCESS,
-  UPLOADPHOTO_FAIL,
-  UPLOADPHOTO_REQUEST,
-  UPLOADPHOTO_RESET,
-  UPLOADPHOTO_SUCCESS,
+  GET_ALL_UPLOADPHOTO_STUDENT_FAIL,
+  GET_ALL_UPLOADPHOTO_STUDENT_REQUEST,
+  GET_ALL_UPLOADPHOTO_STUDENT_RESET,
+  GET_ALL_UPLOADPHOTO_STUDENT_SUCCESS,
+  UPLOADPHOTO_STUDENT_FAIL,
+  UPLOADPHOTO_STUDENT_REQUEST,
+  UPLOADPHOTO_STUDENT_RESET,
+  UPLOADPHOTO_STUDENT_SUCCESS,
 } from "./UploadPhotoConstants";
 
-export const getAllUploadPhotoReducer = (state = {}, action) => {
+export const getAllUploadPhotoStudentReducer = (state = {}, action) => {
   switch (action.type) {
-    case GET_ALL_UPLOADPHOTO_REQUEST:
+    case GET_ALL_UPLOADPHOTO_STUDENT_REQUEST:
       return { loading: true };
-    case GET_ALL_UPLOADPHOTO_SUCCESS:
+    case GET_ALL_UPLOADPHOTO_STUDENT_SUCCESS:
       return { loading: false,allUploadPhoto: action.payload };
-    case GET_ALL_UPLOADPHOTO_FAIL:
+    case GET_ALL_UPLOADPHOTO_STUDENT_FAIL:
       return { loading: false, error: action.payload };
-    case GET_ALL_UPLOADPHOTO_RESET:
+    case GET_ALL_UPLOADPHOTO_STUDENT_RESET:
       return {};
     default:
       return state;
   }
 };
 
-export const uploadPhotoReducer = (state = {}, action) => {
+export const uploadPhotoStudentReducer = (state = {}, action) => {
   switch (action.type) {
-    case UPLOADPHOTO_REQUEST:
+    case UPLOADPHOTO_STUDENT_REQUEST:
       return { loading: true };
-    case UPLOADPHOTO_SUCCESS:
+    case UPLOADPHOTO_STUDENT_SUCCESS:
       return { loading: false, success: true };
-    case UPLOADPHOTO_FAIL:
+    case UPLOADPHOTO_STUDENT_FAIL:
       return { loading: false, error: action.payload };
-    case UPLOADPHOTO_RESET:
+    case UPLOADPHOTO_STUDENT_RESET:
       return {};
     default:
       return state;

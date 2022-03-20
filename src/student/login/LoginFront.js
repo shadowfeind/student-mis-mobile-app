@@ -103,8 +103,13 @@ const LoginFront = ({ setReg }) => {
 
   useEffect(() => {
     if (userInfo) {
-      history.push("/");
-    }
+      if(userInfo.IDHRRole === 8){
+        history.push("/student-dashboard")
+      }
+      if(userInfo.IDHRRole ===5){
+        history.push("/teacher-dashboard")
+      }
+      }
   }, [userInfo]);
 
   const classes = useStyles();
