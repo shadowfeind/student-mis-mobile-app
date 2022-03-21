@@ -4,6 +4,7 @@ import {
   USER_LOGIN_SUCCESS,
   USER_LOGOUT,
   USER_LOGIN_RESET,
+  GENERATE_FCM_TOKEN,
 } from "./LoginConstants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -18,6 +19,15 @@ export const userLoginReducer = (state = {}, action) => {
       return {};
     case USER_LOGOUT:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const getFCMTokenReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GENERATE_FCM_TOKEN:
+      return { loading: false, FCMToken: action.payload };
     default:
       return state;
   }

@@ -67,7 +67,6 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* <PushNotificationsContainer /> */}
       <div className={classes.dashboardContainer}>
         {dashboardContent &&
           dashboardContent.searchFilterModel.ddlSubject.map((s) => (

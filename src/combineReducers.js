@@ -20,7 +20,10 @@ import {
   getHeaderContentReducer,
 } from "./student/dashboard/DashboardReducers";
 
-import { userLoginReducer } from "./student/login/LoginReducers";
+import {
+  getFCMTokenReducer,
+  userLoginReducer,
+} from "./student/login/LoginReducers";
 
 import {
   downloadOldQuestionsStudentReducer,
@@ -38,9 +41,7 @@ import {
   getNewResourcesStudentListReducer,
 } from "./student/resources/newResourcesStudent/NewResourcesStudentReducers";
 
-import {
-  getAllSyllabusStudentReducer,
-} from "./student/syllabus/SyllabusReducers";
+import { getAllSyllabusStudentReducer } from "./student/syllabus/SyllabusReducers";
 
 //Teacher Import
 
@@ -144,7 +145,10 @@ import {
   trainingCreateReducer,
   updateSingleTrainingReducer,
 } from "./teacher/pid/training/TrainingReducers";
-import { getAllUploadPhotoTeacherReducer, uploadPhotoTeacherReducer } from "./teacher/pid/uploadPhoto/UploadPhotoReducers";
+import {
+  getAllUploadPhotoTeacherReducer,
+  uploadPhotoTeacherReducer,
+} from "./teacher/pid/uploadPhoto/UploadPhotoReducers";
 import {
   getAllOtherOptionsForSelectReducer,
   getAllStudentMonthlyPresentSheetReducer,
@@ -204,11 +208,10 @@ import {
   getAllSyllabusReducer,
   getListSyllabusReducer,
 } from "./teacher/syllabus/syllabusPg/SyllabusReducers";
-import {
-  getDashboardContentReducer,
-} from "./teacher/dashboard/DashboardReducers";
+import { getDashboardContentReducer } from "./teacher/dashboard/DashboardReducers";
 
 export const reducers = combineReducers({
+  getFCMToken: getFCMTokenReducer,
   userLogin: userLoginReducer,
   getHeaderContent: getHeaderContentReducer,
   getDashboardContentStudent: getDashboardContentStudentReducer,
@@ -315,7 +318,7 @@ export const reducers = combineReducers({
   trainingCreate: trainingCreateReducer,
   //PID UploadPhoto
   getAllUploadPhotoTeacher: getAllUploadPhotoTeacherReducer,
-  uploadPhotoTeacher : uploadPhotoTeacherReducer,
+  uploadPhotoTeacher: uploadPhotoTeacherReducer,
   //attendance start
   getAllStudentMonthlyPresentSheet: getAllStudentMonthlyPresentSheetReducer,
   getAllOtherOptionsForSelect: getAllOtherOptionsForSelectReducer,
@@ -336,7 +339,7 @@ export const reducers = combineReducers({
   getAllResourcesList: getAllResourcesListReducer,
   getCreateResource: getCreateResourceReducer,
   postResource: postResourceReducer,
-  downloadResource : downloadResourceReducer,
+  downloadResource: downloadResourceReducer,
   //resources end
   //assignment start
   getAllAssignmentTeacher: getAllAssignmentTeacherReducer,
@@ -350,7 +353,7 @@ export const reducers = combineReducers({
   getSingleToEditTeacherAssignment: getSingleToEditTeacherAssignmentReducer,
   putSingleToEditTeacherAssignment: putSingleToEditTeacherAssignmentReducer,
   downloadAssignment: downloadAssignmentReducer,
-  downloadSubmittedAssignment : downloadSubmittedAssignmentReducer,
+  downloadSubmittedAssignment: downloadSubmittedAssignmentReducer,
   //assignment end
   //ExamMarkApproval(Teacher)
   getExamMarkApprovalInitialData: getExamMarkApprovalInitialDataReducer,
@@ -358,8 +361,8 @@ export const reducers = combineReducers({
   getExamMarkApprovalScheduleHeader: getExamMarkApprovalScheduleHeaderReducer,
   getBulkExamMarkApprovalSearchData: getBulkExamMarkApprovalSearchDataReducer,
   postBulkExamMarkApproval: postBulkExamMarkApprovalReducer,
-  getAllOtherOptionsForSelectTeacher : getAllOtherOptionsForSelectTeacherReducer,
-  getActiveSubject : getActiveSubjectReducer,
+  getAllOtherOptionsForSelectTeacher: getAllOtherOptionsForSelectTeacherReducer,
+  getActiveSubject: getActiveSubjectReducer,
 
   //class schedule reducers starts
   getAllPgClassSchedule: getAllPgClassScheduleReducer,
