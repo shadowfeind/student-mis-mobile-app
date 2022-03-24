@@ -63,17 +63,13 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AssignmentEditForm = () => {
+const AssignmentEditForm = ({ singleAssignment }) => {
   const [image, setImage] = useState(null);
   const [imgSrc, setImgSrc] = useState(null);
   const { id: subjectId } = useParams();
   const dispatch = useDispatch();
 
   const classes = useStyles();
-
-  const { singleAssignment } = useSelector(
-    (state) => state.getSingleAssignment
-  );
 
   const { values, setValues, handleInputChange, errors, setErrors } =
     useForm(initialFormValues);
@@ -104,7 +100,7 @@ const AssignmentEditForm = () => {
 
   useEffect(() => {
     if (singleAssignment) {
-      setValues({ ...singleAssignment.dbStudentSubmissionModel });
+      setValues({ ...singleAssignment });
     }
   }, [singleAssignment]);
 

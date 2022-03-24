@@ -14,6 +14,7 @@ import BottomNavigationMis from "./components/BottomNavigationMis";
 
 import { useLocation } from "react-router-dom";
 
+const Holiday = lazy(() => import("./student/holiday/Holiday"));
 const AssignmentEditFormStudent = lazy(() =>
   import("./student/assignment/assignment/AssignmentEditForm")
 );
@@ -151,6 +152,7 @@ const App = () => {
               path={"/student-old-questions"}
               component={OldQuestionsStudent}
             />
+            <Route path={"/calendar"} component={Holiday} />
             <Route path={"/student-attendance"} component={AttendanceStudent} />
             <Route path={"/login"} component={Login} />
             <Route
@@ -205,6 +207,7 @@ const App = () => {
               component={DashboardSubjectView}
             />
             <Route path={"/teacher-dashboard"} component={DashboardTeacher} />
+            <Route path={"/"} component={DashboardTeacher} />
 
             <Route path="*" component={PageNotFound} />
           </Switch>

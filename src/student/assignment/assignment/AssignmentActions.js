@@ -139,7 +139,6 @@ export const downloadAssignmentStudentAction = (id) => async (dispatch) => {
     window.open(test, "_blank");
     dispatch({
       type: DOWNLOAD_ASSIGNMENT_STUDENT_SUCCESS,
-      payload: data,
     });
   } catch (error) {
     dispatch({
@@ -149,20 +148,21 @@ export const downloadAssignmentStudentAction = (id) => async (dispatch) => {
   }
 };
 
-export const downloadSubmittedAssignmentStudentAction = (id) => async (dispatch) => {
-  try {
-    dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_REQUEST });
+export const downloadSubmittedAssignmentStudentAction =
+  (id) => async (dispatch) => {
+    try {
+      dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_REQUEST });
 
-    const test = `${API_URL}/api/StudentSubmission/DownloadSubmittedDoc/${id}`;
+      const test = `${API_URL}/api/StudentSubmission/DownloadSubmittedDoc/${id}`;
 
-    window.open(test, "_blank");
-    dispatch({
-      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_SUCCESS,
-    });
-  } catch (error) {
-    dispatch({
-      type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_FAIL,
-      payload: error.message ? error.message : error.Message,
-    });
-  }
-};
+      window.open(test, "_blank");
+      dispatch({
+        type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_SUCCESS,
+      });
+    } catch (error) {
+      dispatch({
+        type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_FAIL,
+        payload: error.message ? error.message : error.Message,
+      });
+    }
+  };

@@ -103,8 +103,8 @@ const Header = () => {
     }
   }, [headerContent, dispatch, userInfo]);
   return (
-    <div>
-      <AppBar position="static">
+    <div style={{ marginBottom: "60px" }}>
+      <AppBar position="fixed">
         <Toolbar className={classes.root}>
           <IconButton
             edge="start"
@@ -128,16 +128,14 @@ const Header = () => {
 
           <Link to={"/pid"}>
             <IconButton onClick={handleClick("top-end")}>
-              <Badge badgeContent={2} color="secondary">
-                {headerContent && (
-                  <img
-                    src={`${API_URL}${headerContent.FullPath}`}
-                    width="30px"
-                    height="30px"
-                    style={{ borderRadius: "50%" }}
-                  />
-                )}
-              </Badge>
+              {headerContent && (
+                <img
+                  src={`${API_URL}${headerContent.FullPath}`}
+                  width="30px"
+                  height="30px"
+                  style={{ borderRadius: "50%" }}
+                />
+              )}
             </IconButton>
           </Link>
         </Toolbar>

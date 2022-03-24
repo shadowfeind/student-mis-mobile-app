@@ -6,7 +6,11 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ListForTable from "../../../components/ListForTable";
-import { getSingleAssignmentStudentAction } from "./AssignmentActions";
+import {
+  downloadAssignmentStudentAction,
+  downloadSubmittedAssignmentStudentAction,
+  getSingleAssignmentStudentAction,
+} from "./AssignmentActions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import LockIcon from "@material-ui/icons/Lock";
@@ -38,7 +42,7 @@ const dateInPast = (firstDate, secondDate) => {
   return false;
 };
 
-const AssignmentListCollapse = ({ item, facultySubject }) => {
+const AssignmentListCollapse = ({ item, facultySubject, setOpenPopup }) => {
   const [open, setOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -48,7 +52,7 @@ const AssignmentListCollapse = ({ item, facultySubject }) => {
   };
   const updateHandler = (id) => {
     dispatch(getSingleAssignmentStudentAction(id));
-    history.push(`/assignment-front/edit/${facultySubject}`);
+    setOpenPopup(true);
   };
   const downloadSubmittedHandler = (id) => {
     dispatch(downloadSubmittedAssignmentStudentAction(id));

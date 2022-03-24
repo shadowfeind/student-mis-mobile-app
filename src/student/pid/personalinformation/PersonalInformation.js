@@ -77,10 +77,11 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   profileContainerDetails: {
-    padding: "20px",
+    padding: "20px 20px 5px 20px",
     boxShadow: "2px -2px 10px 2px #f3f3f3",
     borderRadius: "8px",
     marginTop: "16px",
+    marginBottom: "50px",
     "& h4": {
       margin: "0",
     },
@@ -144,7 +145,6 @@ const PersonalInformation = () => {
     setOpenPopup(false);
   }
 
-  
   if (updateSinglePersonalInformationError) {
     setNotify({
       isOpen: true,

@@ -41,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   profileImageContainer: {
-    padding: "40px",
+    padding: "20px 20px 5px 20px",
     backgroundColor: "#f3f3f3",
     textAlign: "center",
     borderRadius: "8px",

@@ -158,6 +158,9 @@ const OldQuestions = () => {
     <>
       <CustomContainer>
         <MobileTopSelectContainer>
+          <h4 style={{ textAlign: "center", marginTop: "-8px" }}>
+            Old Questions
+          </h4>
           <Grid container style={{ fontSize: "12px" }}>
             <Grid item xs={5} style={{ marginRight: "10px" }}>
               <SelectControl

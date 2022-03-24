@@ -52,7 +52,7 @@ const Login = () => {
     // On success, we should be able to receive notifications
     PushNotifications.addListener("registration", (token) => {
       console.log("token is", token.value);
-      dispatch(getFCMTokenAction(token.value));
+      // dispatch(getFCMTokenAction(token.value));
     });
 
     // Some issue with our setup and push will not work

@@ -269,7 +269,13 @@ const Assignment = () => {
 
   const handleExamScheduleSearch = (value) => {
     dispatch(
-      getAssignmentListStudentAction(acaYear, programValue, classId, shift, value)
+      getAssignmentListStudentAction(
+        acaYear,
+        programValue,
+        classId,
+        shift,
+        value
+      )
     );
     setFacultySubject(value);
   };
@@ -292,14 +298,32 @@ const Assignment = () => {
           </Grid>
         </MobileTopSelectContainer>
 
-        {assignmentList?.dbstuentSubmissionLst.map((item) => (
-          <AssignmentListCollapse
-            item={item}
-            key={item.$id}
-            facultySubject={facultySubject && facultySubject}
-          />
-        ))}
+        <div style={{ marginBottom: "30px" }}>
+          {assignmentList?.dbstuentSubmissionLst.map((item) => (
+            <AssignmentListCollapse
+              item={item}
+              key={item.$id}
+              facultySubject={facultySubject && facultySubject}
+              setOpenPopup={setOpenPopup}
+            />
+          ))}
+        </div>
+        {assignmentList?.dbstuentSubmissionLst.length < 1 && (
+          <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
+        )}
       </CustomContainer>
+      <Popup
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+        title="Edit Assignment"
+      >
+        <AssignmentEditForm
+          setOpenPopup={setOpenPopup}
+          singleAssignment={
+            singleAssignment && singleAssignment.dbStudentSubmissionModel
+          }
+        />
+      </Popup>
 
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

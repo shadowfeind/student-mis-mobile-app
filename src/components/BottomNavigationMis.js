@@ -14,6 +14,7 @@ const useStyles = makeStyles({
   root: {
     width: "100%",
     position: "fixed",
+    minWidth: "74px",
     bottom: "0",
     boxShadow: "0 0 5px #d3d3d3",
     "& .Mui-selected": {
@@ -24,9 +25,10 @@ const useStyles = makeStyles({
       fontSize: "10px",
     },
   },
+  bnav: {
+    minWidth: "74px",
+  },
 });
-
-
 
 const BottomNavigationMis = () => {
   const classes = useStyles();
@@ -47,10 +49,10 @@ const BottomNavigationMis = () => {
           }
         } else if (newValue === 1) {
           if (userInfo.IDHRRole === 5) {
-            history.push("/attendance");
+            history.push("/calendar");
           }
           if (userInfo.IDHRRole === 8) {
-            history.push("/student-attendance");
+            history.push("/calendar");
           }
         } else if (newValue === 2) {
           if (userInfo.IDHRRole === 5) {
@@ -78,11 +80,31 @@ const BottomNavigationMis = () => {
       showLabels
       className={classes.root}
     >
-      <BottomNavigationAction label="Dashboard" icon={<DashboardIcon />} />
-      <BottomNavigationAction label="Calendar" icon={<DateRangeIcon />} />
-      <BottomNavigationAction label="Assignment" icon={<AssignmentIcon />} />
-      <BottomNavigationAction label="Resources" icon={<WorkIcon />} />
-      <BottomNavigationAction label="Profile" icon={<AccountBoxIcon />} />
+      <BottomNavigationAction
+        className={classes.bnav}
+        label="Dashboard"
+        icon={<DashboardIcon />}
+      />
+      <BottomNavigationAction
+        className={classes.bnav}
+        label="Calendar"
+        icon={<DateRangeIcon />}
+      />
+      <BottomNavigationAction
+        className={classes.bnav}
+        label="Assignment"
+        icon={<AssignmentIcon />}
+      />
+      <BottomNavigationAction
+        className={classes.bnav}
+        label="Resources"
+        icon={<WorkIcon />}
+      />
+      <BottomNavigationAction
+        className={classes.bnav}
+        label="Profile"
+        icon={<AccountBoxIcon />}
+      />
     </BottomNavigation>
   );
 };

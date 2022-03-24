@@ -209,6 +209,7 @@ import {
   getListSyllabusReducer,
 } from "./teacher/syllabus/syllabusPg/SyllabusReducers";
 import { getDashboardContentReducer } from "./teacher/dashboard/DashboardReducers";
+import { getAllHoliday } from "./student/holiday/HolidayReducers";
 
 export const reducers = combineReducers({
   getFCMToken: getFCMTokenReducer,
@@ -246,6 +247,8 @@ export const reducers = combineReducers({
   downloadOldQuestionsStudent: downloadOldQuestionsStudentReducer,
   //Syllabus Teacher
   getAllSyllabusStudent: getAllSyllabusStudentReducer,
+  //holiday calendar
+  holiday: getAllHoliday,
 
   //TEACHER COMBINE REDUCERS:
   getDashboardContent: getDashboardContentReducer,

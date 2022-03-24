@@ -249,6 +249,9 @@ const NewResourcesStudent = () => {
         {newResourcesStudentList?.courseDeliveyPlanStudentLst.map((item) => (
           <NewResourcesListCollapse item={item} key={item.$id} />
         ))}
+        {newResourcesStudentList?.courseDeliveyPlanStudentLst.length < 1 && (
+          <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
+        )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

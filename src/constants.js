@@ -1,4 +1,4 @@
-export const API_URL = "http://103.90.86.151:100";
+export const API_URL = "http://vidyacube.com";
 
 export const tokenConfig = () => {
   const user = JSON.parse(localStorage.getItem("blueberryToken"));
@@ -13,8 +13,4 @@ export const tokenConfig = () => {
   } else {
     return {};
   }
-};
-
-export const fireToken = () => {
-  return "AAAACB9i9IE:APA91bEuqomtN9gss5UOVzngtIofWkWo9tUWAZ_2LYBNeKbuZXXns-S6NuBWEgYCnQj8gsI6YbvlbxKIByeYvHjgf2U-GjTTPCB44_K6yjcPhvDHqQD5WaUCshNEDzAuz3r91MeBJe3D";
 };
