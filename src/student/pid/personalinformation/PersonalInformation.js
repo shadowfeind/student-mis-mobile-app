@@ -194,7 +194,7 @@ const PersonalInformation = () => {
                 style={{ borderRadius: "50%", border: "2px solid #fff" }}
               />
               <h2>{headerContent.FullName}</h2>
-              <h4>mis@gmail.com</h4>
+              <h4>{headerContent.Email}</h4>
             </div>
             <div className={classes.profileOtherContainer}>
               <div>
@@ -230,17 +230,20 @@ const PersonalInformation = () => {
                 <LocationOnIcon /> <span>Lives at </span>Tinkune, Kathmandu
               </p>
               <p>
-                <DraftsIcon /> <span>Email at </span>mis@gmail.com
+                <DraftsIcon /> <span>Email at </span>
+                {headerContent.Email}
               </p>
               <p>
-                <MobileScreenShareIcon /> <span>Call at </span>9841253245
+                <MobileScreenShareIcon /> <span>Call at </span>
+                {headerContent.MobileNumber}
               </p>
               <p>
-                <PermIdentityIcon /> <span>Main Guardian Name </span>Suresh M.
-                Sanu
+                <PermIdentityIcon /> <span>Main Guardian Name </span>
+                {headerContent.FatherName}
               </p>
               <p>
-                <ContactPhoneIcon /> <span>Guardian Contact </span>9812345678
+                <ContactPhoneIcon /> <span>Guardian Contact </span>
+                {headerContent.FatherContactNo}
               </p>
             </div>
           </>

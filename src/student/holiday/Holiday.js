@@ -7,6 +7,8 @@ import { getAllHolidayAction } from "./HolidayActions";
 import { GET_ALL_HOLIDAY_RESET } from "./HolidayConstants";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import Notification from "../../components/Notification";
+import DateToIso from "../../components/DateToIso";
+import HolidayListCollapse from "./HolidayListCollapse";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -21,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
 
 const localizer = momentLocalizer(moment);
 const Holiday = () => {
+  const [selectedHoliday, setSelectedHoliday] = useState([]);
   const [notify, setNotify] = useState({
     isOpen: false,
     message: "",
@@ -48,6 +51,16 @@ const Holiday = () => {
     }
   }, [dispatch, holiday]);
 
+  const handleCalendarSelect = (event) => {
+    let holidaySelected = [];
+    holidaySelected.push(event);
+    // let holidaySelected = holiday?.att_HRHolidayModelLst?.filter(
+    //   (s) => s.FromDate == DateToIso(start).slice(0, 19)
+    // );
+    // console.log("selected holiday", holidaySelected);
+    setSelectedHoliday(holidaySelected);
+  };
+
   return (
     <>
       <div
@@ -62,8 +75,18 @@ const Holiday = () => {
           endAccessor="ToDate"
           titleAccessor="HolidayName"
           views={months}
+          selectable
+          onSelectEvent={handleCalendarSelect}
           style={{ height: "60vh" }}
         />
+      </div>
+
+      <div style={{ marginTop: "12px", marginBottom: "60px" }}>
+        {selectedHoliday &&
+          selectedHoliday.length > 0 &&
+          selectedHoliday?.map((s) => (
+            <HolidayListCollapse item={s} key={s.$id} />
+          ))}
       </div>
       <Notification notify={notify} setNotify={setNotify} />
     </>
