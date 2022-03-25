@@ -6,6 +6,8 @@ import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ListForTable from "../../components/ListForTable";
+import { downloadResourceAction } from "./ResourcesActions";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   collapse: {
@@ -28,6 +30,10 @@ const ResourcesListCollapse = ({ item }) => {
   const classes = useStyles();
   const handleClick = () => {
     setOpen(!open);
+  };
+  const dispatch = useDispatch();
+  const downloadHandler = (id) => {
+    dispatch(downloadResourceAction(id));
   };
   return (
     <>
@@ -67,7 +73,7 @@ const ResourcesListCollapse = ({ item }) => {
               variant="contained"
               color="default"
               className={classes.button}
-              //   onClick={() => downloadHandler(item.IDAssignment)}
+              onClick={() => downloadHandler(item.Id)}
             >
               <CloudDownloadIcon style={{ fontSize: 12 }} />
             </Button>

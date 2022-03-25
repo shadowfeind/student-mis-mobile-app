@@ -459,24 +459,26 @@ const StudentMonthlyPresentSheet = () => {
               </MuiPickersUtilsProvider>
             </Grid>
             <Grid item xs={12}>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                style={{ margin: "10px 0 0 10px" }}
-                onClick={handleUpdate}
-              >
-                <EditIcon />
-              </Button>
-              <Button
-                variant="contained"
-                color="primary"
-                type="submit"
-                style={{ margin: "10px 0 0 10px" }}
-                onClick={handleSearchAttendance}
-              >
-                <SearchIcon />
-              </Button>
+              <div style={{ marginBottom: "70px" }}>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  style={{ margin: "10px 0 0 10px" }}
+                  onClick={handleUpdate}
+                >
+                  <EditIcon />
+                </Button>
+                <Button
+                  variant="contained"
+                  color="primary"
+                  type="submit"
+                  style={{ margin: "10px 0 0 10px" }}
+                  onClick={handleSearchAttendance}
+                >
+                  <SearchIcon />
+                </Button>
+              </div>
             </Grid>
           </Grid>
         </MobileTopSelectContainer>

@@ -103,7 +103,7 @@ const Header = () => {
     }
   }, [headerContent, dispatch, userInfo]);
   return (
-    <div style={{ marginBottom: "60px" }}>
+    <div style={{ marginBottom: "55px" }}>
       <AppBar position="fixed">
         <Toolbar className={classes.root}>
           <IconButton

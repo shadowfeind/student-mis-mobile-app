@@ -451,35 +451,12 @@ const Resources = () => {
           </Grid>
         </MobileTopSelectContainer>
         <div style={{ height: "10px" }}></div>
-        {/* <Toolbar>
-          <InputControl
-            className={classes.searchInput}
-            label="Search Student"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleSearch}
-          />
-        </Toolbar> */}
-        {/* {allResources && (
-          <TableContainer className={classes.table}>
-            <TblHead />
 
-            <TableBody>
-              {tableDataAfterPagingAndSorting().map((item) => (
-                <ResourcesTableCollapse item={item} key={item.$id} />
-              ))}
-            </TableBody>
-          </TableContainer>
-        )}
-        {allResources && <TblPagination />} */}
-        {allResources?.dbModelTeacherLst.map((item) => (
-          <ResourcesListCollapse item={item} key={item.$id} />
-        ))}
+        <div style={{ marginBottom: "25px" }}>
+          {allResources?.dbModelTeacherLst.map((item) => (
+            <ResourcesListCollapse item={item} key={item.$id} />
+          ))}
+        </div>
       </CustomContainer>
       <Popup
         openPopup={openPopup}

@@ -234,58 +234,58 @@ const AssignmentForm = ({ students, formDatas }) => {
       </TableContainer>
       <div style={{ height: "30px" }}></div>
       <Form onSubmit={handleSubmit}>
-        <Grid container style={{ fontSize: "12px" }}>
-          <Grid item xs={6}>
-            <InputControl
-              name="AssignmentName"
-              label="Assignment Name"
-              value={values.AssignmentName}
-              onChange={handleInputChange}
-              errors={errors.AssignmentName}
-            />
+        <InputControl
+          name="AssignmentName"
+          label="Assignment Name"
+          value={values.AssignmentName}
+          onChange={handleInputChange}
+          errors={errors.AssignmentName}
+        />
+        <InputControl
+          name="TotalMark"
+          label="Full Marks*"
+          type="number"
+          value={values.TotalMark}
+          onChange={handleInputChange}
+          errors={errors.TotalMark}
+        />
+        <DatePickerControl
+          name="AssignmentDate"
+          label="FromDate"
+          value={values.AssignmentDate}
+          onChange={handleInputChange}
+          errors={errors.AssignmentDate}
+        />
+        <DatePickerControl
+          name="DueDate"
+          label="DueDate*"
+          value={values.DueDate}
+          onChange={handleInputChange}
+          errors={errors.DueDate}
+        />
+        <InputControl
+          name="AssignmentSummary"
+          label="Assignment Summery"
+          value={values.AssignmentSummary}
+          onChange={handleInputChange}
+          errors={errors.AssignmentSummary}
+        />
 
-            <DatePickerControl
-              name="AssignmentDate"
-              label="FromDate"
-              value={values.AssignmentDate}
-              onChange={handleInputChange}
-              errors={errors.AssignmentDate}
-            />
-            <InputControl
-              name="ImageUploaded"
-              label="Select File"
-              // value={values.ClassLocation}
-              onChange={(e) => handleImage(e)}
-              type="file"
-              errors={errors.image}
-            />
-            <img src={imgSrc} height={200} width={200} />
-          </Grid>
-          <Grid item xs={6}>
-            <InputControl
-              name="TotalMark"
-              label="Full Marks*"
-              type="number"
-              value={values.TotalMark}
-              onChange={handleInputChange}
-              errors={errors.TotalMark}
-            />
-            <DatePickerControl
-              name="DueDate"
-              label="DueDate*"
-              value={values.DueDate}
-              onChange={handleInputChange}
-              errors={errors.DueDate}
-            />
-            <InputControl
-              name="AssignmentSummary"
-              label="Assignment Summery"
-              value={values.AssignmentSummary}
-              onChange={handleInputChange}
-              errors={errors.AssignmentSummary}
-            />
-          </Grid>
-        </Grid>
+        <InputControl
+          name="ImageUploaded"
+          label="Select File"
+          // value={values.ClassLocation}
+          onChange={(e) => handleImage(e)}
+          type="file"
+          errors={errors.image}
+        />
+        <img
+          src={imgSrc}
+          height={200}
+          width={200}
+          style={{ marginLeft: "10px" }}
+        />
+
         <div
           style={{
             display: "flex",
