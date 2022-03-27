@@ -9,6 +9,12 @@ import React from "react";
 import ClearIcon from "@material-ui/icons/Clear";
 
 const useStyles = makeStyles({
+  root: {
+    margin: "0px",
+    "& .MuiDialog-paper": {
+      margin: "10px",
+    },
+  },
   button: {
     marginRight: "1px",
     padding: "5px",
@@ -21,7 +27,7 @@ const useStyles = makeStyles({
 const Popup = ({ title, children, openPopup, setOpenPopup }) => {
   const classes = useStyles();
   return (
-    <Dialog maxWidth="lg" open={openPopup}>
+    <Dialog className={classes.root} maxWidth="lg" open={openPopup}>
       <DialogTitle>
         <div style={{ display: "flex", justifyContent: "center" }}>
           <h5 style={{ flexGrow: 1, margin: "10px 0" }}>{title}</h5>{" "}

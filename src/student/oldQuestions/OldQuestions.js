@@ -184,11 +184,15 @@ const OldQuestions = () => {
             </Grid>
           </Grid>
         </MobileTopSelectContainer>
-
-        {listOldQuestionsStudent &&
-          listOldQuestionsStudent.dbModelStudentLst.map((s) => (
-            <OldQuestionListCollapse item={s} key={s.$id} />
-          ))}
+        <div style={{ marginBottom: "30px" }}>
+          {listOldQuestionsStudent &&
+            listOldQuestionsStudent.dbModelStudentLst.map((s) => (
+              <OldQuestionListCollapse item={s} key={s.$id} />
+            ))}
+        </div>
+        {listOldQuestionsStudent?.dbModelStudentLst.length < 1 && (
+          <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
+        )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

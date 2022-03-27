@@ -103,13 +103,13 @@ const LoginFront = ({ setReg }) => {
 
   useEffect(() => {
     if (userInfo) {
-      if(userInfo.IDHRRole === 8){
-        history.push("/student-dashboard")
+      if (userInfo.IDHRRole === 8) {
+        history.push("/student-dashboard");
       }
-      if(userInfo.IDHRRole ===5){
-        history.push("/teacher-dashboard")
+      if (userInfo.IDHRRole === 5) {
+        history.push("/teacher-dashboard");
       }
-      }
+    }
   }, [userInfo]);
 
   const classes = useStyles();
@@ -138,7 +138,10 @@ const LoginFront = ({ setReg }) => {
           <p className={classes.errors}>password is required</p>
         )}
         {loading ? (
-          <CircularProgress />
+          <div style={{ textAlign: "center" }}>
+            {" "}
+            <CircularProgress />
+          </div>
         ) : (
           <button onClick={handleLogin}>Sign In</button>
         )}

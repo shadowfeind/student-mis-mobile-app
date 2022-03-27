@@ -55,6 +55,9 @@ const initialFormValues = {
 };
 
 const StyledTableCell = withStyles((theme) => ({
+  root: {
+    padding: "0 12px",
+  },
   head: {
     backgroundColor: theme.palette.common.grey,
     color: theme.palette.common.black,
@@ -180,17 +183,17 @@ const AssignmentForm = ({ students, formDatas }) => {
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Roll No. </StyledTableCell>
-              <StyledTableCell>University Registration No</StyledTableCell>
-              <StyledTableCell>Full Name</StyledTableCell>
-              <StyledTableCell>Academic Shift</StyledTableCell>
-              <StyledTableCell style={{ textAlign: "right" }}>
+              <StyledTableCell style={{ textAlign: "left" }}>
                 <label>Select All</label>
                 <Checkbox
                   checked={checked}
                   onChange={(e) => handleAllChecked(e.target.checked)}
                 />
               </StyledTableCell>
+              <StyledTableCell>Roll No. </StyledTableCell>
+              <StyledTableCell>University Registration No</StyledTableCell>
+              <StyledTableCell>Full Name</StyledTableCell>
+              <StyledTableCell>Academic Shift</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -199,22 +202,10 @@ const AssignmentForm = ({ students, formDatas }) => {
                 .sort((a, b) => a.RollNo - b.RollNo)
                 .map((s) => (
                   <StyledTableRow key={s.IDHREmployee}>
-                    <StyledTableCell component="th" scope="row">
-                      {s.RollNo}
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
-                      {s.FullName}
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
-                      {s.MobileNumber}
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
-                      {s.EmailID}
-                    </StyledTableCell>
                     <StyledTableCell
                       component="th"
                       scope="row"
-                      style={{ textAlign: "right" }}
+                      style={{ textAlign: "left" }}
                     >
                       <Checkbox
                         checked={
@@ -226,6 +217,18 @@ const AssignmentForm = ({ students, formDatas }) => {
                         }
                         onChange={(e) => handleChecked(e.target.checked, s)}
                       />
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                      {s.RollNo}
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                      {s.FullName}
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                      {s.MobileNumber}
+                    </StyledTableCell>
+                    <StyledTableCell component="th" scope="row">
+                      {s.EmailID}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -289,17 +292,19 @@ const AssignmentForm = ({ students, formDatas }) => {
         <div
           style={{
             display: "flex",
-            justifyContent: "end",
-            paddingTop: "10px",
-            marginTop: "10px",
-            borderTop: "1px solid #f3f3f3",
+            justifyContent: "start",
+            marginBottom: "10px",
           }}
         >
           <Button
             variant="contained"
             color="secondary"
             onClick={() => setOpenPopup(false)}
-            style={{ margin: "10px 0 0 10px" }}
+            style={{
+              margin: "10px 0 0 10px",
+              padding: "5px 10px",
+              fontsize: "12px",
+            }}
           >
             CANCEL
           </Button>
@@ -307,7 +312,11 @@ const AssignmentForm = ({ students, formDatas }) => {
             variant="contained"
             color="primary"
             type="submit"
-            style={{ margin: "10px 0 0 10px" }}
+            style={{
+              margin: "10px 0 0 10px",
+              padding: "5px 10px",
+              fontsize: "12px",
+            }}
           >
             SUBMIT
           </Button>

@@ -61,6 +61,11 @@ const Holiday = () => {
     setSelectedHoliday(holidaySelected);
   };
 
+  // const handlePress = ({ start, end, resourceId }) => {
+  //   console.log(start);
+  //   console.log(resourceId);
+  // };
+
   return (
     <>
       <div
@@ -76,6 +81,7 @@ const Holiday = () => {
           titleAccessor="HolidayName"
           views={months}
           selectable
+          // onSelectSlot={handlePress}
           onSelectEvent={handleCalendarSelect}
           style={{ height: "60vh" }}
         />

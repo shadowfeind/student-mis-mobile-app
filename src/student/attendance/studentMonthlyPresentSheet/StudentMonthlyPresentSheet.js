@@ -239,15 +239,13 @@ const StudentMonthlyPresentSheet = () => {
             </Grid>
           </Grid>
         </MobileTopSelectContainer>
-        {/* {getListStudentAttendance && (
-          <StudentMonthlyPresentSheetTableCollapse
-            students={getListStudentAttendance && getListStudentAttendance}
-          />
-        )} */}
         {getListStudentAttendance && (
           <StudentMonthlyPresentSheetListCollapse
             attendance={getListStudentAttendance}
           />
+        )}
+        {getListStudentAttendance?.dbModelLst.length < 1 && (
+          <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
         )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />

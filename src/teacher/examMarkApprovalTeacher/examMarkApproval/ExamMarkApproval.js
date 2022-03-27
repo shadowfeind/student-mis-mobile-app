@@ -418,6 +418,9 @@ const ExamMarkApproval = () => {
           searchData?.dbModelLsts?.map((item) => (
             <ExamMarkApprovalListCollapse item={item} key={item.$id} />
           ))}
+        {searchData?.dbModelLsts?.length < 1 && (
+          <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
+        )}
       </CustomContainer>
       <Popup
         openPopup={openPopup}

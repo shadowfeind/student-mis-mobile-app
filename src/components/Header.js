@@ -126,7 +126,9 @@ const Header = () => {
             {<SideMenu header={headerContent && headerContent} />}
           </Drawer>
 
-          <Link to={userInfo.IDHRRole === 8 ? "/student-pid" : "/pid"}>
+          <Link
+            to={userInfo && userInfo.IDHRRole === 8 ? "/student-pid" : "/pid"}
+          >
             <IconButton onClick={handleClick("top-end")}>
               {headerContent && (
                 <img

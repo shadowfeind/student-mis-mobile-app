@@ -158,7 +158,7 @@ const TeacherNavigationSideMenu = () => {
         <Typography variant="h6">
           {" "}
           <Accessible fontSize="small" />
-          Exam Mark Approval
+          Mark Approval
         </Typography>
       </NavLink>
       <NavLink

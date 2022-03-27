@@ -122,15 +122,14 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
-              <StyledTableCell>Roll No. </StyledTableCell>
-              <StyledTableCell>Student Name</StyledTableCell>
-              <StyledTableCell>Mobile</StyledTableCell>
-              <StyledTableCell>Email</StyledTableCell>
-
               <StyledTableCell>
                 <label>Select All</label>
                 <Checkbox checked={checked} onChange={handleAllSelectChange} />
               </StyledTableCell>
+              <StyledTableCell>Roll No. </StyledTableCell>
+              <StyledTableCell>Student Name</StyledTableCell>
+              <StyledTableCell>Mobile</StyledTableCell>
+              <StyledTableCell>Email</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -139,6 +138,15 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
                 .sort((a, b) => a.RollNo - b.RollNo)
                 .map((s) => (
                   <StyledTableRow key={s.IDHREmployee}>
+                    <StyledTableCell component="th" scope="row">
+                      <Checkbox
+                        checked={s?.IsPresent || false}
+                        name="IsPresent"
+                        onChange={(e) =>
+                          handleChange(e.target.checked, s.IDHREmployee)
+                        }
+                      />
+                    </StyledTableCell>
                     <StyledTableCell component="th" scope="row">
                       {s.RollNo}
                     </StyledTableCell>
@@ -151,15 +159,6 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
                     <StyledTableCell component="th" scope="row">
                       {s.EmailID}
                     </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
-                      <Checkbox
-                        checked={s?.IsPresent || false}
-                        name="IsPresent"
-                        onChange={(e) =>
-                          handleChange(e.target.checked, s.IDHREmployee)
-                        }
-                      />
-                    </StyledTableCell>
                   </StyledTableRow>
                 ))}
           </TableBody>
@@ -167,9 +166,9 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
       </TableContainer>
       <div
         style={{
-          position: "fixed",
-          bottom: 100,
-          left: 0,
+          display: "flex",
+          justifyContent: "start",
+          marginBottom: "20px",
         }}
       >
         <Button
@@ -178,8 +177,8 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
           onClick={() => history.push("/attendance")}
           style={{
             margin: "10px 0 0 10px",
-            borderRadius: "50%",
-            padding: "16px",
+            padding: "5px 10px",
+            fontsize: "12px",
           }}
         >
           <ClearIcon />
@@ -190,8 +189,8 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
           type="submit"
           style={{
             margin: "10px 0 0 10px",
-            borderRadius: "50%",
-            padding: "16px",
+            padding: "5px 10px",
+            fontsize: "12px",
           }}
           onClick={formCheckSubmitHandler}
         >

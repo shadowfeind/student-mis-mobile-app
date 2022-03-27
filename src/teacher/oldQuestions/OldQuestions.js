@@ -171,6 +171,9 @@ const OldQuestions = () => {
           listOldQuestionsTeacher.dbModelTeacherLst.map((s) => (
             <OldQuestionListCollapse item={s} key={s.$id} />
           ))}
+        {listOldQuestionsTeacher?.dbModelTeacherLst.length < 1 && (
+          <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
+        )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
