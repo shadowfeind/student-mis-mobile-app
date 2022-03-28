@@ -82,9 +82,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const { headerContent, error: headerContentError } = useSelector(
-    (state) => state.getHeaderContent
-  );
+  const { headerContent } = useSelector((state) => state.getHeaderContent);
 
   const { userInfo } = useSelector((state) => state.userLogin);
 

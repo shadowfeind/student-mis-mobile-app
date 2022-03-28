@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_URL } from "../../constants";
+import { GET_HEADER_CONTENT_RESET } from "../dashboard/DashboardConstants";
 import {
   GENERATE_FCM_TOKEN,
   USER_LOGIN_FAIL,
@@ -64,5 +65,6 @@ export const login = (userName, password) => async (dispatch, getState) => {
 export const logout = () => (dispatch) => {
   localStorage.removeItem("blueberryToken");
   dispatch({ type: USER_LOGOUT });
+  dispatch({ type: GET_HEADER_CONTENT_RESET });
   document.location.href = "/#/login";
 };
