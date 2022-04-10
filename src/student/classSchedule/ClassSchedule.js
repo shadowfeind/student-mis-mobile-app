@@ -10,9 +10,8 @@ import Popup from "../../components/Popup";
 import { GET_ALL_CLASS_SCHEDULE_STUDENT_RESET } from "./ClassScheduleConstant";
 import { getAllClassScheduleStudentAction } from "./ClassScheduleAction";
 
-const ClassSchedule=()=>{
-
-    const [url, setUrl] = useState("");
+const ClassSchedule = () => {
+  const [url, setUrl] = useState("");
   const [openPopup, setOpenPopup] = useState(false);
 
   const [notify, setNotify] = useState({
@@ -42,20 +41,18 @@ const ClassSchedule=()=>{
 
   useEffect(() => {
     if (classSchedule) {
-        setUrl(`${API_URL}${classSchedule.FullPath}`);
-      }  
-      if (!classSchedule) {
-        dispatch(getAllClassScheduleStudentAction());
-      }
-   
+      setUrl(`${API_URL}${classSchedule.FullPath}`);
+    }
   }, [classSchedule]);
-// useEffect(()=>{
-//     dispatch(getAllClassScheduleStudentAction(1));
-// })
-return (
+
+  useEffect(() => {
+    dispatch(getAllClassScheduleStudentAction());
+  }, []);
+
+  return (
     <>
       <CustomContainer>
-      {classSchedule && <iframe src={url} width="100%" height="700" />}
+        {classSchedule && <iframe src={url} width="100%" height="700" />}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog
@@ -64,5 +61,5 @@ return (
       />
     </>
   );
-}
+};
 export default ClassSchedule;

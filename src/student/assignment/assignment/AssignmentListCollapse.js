@@ -52,7 +52,7 @@ const AssignmentListCollapse = ({ item, facultySubject, setOpenPopup }) => {
   };
   const updateHandler = (id) => {
     dispatch(getSingleAssignmentStudentAction(id));
-    setOpenPopup(true);
+    // setOpenPopup(true);
   };
   const downloadSubmittedHandler = (id) => {
     dispatch(downloadSubmittedAssignmentStudentAction(id));

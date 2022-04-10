@@ -5,6 +5,7 @@ import { HashRouter as Router } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "./store";
 import App from "./App";
+import { defineCustomElements } from "@ionic/pwa-elements/loader";
 
 ReactDOM.render(
   <Provider store={store}>
@@ -14,3 +15,4 @@ ReactDOM.render(
   </Provider>,
   document.getElementById("app")
 );
+defineCustomElements(window);

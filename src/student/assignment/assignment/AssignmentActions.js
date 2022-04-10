@@ -103,7 +103,7 @@ export const putSingleAssignmentStudentAction =
       if (data) {
         const newData = {
           ...assignment,
-          DocumentSubmit: data,
+          DocumentSubmitted: data,
         };
         const jsonData = JSON.stringify({
           dbStudentSubmissionModel: newData,

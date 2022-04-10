@@ -10,11 +10,12 @@ import {
   PushNotifications,
   Token,
 } from "@capacitor/push-notifications";
+import { useParams } from "react-router-dom";
 import { getFCMTokenAction } from "./LoginActions";
+import { USER_LOGOUT } from "./LoginConstants";
 
 const useStyles = makeStyles((theme) => ({
   loginContainer: {
-    marginTop: "18Vh",
     padding: "60px",
     height: "100vh",
   },
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 const Login = () => {
   const [reg, setReg] = useState(false);
   const classes = useStyles();
+  const { id: removeId } = useParams();
 
   const dispatch = useDispatch();
 
@@ -76,6 +78,13 @@ const Login = () => {
       }
     );
   };
+
+  //cannot use hooks in constant so passing a id to clear userInfo
+  useEffect(() => {
+    if (removeId == 5) {
+      dispatch({ type: USER_LOGOUT });
+    }
+  }, [removeId]);
 
   return (
     <div className={classes.loginContainer}>

@@ -46,10 +46,8 @@ const Holiday = () => {
   }
 
   useEffect(() => {
-    if (!holiday) {
-      dispatch(getAllHolidayAction());
-    }
-  }, [dispatch, holiday]);
+    dispatch(getAllHolidayAction());
+  }, []);
 
   const handleCalendarSelect = (event) => {
     let holidaySelected = [];
@@ -87,7 +85,7 @@ const Holiday = () => {
         />
       </div>
 
-      <div style={{ marginTop: "12px", marginBottom: "60px" }}>
+      <div style={{ marginBottom: "60px" }}>
         {selectedHoliday &&
           selectedHoliday.length > 0 &&
           selectedHoliday?.map((s) => (

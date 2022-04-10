@@ -16,6 +16,7 @@ import { useDispatch } from "react-redux";
 import { getHeaderContentAction } from "../student/dashboard/DashboardActions";
 import Drawer from "@material-ui/core/Drawer";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import Notification from "./Notification";
 
 const useStyles = makeStyles({
   root: {
@@ -78,6 +79,11 @@ const Header = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [open, setOpen] = React.useState(false);
   const [placement, setPlacement] = React.useState();
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
@@ -92,17 +98,30 @@ const Header = () => {
     setPlacement(newPlacement);
   };
 
+  window.addEventListener("online", () => {});
+
+  window.addEventListener("offline", () => {
+    setNotify({
+      isOpen: true,
+      message: "Please Connect To Internet",
+      type: "error",
+    });
+  });
+
   useEffect(() => {
-    if (!headerContent) {
-      dispatch(getHeaderContentAction());
-    }
     if (!userInfo) {
       history.push("/login");
     }
+    if (userInfo) {
+      if (!headerContent) {
+        dispatch(getHeaderContentAction());
+      }
+    }
   }, [headerContent, dispatch, userInfo]);
   return (
-    <div style={{ marginBottom: "55px" }}>
-      <AppBar position="fixed">
+    // <div style={{ marginBottom: "55px" }}>
+    <div>
+      <AppBar position="static">
         <Toolbar className={classes.root}>
           <IconButton
             edge="start"
@@ -140,6 +159,7 @@ const Header = () => {
           </Link>
         </Toolbar>
       </AppBar>
+      <Notification notify={notify} setNotify={setNotify} />
     </div>
   );
 };

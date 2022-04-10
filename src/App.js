@@ -14,11 +14,10 @@ import BottomNavigationMis from "./components/BottomNavigationMis";
 
 import { useLocation } from "react-router-dom";
 
-const Holiday = lazy(() => import("./student/holiday/Holiday"));
-const AssignmentEditFormStudent = lazy(() =>
+const AssignmentEditForm = lazy(() =>
   import("./student/assignment/assignment/AssignmentEditForm")
 );
-
+const Holiday = lazy(() => import("./student/holiday/Holiday"));
 const Login = lazy(() => import("./student/login/Login"));
 const DashboardSubjectViewStudent = lazy(() =>
   import("./student/dashboard/DashboardSubjectView")
@@ -139,9 +138,14 @@ const App = () => {
               path={"/student-resources/:id?"}
               component={ResourcesStudent}
             />
+
             <Route
               path={"/student-assignment-front/:id?"}
               component={AssignmentFrontStudent}
+            />
+            <Route
+              path={"/student-assignment-front-edit/:id?"}
+              component={AssignmentEditForm}
             />
             <Route path={"/student-syllabus"} component={SyllabusStudent} />
             <Route
@@ -154,7 +158,7 @@ const App = () => {
             />
             <Route path={"/calendar"} component={Holiday} />
             <Route path={"/student-attendance"} component={AttendanceStudent} />
-            <Route path={"/login"} component={Login} />
+            <Route path={"/login/:id?"} component={Login} />
             <Route
               exact
               path={"/student-academic-grading"}

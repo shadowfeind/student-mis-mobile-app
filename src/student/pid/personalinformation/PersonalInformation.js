@@ -169,11 +169,8 @@ const PersonalInformation = () => {
   // };
 
   useEffect(() => {
-    dispatch({ type: "GET_LINK", payload: "/" });
-    if (!getAllPersonalInformation) {
-      dispatch(getAllPersonalInformationAction());
-    }
-  }, [dispatch, getAllPersonalInformation]);
+    dispatch(getAllPersonalInformationAction());
+  }, []);
 
   // useEffect(() => {
   //   if (listPersonalInformation) {
@@ -199,7 +196,7 @@ const PersonalInformation = () => {
             <div className={classes.profileOtherContainer}>
               <div>
                 <h5>Class</h5>
-                <p>9</p>
+                <p>{headerContent?.ClassName}</p>
               </div>
               <div
                 style={{

@@ -167,9 +167,6 @@ const NewResourcesStudent = () => {
   };
 
   useEffect(() => {
-    if (!newResourcesStudent) {
-      dispatch(getAllNewResourcesStudentAction());
-    }
     if (newResourcesStudent) {
       unstable_batchedUpdates(() => {
         setProgramDdl(
@@ -214,6 +211,11 @@ const NewResourcesStudent = () => {
       setTableData(newResourcesStudentList.courseDeliveyPlanStudentLst);
     }
   }, [newResourcesStudentList]);
+
+  useEffect(() => {
+    dispatch(getAllNewResourcesStudentAction());
+    setTableData({});
+  }, []);
 
   const handleExamScheduleSearch = (value) => {
     dispatch(

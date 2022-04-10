@@ -6,6 +6,14 @@ import { useForm, Form } from "../../../customHooks/useForm";
 import { putSingleAssignmentStudentAction } from "./AssignmentActions";
 import { Link, useParams } from "react-router-dom";
 import KeyboardBackspaceIcon from "@material-ui/icons/KeyboardBackspace";
+import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
+import Notification from "../../../components/Notification";
+import {
+  GET_SINGLE_ASSIGNMENT_STUDENT_RESET,
+  PUT_SINGLE_ASSIGNMENT_STUDENT_RESET,
+} from "./AssignmentConstant";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import axios from "axios";
 
 const initialFormValues = {
   IDAssignment: 0,
@@ -47,6 +55,7 @@ const initialFormValues = {
 const useStyles = makeStyles((theme) => ({
   editContainer: {
     padding: "20px",
+    zIndex: "10000",
   },
   editTopHeader: {
     display: "flex",
@@ -63,19 +72,49 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AssignmentEditForm = ({ singleAssignment }) => {
-  const [image, setImage] = useState(null);
-  const [imgSrc, setImgSrc] = useState(null);
+const AssignmentEditForm = () => {
+  const [image, setImage] = useState("");
+  const [imgSrc, setImgSrc] = useState("");
   const { id: subjectId } = useParams();
+  const [notify, setNotify] = useState({
+    isOpen: false,
+    message: "",
+    type: "",
+  });
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const classes = useStyles();
 
   const { values, setValues, handleInputChange, errors, setErrors } =
     useForm(initialFormValues);
 
+  const { singleAssignment, error: singleAssignmentError } = useSelector(
+    (state) => state.getSingleAssignmentStudent
+  );
+  const {
+    success: putSingleAssignmentSuccess,
+    error: putSingleAssignmentError,
+  } = useSelector((state) => state.putSingleAssignmentStudent);
+
+  if (putSingleAssignmentSuccess) {
+    dispatch({ type: GET_SINGLE_ASSIGNMENT_STUDENT_RESET });
+    history.push(`/student-assignment-front/${subjectId}`);
+    dispatch({ type: PUT_SINGLE_ASSIGNMENT_STUDENT_RESET });
+  }
+
+  if (singleAssignmentError) {
+    setNotify({
+      isOpen: true,
+      message: singleAssignmentError,
+      type: "error",
+    });
+    dispatch({ type: GET_SINGLE_ASSIGNMENT_STUDENT_RESET });
+  }
+
   const validate = (fieldValues = values) => {
     let temp = { ...errors };
+
+    temp.image = !image ? "Image is required" : "";
 
     setErrors({ ...temp });
     return Object.values(temp).every((x) => x === "");
@@ -100,17 +139,44 @@ const AssignmentEditForm = ({ singleAssignment }) => {
 
   useEffect(() => {
     if (singleAssignment) {
-      setValues({ ...singleAssignment });
+      setValues({ ...singleAssignment.dbStudentSubmissionModel });
     }
   }, [singleAssignment]);
 
+  const takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Prompt,
+      // source: CameraSource.Camera,
+    });
+
+    console.log("image", image);
+    const imageUrl = image?.path || image?.webPath;
+    setImgSrc(Capacitor.convertFileSrc(imageUrl));
+    console.log("imageurl", imageUrl);
+
+    const result = await fetch(Capacitor.convertFileSrc(imageUrl));
+    console.log("my result", result);
+    const blob = await result.blob();
+    const file = new File([blob], "image.jpeg", { type: blob.type });
+    console.log("my file", file);
+    setImage(file);
+  };
+
+  const goBack = () => {
+    dispatch({ type: GET_SINGLE_ASSIGNMENT_STUDENT_RESET });
+    history.push(`/student-assignment-front/${subjectId}`);
+  };
+
   return (
     <>
-      <Form onSubmit={handleSubmit} className={classes.editContainer}>
+      <div className={classes.editContainer} style={{ marginBottom: "70px" }}>
         <div className={classes.editTopHeader}>
-          <Link to={`/assignment-front/${subjectId}`}>
+          <div onClick={goBack}>
             <KeyboardBackspaceIcon /> &nbsp;&nbsp;Go Back
-          </Link>{" "}
+          </div>{" "}
           <span>Assignment Edit</span>
         </div>
         <div>
@@ -168,25 +234,48 @@ const AssignmentEditForm = ({ singleAssignment }) => {
           onChange={handleInputChange}
           style={{ width: "100%", marginBottom: "10px" }}
         />
-        <InputControl
+        {/* <InputControl
           name="ImageUploaded"
           label="Select File"
-          // value={values.ClassLocation}
+          // value={image}
           onChange={(e) => handleImage(e)}
           type="file"
           style={{ width: "100%", marginBottom: "10px" }}
-          // errors={errors.image}
+          errors={errors.image}
         />
-        {imgSrc && <img src={imgSrc} height={150} width={150} />}
-        <Button
-          variant="contained"
-          color="primary"
-          type="submit"
-          style={{ margin: "10px 0 0 10px" }}
+        <h5>OR</h5> */}
+        <button
+          style={{
+            backgroundColor: "#253053",
+            color: "#fff",
+            padding: "6px 14px",
+            display: "block",
+          }}
+          onClick={() => takePicture()}
         >
-          SUBMIT
-        </Button>
-      </Form>
+          Take a photo
+        </button>
+        {imgSrc && <img src={imgSrc} height={150} width={150} />}
+        <div
+          style={{
+            display: "block",
+            borderTop: "1px solid #d3d3d3",
+            marginBottom: "-18px",
+            marginTop: "12px",
+          }}
+        >
+          <Button
+            variant="contained"
+            color="primary"
+            type="submit"
+            style={{ margin: "10px 0 0 10px" }}
+            onClick={handleSubmit}
+          >
+            SUBMIT
+          </Button>
+        </div>
+      </div>
+      <Notification notify={notify} setNotify={setNotify} />
     </>
   );
 };

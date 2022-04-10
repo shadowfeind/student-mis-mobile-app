@@ -164,11 +164,8 @@ const PersonalInformation = () => {
   };
 
   useEffect(() => {
-    dispatch({ type: "GET_LINK", payload: "/" });
-    if (!getAllPersonalInformation) {
-      dispatch(getAllPersonalInformationAction());
-    }
-  }, [dispatch, getAllPersonalInformation]);
+    dispatch(getAllPersonalInformationAction());
+  }, []);
 
   return (
     <CustomContainer>

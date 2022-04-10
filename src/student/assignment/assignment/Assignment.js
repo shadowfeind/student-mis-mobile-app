@@ -35,6 +35,7 @@ import AssignmentTableCollapse from "./AssignmentTableCollapse";
 import AssignmentEditForm from "./AssignmentEditForm";
 import AssignmentListCollapse from "./AssignmentListCollapse";
 import MobileTopSelectContainer from "../../../components/MobileTopSelectContainer";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -80,6 +81,7 @@ const Assignment = () => {
   const [facultySubject, setFacultySubject] = useState("");
   const dispatch = useDispatch();
   const classes = useStyles();
+  const history = useHistory();
 
   const [tableData, setTableData] = useState([]);
   const [filterFn, setFilterFn] = useState({
@@ -186,6 +188,9 @@ const Assignment = () => {
     });
     dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_STUDENT_RESET });
   }
+  if (singleAssignment) {
+    history.push(`/student-assignment-front-edit/${facultySubject}`);
+  }
 
   if (putSingleAssignmentError) {
     setNotify({
@@ -231,9 +236,6 @@ const Assignment = () => {
   }
 
   useEffect(() => {
-    if (!assignment) {
-      dispatch(getAllAssignmentStudentAction());
-    }
     if (assignment) {
       unstable_batchedUpdates(() => {
         setAcademicYearDdl(assignment.searchFilterModel.ddlAcademicYear);
@@ -260,6 +262,10 @@ const Assignment = () => {
       }
     }
   }, [assignment, dispatch, subjectIdFromDashboard]);
+
+  useEffect(() => {
+    dispatch(getAllAssignmentStudentAction()); //every time component is mounted this api must be called
+  }, []);
 
   useEffect(() => {
     if (assignmentList) {
