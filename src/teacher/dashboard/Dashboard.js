@@ -6,6 +6,7 @@ import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment, { months } from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { GET_TEACHER_DASHBOARD_RESET } from "./DashboardConstants";
+import LoadingComp from "../../components/LoadingComp";
 import { getDashboardContentAction } from "./DashboardActions";
 import Notification from "../../components/Notification";
 import DashboardCard from "./DashboardCard";
@@ -35,7 +36,7 @@ const Dashboard = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const history = useHistory();
-  const { dashboardContent, error } = useSelector(
+  const { dashboardContent,loading, error } = useSelector(
     (state) => state.getDashboardContent
   );
 
@@ -66,12 +67,18 @@ const Dashboard = () => {
   return (
     <>
       <div className={classes.dashboardContainer}>
+      {loading ? (
+          <LoadingComp />
+        ) : (
+          <>
         {dashboardContent &&
           dashboardContent.searchFilterModel.ddlSubjectForTeacher.map((s) => (
             <Link key={s.id} to={`/subject-view/${s.Key}`}>
               <DashboardCard subject={s} key={s.id} />
             </Link>
           ))}
+          </>
+        )}
       </div>
       <Notification notify={notify} setNotify={setNotify} />
     </>

@@ -12,6 +12,7 @@ import InputControl from "../../../components/controls/InputControl";
 import { Edit, Search } from "@material-ui/icons";
 import Popup from "../../../components/Popup";
 import CustomContainer from "../../../components/CustomContainer";
+import LoadingComp from "../../../components/LoadingComp";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
 import {
@@ -110,7 +111,7 @@ const PersonalInformation = () => {
 
   const dispatch = useDispatch();
 
-  const { getAllPersonalInformation, error } = useSelector(
+  const { getAllPersonalInformation,loading, error } = useSelector(
     (state) => state.getAllPersonalInformation
   );
   const { singlePersonalInformation, error: singlePersonalInformationError } =
@@ -169,6 +170,10 @@ const PersonalInformation = () => {
 
   return (
     <CustomContainer>
+    {loading ? (
+          <LoadingComp />
+        ) : (
+          <>
       <div className={classes.profileContainer}>
         <h3>Profile</h3>
         {headerContent && (
@@ -234,6 +239,8 @@ const PersonalInformation = () => {
           </>
         )}
       </div>
+      </>
+        )}
     </CustomContainer>
   );
 };
