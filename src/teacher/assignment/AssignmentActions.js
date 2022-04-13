@@ -139,7 +139,7 @@ export const getEnglishDateAction = (year, month) => async (dispatch) => {
     const { data } = await axios.get(
       `${API_URL}/api/TeacherAssignment/GetEngDate?year=${year}&month=${month}
         `,
-        tokenConfig()
+      tokenConfig()
     );
 
     dispatch({
@@ -332,6 +332,8 @@ export const downloadAssignmentAction = (id) => async (dispatch) => {
     dispatch({ type: DOWNLOAD_ASSIGNMENT_REQUEST });
 
     const test = `${API_URL}/api/TeacherAssignment/DownloadTEacherAssignmentDoc/${id}`;
+
+    console.log(test);
 
     window.open(test, "_blank");
     dispatch({

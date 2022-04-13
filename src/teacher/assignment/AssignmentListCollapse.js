@@ -1,4 +1,8 @@
 import React, { useState } from "react";
+import FilerobotImageEditor, {
+  TABS,
+  TOOLS,
+} from "react-filerobot-image-editor";
 import { Button, Collapse, makeStyles } from "@material-ui/core";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
@@ -7,6 +11,7 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ListForTable from "../../components/ListForTable";
 import {
+  downloadAssignmentAction,
   getSingleAssignmentAction,
   getSingleToEditTeacherAssignmentAction,
 } from "./AssignmentActions";
@@ -42,12 +47,14 @@ const dateInPast = (firstDate, secondDate) => {
 };
 
 const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
+  const [isImgEditorShown, setIsImgEditorShown] = useState(false);
   const [open, setOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
   const downloadHandler = (id) => {
-    dispatch(downloadAssignmentAction(id));
+    // dispatch(downloadAssignmentAction(id));
+    setIsImgEditorShown(true);
   };
   const updateHandler = (id) => {
     dispatch(getSingleToEditTeacherAssignmentAction(id));
@@ -58,6 +65,10 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
   };
   const handleClick = () => {
     setOpen(!open);
+  };
+
+  const closeImgEditor = () => {
+    setIsImgEditorShown(false);
   };
 
   return (
@@ -135,6 +146,22 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
           </p>
         </div>
       </Collapse>
+      {isImgEditorShown && (
+        <FilerobotImageEditor
+          source="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg"
+          // onSave={(editedImageObject, designState) =>
+          //   console.log("saved", editedImageObject, designState)
+          // }
+          onClose={closeImgEditor}
+          annotationsCommon={{
+            fill: "#ff0000",
+          }}
+          Text={{ text: "Filerobot..." }}
+          tabsIds={[TABS.ADJUST, TABS.ANNOTATE, TABS.WATERMARK]} // or {['Adjust', 'Annotate', 'Watermark']}
+          defaultTabId={TABS.ANNOTATE} // or 'Annotate'
+          defaultToolId={TOOLS.TEXT} // or 'Text'
+        />
+      )}
     </>
   );
 };

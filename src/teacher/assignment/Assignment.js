@@ -541,6 +541,7 @@ const Assignment = () => {
             />
           )
         )}
+
         {getListTeacherAssignment?.dbTeacherAssignmentLstBySection?.length <
           1 && (
           <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
