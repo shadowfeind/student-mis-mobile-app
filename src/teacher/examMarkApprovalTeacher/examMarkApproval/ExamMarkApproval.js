@@ -25,6 +25,7 @@ import {
   POST_BULK_EXAM_MARK_APPROVAL_RESET,
 } from "./ExamMarkApprovalConstant";
 import ExamMarkApprovalBulk from "./ExamMarkApprovalBulk";
+import LoadingComp from "../../../components/LoadingComp";
 import MobileTopSelectContainer from "../../../components/MobileTopSelectContainer";
 import SearchIcon from "@material-ui/icons/Search";
 import EditIcon from "@material-ui/icons/Edit";
@@ -97,11 +98,11 @@ const ExamMarkApproval = () => {
   const { activeSubject, success: activeSubjectSuccess } = useSelector(
     (state) => state.getActiveSubject
   );
-  const { searchData } = useSelector(
+  const { searchData,loading } = useSelector(
     (state) => state.getExamMarkApprovalSearchData
   );
 
-  const { bulkData } = useSelector(
+  const { bulkData,loading:loadingBulk } = useSelector(
     (state) => state.getBulkExamMarkApprovalSearchData
   );
 
@@ -323,7 +324,7 @@ const ExamMarkApproval = () => {
                 errors={errors.schedule}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <div style={{ height: "10px" }}></div>
               <SelectControl
                 name="AcademicYear"
@@ -376,8 +377,8 @@ const ExamMarkApproval = () => {
                 onChange={(e) => setSection(e.target.value)}
                 options={ddlSection}
                 errors={errors.section}
-              />
-            </Grid>
+              /> */}
+            {/* </Grid> */}
             <Grid item xs={12}>
               <div style={{ height: "10px" }}></div>
               <SelectControl
@@ -413,7 +414,10 @@ const ExamMarkApproval = () => {
           </Grid>
         </MobileTopSelectContainer>
         <div style={{ height: "15px" }}></div>
-
+        {loading ? (
+          <LoadingComp />
+        ) : (
+          <>
         {searchData &&
           searchData?.dbModelLsts?.map((item) => (
             <ExamMarkApprovalListCollapse item={item} key={item.$id} />
@@ -421,12 +425,18 @@ const ExamMarkApproval = () => {
         {searchData?.dbModelLsts?.length < 1 && (
           <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
         )}
+        </>
+        )}
       </CustomContainer>
       <Popup
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
         title="Bulk Edit"
       >
+      {loadingBulk ? (
+          <LoadingComp />
+        ) : (
+          <>
         <ExamMarkApprovalBulk
           statusData={
             bulkData && bulkData.searchFilterModel.ddlStudentExamStatus
@@ -434,6 +444,8 @@ const ExamMarkApproval = () => {
           search={bulkData && bulkData.searchFilterModel}
           bulkData={bulkData && bulkData.dbModelLsts}
         />
+        </>
+        )}
       </Popup>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

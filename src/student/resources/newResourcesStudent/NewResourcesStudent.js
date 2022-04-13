@@ -12,6 +12,7 @@ import {
 import { Search } from "@material-ui/icons";
 import useCustomTable from "../../../customHooks/useCustomTable";
 import InputControl from "../../../components/controls/InputControl";
+import LoadingComp from "../../../components/LoadingComp";
 import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
@@ -113,7 +114,7 @@ const NewResourcesStudent = () => {
     (state) => state.getAllNewResourcesStudent
   );
 
-  const { newResourcesStudentList, error: newResourcesStudentListError } =
+  const { newResourcesStudentList,loading, error: newResourcesStudentListError } =
     useSelector((state) => state.getNewResourcesStudentList);
 
   const {
@@ -213,8 +214,8 @@ const NewResourcesStudent = () => {
   }, [newResourcesStudentList]);
 
   useEffect(() => {
+    dispatch({type: GET_NEW_SOURCES_STUDENT_LIST_RESET})
     dispatch(getAllNewResourcesStudentAction());
-    setTableData({});
   }, []);
 
   const handleExamScheduleSearch = (value) => {
@@ -248,11 +249,17 @@ const NewResourcesStudent = () => {
             </Grid>
           </Grid>
         </MobileTopSelectContainer>
+        {loading ? (
+          <LoadingComp />
+        ) : (
+          <>
         {newResourcesStudentList?.courseDeliveyPlanStudentLst.map((item) => (
           <NewResourcesListCollapse item={item} key={item.$id} />
         ))}
         {newResourcesStudentList?.courseDeliveyPlanStudentLst.length < 1 && (
           <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
+        )}
+        </>
         )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />

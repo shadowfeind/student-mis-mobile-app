@@ -5,6 +5,7 @@ import Notification from "../../../components/Notification";
 import { API_URL } from "../../../constants";
 import CustomContainer from "../../../components/CustomContainer";
 import { Button, Toolbar } from "@material-ui/core";
+import LoadingComp from "../../../components/LoadingComp";
 import AddIcon from "@material-ui/icons/Add";
 import Popup from "../../../components/Popup";
 import {
@@ -36,7 +37,7 @@ const ClassLkgSchedule = () => {
   });
   const dispatch = useDispatch();
 
-  const { allClassScheduleList, error: allClassScheduleListError } =
+  const { allClassScheduleList,loading, error: allClassScheduleListError } =
     useSelector((state) => state.getListClassSchedule);
   // const { editClassSchedule, error: editClassScheduleError } = useSelector(
   //   (state) => state.getEditClassSchedule
@@ -117,7 +118,13 @@ const ClassLkgSchedule = () => {
             </Button>
           )}
         </Toolbar> */}
+        {loading ? (
+          <LoadingComp />
+        ) : (
+          <>
         {allClassScheduleList && <iframe src={url} width="100%" height="700" />}
+        </>
+        )}
       </CustomContainer>
       {/* <Popup
         openPopup={openPopup}

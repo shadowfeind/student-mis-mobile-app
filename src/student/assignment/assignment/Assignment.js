@@ -13,6 +13,7 @@ import { Search } from "@material-ui/icons";
 import useCustomTable from "../../../customHooks/useCustomTable";
 import InputControl from "../../../components/controls/InputControl";
 import Popup from "../../../components/Popup";
+import LoadingComp from "../../../components/LoadingComp";
 import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
@@ -126,11 +127,11 @@ const Assignment = () => {
     (state) => state.getAllAssignmentStudent
   );
 
-  const { assignmentList, error: assignmentListError } = useSelector(
+  const { assignmentList,loading, error: assignmentListError } = useSelector(
     (state) => state.getAssignmentListStudent
   );
 
-  const { singleAssignment, error: singleAssignmentError } = useSelector(
+  const { singleAssignment,loading:loadingEdit, error: singleAssignmentError } = useSelector(
     (state) => state.getSingleAssignmentStudent
   );
 
@@ -264,6 +265,7 @@ const Assignment = () => {
   }, [assignment, dispatch, subjectIdFromDashboard]);
 
   useEffect(() => {
+    dispatch({type:GET_ASSIGNMENT_LIST_STUDENT_RESET})
     dispatch(getAllAssignmentStudentAction()); //every time component is mounted this api must be called
   }, []);
 
@@ -303,7 +305,10 @@ const Assignment = () => {
             </Grid>
           </Grid>
         </MobileTopSelectContainer>
-
+        {loading ? (
+          <LoadingComp />
+        ) : (
+          <>
         <div style={{ marginBottom: "30px" }}>
           {assignmentList?.dbstuentSubmissionLst.map((item) => (
             <AssignmentListCollapse
@@ -317,18 +322,26 @@ const Assignment = () => {
         {assignmentList?.dbstuentSubmissionLst.length < 1 && (
           <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
         )}
+        </>
+        )}
       </CustomContainer>
       <Popup
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
         title="Edit Assignment"
       >
+      {loadingEdit ? (
+          <LoadingComp />
+        ) : (
+          <>
         <AssignmentEditForm
           setOpenPopup={setOpenPopup}
           singleAssignment={
             singleAssignment && singleAssignment.dbStudentSubmissionModel
           }
         />
+        </>
+        )}
       </Popup>
 
       <Notification notify={notify} setNotify={setNotify} />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useCustomTable from "../../customHooks/useCustomTable";
-
+import LoadingComp from "../../components/LoadingComp";
 import CustomContainer from "../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
@@ -20,7 +20,7 @@ const AcademicGrading = () => {
 
   const dispatch = useDispatch();
 
-  const { academicGrading, error } = useSelector(
+  const { academicGrading,loading, error } = useSelector(
     (state) => state.academicGrading
   );
 
@@ -45,10 +45,16 @@ const AcademicGrading = () => {
         <MobileTopSelectContainer>
           <h3 style={{ margin: "0", textAlign: "center" }}>Academic Grading</h3>
         </MobileTopSelectContainer>
+        {loading ? (
+          <LoadingComp />
+        ) : (
+          <>
         {academicGrading &&
           academicGrading?.dbModelLst.map((item) => (
             <AcademicGradingListCollapse item={item} key={item.$id} />
           ))}
+          </>
+        )}
       </CustomContainer>
 
       <Notification notify={notify} setNotify={setNotify} />

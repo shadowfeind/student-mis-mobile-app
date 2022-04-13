@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import Notification from "../../components/Notification";
 import { API_URL } from "../../constants";
+import LoadingComp from "../../components/LoadingComp";
 import CustomContainer from "../../components/CustomContainer";
 import { Button, Toolbar } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
@@ -28,7 +29,7 @@ const Syllabus=()=>{
   });
   const dispatch = useDispatch();
 
-  const { allSyllabus, error: allSyllabusError } = useSelector(
+  const { allSyllabus,loading, error: allSyllabusError } = useSelector(
     (state) => state.getAllSyllabusStudent
   );
 
@@ -56,7 +57,13 @@ const Syllabus=()=>{
 return (
     <>
       <CustomContainer>
+      {loading ? (
+          <LoadingComp />
+        ) : (
+          <>
       {allSyllabus && <iframe src={url} width="100%" height="700" />}
+      </>
+        )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />
       <ConfirmDialog

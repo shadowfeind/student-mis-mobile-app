@@ -361,7 +361,7 @@ const StudentMonthlyPresentSheet = () => {
               />
             </Grid>
 
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <div style={{ height: "10px" }}></div>
               <SelectControl
                 name="Academic Year"
@@ -416,7 +416,7 @@ const StudentMonthlyPresentSheet = () => {
                 options={ddlShift ? ddlShift : test}
                 errors={errors.shift}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <div style={{ height: "10px" }}></div>
               <SelectControl

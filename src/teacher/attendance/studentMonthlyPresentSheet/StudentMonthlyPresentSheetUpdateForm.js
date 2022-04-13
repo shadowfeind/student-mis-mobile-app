@@ -19,6 +19,7 @@ import { postStudentPresentListAction } from "./StudentMonthlyPresentSheetAction
 import ClearIcon from "@material-ui/icons/Clear";
 import CheckIcon from "@material-ui/icons/Check";
 import { useHistory } from "react-router-dom";
+import LoadingComp from "../../../components/LoadingComp";
 import JobHistoryForm from "../../pid/jobHistory/JobHistoryForm";
 import Notification from "../../../components/Notification";
 
@@ -57,7 +58,7 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
     type: "",
   });
 
-  const { getListForUpdateStudentPresent } = useSelector(
+  const { getListForUpdateStudentPresent,loading } = useSelector(
     (state) => state.getListForUpdateStudentPresent
   );
   const {
@@ -119,6 +120,10 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
   return (
     <div style={{ marginBottom: "56px" }}>
       <TableContainer component={Paper}>
+      {loading ? (
+          <LoadingComp />
+        ) : (
+          <>
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
@@ -163,6 +168,8 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
                 ))}
           </TableBody>
         </Table>
+        </>
+        )}
       </TableContainer>
       <div
         style={{
