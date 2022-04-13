@@ -210,11 +210,6 @@ const AssignmentEditForm = () => {
             {values.TotalMark}
           </p>
           <p>
-            <strong>Assignment Summary: </strong>
-            {values.AssignmentSummary}
-          </p>
-
-          <p>
             <strong>MarksObtained: </strong>
             {values.MarksObtained}
           </p>

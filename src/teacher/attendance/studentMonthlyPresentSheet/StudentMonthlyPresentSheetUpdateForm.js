@@ -42,7 +42,7 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
+    minWidth: 300,
   },
 });
 
@@ -128,13 +128,10 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
           <TableHead>
             <TableRow>
               <StyledTableCell>
-                <label>Select All</label>
                 <Checkbox checked={checked} onChange={handleAllSelectChange} />
               </StyledTableCell>
               <StyledTableCell>Roll No. </StyledTableCell>
               <StyledTableCell>Student Name</StyledTableCell>
-              <StyledTableCell>Mobile</StyledTableCell>
-              <StyledTableCell>Email</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -157,12 +154,6 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
                     </StyledTableCell>
                     <StyledTableCell component="th" scope="row">
                       {s.FullName}
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
-                      {s.MobileNumber}
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
-                      {s.EmailID}
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
