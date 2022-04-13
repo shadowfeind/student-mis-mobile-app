@@ -526,15 +526,17 @@ const Assignment = () => {
             </Grid>
           </Grid>
         </MobileTopSelectContainer>
-        {getListTeacherAssignment?.dbTeacherAssignmentLstBySection.map(
-          (item) => (
-            <AssignmentListCollapse
-              item={item}
-              key={item.$id}
-              setOpenPopup3={setOpenPopup3}
-            />
-          )
-        )}
+        <div style={{ marginBottom: "30px" }}>
+          {getListTeacherAssignment?.dbTeacherAssignmentLstBySection.map(
+            (item) => (
+              <AssignmentListCollapse
+                item={item}
+                key={item.$id}
+                setOpenPopup3={setOpenPopup3}
+              />
+            )
+          )}
+        </div>
         {getListTeacherAssignment?.dbTeacherAssignmentLstBySection?.length <
           1 && (
           <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
