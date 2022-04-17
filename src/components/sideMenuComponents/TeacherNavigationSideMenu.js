@@ -101,13 +101,13 @@ const TeacherNavigationSideMenu = () => {
           Attendance
         </Typography>
       </NavLink>
-      <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}>
+      {/* <NavLink to={"/pid"} activeStyle={isActive} className={classes.textBox}>
         <Typography variant="h6">
           {" "}
           <Settings fontSize="small" />
           Pid
         </Typography>
-      </NavLink>
+      </NavLink> */}
       {/* <NavLink
         to={"/quick-links"}
         activeStyle={isActive}

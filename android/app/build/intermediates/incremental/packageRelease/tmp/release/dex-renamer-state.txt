@@ -1,0 +1,4 @@
+#Fri Apr 08 16:17:28 NPT 2022
+base.0=/Users/kiranrai/Desktop/blueberry/studentMobileApp/android/app/build/intermediates/dex/release/mergeDexRelease/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex

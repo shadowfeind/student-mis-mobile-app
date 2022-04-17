@@ -61,12 +61,12 @@ const NavigationSideMenu = () => {
           DashBoard
         </Typography>
       </NavLink>
-      <NavLink to={"/student-pid"} activeStyle={isActive} className={classes.textBox}>
+      {/* <NavLink to={"/student-pid"} activeStyle={isActive} className={classes.textBox}>
         <Typography variant="h6">
           <ChromeReaderMode fontSize="medium" />
           Profile
         </Typography>
-      </NavLink>
+      </NavLink> */}
       {/* <NavLink
         to={"/academic-grading"}
         activeStyle={isActive}

@@ -18,6 +18,7 @@ import {
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import LockIcon from "@material-ui/icons/Lock";
+import Popup from "../../components/Popup";
 
 const useStyles = makeStyles((theme) => ({
   collapse: {
@@ -48,20 +49,27 @@ const dateInPast = (firstDate, secondDate) => {
 
 const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
   const [isImgEditorShown, setIsImgEditorShown] = useState(false);
+  const [openPopup, setOpenPopup] = useState(false);
+  const [imgToEdit, setImgToEdit] = useState("");
   const [open, setOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
+
   const downloadHandler = (id) => {
-    // dispatch(downloadAssignmentAction(id));
-    setIsImgEditorShown(true);
+    dispatch(downloadAssignmentAction(id));
   };
   const updateHandler = (id) => {
     dispatch(getSingleToEditTeacherAssignmentAction(id));
     setOpenPopup3(true);
   };
-  const downloadSubmittedHandler = (id) => {
-    dispatch(downloadSubmittedAssignmentAction(id));
+  const downloadSubmittedHandler = (name) => {
+    setImgToEdit(
+      `https://vidyacube.com/Upload/TeacherAssignment/${name}?not-from-cache-please`
+    );
+    setIsImgEditorShown(true);
+    setOpenPopup(true);
+    // dispatch(downloadSubmittedAssignmentAction(id));
   };
   const handleClick = () => {
     setOpen(!open);
@@ -69,6 +77,12 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
 
   const closeImgEditor = () => {
     setIsImgEditorShown(false);
+    setOpenPopup(false);
+  };
+
+  const saveHandler = (editedImageObject, designState) => {
+    console.log("editedImageObject", editedImageObject);
+    console.log("designState", designState);
   };
 
   return (
@@ -130,9 +144,9 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
                 variant="outlined"
                 color="primary"
                 className={classes.button}
-                onClick={() => downloadSubmittedHandler(item.IDAssignment)}
+                onClick={() => downloadSubmittedHandler(item.DocumentSubmitted)}
               >
-                <CloudDownloadIcon style={{ fontSize: 12 }} />
+                <CloudDownloadIcon style={{ fontSize: 12 }} /> Assignment
               </Button>
             )}
             <Button
@@ -146,22 +160,30 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
           </p>
         </div>
       </Collapse>
-      {isImgEditorShown && (
-        <FilerobotImageEditor
-          source="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg"
-          // onSave={(editedImageObject, designState) =>
-          //   console.log("saved", editedImageObject, designState)
-          // }
-          onClose={closeImgEditor}
-          annotationsCommon={{
-            fill: "#ff0000",
-          }}
-          Text={{ text: "Filerobot..." }}
-          tabsIds={[TABS.ADJUST, TABS.ANNOTATE, TABS.WATERMARK]} // or {['Adjust', 'Annotate', 'Watermark']}
-          defaultTabId={TABS.ANNOTATE} // or 'Annotate'
-          defaultToolId={TOOLS.TEXT} // or 'Text'
-        />
-      )}
+
+      <Popup
+        openPopup={openPopup}
+        setOpenPopup={setOpenPopup}
+        title="Edit Assignment"
+      >
+        {isImgEditorShown && (
+          <FilerobotImageEditor
+            source={imgToEdit && imgToEdit}
+            // source="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg"
+            onSave={(editedImageObject, designState) =>
+              saveHandler(editedImageObject, designState)
+            }
+            onClose={closeImgEditor}
+            annotationsCommon={{
+              fill: "#ff0000",
+            }}
+            Text={{ text: "Filerobot..." }}
+            tabsIds={[TABS.ADJUST, TABS.ANNOTATE]} // or {['Adjust', 'Annotate', 'Watermark']}
+            defaultTabId={TABS.ANNOTATE} // or 'Annotate'
+            defaultToolId={TOOLS.TEXT} // or 'Text'
+          />
+        )}
+      </Popup>
     </>
   );
 };

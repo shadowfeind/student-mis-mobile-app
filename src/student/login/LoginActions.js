@@ -34,9 +34,9 @@ export const login = (userName, password) => async (dispatch, getState) => {
       UserName: userName,
       Password: password,
       RememberMe: true,
-      // FCMTokenValue: FCMToken,
-      FCMTokenValue:
-        "e9YCv_duTDWdz4R7-lfkYl:APA91bFK54UX9lghUo2-rVnfguHYm0KD2UakPJn5iFKgnkobfpXx-D5aqQJZd-jUBfG6PN_oelsmaG3bCLSxBSY35n_t3cf_ISrQrJD6ymcHZGHYzegHXipuGWzXcV9zXrHlu9GrI87u",
+      FCMTokenValue: FCMToken,
+      // FCMTokenValue:
+      //   "e9YCv_duTDWdz4R7-lfkYl:APA91bFK54UX9lghUo2-rVnfguHYm0KD2UakPJn5iFKgnkobfpXx-D5aqQJZd-jUBfG6PN_oelsmaG3bCLSxBSY35n_t3cf_ISrQrJD6ymcHZGHYzegHXipuGWzXcV9zXrHlu9GrI87u",
     });
 
     const { data } = await axios.post(
