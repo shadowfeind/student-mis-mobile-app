@@ -297,6 +297,7 @@ const Assignment = () => {
     <>
       <CustomContainer>
         <MobileTopSelectContainer>
+          <h3 style={{ textAlign: "center", marginTop: "0" }}>Assignments</h3>
           <div style={{ textAlign: "center" }}>
             {ddlFacultySubject?.map((subject) => (
               <Chip

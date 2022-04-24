@@ -14,6 +14,12 @@ import BottomNavigationMis from "./components/BottomNavigationMis";
 
 import { useLocation } from "react-router-dom";
 
+const TeacherLeaveRequest = lazy(() =>
+  import("./teacher/leaveRequest/TeacherLeaveRequest")
+);
+const StudentLeaveRequest = lazy(() =>
+  import("./student/leaveRequest/StudentLeaveRequest")
+);
 const AssignmentEditForm = lazy(() =>
   import("./student/assignment/assignment/AssignmentEditForm")
 );
@@ -171,6 +177,11 @@ const App = () => {
             />
             <Route
               exact
+              path={"/student-leaverequest"}
+              component={StudentLeaveRequest}
+            />
+            <Route
+              exact
               path={"/student-dashboard"}
               component={DashboardStudent}
             />
@@ -199,6 +210,10 @@ const App = () => {
               component={ExamMarkApprovalTeacher}
             />
             <Route path={"/assignment/:id?"} component={Assignment} />
+            <Route
+              path={"/leaverequest-teacher"}
+              component={TeacherLeaveRequest}
+            />
             <Route path={"/video-conference"} component={VideoConference} />
             <Route
               exact

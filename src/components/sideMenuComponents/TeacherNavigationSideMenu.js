@@ -83,13 +83,17 @@ const TeacherNavigationSideMenu = () => {
           Exam Division
         </Typography>
       </NavLink>
-      {/* <NavLink to={"/exam-schedule"} activeStyle={isActive} className={classes.textBox}>
+      <NavLink
+        to={"/leaverequest-teacher"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
         <Typography variant="h6">
           {" "}
           <PeopleOutline fontSize="small" />
-           Exam Schedule
+          Leave Request
         </Typography>
-      </NavLink> */}
+      </NavLink>
 
       <NavLink
         to={"/attendance"}

@@ -351,9 +351,14 @@ export const downloadSubmittedAssignmentAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: DOWNLOAD_SUBMITTED_ASSIGNMENT_REQUEST });
 
-    const test = `${API_URL}/api/TeacherAssignment/DownloadSubmittedDoc/${id}`;
+    // const test = `${API_URL}/api/TeacherAssignment/DownloadSubmittedDoc/${id}`;
+    // console.log(test);
+    // window.open(test, "_blank");
+    // const { data } = await axios.get(
+    //   `http://103.90.86.151:100/Upload/TeacherAssignment/38ea0eaf-9eb5-4b0b-93f8-d78ca27a897cimage.jpeg`
+    // );
+    // console.log(data);
 
-    window.open(test, "_blank");
     dispatch({
       type: DOWNLOAD_SUBMITTED_ASSIGNMENT_SUCCESS,
     });

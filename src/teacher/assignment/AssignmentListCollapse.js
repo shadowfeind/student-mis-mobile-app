@@ -12,6 +12,7 @@ import DeleteIcon from "@material-ui/icons/Delete";
 import ListForTable from "../../components/ListForTable";
 import {
   downloadAssignmentAction,
+  downloadSubmittedAssignmentAction,
   getSingleAssignmentAction,
   getSingleToEditTeacherAssignmentAction,
 } from "./AssignmentActions";
@@ -63,13 +64,16 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
     dispatch(getSingleToEditTeacherAssignmentAction(id));
     setOpenPopup3(true);
   };
-  const downloadSubmittedHandler = (name) => {
-    setImgToEdit(
-      `https://vidyacube.com/Upload/TeacherAssignment/${name}?not-from-cache-please`
-    );
-    setIsImgEditorShown(true);
-    setOpenPopup(true);
-    // dispatch(downloadSubmittedAssignmentAction(id));
+  const downloadSubmittedHandler = async (name) => {
+    dispatch(downloadSubmittedAssignmentAction(name));
+    // let imageURL = `https://api.codetabs.com/v1/proxy?quest=${name}`;
+    // let downloadedImg = new Image();
+    // downloadedImg.crossOrigin = "Anonymous";
+    // downloadedImg.src = imageURL;
+    // setImgToEdit(downloadedImg.src);
+    // setImgToEdit(imageURL);
+    // setIsImgEditorShown(true);
+    // setOpenPopup(true);
   };
   const handleClick = () => {
     setOpen(!open);
@@ -168,8 +172,9 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
       >
         {isImgEditorShown && (
           <FilerobotImageEditor
-            source={imgToEdit && imgToEdit}
+            // source={imgToEdit && imgToEdit}
             // source="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg"
+            source="https://vidyacube.com/Upload/Syllabus/6mandir.jpg"
             onSave={(editedImageObject, designState) =>
               saveHandler(editedImageObject, designState)
             }

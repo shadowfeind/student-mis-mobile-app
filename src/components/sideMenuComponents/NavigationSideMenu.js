@@ -12,6 +12,7 @@ import {
   PostAdd,
   RecordVoiceOver,
 } from "@material-ui/icons";
+import AddToQueueIcon from "@material-ui/icons/AddToQueue";
 
 const useStyles = makeStyles({
   root: {
@@ -99,17 +100,16 @@ const NavigationSideMenu = () => {
         </Typography>
       </NavLink>
 
-      {/* <NavLink
-        to={"/quick-links"}
+      <NavLink
+        to={"/student-leaverequest"}
         activeStyle={isActive}
         className={classes.textBox}
       >
         <Typography variant="h6">
-          {" "}
-          <Face fontSize="medium" />
-          Quick Links
+          <AddToQueueIcon fontSize="medium" />
+          Leave Requests
         </Typography>
-      </NavLink> */}
+      </NavLink>
       <NavLink
         to={"/student-resources"}
         activeStyle={isActive}
