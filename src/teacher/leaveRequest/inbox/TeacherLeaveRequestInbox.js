@@ -6,10 +6,10 @@ import {
   GET_SINGLE_TO_EDIT_LEAVE_REQUESTS_RESET,
   PUT_LEAVE_REQUESTS_RESET,
 } from "../TeacherLeaveRequestConstants";
-import TeacherLeaveRequestForm from "../TeacherLeaveRequestForm";
 import InboxListCollapse from "./InboxListCollapse";
 import Popup from "../../../components/Popup";
 import { getListLeaveRequestAction } from "../TeacherLeaveRequestActions";
+import TeacherLeaveRequestApproveForm from "../TeacherLeaveRequestApproveForm";
 
 const TeacherLeaveRequestInbox = () => {
   const [approvalPopUp, setApprovalPopUp] = useState(false);
@@ -85,7 +85,7 @@ const TeacherLeaveRequestInbox = () => {
         setOpenPopup={setApprovalPopUp}
         title="Leave Approval Form"
       >
-        <TeacherLeaveRequestForm
+        <TeacherLeaveRequestApproveForm
           leaveRequestEditApproval={
             singleEditSentLeaveRequest && singleEditSentLeaveRequest
           }

@@ -196,9 +196,7 @@ const TeacherLeaveRequestSent = () => {
         title="Leave Request Form"
       >
         <TeacherLeaveRequestForm
-          leaveRequestEditApproval={
-            singleEditLeaveRequest && singleEditLeaveRequest
-          }
+          leaveRequestEdit={singleEditLeaveRequest && singleEditLeaveRequest}
           leaveRequestCreate={
             singleCreateLeaveRequest && singleCreateLeaveRequest
           }

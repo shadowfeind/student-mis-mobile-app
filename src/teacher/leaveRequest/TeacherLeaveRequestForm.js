@@ -59,7 +59,13 @@ const TeacherLeaveRequestForm = ({
 
     if (validate()) {
       if (values.IDLeaveRequest === 0) {
-        dispatch(postLeaveRequestAction(values, image));
+        dispatch(
+          postLeaveRequestAction(
+            values,
+            image,
+            leaveRequestCreate.SchoolShortName
+          )
+        );
       } else {
         dispatch(putLeaveRequestAction(values, image));
       }
@@ -126,6 +132,7 @@ const TeacherLeaveRequestForm = ({
         value={values.LeaveDecription}
         onChange={handleInputChange}
         errors={errors.LeaveDecription}
+        style={{ width: "100%" }}
       />
 
       <DatePickerControl
@@ -135,7 +142,13 @@ const TeacherLeaveRequestForm = ({
         onChange={handleInputChange}
         errors={errors.FromDate}
       />
-
+      <DatePickerControl
+        name="ToDate"
+        label="ToDate*"
+        value={values.ToDate}
+        onChange={handleInputChange}
+        errors={errors.ToDate}
+      />
       <SelectControl
         name="IsActive"
         label="IsActive"
@@ -158,6 +171,7 @@ const TeacherLeaveRequestForm = ({
         onChange={(e) => handleImage(e)}
         type="file"
         // errors={errors.ClassLocation}
+        style={{ width: "100%" }}
       />
       <img
         src={
@@ -171,16 +185,10 @@ const TeacherLeaveRequestForm = ({
         }
         height={200}
         width={200}
+        style={{ paddingLeft: "10px" }}
       />
 
-      <DatePickerControl
-        name="ToDate"
-        label="ToDate*"
-        value={values.ToDate}
-        onChange={handleInputChange}
-        errors={errors.ToDate}
-      />
-      <SelectControl
+      {/* <SelectControl
         name="Status"
         label="Status"
         value={values.Status}
@@ -194,7 +202,7 @@ const TeacherLeaveRequestForm = ({
             ? leaveRequestEditApproval.ddlStatus
             : gender
         }
-      />
+      /> */}
 
       <div
         style={{

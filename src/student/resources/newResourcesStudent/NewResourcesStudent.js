@@ -240,6 +240,7 @@ const NewResourcesStudent = () => {
     <>
       <CustomContainer>
         <MobileTopSelectContainer>
+          <h3 style={{ textAlign: "center", marginTop: "0" }}>Resources</h3>
           <div style={{ textAlign: "center" }}>
             {ddlFacultySubject?.map((subject) => (
               <Chip
