@@ -28,7 +28,6 @@ const initialFormValues = {
 
 const StudentLeaveRequestForm = ({
   leaveRequestEdit,
-  leaveRequestEditApproval,
   leaveRequestCreate,
   setOpenPopUp,
 }) => {
@@ -59,7 +58,13 @@ const StudentLeaveRequestForm = ({
 
     if (validate()) {
       if (values.IDLeaveRequest === 0) {
-        dispatch(studentPostLeaveRequestAction(values, image));
+        dispatch(
+          studentPostLeaveRequestAction(
+            values,
+            image,
+            leaveRequestCreate.SchoolShortName
+          )
+        );
       } else {
         dispatch(studentPutLeaveRequestAction(values, image));
       }
@@ -87,12 +92,6 @@ const StudentLeaveRequestForm = ({
       setValues({ ...leaveRequestEdit.dbModel });
     }
   }, [leaveRequestEdit]);
-
-  useEffect(() => {
-    if (leaveRequestEditApproval) {
-      setValues({ ...leaveRequestEditApproval.dbModel });
-    }
-  }, [leaveRequestEditApproval]);
 
   const gender = [{ Key: "", Value: "" }];
 

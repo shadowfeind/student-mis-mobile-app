@@ -1,5 +1,5 @@
 import axios from "axios";
-import { API_URL, tokenConfig } from "../../constants";
+import { API_URL, tokenConfig, tokenHeader } from "../../constants";
 import {
   STUDENT_DELETE_LEAVE_REQUESTS_FAIL,
   STUDENT_DELETE_LEAVE_REQUESTS_REQUEST,
@@ -115,9 +115,31 @@ export const studentGetSingleEditLeaveRequestAction =
   };
 
 export const studentPostLeaveRequestAction =
-  (leaveRequestPost, image) => async (dispatch) => {
+  (leaveRequestPost, image, SchoolShortName) => async (dispatch) => {
     try {
       dispatch({ type: STUDENT_POST_LEAVE_REQUESTS_REQUEST });
+
+      const { data } = await axios.get(
+        `${API_URL}/api/LeaveRequest/GetFCMToken/${leaveRequestPost.ReceiverID}`,
+        tokenConfig()
+      );
+      if (data) {
+        const fcmBody = {
+          registration_ids: [data.Message],
+          collapse_key: "type_a",
+          notification: {
+            body: leaveRequestPost.LeaveDecription?.slice(0, 25),
+            title: SchoolShortName,
+          },
+        };
+        const fbody = JSON.stringify(fcmBody);
+
+        await axios.post(
+          "https://fcm.googleapis.com/fcm/send",
+          fbody,
+          tokenHeader
+        );
+      }
 
       if (image) {
         let formData = new FormData();
