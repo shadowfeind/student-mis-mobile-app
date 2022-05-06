@@ -1,8 +1,4 @@
 import React, { useState } from "react";
-import FilerobotImageEditor, {
-  TABS,
-  TOOLS,
-} from "react-filerobot-image-editor";
 import { Button, Collapse, makeStyles } from "@material-ui/core";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
@@ -11,15 +7,12 @@ import EditIcon from "@material-ui/icons/Edit";
 import DeleteIcon from "@material-ui/icons/Delete";
 import ListForTable from "../../components/ListForTable";
 import {
-  downloadAssignmentAction,
-  downloadSubmittedAssignmentAction,
   getSingleAssignmentAction,
   getSingleToEditTeacherAssignmentAction,
 } from "./AssignmentActions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import LockIcon from "@material-ui/icons/Lock";
-import Popup from "../../components/Popup";
 
 const useStyles = makeStyles((theme) => ({
   collapse: {
@@ -49,14 +42,10 @@ const dateInPast = (firstDate, secondDate) => {
 };
 
 const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
-  const [isImgEditorShown, setIsImgEditorShown] = useState(false);
-  const [openPopup, setOpenPopup] = useState(false);
-  const [imgToEdit, setImgToEdit] = useState("");
   const [open, setOpen] = useState(false);
   const history = useHistory();
   const dispatch = useDispatch();
   const classes = useStyles();
-
   const downloadHandler = (id) => {
     dispatch(downloadAssignmentAction(id));
   };
@@ -64,36 +53,18 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
     dispatch(getSingleToEditTeacherAssignmentAction(id));
     setOpenPopup3(true);
   };
-  const downloadSubmittedHandler = async (name) => {
-    dispatch(downloadSubmittedAssignmentAction(name));
-    // let imageURL = `https://api.codetabs.com/v1/proxy?quest=${name}`;
-    // let downloadedImg = new Image();
-    // downloadedImg.crossOrigin = "Anonymous";
-    // downloadedImg.src = imageURL;
-    // setImgToEdit(downloadedImg.src);
-    // setImgToEdit(imageURL);
-    // setIsImgEditorShown(true);
-    // setOpenPopup(true);
+  const downloadSubmittedHandler = (id) => {
+    dispatch(downloadSubmittedAssignmentAction(id));
   };
   const handleClick = () => {
     setOpen(!open);
-  };
-
-  const closeImgEditor = () => {
-    setIsImgEditorShown(false);
-    setOpenPopup(false);
-  };
-
-  const saveHandler = (editedImageObject, designState) => {
-    console.log("editedImageObject", editedImageObject);
-    console.log("designState", designState);
   };
 
   return (
     <>
       <ListForTable onClick={handleClick}>
         <p>
-          <span
+          {/* <span
             style={{
               padding: "8px 10px",
               borderRadius: "50%",
@@ -103,8 +74,14 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
             }}
           >
             {item.FullName[0]}
-          </span>
-          <span style={{ paddingLeft: "12px" }}>{item.FullName}</span>{" "}
+          </span> */}
+          <span style={{ paddingLeft: "12px" }}>
+            {item.FullName}
+            <br />
+            <span style={{ fontSize: "12px", paddingLeft: "12px" }}>
+              {item.AssignmentDate.slice(0, 10)} / {item.DueDate.slice(0, 10)}
+            </span>
+          </span>{" "}
           <span
             style={{ fontSize: "10px", color: "#444", paddingLeft: "10px" }}
           >
@@ -136,11 +113,12 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
           </p>
           <p>
             <Button
-              variant="contained"
-              color="default"
+              variant="outlined"
+              color="primary"
               className={classes.button}
               onClick={() => downloadHandler(item.IDAssignment)}
             >
+              Teacher &nbsp;
               <CloudDownloadIcon style={{ fontSize: 12 }} />
             </Button>
             {item.DocumentSubmitted !== null && (
@@ -148,47 +126,24 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
                 variant="outlined"
                 color="primary"
                 className={classes.button}
-                onClick={() => downloadSubmittedHandler(item.DocumentSubmitted)}
+                onClick={() => downloadSubmittedHandler(item.IDAssignment)}
               >
-                <CloudDownloadIcon style={{ fontSize: 12 }} /> Assignment
+                Student &nbsp;
+                <CloudDownloadIcon style={{ fontSize: 12 }} />
               </Button>
             )}
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
               className={classes.button}
               onClick={() => updateHandler(item.IDAssignment)}
             >
               <EditIcon style={{ fontSize: 12 }} />
+              &nbsp; Edit
             </Button>
           </p>
         </div>
       </Collapse>
-
-      <Popup
-        openPopup={openPopup}
-        setOpenPopup={setOpenPopup}
-        title="Edit Assignment"
-      >
-        {isImgEditorShown && (
-          <FilerobotImageEditor
-            // source={imgToEdit && imgToEdit}
-            // source="https://scaleflex.airstore.io/demo/stephen-walker-unsplash.jpg"
-            source="https://vidyacube.com/Upload/Syllabus/6mandir.jpg"
-            onSave={(editedImageObject, designState) =>
-              saveHandler(editedImageObject, designState)
-            }
-            onClose={closeImgEditor}
-            annotationsCommon={{
-              fill: "#ff0000",
-            }}
-            Text={{ text: "Filerobot..." }}
-            tabsIds={[TABS.ADJUST, TABS.ANNOTATE]} // or {['Adjust', 'Annotate', 'Watermark']}
-            defaultTabId={TABS.ANNOTATE} // or 'Annotate'
-            defaultToolId={TOOLS.TEXT} // or 'Text'
-          />
-        )}
-      </Popup>
     </>
   );
 };

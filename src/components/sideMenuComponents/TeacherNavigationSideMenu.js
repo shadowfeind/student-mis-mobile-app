@@ -1,17 +1,18 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import { makeStyles, Typography } from "@material-ui/core";
-import {
-  School,
-  Accessible,
-  PeopleOutline,
-  ChromeReaderMode,
-  Face,
-  Assessment,
-  Settings,
-  PostAdd,
-  RecordVoiceOver,
-} from "@material-ui/icons";
+import AssignmentTurnedInIcon from "@material-ui/icons/AssignmentTurnedIn";
+import VideocamIcon from "@material-ui/icons/Videocam";
+import ReportProblemIcon from "@material-ui/icons/ReportProblem";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import DescriptionIcon from "@material-ui/icons/Description";
+import SystemUpdateAltIcon from "@material-ui/icons/SystemUpdateAlt";
+import CalendarTodayIcon from "@material-ui/icons/CalendarToday";
+import BookIcon from "@material-ui/icons/Book";
+import DvrRoundedIcon from "@material-ui/icons/DvrRounded";
+import DashboardIcon from "@material-ui/icons/Dashboard";
+import HowToRegRoundedIcon from "@material-ui/icons/HowToRegRounded";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
 
 const useStyles = makeStyles({
   root: {
@@ -57,7 +58,7 @@ const TeacherNavigationSideMenu = () => {
       >
         <Typography variant="h6">
           {" "}
-          <ChromeReaderMode fontSize="small" />
+          <DashboardIcon fontSize="small" />
           DashBoard
         </Typography>
       </NavLink>
@@ -68,7 +69,7 @@ const TeacherNavigationSideMenu = () => {
       >
         <Typography variant="h6">
           {" "}
-          <School fontSize="small" />
+          <TrendingUpIcon fontSize="small" />
           Academic Grading
         </Typography>
       </NavLink>
@@ -79,10 +80,17 @@ const TeacherNavigationSideMenu = () => {
       >
         <Typography variant="h6">
           {" "}
-          <Accessible fontSize="small" />
+          <DvrRoundedIcon fontSize="small" />
           Exam Division
         </Typography>
       </NavLink>
+      {/* <NavLink to={"/exam-schedule"} activeStyle={isActive} className={classes.textBox}>
+        <Typography variant="h6">
+          {" "}
+          <PeopleOutline fontSize="small" />
+           Exam Schedule
+        </Typography>
+      </NavLink> */}
       <NavLink
         to={"/leaverequest-teacher"}
         activeStyle={isActive}
@@ -90,18 +98,17 @@ const TeacherNavigationSideMenu = () => {
       >
         <Typography variant="h6">
           {" "}
-          <PeopleOutline fontSize="small" />
+          <ReportProblemIcon fontSize="small" />
           Leave Request
         </Typography>
       </NavLink>
-
       <NavLink
         to={"/attendance"}
         activeStyle={isActive}
         className={classes.textBox}
       >
         <Typography variant="h6">
-          <Assessment fontSize="small" />
+          <HowToRegRoundedIcon fontSize="small" />
           Attendance
         </Typography>
       </NavLink>
@@ -129,8 +136,8 @@ const TeacherNavigationSideMenu = () => {
         className={classes.textBox}
       >
         <Typography variant="h6">
-          <PostAdd fontSize="small" />
-          Resources
+          <BookIcon fontSize="small" />
+          E-Material
         </Typography>
       </NavLink>
       <NavLink
@@ -140,7 +147,7 @@ const TeacherNavigationSideMenu = () => {
       >
         <Typography variant="h6">
           {" "}
-          <PeopleOutline fontSize="small" />
+          <CalendarTodayIcon fontSize="small" />
           Class Routine
         </Typography>
       </NavLink>
@@ -150,8 +157,8 @@ const TeacherNavigationSideMenu = () => {
         className={classes.textBox}
       >
         <Typography variant="h6">
-          <PostAdd fontSize="small" />
-          Assignment
+          <AssignmentTurnedInIcon fontSize="small" />
+          Assignment/Homework
         </Typography>
       </NavLink>
       <NavLink
@@ -161,8 +168,8 @@ const TeacherNavigationSideMenu = () => {
       >
         <Typography variant="h6">
           {" "}
-          <Accessible fontSize="small" />
-          Mark Approval
+          <SystemUpdateAltIcon fontSize="small" />
+          Marks Entry/Update
         </Typography>
       </NavLink>
       <NavLink
@@ -171,7 +178,7 @@ const TeacherNavigationSideMenu = () => {
         className={classes.textBox}
       >
         <Typography variant="h6">
-          <RecordVoiceOver fontSize="small" />
+          <DescriptionIcon fontSize="small" />
           Syllabus
         </Typography>
       </NavLink>
@@ -182,7 +189,7 @@ const TeacherNavigationSideMenu = () => {
       >
         <Typography variant="h6">
           {" "}
-          <Accessible fontSize="small" />
+          <MenuBookIcon fontSize="small" />
           Old Questions
         </Typography>
       </NavLink>
@@ -193,7 +200,7 @@ const TeacherNavigationSideMenu = () => {
       >
         <Typography variant="h6">
           {" "}
-          <Accessible fontSize="small" />
+          <VideocamIcon fontSize="small" />
           Video Conference
         </Typography>
       </NavLink>

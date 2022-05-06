@@ -3,11 +3,11 @@ import { useParams } from "react-router-dom";
 import { unstable_batchedUpdates } from "react-dom";
 import { Button, makeStyles, Grid } from "@material-ui/core";
 import Popup from "../../components/Popup";
+import LoadingComp from "../../components/LoadingComp";
 import CustomContainer from "../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
 import ConfirmDialog from "../../components/ConfirmDialog";
-import LoadingComp from "../../components/LoadingComp";
 import SelectControl from "../../components/controls/SelectControl";
 import {
   DOWNLOAD_ASSIGNMENT_RESET,
@@ -116,7 +116,7 @@ const Assignment = () => {
 
   const {
     assignmentContent,
-    loading: loadingContent,
+    loading: loadingTable,
     error: assignmentContentError,
   } = useSelector((state) => state.getTeacherAssignmentContent);
 
@@ -531,6 +531,7 @@ const Assignment = () => {
                 className={classes.button}
                 onClick={allHandler}
               >
+                All&nbsp;
                 <ZoomInIcon />
               </Button>
               <div style={{ height: "10px" }}></div>
@@ -540,26 +541,23 @@ const Assignment = () => {
         {loading ? (
           <LoadingComp />
         ) : (
-          <>
-            <div style={{ marginBottom: "30px" }}>
-              {getListTeacherAssignment?.dbTeacherAssignmentLstBySection.map(
-                (item) => (
-                  <AssignmentListCollapse
-                    item={item}
-                    key={item.$id}
-                    setOpenPopup3={setOpenPopup3}
-                  />
-                )
-              )}
-            </div>
-
+          <div style={{ marginBottom: "60px" }}>
+            {getListTeacherAssignment?.dbTeacherAssignmentLstBySection.map(
+              (item) => (
+                <AssignmentListCollapse
+                  item={item}
+                  key={item.$id}
+                  setOpenPopup3={setOpenPopup3}
+                />
+              )
+            )}
             {getListTeacherAssignment?.dbTeacherAssignmentLstBySection?.length <
               1 && (
               <h4 style={{ textAlign: "center", marginTop: "10px" }}>
-                No Data
+                No Assignment
               </h4>
             )}
-          </>
+          </div>
         )}
       </CustomContainer>
       <Popup
@@ -580,6 +578,7 @@ const Assignment = () => {
                 teacherAssignmentSingleCreate &&
                 teacherAssignmentSingleCreate.dbTeacherAssignmentModel
               }
+              setOpenPopup={setOpenPopup}
             />
           </>
         )}
@@ -589,7 +588,7 @@ const Assignment = () => {
         setOpenPopup={setOpenPopup2}
         title="All Assignment"
       >
-        {loadingContent ? (
+        {loadingTable ? (
           <LoadingComp />
         ) : (
           <>
@@ -615,6 +614,9 @@ const Assignment = () => {
               singleAssignment={
                 singleTeacherAssignment &&
                 singleTeacherAssignment.dbTeacherAssignmentModel
+              }
+              assignmentImage={
+                singleTeacherAssignment && singleTeacherAssignment.FullPath
               }
               setOpenPop3={setOpenPopup3}
             />
