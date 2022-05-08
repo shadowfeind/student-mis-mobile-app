@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Button, makeStyles } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
 import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
@@ -7,12 +7,10 @@ import {
   GET_ALL_UPLOADPHOTO_STUDENT_RESET,
   UPLOADPHOTO_STUDENT_RESET,
 } from "./UploadPhotoConstants";
-import {
-  getAllUploadPhotoStudentAction,
-  uploadPhotoActionAction,
-} from "./UploadPhotoActions";
-import { API_URL } from "../../../constants";
+import { getAllUploadPhotoStudentAction } from "./UploadPhotoActions";
 import UploadPhotoForm from "./UploadPhotoForm";
+import { getHeaderContentAction } from "../../dashboard/DashboardActions";
+import { getAllPersonalInformationAction } from "../personalinformation/PersonalInformationActions";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -25,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UploadPhoto = () => {
+const UploadPhoto = ({ setEditPhotoPopup }) => {
   const [url, setUrl] = useState("");
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -37,7 +35,9 @@ const UploadPhoto = () => {
 
   const dispatch = useDispatch();
 
-  const { allUploadPhoto, allUploadPhotoError } = useSelector((state) => state.getAllUploadPhotoStudent);
+  const { allUploadPhoto, allUploadPhotoError } = useSelector(
+    (state) => state.getAllUploadPhotoStudent
+  );
   const { success: uploadPhotoSuccess, error: uploadPhotoError } = useSelector(
     (state) => state.uploadPhotoStudent
   );
@@ -55,8 +55,11 @@ const UploadPhoto = () => {
       message: "Successfully Uploaded",
       type: "success",
     });
+    setEditPhotoPopup(false);
     dispatch({ type: UPLOADPHOTO_STUDENT_RESET });
     dispatch(getAllUploadPhotoStudentAction());
+    dispatch(getHeaderContentAction());
+    dispatch(getAllPersonalInformationAction());
   }
   if (uploadPhotoError) {
     setNotify({
@@ -68,28 +71,12 @@ const UploadPhoto = () => {
   }
 
   useEffect(() => {
-    dispatch({ type: "GET_LINK", payload: "/" });
-    if (!allUploadPhoto) {
-      dispatch(getAllUploadPhotoStudentAction());
-    }
-  }, [dispatch, allUploadPhoto]);
-
-//   useEffect(()=>{
-// if (uploadPhotoSuccess){
-//   setUrl(`${API_URL}${uploadPhotoSuccess.FullPath}`);
-// }
-//   },[uploadPhotoSuccess]);
+    dispatch(getAllUploadPhotoStudentAction());
+  }, []);
 
   return (
     <CustomContainer>
-      upload Photo
-      <br />
-      {/* {photo && <img src={`${API_URL}${photo.dbModel.FullPath}`} />} */}
-      <UploadPhotoForm
-        uploadPhoto={
-          allUploadPhoto && allUploadPhoto
-        }
-      />
+      <UploadPhotoForm uploadPhoto={allUploadPhoto && allUploadPhoto} />
       <Notification notify={notify} setNotify={setNotify} />
     </CustomContainer>
   );

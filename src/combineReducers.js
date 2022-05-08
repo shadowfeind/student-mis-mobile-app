@@ -233,6 +233,7 @@ import {
   postLeaveRequestReducer,
   putLeaveRequestReducer,
 } from "./teacher/leaveRequest/TeacherLeaveRequestReducers";
+import { getStudentResetPasswordReducer } from "./student/pid/personalinformation/PersonalInformationReducers";
 
 export const reducers = combineReducers({
   getFCMToken: getFCMTokenReducer,
@@ -243,6 +244,7 @@ export const reducers = combineReducers({
   //PID uploadPhoto
   uploadPhotoStudent: uploadPhotoStudentReducer,
   getAllUploadPhotoStudent: getAllUploadPhotoStudentReducer,
+  getStudentResetPassword: getStudentResetPasswordReducer,
   //user profile reducers ends
   //attendance start
   getAllStudentAttendance: getAllStudentAttendanceReducer,

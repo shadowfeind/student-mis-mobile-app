@@ -21,12 +21,12 @@ const UploadPhotoForm = ({ uploadPhoto }) => {
   };
 
   const handleUploadImage = () => {
-    if(uploadPhoto){
-      dispatch(putUploadPhotoStudentAction(image,uploadPhoto.dbModel))
-    }else{
-      console.log("failed")
+    if (uploadPhoto) {
+      dispatch(putUploadPhotoStudentAction(image, uploadPhoto.dbModel));
+    } else {
+      console.log("failed");
     }
-  }
+  };
 
   return (
     <>
@@ -36,7 +36,16 @@ const UploadPhotoForm = ({ uploadPhoto }) => {
         type="file"
       />
 
-      <img src={imgSrc ? imgSrc : uploadPhoto && `${API_URL}${uploadPhoto.dbModel.FullPath}`} height={200} width={200} />
+      <img
+        style={{ marginTop: "12px" }}
+        src={
+          imgSrc
+            ? imgSrc
+            : uploadPhoto && `${API_URL}${uploadPhoto.dbModel.FullPath}`
+        }
+        height={200}
+        width={200}
+      />
       <div
         style={{
           display: "flex",
