@@ -298,13 +298,21 @@ const Assignment = () => {
       <CustomContainer>
         <MobileTopSelectContainer>
           <h3 style={{ textAlign: "center", marginTop: "0" }}>Assignments</h3>
-          <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              textAlign: "center",
+              overflowX: "auto",
+              overflowYy: "hidden",
+              whiteSpace: "nowrap",
+              paddingBottom: "10px",
+            }}
+          >
             {ddlFacultySubject?.map((subject) => (
               <Chip
                 key={subject.Key}
                 label={subject.Value}
                 variant="outlined"
-                style={{ marginRight: "5px", marginBottom: "5px" }}
+                style={{ marginRight: "10px", marginBottom: "5px" }}
                 onClick={(e) => handleExamScheduleSearch(subject.Key)}
               />
             ))}
@@ -326,7 +334,11 @@ const Assignment = () => {
           <LoadingComp />
         ) : (
           <>
-            <div style={{ marginBottom: "30px" }}>
+            <div
+              style={{
+                marginBottom: "30px",
+              }}
+            >
               {assignmentList?.dbstuentSubmissionLst.map((item) => (
                 <AssignmentListCollapse
                   item={item}
