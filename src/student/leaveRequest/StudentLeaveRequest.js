@@ -22,6 +22,7 @@ import {
 } from "./StudentLeaveRequestConstants";
 import StudentLeaveRequestForm from "./StudentLeaveRequestForm";
 import StudentLeaveRequestDelete from "./StudentLeaveRequestDelete";
+import MobileBody from "../../components/MobileBody";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -170,6 +171,7 @@ const StudentLeaveRequest = () => {
     setOpenPopup(true);
     dispatch({ type: STUDENT_GET_SINGLE_TO_EDIT_LEAVE_REQUESTS_RESET });
   };
+
   return (
     <>
       <CustomContainer>
@@ -196,15 +198,17 @@ const StudentLeaveRequest = () => {
           </div>
           {listLeaveRequestLoading && <LoadingComp />}
         </MobileTopSelectContainer>
-        {listLeaveRequest &&
-          listLeaveRequest.dbModelLst.map((item) => (
-            <StudentLeaveRequestListCollapse
-              item={item}
-              key={item.$id}
-              setOpenPopUp={setOpenPopup}
-              setOpenPopupDelete={setOpenPopupDelete}
-            />
-          ))}
+        <MobileBody>
+          {listLeaveRequest &&
+            listLeaveRequest.dbModelLst.map((item) => (
+              <StudentLeaveRequestListCollapse
+                item={item}
+                key={item.$id}
+                setOpenPopUp={setOpenPopup}
+                setOpenPopupDelete={setOpenPopupDelete}
+              />
+            ))}
+        </MobileBody>
       </CustomContainer>
       <Popup
         openPopup={openPopup}

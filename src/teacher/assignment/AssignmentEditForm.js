@@ -182,7 +182,6 @@ const AssignmentEditForm = ({ singleAssignment, setOpenPop3 }) => {
         <div style={{ height: "5px" }}></div>
         <InputControl
           name="ImageUploaded"
-          label="Select File"
           onChange={(e) => handleImage(e)}
           type="file"
         />

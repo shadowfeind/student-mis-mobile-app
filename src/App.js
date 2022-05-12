@@ -99,8 +99,7 @@ const ExamMarkApprovalTeacher = lazy(() =>
 const theme = createTheme({
   palette: {
     background: {
-      // default: "#eaeff5",
-      default: "#fff",
+      default: "##f3f3f3",
     },
     customColor: {
       main: "#253053",

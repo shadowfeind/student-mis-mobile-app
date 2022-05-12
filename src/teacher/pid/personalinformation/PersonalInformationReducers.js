@@ -11,6 +11,10 @@ import {
   GET_TEACHER_RESET_PASSWORD_REQUEST,
   GET_TEACHER_RESET_PASSWORD_RESET,
   GET_TEACHER_RESET_PASSWORD_SUCCESS,
+  POST_TEACHER_PASSWORD_FAIL,
+  POST_TEACHER_PASSWORD_REQUEST,
+  POST_TEACHER_PASSWORD_RESET,
+  POST_TEACHER_PASSWORD_SUCCESS,
   UPDATE_SINGLE_PERSONALINFORMATION_FAIL,
   UPDATE_SINGLE_PERSONALINFORMATION_REQUEST,
   UPDATE_SINGLE_PERSONALINFORMATION_RESET,
@@ -78,6 +82,21 @@ export const getTeacherResetPasswordReducer = (state = {}, action) => {
     case GET_TEACHER_RESET_PASSWORD_FAIL:
       return { loading: false, error: action.payload };
     case GET_TEACHER_RESET_PASSWORD_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const postTeacherPasswordReducer = (state = {}, action) => {
+  switch (action.type) {
+    case POST_TEACHER_PASSWORD_REQUEST:
+      return { loading: true };
+    case POST_TEACHER_PASSWORD_SUCCESS:
+      return { loading: false, success: true };
+    case POST_TEACHER_PASSWORD_FAIL:
+      return { loading: false, error: action.payload };
+    case POST_TEACHER_PASSWORD_RESET:
       return {};
     default:
       return state;

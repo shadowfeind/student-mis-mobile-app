@@ -276,7 +276,7 @@ const AssignmentForm = ({ students, formDatas }) => {
 
         <InputControl
           name="ImageUploaded"
-          label="Select File"
+          // label="Select File"
           // value={values.ClassLocation}
           onChange={(e) => handleImage(e)}
           type="file"

@@ -38,6 +38,7 @@ import AssignmentListCollapse from "./AssignmentListCollapse";
 import MobileTopSelectContainer from "../../../components/MobileTopSelectContainer";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Chip from "@material-ui/core/Chip";
+import MobileBody from "../../../components/MobileBody";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -334,11 +335,7 @@ const Assignment = () => {
           <LoadingComp />
         ) : (
           <>
-            <div
-              style={{
-                marginBottom: "30px",
-              }}
-            >
+            <MobileBody>
               {assignmentList?.dbstuentSubmissionLst.map((item) => (
                 <AssignmentListCollapse
                   item={item}
@@ -347,12 +344,12 @@ const Assignment = () => {
                   setOpenPopup={setOpenPopup}
                 />
               ))}
-            </div>
-            {assignmentList?.dbstuentSubmissionLst.length < 1 && (
-              <h4 style={{ textAlign: "center", marginTop: "10px" }}>
-                No Data
-              </h4>
-            )}
+              {assignmentList?.dbstuentSubmissionLst.length < 1 && (
+                <h4 style={{ textAlign: "center", marginTop: "10px" }}>
+                  No Data
+                </h4>
+              )}
+            </MobileBody>
           </>
         )}
       </CustomContainer>
