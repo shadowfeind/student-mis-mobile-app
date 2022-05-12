@@ -73,9 +73,41 @@ const StudentLeaveRequestListCollapse = ({
       <div style={{ backgroundColor: "#fff" }}>
         <ListForTable onClick={handleClick}>
           <div className={classes.listWrapper}>
-            <p>{item.LeaveDecription?.slice(0, 25)}...</p>
+            <div style={{ fontSize: "12px", color: "#666" }}>
+              {item.FromDate.slice(0, 10)} <br /> {item.ToDate.slice(0, 10)}
+            </div>
+            <div
+              style={{
+                paddingLeft: "18px",
+                fontSize: "14px",
+                // fontWeight: "bolder",
+              }}
+            >
+              {item.LeaveDecription?.slice(0, 25)}...
+              <div
+                style={{ fontSize: "10px", color: "#444", marginTop: "-3px" }}
+              >
+                <div
+                  style={
+                    item.Status === "PENDING"
+                      ? { color: "blue" }
+                      : item.Status === "APPROVED"
+                      ? { color: "green" }
+                      : { color: "red" }
+                  }
+                >
+                  {item.Status}
+                </div>
+              </div>
+            </div>
           </div>
-          <div>{open ? <ExpandLess /> : <ExpandMore />}</div>
+          <div>
+            {open ? (
+              <ExpandLess style={{ color: "#d1d1d1" }} />
+            ) : (
+              <ExpandMore style={{ color: "#d1d1d1" }} />
+            )}
+          </div>
         </ListForTable>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <div className={classes.collapse}>
