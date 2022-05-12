@@ -1,6 +1,10 @@
 import axios from "axios";
 import { API_URL } from "../../constants";
-import { GET_HEADER_CONTENT_RESET } from "../dashboard/DashboardConstants";
+import { GET_TEACHER_DASHBOARD_RESET } from "../../teacher/dashboard/DashboardConstants";
+import {
+  GET_HEADER_CONTENT_RESET,
+  GET_STUDENT_DASHBOARD_RESET,
+} from "../dashboard/DashboardConstants";
 import {
   GENERATE_FCM_TOKEN,
   USER_LOGIN_FAIL,
@@ -45,12 +49,12 @@ export const login = (userName, password) => async (dispatch, getState) => {
       config
     );
 
+    localStorage.setItem("blueberryToken", JSON.stringify(data));
+
     dispatch({
       type: USER_LOGIN_SUCCESS,
       payload: data,
     });
-
-    localStorage.setItem("blueberryToken", JSON.stringify(data));
   } catch (error) {
     console.log(error);
     console.log(error.Message);
@@ -68,5 +72,7 @@ export const logout = () => (dispatch) => {
   localStorage.removeItem("blueberryToken");
   dispatch({ type: USER_LOGOUT });
   dispatch({ type: GET_HEADER_CONTENT_RESET });
+  dispatch({ type: GET_STUDENT_DASHBOARD_RESET });
+  dispatch({ type: GET_TEACHER_DASHBOARD_RESET });
   document.location.href = "/#/login";
 };

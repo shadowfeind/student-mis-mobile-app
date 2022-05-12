@@ -61,7 +61,7 @@ const Dashboard = () => {
     if (!userInfo) {
       history.push("/login");
     }
-  }, [dispatch, userInfo]);
+  }, [userInfo]);
 
   useEffect(() => {
     dispatch(getDashboardContentStudentAction());

@@ -30,15 +30,14 @@ const SideMenu = ({ header }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-const {userInfo} = useSelector((state)=> state.userLogin)
+  const { userInfo } = useSelector((state) => state.userLogin);
 
   return (
     <div className={classes.sideMenu}>
       <NavProfileContainer header={header} />
-      {userInfo && userInfo.IDHRRole === 5 &&  <TeacherNavigationSideMenu />}
+      {userInfo && userInfo.IDHRRole === 5 && <TeacherNavigationSideMenu />}
       {userInfo && userInfo.IDHRRole === 8 && <NavigationSideMenu />}
-      
-     
+
       <h4 onClick={() => dispatch(logout())}>Log out</h4>
     </div>
   );

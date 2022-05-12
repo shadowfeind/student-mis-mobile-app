@@ -57,9 +57,11 @@ const Dashboard = () => {
       }
     }
   }, [userInfo]);
+
   useEffect(() => {
     dispatch(getDashboardContentAction());
   }, []);
+
   const localizer = momentLocalizer(moment);
 
   return (
