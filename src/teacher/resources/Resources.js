@@ -10,10 +10,10 @@ import {
   InputAdornment,
 } from "@material-ui/core";
 import CustomContainer from "../../components/CustomContainer";
+import LoadingComp from "../../components/LoadingComp";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
 import ConfirmDialog from "../../components/ConfirmDialog";
-import LoadingComp from "../../components/LoadingComp";
 import SelectControl from "../../components/controls/SelectControl";
 import { Search } from "@material-ui/icons";
 import useCustomTable from "../../customHooks/useCustomTable";
@@ -36,6 +36,7 @@ import {
 } from "./ResourcesActions";
 import ResourcesTableCollapse from "./ResourcesTableCollapse";
 import ResourcesForm from "./ResourcesForm";
+import MobileBody from "../../components/MobileBody";
 import MobileTopSelectContainer from "../../components/MobileTopSelectContainer";
 import AddBoxIcon from "@material-ui/icons/AddBox";
 import SearchIcon from "@material-ui/icons/Search";
@@ -131,15 +132,19 @@ const Resources = () => {
   const { allInitialData, error: allInitialDataError } = useSelector(
     (state) => state.getAllInitialResourcesData
   );
-  const { allResources,loading, error: allResourcesError } = useSelector(
-    (state) => state.getAllResourcesList
-  );
+  const {
+    allResources,
+    loading,
+    error: allResourcesError,
+  } = useSelector((state) => state.getAllResourcesList);
   const { allOtherResourcesOptions, error: allOtherResourcesOptionsError } =
     useSelector((state) => state.getAllOtherOptionsForResourcesSelect);
 
-  const { getCreateResource,loading:loadingCreate, error: getCreateResourceError } = useSelector(
-    (state) => state.getCreateResource
-  );
+  const {
+    getCreateResource,
+    loading: loadingCreate,
+    error: getCreateResourceError,
+  } = useSelector((state) => state.getCreateResource);
   const { success: postResourceSuccess, error: postResourceError } =
     useSelector((state) => state.postResource);
 
@@ -246,10 +251,10 @@ const Resources = () => {
     }
   }, [allInitialData, dispatch]);
 
-  useEffect(()=>{
-    dispatch({type:GET_ALL_RESOURCES_LIST_RESET})
+  useEffect(() => {
+    dispatch({ type: GET_ALL_RESOURCES_LIST_RESET });
     dispatch(getAllInitialResourcesDataAction());
-  },[])
+  }, []);
 
   useEffect(() => {
     if (allResources) {
@@ -456,15 +461,22 @@ const Resources = () => {
         <div style={{ height: "10px" }}></div>
 
         <div style={{ marginBottom: "25px" }}>
-        {loading ? (
-          <LoadingComp />
-        ) : (
-          <>
-          {allResources?.dbModelTeacherLst.map((item) => (
-            <ResourcesListCollapse item={item} key={item.$id} />
-          ))}
-          </>
-        )}
+          {loading ? (
+            <LoadingComp />
+          ) : (
+            <>
+              <MobileBody>
+                {allResources?.dbModelTeacherLst.map((item) => (
+                  <ResourcesListCollapse item={item} key={item.$id} />
+                ))}
+                {allResources?.dbModelTeacherLst?.length < 1 && (
+                  <h4 style={{ textAlign: "center", marginTop: "10px" }}>
+                    No Resources
+                  </h4>
+                )}
+              </MobileBody>
+            </>
+          )}
         </div>
       </CustomContainer>
       <Popup
@@ -472,18 +484,18 @@ const Resources = () => {
         setOpenPopup={setOpenPopup}
         title="Resources Form"
       >
-      {loadingCreate ? (
+        {loadingCreate ? (
           <LoadingComp />
         ) : (
           <>
-        <ResourcesForm
-          setOpenPopup={setOpenPopup}
-          searchFilterModel={
-            getCreateResource && getCreateResource.searchFilterModel
-          }
-          dbModel={getCreateResource && getCreateResource.dbModel}
-        />
-        </>
+            <ResourcesForm
+              setOpenPopup={setOpenPopup}
+              searchFilterModel={
+                getCreateResource && getCreateResource.searchFilterModel
+              }
+              dbModel={getCreateResource && getCreateResource.dbModel}
+            />
+          </>
         )}
       </Popup>
       <Notification notify={notify} setNotify={setNotify} />

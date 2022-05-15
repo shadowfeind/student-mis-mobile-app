@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
 
 import { getAllAcademicGradingAction } from "./AcademicGradingActions";
-
+import MobileBody from "../../components/MobileBody";
 import { GET_ALL_ACADEMIC_GRADING_RESET } from "./AcademicGradingConstants";
 import MobileTopSelectContainer from "../../components/MobileTopSelectContainer";
 import AcademicGradingListCollapse from "./AcademicGradingListCollapse";
@@ -20,7 +20,7 @@ const AcademicGrading = () => {
 
   const dispatch = useDispatch();
 
-  const { academicGrading,loading, error } = useSelector(
+  const { academicGrading, loading, error } = useSelector(
     (state) => state.academicGrading
   );
 
@@ -49,10 +49,12 @@ const AcademicGrading = () => {
           <LoadingComp />
         ) : (
           <>
-        {academicGrading &&
-          academicGrading?.dbModelLst.map((item) => (
-            <AcademicGradingListCollapse item={item} key={item.$id} />
-          ))}
+            <MobileBody>
+              {academicGrading &&
+                academicGrading?.dbModelLst.map((item) => (
+                  <AcademicGradingListCollapse item={item} key={item.$id} />
+                ))}
+            </MobileBody>
           </>
         )}
       </CustomContainer>

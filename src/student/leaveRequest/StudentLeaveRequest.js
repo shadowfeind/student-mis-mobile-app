@@ -193,7 +193,7 @@ const StudentLeaveRequest = () => {
               className={classes.button}
               onClick={createHandler}
             >
-              <AddBoxIcon style={{ fontSize: 12 }} />
+              <AddBoxIcon style={{ fontSize: 14 }} />
             </Button>
           </div>
           {listLeaveRequestLoading && <LoadingComp />}

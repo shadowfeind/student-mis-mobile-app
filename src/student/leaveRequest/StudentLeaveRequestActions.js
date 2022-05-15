@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   API_URL,
   axiosInstance,
@@ -40,7 +41,8 @@ export const studentGetAllLeaveRequestAction = () => async (dispatch) => {
 
     const { data } = await axiosInstance.get(
       `/api/LeaveRequest/GetAllLeaveRequest
-        `
+        `,
+      tokenConfig()
     );
 
     dispatch({ type: STUDENT_GET_ALL_LEAVE_REQUESTS_SUCCESS, payload: data });
@@ -58,7 +60,8 @@ export const studentGetListLeaveRequestAction = () => async (dispatch) => {
 
     const { data } = await axiosInstance.get(
       `/api/LeaveRequest/GetListLeaveRequest
-        `
+        `,
+      tokenConfig()
     );
 
     dispatch({ type: STUDENT_GET_LIST_LEAVE_REQUESTS_SUCCESS, payload: data });
@@ -77,7 +80,8 @@ export const studentGetSingleCreateLeaveRequestAction =
 
       const { data } = await axiosInstance.get(
         `/api/LeaveRequest/GetSingleToCreateLeaveRequest
-        `
+        `,
+        tokenConfig()
       );
 
       dispatch({
@@ -99,7 +103,8 @@ export const studentGetSingleEditLeaveRequestAction =
 
       const { data } = await axiosInstance.get(
         `/api/LeaveRequest/GetSingleToEditLeaveRequest/${id}
-        `
+        `,
+        tokenConfig()
       );
 
       dispatch({
@@ -120,7 +125,8 @@ export const studentPostLeaveRequestAction =
       dispatch({ type: STUDENT_POST_LEAVE_REQUESTS_REQUEST });
 
       const { data } = await axiosInstance.get(
-        `/api/LeaveRequest/GetFCMToken/${leaveRequestPost.ReceiverID}`
+        `/api/LeaveRequest/GetFCMToken/${leaveRequestPost.ReceiverID}`,
+        tokenConfig()
       );
       if (data) {
         const fcmBody = {
@@ -133,7 +139,7 @@ export const studentPostLeaveRequestAction =
         };
         const fbody = JSON.stringify(fcmBody);
 
-        await axiosInstance.post(
+        await axios.post(
           "https://fcm.googleapis.com/fcm/send",
           fbody,
           tokenHeader
@@ -146,7 +152,8 @@ export const studentPostLeaveRequestAction =
 
         const { data } = await axiosInstance.post(
           `/api/LeaveRequest/FileUpload`,
-          formData
+          formData,
+          tokenConfig()
         );
         if (data) {
           const newData = { ...leaveRequestPost, DocumentName: data };
@@ -154,7 +161,8 @@ export const studentPostLeaveRequestAction =
 
           await axiosInstance.post(
             `/api/LeaveRequest/PostLeaveRequest`,
-            jsonData
+            jsonData,
+            tokenConfig()
           );
         }
       } else {
@@ -163,7 +171,8 @@ export const studentPostLeaveRequestAction =
 
         await axiosInstance.post(
           `/api/LeaveRequest/PostLeaveRequest`,
-          jsonData
+          jsonData,
+          tokenConfig()
         );
       }
 
@@ -187,7 +196,8 @@ export const studentPutLeaveRequestAction =
 
         const { data } = await axiosInstance.post(
           `/api/LeaveRequest/FileUpload`,
-          formData
+          formData,
+          tokenConfig()
         );
         if (data) {
           const newData = { ...leaveRequest, DocumentName: data };
@@ -195,14 +205,19 @@ export const studentPutLeaveRequestAction =
 
           await axiosInstance.put(
             `/api/LeaveRequest/PutLeaveRequest`,
-            jsonData
+            jsonData,
+            tokenConfig()
           );
         }
       } else {
         const newData = { ...leaveRequest };
         const jsonData = JSON.stringify({ dbModel: newData });
 
-        await axiosInstance.put(`/api/LeaveRequest/PutLeaveRequest`, jsonData);
+        await axiosInstance.put(
+          `/api/LeaveRequest/PutLeaveRequest`,
+          jsonData,
+          tokenConfig()
+        );
       }
       dispatch({ type: STUDENT_PUT_LEAVE_REQUESTS_SUCCESS });
     } catch (error) {
@@ -220,7 +235,8 @@ export const studentGetSingleDeleteLeaveRequestAction =
 
       const { data } = await axiosInstance.get(
         `/api/LeaveRequest/GetSingleToDeleteLeaveRequest/${id}
-          `
+          `,
+        tokenConfig()
       );
 
       dispatch({
@@ -250,7 +266,8 @@ export const studentDeleteLeaveRequestAction =
 
       const { data } = await axiosInstance.post(
         `/api/LeaveRequest/DeleteLeaveRequest`,
-        jsonData
+        jsonData,
+        tokenConfig()
       );
 
       dispatch({ type: STUDENT_DELETE_LEAVE_REQUESTS_SUCCESS, payload: data });

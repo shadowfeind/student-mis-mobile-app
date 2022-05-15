@@ -1,5 +1,10 @@
 import axios from "axios";
-import { API_URL, tokenConfig, tokenHeader } from "../../constants";
+import {
+  API_URL,
+  axiosInstance,
+  tokenConfig,
+  tokenHeader,
+} from "../../constants";
 import {
   DELETE_LEAVE_REQUESTS_FAIL,
   DELETE_LEAVE_REQUESTS_REQUEST,
@@ -37,8 +42,8 @@ export const getAllLeaveRequestAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/LeaveRequest/GetAllLeaveRequest
+    const { data } = await axiosInstance.get(
+      `/api/LeaveRequest/GetAllLeaveRequest
         `,
       tokenConfig()
     );
@@ -56,8 +61,8 @@ export const getListLeaveRequestAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_LIST_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/LeaveRequest/GetListLeaveRequest
+    const { data } = await axiosInstance.get(
+      `/api/LeaveRequest/GetListLeaveRequest
         `,
       tokenConfig()
     );
@@ -75,8 +80,8 @@ export const getSingleCreateLeaveRequestAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_TO_CREATE_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/LeaveRequest/GetSingleToCreateLeaveRequest
+    const { data } = await axiosInstance.get(
+      `/api/LeaveRequest/GetSingleToCreateLeaveRequest
         `,
       tokenConfig()
     );
@@ -97,8 +102,8 @@ export const getSingleEditLeaveRequestAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_TO_EDIT_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/LeaveRequest/GetSingleToEditLeaveRequest/${id}
+    const { data } = await axiosInstance.get(
+      `/api/LeaveRequest/GetSingleToEditLeaveRequest/${id}
         `,
       tokenConfig()
     );
@@ -120,8 +125,8 @@ export const postLeaveRequestAction =
     try {
       dispatch({ type: POST_LEAVE_REQUESTS_REQUEST });
 
-      const { data } = await axios.get(
-        `${API_URL}/api/LeaveRequest/GetFCMToken/${leaveRequestPost.ReceiverID}`,
+      const { data } = await axiosInstance.get(
+        `/api/LeaveRequest/GetFCMToken/${leaveRequestPost.ReceiverID}`,
         tokenConfig()
       );
       if (data) {
@@ -146,8 +151,8 @@ export const postLeaveRequestAction =
         let formData = new FormData();
         formData.append("ImageUploaded", image);
 
-        const { data } = await axios.post(
-          `${API_URL}/api/LeaveRequest/FileUpload`,
+        const { data } = await axiosInstance.post(
+          `/api/LeaveRequest/FileUpload`,
           formData,
           tokenConfig()
         );
@@ -155,8 +160,8 @@ export const postLeaveRequestAction =
           const newData = { ...leaveRequestPost, DocumentName: data };
           const jsonData = JSON.stringify({ dbModel: newData });
 
-          await axios.post(
-            `${API_URL}/api/LeaveRequest/PostLeaveRequest`,
+          await axiosInstance.post(
+            `/api/LeaveRequest/PostLeaveRequest`,
             jsonData,
             tokenConfig()
           );
@@ -165,8 +170,8 @@ export const postLeaveRequestAction =
         const newData = { ...leaveRequestPost };
         const jsonData = JSON.stringify({ dbModel: newData });
 
-        await axios.post(
-          `${API_URL}/api/LeaveRequest/PostLeaveRequest`,
+        await axiosInstance.post(
+          `/api/LeaveRequest/PostLeaveRequest`,
           jsonData,
           tokenConfig()
         );
@@ -190,8 +195,8 @@ export const putLeaveRequestAction =
         let formData = new FormData();
         formData.append("ImageUploaded", image);
 
-        const { data } = await axios.post(
-          `${API_URL}/api/LeaveRequest/FileUpload`,
+        const { data } = await axiosInstance.post(
+          `/api/LeaveRequest/FileUpload`,
           formData,
           tokenConfig()
         );
@@ -199,8 +204,8 @@ export const putLeaveRequestAction =
           const newData = { ...leaveRequest, DocumentName: data };
           const jsonData = JSON.stringify({ dbModel: newData });
 
-          await axios.put(
-            `${API_URL}/api/LeaveRequest/PutLeaveRequest`,
+          await axiosInstance.put(
+            `/api/LeaveRequest/PutLeaveRequest`,
             jsonData,
             tokenConfig()
           );
@@ -209,8 +214,8 @@ export const putLeaveRequestAction =
         const newData = { ...leaveRequest };
         const jsonData = JSON.stringify({ dbModel: newData });
 
-        await axios.put(
-          `${API_URL}/api/LeaveRequest/PutLeaveRequest`,
+        await axiosInstance.put(
+          `/api/LeaveRequest/PutLeaveRequest`,
           jsonData,
           tokenConfig()
         );
@@ -229,8 +234,8 @@ export const putLeaveRequestApproveAction =
     try {
       dispatch({ type: PUT_LEAVE_REQUESTS_REQUEST });
 
-      const { data } = await axios.get(
-        `${API_URL}/api/LeaveRequest/GetFCMToken/${leaveRequest.SenderID}`,
+      const { data } = await axiosInstance.get(
+        `/api/LeaveRequest/GetFCMToken/${leaveRequest.SenderID}`,
         tokenConfig()
       );
       if (data) {
@@ -254,8 +259,8 @@ export const putLeaveRequestApproveAction =
       const newData = { ...leaveRequest };
       const jsonData = JSON.stringify({ dbModel: newData });
 
-      await axios.put(
-        `${API_URL}/api/LeaveRequest/PutLeaveRequest`,
+      await axiosInstance.put(
+        `/api/LeaveRequest/PutLeaveRequest`,
         jsonData,
         tokenConfig()
       );
@@ -273,8 +278,8 @@ export const getSingleDeleteLeaveRequestAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_TO_DELETE_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/LeaveRequest/GetSingleToDeleteLeaveRequest/${id}
+    const { data } = await axiosInstance.get(
+      `/api/LeaveRequest/GetSingleToDeleteLeaveRequest/${id}
           `,
       tokenConfig()
     );
@@ -303,8 +308,8 @@ export const deleteLeaveRequestAction = (leaveRequest) => async (dispatch) => {
     //   },
     // };
 
-    const { data } = await axios.post(
-      `${API_URL}/api/LeaveRequest/DeleteLeaveRequest`,
+    const { data } = await axiosInstance.post(
+      `/api/LeaveRequest/DeleteLeaveRequest`,
       jsonData,
       tokenConfig()
     );
@@ -322,8 +327,8 @@ export const getSingleEditSentLeaveRequestAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_TO_EDIT_SENT_LEAVE_REQUESTS_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/LeaveRequest/GetSingleToEditSentLeaveRequest/${id}
+    const { data } = await axiosInstance.get(
+      `/api/LeaveRequest/GetSingleToEditSentLeaveRequest/${id}
           `,
       tokenConfig()
     );
@@ -344,7 +349,7 @@ export const downloadLeaveRequestAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: DOWNLOAD_DOC_LEAVE_REQUESTS_REQUEST });
 
-    const File = `${API_URL}/api/LeaveRequest/DownloadDoc/${id}`;
+    const File = `/api/LeaveRequest/DownloadDoc/${id}`;
 
     window.open(File, "_blank");
 

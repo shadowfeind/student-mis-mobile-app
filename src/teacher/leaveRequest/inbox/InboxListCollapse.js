@@ -46,51 +46,65 @@ const InboxListCollapse = ({ item, setOpenPopUp, setOpenPopupDelete }) => {
   };
 
   return (
-    <>
-      <ListForTable onClick={handleClick}>
-        <p>
-          ({item.FirsName}) {item.LeaveDecription?.slice(0, 15)}...
-        </p>
-        <div>{open ? <ExpandLess /> : <ExpandMore />}</div>
-      </ListForTable>
-      <Collapse in={open} timeout="auto" unmountOnExit>
-        <div className={classes.collapse}>
+    <div
+      style={{
+        padding: "6px 6px 0 6px",
+      }}
+    >
+      <div style={{ backgroundColor: "#fff" }}>
+        <ListForTable onClick={handleClick}>
           <p>
-            <span>Receiver</span> : {item.FirsName}
-            {item.MiddleName}
-            {item.LastName}
+            ({item.FirsName}) {item.LeaveDecription?.slice(0, 15)}...
           </p>
-          <p>
-            <span>Date</span> : {item.FromDate?.slice(0, 10)} /{" "}
-            {item.ToDate?.slice(0, 10)}
-          </p>
-          <p>
-            <span>Status</span> : {item.Status}
-          </p>
-          <p>
-            <span>Description</span> : {item.LeaveDecription}
-          </p>
-          <p>
-            <Button
-              variant="contained"
-              color="primary"
-              className={classes.button}
-              onClick={() => updateCollegeHandler(item.IDLeaveRequest)}
-            >
-              <EditIcon style={{ fontSize: 12 }} />
-            </Button>
-            <Button
-              variant="contained"
-              color="default"
-              className={classes.button}
-              onClick={() => downloadHandler(item.IDLeaveRequest)}
-            >
-              <CloudDownloadIcon style={{ fontSize: 12 }} />
-            </Button>
-          </p>
-        </div>
-      </Collapse>
-    </>
+          <div>
+            {open ? (
+              <ExpandLess style={{ color: "#d1d1d1" }} />
+            ) : (
+              <ExpandMore style={{ color: "#d1d1d1" }} />
+            )}
+          </div>
+        </ListForTable>
+        <Collapse in={open} timeout="auto" unmountOnExit>
+          <div className={classes.collapse}>
+            <p>
+              <span>Receiver</span> : {item.FirsName}
+              {item.MiddleName}
+              {item.LastName}
+            </p>
+            <p>
+              <span>Date</span> : {item.FromDate?.slice(0, 10)} /{" "}
+              {item.ToDate?.slice(0, 10)}
+            </p>
+            <p>
+              <span>Status</span> : {item.Status}
+            </p>
+            <p>
+              <span>Description</span> : {item.LeaveDecription}
+            </p>
+            <p>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={() => updateCollegeHandler(item.IDLeaveRequest)}
+              >
+                Edit &nbsp;
+                <EditIcon style={{ fontSize: 12 }} />
+              </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={() => downloadHandler(item.IDLeaveRequest)}
+              >
+                Download &nbsp;
+                <CloudDownloadIcon style={{ fontSize: 12 }} />
+              </Button>
+            </p>
+          </div>
+        </Collapse>
+      </div>
+    </div>
   );
 };
 

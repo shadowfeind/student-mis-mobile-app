@@ -1,5 +1,4 @@
-import axios from "axios";
-import { API_URL, tokenConfig } from "../../constants";
+import { API_URL, axiosInstance, tokenConfig } from "../../constants";
 import {
   GET_ALL_ACADEMIC_GRADING_REQUEST,
   GET_ALL_ACADEMIC_GRADING_SUCCESS,
@@ -25,8 +24,8 @@ export const getAllAcademicGradingAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_ACADEMIC_GRADING_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/FacultyGradingSystem/GetAllAcademicGrading`,
+    const { data } = await axiosInstance.get(
+      `/api/FacultyGradingSystem/GetAllAcademicGrading`,
       tokenConfig()
     );
     dispatch({ type: GET_ALL_ACADEMIC_GRADING_SUCCESS, payload: data });
@@ -42,8 +41,8 @@ export const getSingleAcademicGradingAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_ACADEMIC_GRADING_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/GetToCreateFacultyGradingSystem/6/singleGetToCreate/`,
+    const { data } = await axiosInstance.get(
+      `/api/GetToCreateFacultyGradingSystem/6/singleGetToCreate/`,
       tokenConfig()
     );
     dispatch({ type: GET_SINGLE_ACADEMIC_GRADING_SUCCESS, payload: data });
@@ -70,8 +69,8 @@ export const createAcademicGradingAction =
       //   },
       // };
 
-      const { data } = await axios.post(
-        `${API_URL}/api/FacultyGradingSystem/PostFacultyGradingSystem`,
+      const { data } = await axiosInstance.post(
+        `/api/FacultyGradingSystem/PostFacultyGradingSystem`,
         jsonData,
         tokenConfig()
       );
@@ -92,8 +91,8 @@ export const getSingleAcademicGradingforEditAction =
     try {
       dispatch({ type: GET_SINGLE_ACADEMIC_GRADING_EDIT_REQUEST });
 
-      const { data } = await axios.get(
-        `${API_URL}/api/GetToEditSingleFacultyGradingSystem/${IDFacultyGradingSystem}/6/singleEdit`,
+      const { data } = await axiosInstance.get(
+        `/api/GetToEditSingleFacultyGradingSystem/${IDFacultyGradingSystem}/6/singleEdit`,
         tokenConfig()
       );
       dispatch({
@@ -127,8 +126,8 @@ export const updateSingleAcademicGradingAction =
       //   },
       // };
 
-      const { data } = await axios.put(
-        `${API_URL}/api/FacultyGradingSystem/PutFacultyGradingSystem`,
+      const { data } = await axiosInstance.put(
+        `/api/FacultyGradingSystem/PutFacultyGradingSystem`,
         jsonData,
         tokenConfig()
       );

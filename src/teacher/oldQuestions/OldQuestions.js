@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
 import LoadingComp from "../../components/LoadingComp";
 import ConfirmDialog from "../../components/ConfirmDialog";
+import MobileBody from "../../components/MobileBody";
 import SelectControl from "../../components/controls/SelectControl";
 import {
   DOWNLOAD_OLD_QUESTIONS_RESET,
@@ -67,7 +68,7 @@ const OldQuestions = () => {
     (state) => state.getSubjectOldQuestions
   );
 
-  const { listOldQuestionsTeacher,loading } = useSelector(
+  const { listOldQuestionsTeacher, loading } = useSelector(
     (state) => state.getListOldQuestionsTeacher
   );
 
@@ -117,10 +118,10 @@ const OldQuestions = () => {
     }
   }, [dispatch, oldQuestionsTeacher]);
 
-  useEffect(()=>{
-    dispatch({type:GET_LIST_OLD_QUESTIONS_TEACHER_RESET})
+  useEffect(() => {
+    dispatch({ type: GET_LIST_OLD_QUESTIONS_TEACHER_RESET });
     dispatch(getAllOldQuestionsTeacherAction());
-  },[])
+  }, []);
 
   useEffect(() => {
     if (subjectOldQuestions) {
@@ -174,14 +175,18 @@ const OldQuestions = () => {
           <LoadingComp />
         ) : (
           <>
-        {listOldQuestionsTeacher &&
-          listOldQuestionsTeacher.dbModelTeacherLst.map((s) => (
-            <OldQuestionListCollapse item={s} key={s.$id} />
-          ))}
-        {listOldQuestionsTeacher?.dbModelTeacherLst.length < 1 && (
-          <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
-        )}
-        </>
+            <MobileBody>
+              {listOldQuestionsTeacher &&
+                listOldQuestionsTeacher.dbModelTeacherLst.map((s) => (
+                  <OldQuestionListCollapse item={s} key={s.$id} />
+                ))}
+              {listOldQuestionsTeacher?.dbModelTeacherLst.length < 1 && (
+                <h4 style={{ textAlign: "center", marginTop: "10px" }}>
+                  No Data
+                </h4>
+              )}
+            </MobileBody>
+          </>
         )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />

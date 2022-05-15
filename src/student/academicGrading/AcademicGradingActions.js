@@ -26,7 +26,8 @@ export const getAllAcademicGradingAction = () => async (dispatch) => {
     dispatch({ type: STUDENT_GET_ALL_ACADEMIC_GRADING_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `/api/FacultyGradingSystem/GetAllAcademicGrading`
+      `/api/FacultyGradingSystem/GetAllAcademicGrading`,
+      tokenConfig()
     );
     dispatch({ type: STUDENT_GET_ALL_ACADEMIC_GRADING_SUCCESS, payload: data });
   } catch (error) {
@@ -42,7 +43,8 @@ export const getSingleAcademicGradingAction = () => async (dispatch) => {
     dispatch({ type: STUDENT_GET_SINGLE_ACADEMIC_GRADING_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `/api/GetToCreateFacultyGradingSystem/6/singleGetToCreate/`
+      `/api/GetToCreateFacultyGradingSystem/6/singleGetToCreate/`,
+      tokenConfig()
     );
     dispatch({
       type: STUDENT_GET_SINGLE_ACADEMIC_GRADING_SUCCESS,
@@ -73,7 +75,8 @@ export const createAcademicGradingAction =
 
       const { data } = await axiosInstance.post(
         `/api/FacultyGradingSystem/PostFacultyGradingSystem`,
-        jsonData
+        jsonData,
+        tokenConfig()
       );
       dispatch({
         type: STUDENT_CREATE_ACADEMIC_GRADING_SUCCESS,
@@ -96,7 +99,8 @@ export const getSingleAcademicGradingforEditAction =
       dispatch({ type: STUDENT_GET_SINGLE_ACADEMIC_GRADING_EDIT_REQUEST });
 
       const { data } = await axiosInstance.get(
-        `/api/GetToEditSingleFacultyGradingSystem/${IDFacultyGradingSystem}/6/singleEdit`
+        `/api/GetToEditSingleFacultyGradingSystem/${IDFacultyGradingSystem}/6/singleEdit`,
+        tokenConfig()
       );
       dispatch({
         type: STUDENT_GET_SINGLE_ACADEMIC_GRADING_EDIT_SUCCESS,
@@ -131,7 +135,8 @@ export const updateSingleAcademicGradingAction =
 
       const { data } = await axiosInstance.put(
         `/api/FacultyGradingSystem/PutFacultyGradingSystem`,
-        jsonData
+        jsonData,
+        tokenConfig()
       );
       dispatch({
         type: STUDENT_UPDATE_SINGLE_ACADEMIC_GRADING_SUCCESS,

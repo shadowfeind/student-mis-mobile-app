@@ -20,7 +20,8 @@ export const getAllHolidayAction = () => async (dispatch) => {
     dispatch({ type: GET_ALL_HOLIDAY_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `/api/Att_HRHoliday/GetAtt_HRHoliday`
+      `/api/Att_HRHoliday/GetAtt_HRHoliday`,
+      tokenConfig()
     );
 
     dispatch({ type: GET_ALL_HOLIDAY_SUCCESS, payload: data });
@@ -41,7 +42,7 @@ export const holidayCreateAction = (holiday) => async (dispatch) => {
     const { data } = await axios.post(
       `${API_URL}/api/Att_HRHoliday/PostAtt_HRHoliday`,
       jsonData,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({ type: HOLIDAY_CREATE_SUCCESS, payload: data });
@@ -59,7 +60,7 @@ export const getSingleHolidayAction = (id) => async (dispatch) => {
 
     const { data } = await axios.get(
       `${API_URL}/api/Att_HRHoliday/${id}`,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({ type: GET_SINGLE_HOLIDAY_SUCCESS, payload: data });
@@ -86,7 +87,7 @@ export const updateSingleHoliadyAction = (holiday) => async (dispatch) => {
     const { data } = await axios.put(
       `${API_URL}/api/Att_HRHoliday`,
       jsonData,
-      tokenConfig
+      tokenConfig()
     );
 
     dispatch({ type: UPDATE_SINGLE_HOLIDAY_SUCCESS, payload: data });

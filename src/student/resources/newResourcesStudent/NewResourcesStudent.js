@@ -12,8 +12,8 @@ import {
 } from "@material-ui/core";
 import { Search } from "@material-ui/icons";
 import useCustomTable from "../../../customHooks/useCustomTable";
-import InputControl from "../../../components/controls/InputControl";
 import LoadingComp from "../../../components/LoadingComp";
+import InputControl from "../../../components/controls/InputControl";
 import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
@@ -241,7 +241,7 @@ const NewResourcesStudent = () => {
     <>
       <CustomContainer>
         <MobileTopSelectContainer>
-          <h3 style={{ textAlign: "center", marginTop: "0" }}>Resources</h3>
+          <h3 style={{ textAlign: "center", marginTop: "0" }}>E Materials</h3>
           <div
             style={{
               textAlign: "center",

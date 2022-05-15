@@ -37,6 +37,9 @@ const SyllabusStudent = lazy(() => import("./student/syllabus/Syllabus"));
 const OldQuestionsStudent = lazy(() =>
   import("./student/oldQuestions/OldQuestions")
 );
+const AnnouncementStudent = lazy(() =>
+  import("./student/announcement/Announcement")
+);
 const AcademicGradingStudent = lazy(() =>
   import("./student/academicGrading/AcademicGrading")
 );
@@ -57,6 +60,7 @@ const AssignmentFrontStudent = lazy(() =>
 const AttendanceStudent = lazy(() => import("./student/attendance/Attendance"));
 
 //Teacher App Starts:
+const Announcement = lazy(() => import("./teacher/announcement/Announcement"));
 const StudentMonthlyPresentSheetUpdateForm = lazy(() =>
   import(
     "./teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetUpdateForm"
@@ -152,6 +156,10 @@ const App = () => {
               path={"/student-assignment-front-edit/:id?"}
               component={AssignmentEditForm}
             />
+            <Route
+              path={"/student-announcement"}
+              component={AnnouncementStudent}
+            />
             <Route path={"/student-syllabus"} component={SyllabusStudent} />
             <Route
               path={"/student-class-schedule"}
@@ -204,6 +212,7 @@ const App = () => {
               path={"/attendance/table-edit"}
               component={StudentMonthlyPresentSheetUpdateForm}
             />
+            <Route exact path={"/announcement"} component={Announcement} />
             <Route
               path={"/exam-mark-approval"}
               component={ExamMarkApprovalTeacher}

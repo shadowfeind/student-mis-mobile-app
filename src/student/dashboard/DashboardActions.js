@@ -13,7 +13,10 @@ export const getHeaderContentAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_HEADER_CONTENT_REQUEST });
 
-    const { data } = await axiosInstance.get(`/api/Home/GetHeaderContent`);
+    const { data } = await axiosInstance.get(
+      `/api/Home/GetHeaderContent`,
+      tokenConfig()
+    );
 
     dispatch({ type: GET_HEADER_CONTENT_SUCCESS, payload: data });
   } catch (error) {
@@ -29,7 +32,8 @@ export const getDashboardContentStudentAction = () => async (dispatch) => {
     dispatch({ type: GET_STUDENT_DASHBOARD_REQUEST });
 
     const { data } = await axiosInstance.get(
-      `/api/StudentDashboard/GetAllStudentSubmission`
+      `/api/StudentDashboard/GetAllStudentSubmission`,
+      tokenConfig()
     );
 
     dispatch({ type: GET_STUDENT_DASHBOARD_SUCCESS, payload: data });

@@ -43,6 +43,8 @@ export const login = (userName, password) => async (dispatch, getState) => {
         "e9YCv_duTDWdz4R7-lfkYl:APA91bFK54UX9lghUo2-rVnfguHYm0KD2UakPJn5iFKgnkobfpXx-D5aqQJZd-jUBfG6PN_oelsmaG3bCLSxBSY35n_t3cf_ISrQrJD6ymcHZGHYzegHXipuGWzXcV9zXrHlu9GrI87u",
     });
 
+    console.log("login", jsonData);
+
     const { data } = await axios.post(
       `${API_URL}/api/AccountRemote/PostLogon`,
       jsonData,

@@ -346,7 +346,7 @@ const Assignment = () => {
               ))}
               {assignmentList?.dbstuentSubmissionLst.length < 1 && (
                 <h4 style={{ textAlign: "center", marginTop: "10px" }}>
-                  No Data
+                  No Assignment
                 </h4>
               )}
             </MobileBody>

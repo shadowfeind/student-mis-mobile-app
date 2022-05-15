@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../components/Notification";
 import LoadingComp from "../../components/LoadingComp";
 import { getAllExamDivisionAction } from "./ExamDivisionActions";
-
+import MobileBody from "../../components/MobileBody";
 import { GET_ALL_EXAM_DIVISION_RESET } from "./ExamDivisionConstants";
 import MobileTopSelectContainer from "../../components/MobileTopSelectContainer";
 import ExamDivisionListCollapse from "./ExamDivisionListCollapse";
@@ -33,7 +33,7 @@ const ExamDivision = () => {
 
   const dispatch = useDispatch();
 
-  const { examDivision,loading, error } = useSelector(
+  const { examDivision, loading, error } = useSelector(
     (state) => state.getAllExamDivision
   );
 
@@ -62,10 +62,12 @@ const ExamDivision = () => {
           <LoadingComp />
         ) : (
           <>
-        {examDivision &&
-          examDivision?.dbModelLst.map((item) => (
-            <ExamDivisionListCollapse item={item} key={item.$id} />
-          ))}
+            <MobileBody>
+              {examDivision &&
+                examDivision?.dbModelLst.map((item) => (
+                  <ExamDivisionListCollapse item={item} key={item.$id} />
+                ))}
+            </MobileBody>
           </>
         )}
       </CustomContainer>

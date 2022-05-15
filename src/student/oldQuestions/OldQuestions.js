@@ -3,8 +3,9 @@ import { makeStyles, TableBody, Grid } from "@material-ui/core";
 import useCustomTable from "../../customHooks/useCustomTable";
 import CustomContainer from "../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
-import LoadingComp from "../../components/LoadingComp";
 import Notification from "../../components/Notification";
+import LoadingComp from "../../components/LoadingComp";
+import MobileBody from "../../components/MobileBody";
 import ConfirmDialog from "../../components/ConfirmDialog";
 import SelectControl from "../../components/controls/SelectControl";
 import {
@@ -70,7 +71,7 @@ const OldQuestions = () => {
     (state) => state.getSubjectOptionsForOldQuestionsStudent
   );
 
-  const { listOldQuestionsStudent,loading } = useSelector(
+  const { listOldQuestionsStudent, loading } = useSelector(
     (state) => state.getListOldQuestionsStudent
   );
 
@@ -127,10 +128,10 @@ const OldQuestions = () => {
     }
   }, [dispatch, oldQuestions]);
 
-  useEffect(()=>{
-    dispatch({type:GET_LIST_OLD_QUESTIONS_STUDENT_RESET})
+  useEffect(() => {
+    dispatch({ type: GET_LIST_OLD_QUESTIONS_STUDENT_RESET });
     dispatch(getAllOldQuestionsStudentAction());
-  },[])
+  }, []);
 
   useEffect(() => {
     if (listOldQuestionsStudent) {
@@ -192,16 +193,20 @@ const OldQuestions = () => {
           <LoadingComp />
         ) : (
           <>
-        <div style={{ marginBottom: "30px" }}>
-          {listOldQuestionsStudent &&
-            listOldQuestionsStudent.dbModelStudentLst.map((s) => (
-              <OldQuestionListCollapse item={s} key={s.$id} />
-            ))}
-        </div>
-        {listOldQuestionsStudent?.dbModelStudentLst.length < 1 && (
-          <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
-        )}
-        </>
+            <MobileBody>
+              <div style={{ marginBottom: "30px" }}>
+                {listOldQuestionsStudent &&
+                  listOldQuestionsStudent.dbModelStudentLst.map((s) => (
+                    <OldQuestionListCollapse item={s} key={s.$id} />
+                  ))}
+              </div>
+              {listOldQuestionsStudent?.dbModelStudentLst.length < 1 && (
+                <h4 style={{ textAlign: "center", marginTop: "10px" }}>
+                  No Data
+                </h4>
+              )}
+            </MobileBody>
+          </>
         )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />

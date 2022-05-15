@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
 import LoadingComp from "../../../components/LoadingComp";
 import ConfirmDialog from "../../../components/ConfirmDialog";
+import MobileBody from "../../../components/MobileBody";
 import SelectControl from "../../../components/controls/SelectControl";
 import {
   GET_ALL_OTHER_OPTIONS_FOR_STUDENT_RESET,
@@ -87,8 +88,11 @@ const StudentMonthlyPresentSheet = () => {
     (state) => state.getAllOtherOptionsForStudent
   );
 
-  const { getListStudentAttendance,loading, error: getListStudentAttendanceError } =
-    useSelector((state) => state.getListStudentAttendance);
+  const {
+    getListStudentAttendance,
+    loading,
+    error: getListStudentAttendanceError,
+  } = useSelector((state) => state.getListStudentAttendance);
 
   if (allStudentAttendanceDataError) {
     setNotify({
@@ -140,10 +144,10 @@ const StudentMonthlyPresentSheet = () => {
     }
   }, [allStudentAttendanceData, dispatch]);
 
-  useEffect(()=>{
-    dispatch({type:GET_LIST_STUDENT_ATTENDANCE_RESET})
+  useEffect(() => {
+    dispatch({ type: GET_LIST_STUDENT_ATTENDANCE_RESET });
     dispatch(getAllStudentAttendanceAction());
-  },[])
+  }, []);
 
   // const nepMonthHandler = (value) => {
   //   setNepMonth(value);
@@ -246,15 +250,19 @@ const StudentMonthlyPresentSheet = () => {
           <LoadingComp />
         ) : (
           <>
-        {getListStudentAttendance && (
-          <StudentMonthlyPresentSheetListCollapse
-            attendance={getListStudentAttendance}
-          />
-        )}
-        {getListStudentAttendance?.dbModelLst.length < 1 && (
-          <h4 style={{ textAlign: "center", marginTop: "10px" }}>No Data</h4>
-        )}
-        </>
+            <MobileBody>
+              {getListStudentAttendance && (
+                <StudentMonthlyPresentSheetListCollapse
+                  attendance={getListStudentAttendance}
+                />
+              )}
+              {getListStudentAttendance?.dbModelLst.length < 1 && (
+                <h4 style={{ textAlign: "center", marginTop: "10px" }}>
+                  No Data
+                </h4>
+              )}
+            </MobileBody>
+          </>
         )}
       </CustomContainer>
       <Notification notify={notify} setNotify={setNotify} />

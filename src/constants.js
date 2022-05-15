@@ -17,17 +17,17 @@ export const tokenConfig = () => {
   const user = JSON.parse(localStorage.getItem("blueberryToken"));
 
   if (user && user.AccessToken) {
-    const userSessionCheck = jwt_decode(user.AccessToken);
-    const isExpired = userSessionCheck.exp - moment().unix() < 1;
-    console.log(userSessionCheck.exp);
-    console.log(moment.unix(userSessionCheck.exp));
-    console.log(moment().unix());
-    console.log(isExpired);
-    if (isExpired) {
-      localStorage.removeItem("blueberryToken");
-      document.location.href = "/#/login/5";
-      return;
-    }
+    // const userSessionCheck = jwt_decode(user.AccessToken);
+    // const isExpired = userSessionCheck.exp - moment().unix() < 1;
+    // console.log(userSessionCheck.exp);
+    // console.log(moment.unix(userSessionCheck.exp));
+    // console.log(moment().unix());
+    // console.log(isExpired);
+    // if (isExpired) {
+    //   localStorage.removeItem("blueberryToken");
+    //   document.location.href = "/#/login/5";
+    //   return;
+    // }
 
     const tokenReturn = {
       headers: {
@@ -37,37 +37,33 @@ export const tokenConfig = () => {
     };
     return tokenReturn;
   } else {
-    document.location.href = "/#/login";
     return {};
   }
 };
 
-const getToken = () => {
-  const userSession = JSON.parse(localStorage.getItem("blueberryToken"));
-  return userSession;
-  debugger;
-};
+const userTokenFromStorage = JSON.parse(localStorage.getItem("blueberryToken"));
 
-// const userSession = JSON.parse(localStorage.getItem("blueberryToken"));
+window.addEventListener("storage", () => {
+  console.log("setting storage");
+  // userTokenFromStorage = JSON.parse(localStorage.getItem("blueberryToken"));
+  console.log(JSON.parse(localStorage.getItem("blueberryToken")));
+});
 
 export const axiosInstance = axios.create({
   baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/json",
-    Authorization: `Bearer ${getToken()?.AccessToken}`,
-  },
+  // headers: {
+  //   "Content-Type": "application/json",
+  //   Authorization: `Bearer ${
+  //     JSON.parse(localStorage.getItem("blueberryToken"))?.AccessToken
+  //   }`,
+  // },
 });
 
-console.log("this is token from function", getToken()?.AccessToken);
+console.log("this is token from function", userTokenFromStorage?.AccessToken);
 
 axiosInstance.interceptors.request.use(async (req) => {
-  // console.log(userSession);
-  // if (!userSession) {
-  //   document.location.href = "/#/login/5";
-  //   return;
-  // }
   const userSession = JSON.parse(localStorage.getItem("blueberryToken"));
-  const user = jwt_decode(getToken()?.AccessToken);
+  const user = jwt_decode(userTokenFromStorage?.AccessToken);
   const isExpired = user.exp - moment().unix() < 1;
   console.log(user.exp);
   console.log(moment.unix(user.exp));
@@ -81,21 +77,20 @@ axiosInstance.interceptors.request.use(async (req) => {
     RefreshToken: userSession.RefreshToken,
     IDHRRole: userSession.IDHRRole,
   };
-  debugger;
+
   const JSONdata = JSON.stringify(dataForRefreshToken);
   const config = { headers: { "Content-Type": "application/json" } };
 
   console.log(JSONdata);
 
   try {
-    debugger;
     const { data } = await axios.post(
-      "http://103.90.86.151:55/api/RefreshTokenGenerator/RefreshToken",
+      `${API_URL}/api/RefreshTokenGenerator/RefreshToken`,
       JSONdata,
       config
     );
     console.log(data);
-    debugger;
+
     data.IDHRRole = userSession.IDHRRole;
 
     localStorage.setItem("blueberryToken", JSON.stringify(data));

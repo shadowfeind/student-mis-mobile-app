@@ -88,6 +88,7 @@ const useStyles = makeStyles((theme) => ({
     boxShadow: "2px -2px 10px 2px #f3f3f3",
     borderRadius: "8px",
     marginTop: "16px",
+    marginBottom: "60px",
     "& h4": {
       margin: "0",
     },

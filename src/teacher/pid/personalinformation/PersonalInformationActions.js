@@ -1,5 +1,4 @@
-import axios from "axios";
-import { API_URL, tokenConfig } from "../../../constants";
+import { API_URL, axiosInstance, tokenConfig } from "../../../constants";
 import {
   GET_ALL_PERSONALINFORMATION_FAIL,
   GET_ALL_PERSONALINFORMATION_REQUEST,
@@ -22,8 +21,8 @@ export const getAllPersonalInformationAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_ALL_PERSONALINFORMATION_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/PID_PersonalInformation/GetAllPIDPersonalInformation?searchKey=1`,
+    const { data } = await axiosInstance.get(
+      `/api/PID_PersonalInformation/GetAllPIDPersonalInformation?searchKey=1`,
       tokenConfig()
     );
 
@@ -40,8 +39,8 @@ export const getSinglePersonalInformationAction = () => async (dispatch) => {
   try {
     dispatch({ type: GET_SINGLE_PERSONALINFORMATION_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/PID_PersonalInformation/GetSingleEdit?searchKey=1`,
+    const { data } = await axiosInstance.get(
+      `/api/PID_PersonalInformation/GetSingleEdit?searchKey=1`,
       tokenConfig()
     );
 
@@ -67,8 +66,8 @@ export const updateSinglePersonalInformationAction =
       //   },
       // };
 
-      const { data } = await axios.put(
-        `${API_URL}/api/PID_PersonalInformation/Put`,
+      const { data } = await axiosInstance.put(
+        `/api/PID_PersonalInformation/Put`,
         jsonData,
         tokenConfig()
       );
@@ -89,8 +88,8 @@ export const getTeacherResetPasswordAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: GET_TEACHER_RESET_PASSWORD_REQUEST });
 
-    const { data } = await axios.get(
-      `${API_URL}/api/AccountRemote/GetChangePassword/${id}`,
+    const { data } = await axiosInstance.get(
+      `/api/AccountRemote/GetChangePassword/${id}`,
       tokenConfig()
     );
 
@@ -119,8 +118,8 @@ export const postTeacherPasswordAction =
       // console.log("IDUser",IDUser);
       console.log(jsonData);
 
-      const { data } = await axios.post(
-        `${API_URL}/api/AccountRemote/Post`,
+      const { data } = await axiosInstance.post(
+        `/api/AccountRemote/Post`,
         jsonData,
         tokenConfig()
       );
