@@ -179,9 +179,9 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
   };
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer style={{ maxHeight: "260px" }} component={Paper}>
         <Table className={classes.table} aria-label="customized table">
-          <TableHead>
+          <TableHead style={{ backgroundColor: "#253053", color: "#fff" }}>
             <TableRow>
               <StyledTableCell style={{ textAlign: "left" }}>
                 <Checkbox
@@ -189,9 +189,10 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
                   onChange={(e) => handleAllChecked(e.target.checked)}
                 />
               </StyledTableCell>
-              <StyledTableCell>Roll No. </StyledTableCell>
-
-              <StyledTableCell>Full Name</StyledTableCell>
+              <StyledTableCell style={{ color: "#fff" }}>
+                Student Name{" "}
+                <span style={{ color: "666", fontSize: "10px" }}>(RollNo)</span>
+              </StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -216,11 +217,14 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
                         onChange={(e) => handleChecked(e.target.checked, s)}
                       />
                     </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
+                    {/* <StyledTableCell component="th" scope="row">
                       {s.RollNo}
-                    </StyledTableCell>
+                    </StyledTableCell> */}
                     <StyledTableCell component="th" scope="row">
-                      {s.FullName}
+                      {s.FullName}{" "}
+                      <span style={{ color: "666", fontSize: "10px" }}>
+                        ({s.RollNo})
+                      </span>
                     </StyledTableCell>
                   </StyledTableRow>
                 ))}
@@ -236,20 +240,14 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
           onChange={handleInputChange}
           errors={errors.AssignmentName}
         />
-        <InputControl
-          name="TotalMark"
-          label="Full Marks*"
-          type="number"
-          value={values.TotalMark}
-          onChange={handleInputChange}
-          errors={errors.TotalMark}
-        />
+
         <DatePickerControl
           name="AssignmentDate"
           label="FromDate"
           value={values.AssignmentDate}
           onChange={handleInputChange}
           errors={errors.AssignmentDate}
+          style={{ width: "80%" }}
         />
         <DatePickerControl
           name="DueDate"
@@ -257,6 +255,14 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
           value={values.DueDate}
           onChange={handleInputChange}
           errors={errors.DueDate}
+        />
+        <InputControl
+          name="TotalMark"
+          label="Full Marks*"
+          type="number"
+          value={values.TotalMark}
+          onChange={handleInputChange}
+          errors={errors.TotalMark}
         />
         <InputControl
           name="AssignmentSummary"

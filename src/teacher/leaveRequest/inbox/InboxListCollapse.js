@@ -14,17 +14,27 @@ import {
 
 const useStyles = makeStyles((theme) => ({
   collapse: {
-    padding: "16px",
+    padding: "16px 16px 16px 24px",
     borderBottom: "1px solid #d3d3d3",
     "& span": {
       fontWeight: "bolder",
     },
+    "& p": {
+      margin: "0",
+      paddingBottom: "4px",
+      fontSize: "12px",
+    },
   },
   button: {
     marginRight: "10px",
-    padding: "5px",
+    padding: "5px 16px",
     minWidth: "10px",
-    fontSize: "12px",
+    fontSize: "10px",
+    marginBottom: "10px",
+  },
+  listWrapper: {
+    display: "flex",
+    alignItems: "center",
   },
 }));
 
@@ -53,9 +63,35 @@ const InboxListCollapse = ({ item, setOpenPopUp, setOpenPopupDelete }) => {
     >
       <div style={{ backgroundColor: "#fff" }}>
         <ListForTable onClick={handleClick}>
-          <p>
-            ({item.FirsName}) {item.LeaveDecription?.slice(0, 15)}...
-          </p>
+          <div className={classes.listWrapper}>
+            <div style={{ fontSize: "12px", color: "#666" }}>
+              {item.FromDate.slice(0, 10)} <br /> {item.ToDate.slice(0, 10)}
+            </div>
+            <div
+              style={{
+                paddingLeft: "18px",
+                fontSize: "14px",
+                // fontWeight: "bolder",
+              }}
+            >
+              {item.LeaveDecription?.slice(0, 25)}...
+              <div
+                style={{ fontSize: "10px", color: "#444", marginTop: "-3px" }}
+              >
+                <div
+                  style={
+                    item.Status === "PENDING"
+                      ? { color: "blue" }
+                      : item.Status === "APPROVED"
+                      ? { color: "green" }
+                      : { color: "red" }
+                  }
+                >
+                  {item.Status}
+                </div>
+              </div>
+            </div>
+          </div>
           <div>
             {open ? (
               <ExpandLess style={{ color: "#d1d1d1" }} />

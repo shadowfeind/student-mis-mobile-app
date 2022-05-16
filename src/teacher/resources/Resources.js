@@ -482,7 +482,7 @@ const Resources = () => {
       <Popup
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
-        title="Resources Form"
+        title="E-Material Form"
       >
         {loadingCreate ? (
           <LoadingComp />

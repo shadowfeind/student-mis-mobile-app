@@ -237,7 +237,7 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
     // /Upload/TeacherAssignment/7d83cece-a6f0-4a9a-9d1d-c6f14db994031.jpeg;
     // console.log("this is name", name);
     // let imageURL = `https://api.codetabs.com/v1/proxy?quest=${name}`;
-    let imageURL = `http://localhost:5000/api/getImage?q=${API_URL}${name}`;
+    let imageURL = `http://103.90.86.151:5000/api/getImage?q=${API_URL}${name}`;
 
     // let imageURL = "";
     // fetch(imageURL)
@@ -292,7 +292,7 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
                 // fontWeight: "bolder",
               }}
             >
-              {item.AssignmentName}
+              {item.AssignmentName?.slice(0, 18)}
               <div
                 style={{ fontSize: "10px", color: "#444", marginTop: "-3px" }}
               >

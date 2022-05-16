@@ -27,7 +27,7 @@ const DatePickerControl = ({ name, label, value, onChange, errors = null }) => {
           onChange(converToDefaultEventPara(name, date));
         }}
         {...(errors && { error: true, helperText: errors })}
-        style={{ width: "100%" }}
+        style={{ width: "80%" }}
       />
     </MuiPickersUtilsProvider>
   );

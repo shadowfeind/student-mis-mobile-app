@@ -17,111 +17,23 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/105.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/105.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1135.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1135.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1234.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1234.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1314.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1314.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1512.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1512.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1547.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1547.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1662.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1662.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1702.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1702.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1723.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1723.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/177.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/177.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1967.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1967.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/2376.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/2376.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/2405.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/2405.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/2449.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/2449.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/2713.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/2713.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/2779.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/2779.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/2890.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/2890.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/2911.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/2911.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/2969.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/2969.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3059.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3059.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/309.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/309.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/313.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/313.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3200.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3200.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3245.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3245.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3565.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3565.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3693.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3693.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3875.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3875.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3880.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3880.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/4236.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/4236.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/4610.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/4610.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/4764.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/4764.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/4977.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/4977.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/5062.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/5062.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/5101.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/5101.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/5137.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/5137.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/5575.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/5575.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/577.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/577.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/5948.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/5948.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/6315.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/6315.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/6436.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/6436.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/67.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/67.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/690.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/690.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7096.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7096.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7224.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7224.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7251.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7251.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7399.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7399.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7444.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7444.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7574.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7574.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7729.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7729.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7868.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7868.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7883.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7883.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7908.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7908.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7989.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7989.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8081.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8081.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/812.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/812.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8349.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8349.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8377.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8377.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8392.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8392.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8420.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8420.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8534.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8534.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8748.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8748.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8766.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8766.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8797.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8797.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/9031.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/9031.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/9159.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/9159.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/9462.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/9462.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/index.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/index.bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/controls/DatePickerControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/controls/DatePickerControl.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/academicGrading/AcademicGradingActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/academicGrading/AcademicGradingActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/assignment/assignment/AssignmentActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/assignment/assignment/AssignmentActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/classSchedule/ClassScheduleAction.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/classSchedule/ClassScheduleAction.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/dashboard/DashboardActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/dashboard/DashboardActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/examDivision/ExamDivisionActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/examDivision/ExamDivisionActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/examSchedule/ExamScheduleActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/examSchedule/ExamScheduleActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/holiday/HolidayActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/holiday/HolidayActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/leaveRequest/StudentLeaveRequestActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/leaveRequest/StudentLeaveRequestActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/student/assignment/assignment/AssignmentListCollapse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/assignment/assignment/AssignmentListCollapse.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/student/login/LoginActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/login/LoginActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/oldQuestions/OldQuestionsActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/oldQuestions/OldQuestionsActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/pid/personalinformation/PersonalInformationActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/pid/personalinformation/PersonalInformationActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/pid/uploadPhoto/UploadPhotoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/pid/uploadPhoto/UploadPhotoActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/resources/newResourcesStudent/NewResourcesStudentActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/resources/newResourcesStudent/NewResourcesStudentActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/syllabus/SyllabusActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/syllabus/SyllabusActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/academicGrading/AcademicGradingActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/academicGrading/AcademicGradingActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/Assignment.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/Assignment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentListCollapse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentListCollapse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/attendance/totalStudentAttendance/TotalStudentAttendanceActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/attendance/totalStudentAttendance/TotalStudentAttendanceActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/classSchedule/pg/ClassPgScheduleActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/classSchedule/pg/ClassPgScheduleActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/dashboard/DashboardActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/dashboard/DashboardActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/examDivision/ExamDivisionActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/examDivision/ExamDivisionActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/examMarkApprovalTeacher/examMarkApproval/ExamMarkAprrovalActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/examMarkApprovalTeacher/examMarkApproval/ExamMarkAprrovalActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/examMarkEntry/ExamMarkEntryActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/examMarkEntry/ExamMarkEntryActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/examSchedule/ExamScheduleActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/examSchedule/ExamScheduleActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/leaveRequest/TeacherLeaveRequestActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/leaveRequest/TeacherLeaveRequestActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/oldQuestions/OldQuestionsActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/oldQuestions/OldQuestionsActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/pid/personalinformation/PersonalInformation.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/pid/personalinformation/PersonalInformation.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/pid/personalinformation/PersonalInformationActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/pid/personalinformation/PersonalInformationActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/pid/uploadPhoto/UploadPhotoActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/pid/uploadPhoto/UploadPhotoActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/resources/ResourcesActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/resources/ResourcesActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/syllabus/syllabusPg/SyllabusActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/syllabus/syllabusPg/SyllabusActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../yarn.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentTableCollapseAll.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentTableCollapseAll.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/teacher/resources/Resources.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/resources/Resources.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

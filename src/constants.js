@@ -41,7 +41,7 @@ export const tokenConfig = () => {
   }
 };
 
-const userTokenFromStorage = JSON.parse(localStorage.getItem("blueberryToken"));
+// const userTokenFromStorage = JSON.parse(localStorage.getItem("blueberryToken"));
 
 window.addEventListener("storage", () => {
   console.log("setting storage");
@@ -59,11 +59,11 @@ export const axiosInstance = axios.create({
   // },
 });
 
-console.log("this is token from function", userTokenFromStorage?.AccessToken);
+// console.log("this is token from function", userTokenFromStorage?.AccessToken);
 
 axiosInstance.interceptors.request.use(async (req) => {
   const userSession = JSON.parse(localStorage.getItem("blueberryToken"));
-  const user = jwt_decode(userTokenFromStorage?.AccessToken);
+  const user = jwt_decode(userSession?.AccessToken);
   const isExpired = user.exp - moment().unix() < 1;
   console.log(user.exp);
   console.log(moment.unix(user.exp));
