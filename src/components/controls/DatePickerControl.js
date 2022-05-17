@@ -18,7 +18,7 @@ const DatePickerControl = ({ name, label, value, onChange, errors = null }) => {
       <KeyboardDatePicker
         disableToolbar
         variant="inline"
-        format="dd-MM-yyyy"
+        format="MM-dd-yyyy"
         inputVariant="outlined"
         label={label}
         name={name}

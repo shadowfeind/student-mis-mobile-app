@@ -182,7 +182,7 @@ const AssignmentEditForm = () => {
         <div>
           <p>
             <strong>Assignment Name: </strong>
-            {values.AssignmentName}
+            {values.AssignmentName?.slice(0, 25)}
           </p>
           <p>
             <strong>FullName: </strong>

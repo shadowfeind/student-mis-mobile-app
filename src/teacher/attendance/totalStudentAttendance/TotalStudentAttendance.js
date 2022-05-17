@@ -327,7 +327,7 @@ const TotalStudentAttendance = () => {
                   disableToolbar
                   variant="inline"
                   inputVariant="outlined"
-                  format="dd-MM-yyyy"
+                  format="MM-dd-yyyy"
                   name="StartDate"
                   label="Start Year"
                   value={startDate}
@@ -345,7 +345,7 @@ const TotalStudentAttendance = () => {
                   disableToolbar
                   variant="inline"
                   inputVariant="outlined"
-                  format="dd-MM-yyyy"
+                  format="MM-dd-yyyy"
                   name="EndDate"
                   label="End Year"
                   value={endDate}

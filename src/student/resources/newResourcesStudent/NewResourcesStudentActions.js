@@ -60,7 +60,7 @@ export const downloadNewResourcesAction = (id) => async (dispatch) => {
   try {
     dispatch({ type: DOWNLOAD_NEW_SOURCES_STUDENT_REQUEST });
 
-    const test = `/api/CourseDeliveryPlanStudent/DownloadDoc/${id}`;
+    const test = `${API_URL}/api/CourseDeliveryPlanStudent/DownloadDoc/${id}`;
 
     window.open(test, "_blank");
     dispatch({

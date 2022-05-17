@@ -236,8 +236,8 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
     dispatch(getSingleToEditTeacherAssignmentAction(id));
     // /Upload/TeacherAssignment/7d83cece-a6f0-4a9a-9d1d-c6f14db994031.jpeg;
     // console.log("this is name", name);
-    // let imageURL = `https://api.codetabs.com/v1/proxy?quest=${name}`;
-    let imageURL = `http://103.90.86.151:5000/api/getImage?q=${API_URL}${name}`;
+    // let imageURL = `https://api.codetabs.com/v1/proxy?quest=${API_URL}${name}`;
+    let imageURL = `${API_URL}:5000/api/getImage?q=${API_URL}${name}`;
 
     // let imageURL = "";
     // fetch(imageURL)

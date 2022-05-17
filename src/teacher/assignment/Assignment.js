@@ -541,7 +541,7 @@ const Assignment = () => {
                   disableToolbar
                   variant="inline"
                   inputVariant="outlined"
-                  format="dd-MM-yyyy"
+                  format="MM-dd-yyyy"
                   name="CurrentYear"
                   label="Current Year"
                   value={date}
