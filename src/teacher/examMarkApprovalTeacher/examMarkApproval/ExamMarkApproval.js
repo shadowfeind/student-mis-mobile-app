@@ -5,7 +5,9 @@ import Popup from "../../../components/Popup";
 import CustomContainer from "../../../components/CustomContainer";
 import { useDispatch, useSelector } from "react-redux";
 import Notification from "../../../components/Notification";
+import LoadingComp from "../../../components/LoadingComp";
 import ConfirmDialog from "../../../components/ConfirmDialog";
+import MobileBody from "../../../components/MobileBody";
 import SelectControl from "../../../components/controls/SelectControl";
 import {
   getActiveSubjectAction,
@@ -19,13 +21,13 @@ import { getEventAction } from "../../examMarkEntry/ExamMarkEntryActions";
 import { GET_EVENT_RESET } from "../../examMarkEntry/ExamMarkEntryConstants";
 import {
   GET_ACTIVE_SUBJECT_RESET,
+  GET_ALL_EXAM_MARK_APPROVAL_SEARCHDATA_RESET,
   GET_ALL_OTHER_OPTIONS_FOR_SELECT_TEACHER_RESET,
   GET_EXAM_MARK_APPROVAL_INITIAL_DATA_RESET,
   GET_EXAM_MARK_APPROVAL_SCHEULE_HEADER_RESET,
   POST_BULK_EXAM_MARK_APPROVAL_RESET,
 } from "./ExamMarkApprovalConstant";
 import ExamMarkApprovalBulk from "./ExamMarkApprovalBulk";
-import LoadingComp from "../../../components/LoadingComp";
 import MobileTopSelectContainer from "../../../components/MobileTopSelectContainer";
 import SearchIcon from "@material-ui/icons/Search";
 import EditIcon from "@material-ui/icons/Edit";
@@ -178,36 +180,19 @@ const ExamMarkApproval = () => {
   }
 
   useEffect(() => {
-    if (!examMarkApprovalInitialDatas) {
-      dispatch(getInitialExamMarkApprovalDataAction());
-    }
     if (examMarkApprovalInitialDatas) {
       unstable_batchedUpdates(() => {
         setDdlSchedule(
           examMarkApprovalInitialDatas.searchFilterModel.ddlSubjectForTeacher
         );
-        setAcademicYearDdl(
-          examMarkApprovalInitialDatas.searchFilterModel.ddlAcademicYear
-        );
-        setProgramDdl(
-          examMarkApprovalInitialDatas.searchFilterModel.ddlFacultyProgramLink
-        );
-        setDdlClass(
-          examMarkApprovalInitialDatas.searchFilterModel.ddlLevelPrimitive
-        );
-        setDdlSection(
-          examMarkApprovalInitialDatas.searchFilterModel.ddlSection
-        );
-        setDdlShift(
-          examMarkApprovalInitialDatas.searchFilterModel.ddlAcademicShift
-        );
-        // setDdlEvent(
-        //   examMarkApprovalInitialDatas.searchFilterModel
-        //     .ddlAcademicYearPrimitive
-        // );
       });
     }
   }, [examMarkApprovalInitialDatas, dispatch]);
+
+  useEffect(() => {
+    dispatch({ type: GET_ALL_EXAM_MARK_APPROVAL_SEARCHDATA_RESET });
+    dispatch(getInitialExamMarkApprovalDataAction());
+  }, []);
 
   const subjectHandler = (value) => {
     setSchedule(value);
@@ -218,42 +203,40 @@ const ExamMarkApproval = () => {
       )
     );
   };
-
   useEffect(() => {
     if (allOtherOptions) {
       unstable_batchedUpdates(() => {
+        setAcademicYearDdl(allOtherOptions.year && allOtherOptions.year);
         setAcaYear(
-          allOtherOptions.year?.length > 0 ? allOtherOptions.year[0].Key : ""
+          allOtherOptions.year.length > 0 ? allOtherOptions.year[0]?.Key : ""
         );
+        setProgramDdl(allOtherOptions.program && allOtherOptions.program);
         setProgramValue(
-          allOtherOptions.program?.length > 0
-            ? allOtherOptions.program[0].Key
+          allOtherOptions.program.length > 0
+            ? allOtherOptions.program[0]?.Key
             : ""
         );
+        setDdlClass(allOtherOptions.classId && allOtherOptions.classId);
         setClassId(
-          allOtherOptions.classId?.length > 0
-            ? allOtherOptions.classId[0].Key
+          allOtherOptions.classId.length > 0
+            ? allOtherOptions.classId[0]?.Key
             : ""
         );
+        setDdlSection(allOtherOptions.section && allOtherOptions.section);
         setSection(
-          allOtherOptions.section?.length > 0
-            ? allOtherOptions.section[0].Key
+          allOtherOptions.section.length > 0
+            ? allOtherOptions.section[0]?.Key
             : ""
         );
+        setDdlShift(allOtherOptions.shift && allOtherOptions.shift);
         setShift(
-          allOtherOptions.shift?.length > 0 ? allOtherOptions.shift[0].Key : ""
+          allOtherOptions.shift.length > 0 ? allOtherOptions.shift[0]?.Key : ""
+        );
+        setDdlEvent(allOtherOptions.event && allOtherOptions.event);
+        setEvent(
+          allOtherOptions.event.length > 0 ? allOtherOptions.event[0]?.Key : ""
         );
       });
-      setEvent(
-        allOtherOptions.event?.length > 0 ? allOtherOptions.event[0]?.Key : ""
-      );
-      // dispatch(
-      //   getActiveSubjectAction(
-      //     allOtherOptions.year[0].Key,
-      //     allOtherOptions.program[0].Key,
-      //     allOtherOptions.classId[0].Key
-      //   )
-      // );
     }
   }, [allOtherOptions, dispatch]);
   useEffect(() => {
@@ -380,8 +363,8 @@ const ExamMarkApproval = () => {
                 onChange={(e) => setSection(e.target.value)}
                 options={ddlSection}
                 errors={errors.section}
-              /> */}
-            {/* </Grid> */}
+              />
+            </Grid> */}
             <Grid item xs={12}>
               <div style={{ height: "10px" }}></div>
               <SelectControl
@@ -421,15 +404,17 @@ const ExamMarkApproval = () => {
           <LoadingComp />
         ) : (
           <>
-            {searchData &&
-              searchData?.dbModelLsts?.map((item) => (
-                <ExamMarkApprovalListCollapse item={item} key={item.$id} />
-              ))}
-            {searchData?.dbModelLsts?.length < 1 && (
-              <h4 style={{ textAlign: "center", marginTop: "10px" }}>
-                No Data
-              </h4>
-            )}
+            <MobileBody>
+              {searchData &&
+                searchData?.dbModelLsts?.map((item) => (
+                  <ExamMarkApprovalListCollapse item={item} key={item.$id} />
+                ))}
+              {searchData?.dbModelLsts?.length < 1 && (
+                <h4 style={{ textAlign: "center", marginTop: "10px" }}>
+                  No Data
+                </h4>
+              )}
+            </MobileBody>
           </>
         )}
       </CustomContainer>
@@ -448,6 +433,7 @@ const ExamMarkApproval = () => {
               }
               search={bulkData && bulkData.searchFilterModel}
               bulkData={bulkData && bulkData.dbModelLsts}
+              setOpenPopup={setOpenPopup}
             />
           </>
         )}

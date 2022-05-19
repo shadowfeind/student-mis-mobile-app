@@ -369,7 +369,7 @@ const Resources = () => {
     <>
       <CustomContainer>
         <MobileTopSelectContainer>
-          <h3 style={{ textAlign: "center", marginTop: "0" }}>E Materials</h3>
+          <h3 style={{ textAlign: "center", marginTop: "0" }}>E-Material</h3>
           <Grid container style={{ fontSize: "12px" }}>
             <Grid item xs={12}>
               <SelectControl

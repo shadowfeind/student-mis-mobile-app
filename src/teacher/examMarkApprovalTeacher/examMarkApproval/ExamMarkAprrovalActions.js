@@ -177,12 +177,18 @@ export const getAllOtherOptionsForSelectTeacherAction =
         tokenConfig()
       );
 
+      const event = await axiosInstance.get(
+        `/api/ApproveAcademicStudentExamDataTeacher/GetActiveAcademicYearCalendar?idAcademicFacultySubjectLink=${subject}&idTeacher=${id}`,
+        tokenConfig()
+      );
+
       const data = {
         year: year.data,
         program: program.data,
         classId: classId.data,
         section: section.data,
         shift: shift.data,
+        event: event.data,
       };
 
       dispatch({
@@ -197,24 +203,24 @@ export const getAllOtherOptionsForSelectTeacherAction =
     }
   };
 
-export const getActiveSubjectAction =
-  (year, program, classId) => async (dispatch) => {
-    try {
-      dispatch({ type: GET_ACTIVE_SUBJECT_REQUEST });
+// export const getActiveSubjectAction =
+// (subject, id) => async (dispatch) => {
+//   try {
+//     dispatch({ type: GET_ACTIVE_SUBJECT_REQUEST });
 
-      const { data } = await axiosInstance.get(
-        `/api/ApproveAcademicStudentExamDataTeacher/GetActiveAcademicYearCalendar?idAcademicYear=${year}&idFacultyProgramLink=${program}&level=${classId}`,
-        tokenConfig()
-      );
+//     const { data } = await axiosInstance.get(
+//       `/api/ApproveAcademicStudentExamDataTeacher/GetActiveAcademicYearCalendar?idAcademicFacultySubjectLink=${subject}&idTeacher=${id}`,
+//       tokenConfig()
+//     );
 
-      dispatch({
-        type: GET_ACTIVE_SUBJECT_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: GET_ACTIVE_SUBJECT_FAIL,
-        payload: error.message ? error.message : error.Message,
-      });
-    }
-  };
+//     dispatch({
+//       type: GET_ACTIVE_SUBJECT_SUCCESS,
+//       payload: data,
+//     });
+//   } catch (error) {
+//     dispatch({
+//       type: GET_ACTIVE_SUBJECT_FAIL,
+//       payload: error.message ? error.message : error.Message,
+//     });
+//   }
+// };
