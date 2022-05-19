@@ -57,6 +57,7 @@ const tableHeader = [
 
 const Announcement = () => {
   const [date, setDate] = useState();
+  const [dateToSend, setDateToSend] = useState();
   const [tableData, setTableData] = useState([]);
   const [filterFn, setFilterFn] = useState({
     fn: (item) => {
@@ -128,6 +129,7 @@ const Announcement = () => {
   useEffect(() => {
     if (announcement) {
       setDate(announcement?.searchFilterModel?.CreatedDate?.slice(0, 10));
+      setDateToSend(announcement?.searchFilterModel?.CreatedDate?.slice(0, 10));
       setTableData(announcement?.dbModelLst);
     }
   }, [dispatch, announcement]);
@@ -160,7 +162,7 @@ const Announcement = () => {
   };
 
   const listSearchHandler = () => {
-    dispatch(getListTeacherAnnouncementAction(date));
+    dispatch(getListTeacherAnnouncementAction(dateToSend));
   };
 
   return (
@@ -187,13 +189,14 @@ const Announcement = () => {
                   disableToolbar
                   variant="inline"
                   inputVariant="outlined"
-                  format="dd-MM-yyyy"
+                  format="MM-dd-yyyy"
                   name="CurrentYear"
                   label="Current Year"
                   value={date}
                   onChange={(e) => {
                     const newDate = new Date(e);
-                    setDate(newDate.toLocaleDateString().slice(0, 10));
+                    setDateToSend(newDate.toLocaleDateString()?.slice(0, 10));
+                    setDate(e);
                   }}
                 />
               </MuiPickersUtilsProvider>

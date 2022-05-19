@@ -17,6 +17,7 @@ import InputControl from "../../components/controls/InputControl";
 import { useForm, Form } from "../../customHooks/useForm";
 import DatePickerControl from "../../components/controls/DatePickerControl";
 import { postTeacherAssignmentAction } from "./AssignmentActions";
+import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 
 const initialFormValues = {
   IDAssignment: 0,
@@ -170,6 +171,28 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
     setImage(event.target.files[0]);
   };
 
+  const takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Prompt,
+      // source: CameraSource.Camera,
+    });
+
+    console.log("image", image);
+    const imageUrl = image?.path || image?.webPath;
+    setImgSrc(Capacitor.convertFileSrc(imageUrl));
+    console.log("imageurl", imageUrl);
+
+    const result = await fetch(Capacitor.convertFileSrc(imageUrl));
+    console.log("my result", result);
+    const blob = await result.blob();
+    const file = new File([blob], "image.jpeg", { type: blob.type });
+    console.log("my file", file);
+    setImage(file);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log(selectedStudents);
@@ -272,14 +295,29 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
           errors={errors.AssignmentSummary}
         />
 
-        <InputControl
+        {/* <InputControl
           name="ImageUploaded"
           // label="Select File"
           // value={values.ClassLocation}
           onChange={(e) => handleImage(e)}
           type="file"
           errors={errors.image}
-        />
+        /> */}
+        <div style={{ height: "5px" }}></div>
+        <button
+          style={{
+            backgroundColor: "#253053",
+            color: "#fff",
+            padding: "6px 14px",
+            display: "block",
+            marginLeft: "5px",
+          }}
+          onClick={() => takePicture()}
+        >
+          Take a photo
+        </button>
+        <div style={{ height: "5px" }}></div>
+
         {imgSrc && (
           <img
             src={

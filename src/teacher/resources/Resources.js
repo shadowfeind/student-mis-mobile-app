@@ -369,7 +369,7 @@ const Resources = () => {
     <>
       <CustomContainer>
         <MobileTopSelectContainer>
-          <h3 style={{ textAlign: "center", marginTop: "0" }}>Resources</h3>
+          <h3 style={{ textAlign: "center", marginTop: "0" }}>E Materials</h3>
           <Grid container style={{ fontSize: "12px" }}>
             <Grid item xs={12}>
               <SelectControl
@@ -471,7 +471,7 @@ const Resources = () => {
                 ))}
                 {allResources?.dbModelTeacherLst?.length < 1 && (
                   <h4 style={{ textAlign: "center", marginTop: "10px" }}>
-                    No Resources
+                    No E Materials
                   </h4>
                 )}
               </MobileBody>

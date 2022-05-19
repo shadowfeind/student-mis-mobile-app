@@ -209,14 +209,14 @@ const AssignmentEditForm = ({
         onChange={handleInputChange}
       />
       <div style={{ height: "10px" }}></div>
-      {/* <InputControl
-          name="ImageUploaded"
-          label="Select File"
-          value={values.ClassLocation}
-          onChange={(e) => handleImage(e)}
-          type="file"
-          errors={errors.image}
-        /> */}
+      <InputControl
+        name="ImageUploaded"
+        label="Select File"
+        value={values.ClassLocation}
+        onChange={(e) => handleImage(e)}
+        type="file"
+        errors={errors.image}
+      />
       <button
         style={{
           backgroundColor: "#253053",
