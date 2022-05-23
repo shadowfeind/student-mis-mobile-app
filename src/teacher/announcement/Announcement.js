@@ -189,7 +189,7 @@ const Announcement = () => {
                   disableToolbar
                   variant="inline"
                   inputVariant="outlined"
-                  format="MM-dd-yyyy"
+                  format="dd-MM-yyyy"
                   name="CurrentYear"
                   label="Current Year"
                   value={date}
