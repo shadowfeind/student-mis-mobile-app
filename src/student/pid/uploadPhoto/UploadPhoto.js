@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UploadPhoto = ({ setEditPhotoPopup }) => {
+const UploadPhoto = ({ setEditStudentPhotoPopup }) => {
   const [url, setUrl] = useState("");
   const [notify, setNotify] = useState({
     isOpen: false,
@@ -55,7 +55,7 @@ const UploadPhoto = ({ setEditPhotoPopup }) => {
       message: "Successfully Uploaded",
       type: "success",
     });
-    setEditPhotoPopup(false);
+    setEditStudentPhotoPopup(false);
     dispatch({ type: UPLOADPHOTO_STUDENT_RESET });
     dispatch(getAllUploadPhotoStudentAction());
     dispatch(getHeaderContentAction());

@@ -25,8 +25,8 @@ import Notification from "../../../components/Notification";
 
 const StyledTableCell = withStyles((theme) => ({
   head: {
-    backgroundColor: theme.palette.common.grey,
-    color: theme.palette.common.black,
+    backgroundColor: "#253053",
+    color: "#fff",
   },
   body: {
     fontSize: 14,
@@ -42,7 +42,7 @@ const StyledTableRow = withStyles((theme) => ({
 }))(TableRow);
 const useStyles = makeStyles({
   table: {
-    minWidth: 700,
+    minWidth: 350,
   },
 });
 
@@ -58,7 +58,7 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
     type: "",
   });
 
-  const { getListForUpdateStudentPresent,loading } = useSelector(
+  const { getListForUpdateStudentPresent, loading } = useSelector(
     (state) => state.getListForUpdateStudentPresent
   );
   const {
@@ -120,55 +120,59 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
   return (
     <div style={{ marginBottom: "56px" }}>
       <TableContainer component={Paper}>
-      {loading ? (
+        {loading ? (
           <LoadingComp />
         ) : (
           <>
-        <Table className={classes.table} aria-label="customized table">
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>
-                <label>Select All</label>
-                <Checkbox checked={checked} onChange={handleAllSelectChange} />
-              </StyledTableCell>
-              <StyledTableCell>Roll No. </StyledTableCell>
-              <StyledTableCell>Student Name</StyledTableCell>
-              <StyledTableCell>Mobile</StyledTableCell>
-              <StyledTableCell>Email</StyledTableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {stuAttendance &&
-              stuAttendance
-                .sort((a, b) => a.RollNo - b.RollNo)
-                .map((s) => (
-                  <StyledTableRow key={s.IDHREmployee}>
-                    <StyledTableCell component="th" scope="row">
-                      <Checkbox
-                        checked={s?.IsPresent || false}
-                        name="IsPresent"
-                        onChange={(e) =>
-                          handleChange(e.target.checked, s.IDHREmployee)
-                        }
-                      />
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
+            <Table className={classes.table} aria-label="customized table">
+              <TableHead>
+                <TableRow>
+                  <StyledTableCell>
+                    <Checkbox
+                      checked={checked}
+                      color="primary"
+                      onChange={handleAllSelectChange}
+                    />
+                  </StyledTableCell>
+                  {/* <StyledTableCell>Roll No. </StyledTableCell> */}
+                  <StyledTableCell>Student Name (Roll no.)</StyledTableCell>
+                  {/* <StyledTableCell>Mobile</StyledTableCell>
+              <StyledTableCell>Email</StyledTableCell> */}
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {stuAttendance &&
+                  stuAttendance
+                    .sort((a, b) => a.RollNo - b.RollNo)
+                    .map((s) => (
+                      <StyledTableRow key={s.IDHREmployee}>
+                        <StyledTableCell component="th" scope="row">
+                          <Checkbox
+                            checked={s?.IsPresent || false}
+                            name="IsPresent"
+                            color="primary"
+                            onChange={(e) =>
+                              handleChange(e.target.checked, s.IDHREmployee)
+                            }
+                          />
+                        </StyledTableCell>
+                        {/* <StyledTableCell component="th" scope="row">
                       {s.RollNo}
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
-                      {s.FullName}
-                    </StyledTableCell>
-                    <StyledTableCell component="th" scope="row">
+                    </StyledTableCell> */}
+                        <StyledTableCell component="th" scope="row">
+                          {s.FullName} ( {s.RollNo})
+                        </StyledTableCell>
+                        {/* <StyledTableCell component="th" scope="row">
                       {s.MobileNumber}
                     </StyledTableCell>
                     <StyledTableCell component="th" scope="row">
                       {s.EmailID}
-                    </StyledTableCell>
-                  </StyledTableRow>
-                ))}
-          </TableBody>
-        </Table>
-        </>
+                    </StyledTableCell> */}
+                      </StyledTableRow>
+                    ))}
+              </TableBody>
+            </Table>
+          </>
         )}
       </TableContainer>
       <div

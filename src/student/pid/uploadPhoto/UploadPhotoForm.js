@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import InputControl from "../../../components/controls/InputControl";
 import { API_URL } from "../../../constants";
 import { putUploadPhotoStudentAction } from "./UploadPhotoActions";
+import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 
 const UploadPhotoForm = ({ uploadPhoto }) => {
   const [image, setImage] = useState(null);
@@ -28,13 +29,48 @@ const UploadPhotoForm = ({ uploadPhoto }) => {
     }
   };
 
+  const takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Prompt,
+      // source: CameraSource.Camera,
+    });
+
+    console.log("image", image);
+    const imageUrl = image?.path || image?.webPath;
+    setImgSrc(Capacitor.convertFileSrc(imageUrl));
+    console.log("imageurl", imageUrl);
+
+    const result = await fetch(Capacitor.convertFileSrc(imageUrl));
+    console.log("my result", result);
+    const blob = await result.blob();
+    const file = new File([blob], "image.jpeg", { type: blob.type });
+    console.log("my file", file);
+    setImage(file);
+  };
+
   return (
     <>
-      <InputControl
+      {/* <InputControl
         name="ImageUploaded"
         onChange={(e) => handleImage(e)}
         type="file"
-      />
+      /> */}
+
+      <button
+        style={{
+          backgroundColor: "#253053",
+          color: "#fff",
+          padding: "6px 14px",
+          display: "block",
+        }}
+        onClick={() => takePicture()}
+      >
+        Take a photo
+      </button>
+      <div style={{ height: "10px" }}></div>
 
       <img
         style={{ marginTop: "12px" }}
@@ -55,14 +91,16 @@ const UploadPhotoForm = ({ uploadPhoto }) => {
           borderTop: "1px solid #f3f3f3",
         }}
       >
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleUploadImage}
-          style={{ margin: "10px 0 0 10px" }}
-        >
-          UPLOAD
-        </Button>
+        {image && (
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleUploadImage}
+            style={{ margin: "10px 0 0 10px" }}
+          >
+            UPLOAD
+          </Button>
+        )}
       </div>
     </>
   );

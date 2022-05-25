@@ -18,15 +18,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1512.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1512.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3880.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3880.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7989.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7989.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/9031.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/9031.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/index.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/index.bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/controls/DatePickerControl.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/controls/DatePickerControl.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/components/sideMenuComponents/TeacherNavigationSideMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/sideMenuComponents/TeacherNavigationSideMenu.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/../src/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/student/login/LoginActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/login/LoginActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/announcement/Announcement.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/announcement/Announcement.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/Assignment.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/Assignment.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentListCollapse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentListCollapse.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

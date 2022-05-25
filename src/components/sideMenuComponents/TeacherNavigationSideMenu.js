@@ -63,28 +63,7 @@ const TeacherNavigationSideMenu = () => {
           DashBoard
         </Typography>
       </NavLink>
-      <NavLink
-        to={"/academic-grading"}
-        activeStyle={isActive}
-        className={classes.textBox}
-      >
-        <Typography variant="h6">
-          {" "}
-          <TrendingUpIcon fontSize="small" />
-          Academic Grading
-        </Typography>
-      </NavLink>
-      <NavLink
-        to={"/exam-division"}
-        activeStyle={isActive}
-        className={classes.textBox}
-      >
-        <Typography variant="h6">
-          {" "}
-          <DvrRoundedIcon fontSize="small" />
-          Exam Division
-        </Typography>
-      </NavLink>
+
       {/* <NavLink to={"/exam-schedule"} activeStyle={isActive} className={classes.textBox}>
         <Typography variant="h6">
           {" "}
@@ -216,6 +195,28 @@ const TeacherNavigationSideMenu = () => {
           {" "}
           <VideocamIcon fontSize="small" />
           Video Conference
+        </Typography>
+      </NavLink>
+      <NavLink
+        to={"/academic-grading"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <Typography variant="h6">
+          {" "}
+          <TrendingUpIcon fontSize="small" />
+          Academic Grading
+        </Typography>
+      </NavLink>
+      <NavLink
+        to={"/exam-division"}
+        activeStyle={isActive}
+        className={classes.textBox}
+      >
+        <Typography variant="h6">
+          {" "}
+          <DvrRoundedIcon fontSize="small" />
+          Exam Division
         </Typography>
       </NavLink>
     </div>

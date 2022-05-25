@@ -42,8 +42,6 @@ import SearchIcon from "@material-ui/icons/Search";
 import ZoomInIcon from "@material-ui/icons/ZoomIn";
 import AssignmentListCollapse from "./AssignmentListCollapse";
 import MobileBody from "../../components/MobileBody";
-import ImageEditor from "tui-image-editor";
-import FileSave from "file-saver";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -208,7 +206,7 @@ const Assignment = () => {
         subject,
         section,
         shift,
-        dateToSend
+        JSON.stringify(date).slice(1, 11)
       )
     );
   }
@@ -261,7 +259,7 @@ const Assignment = () => {
         subject,
         section,
         shift,
-        date
+        JSON.stringify(date).slice(1, 11)
       )
     );
   }
@@ -290,9 +288,9 @@ const Assignment = () => {
         setDate(
           allAssignmentTeacherData.searchFilterModel.StartDate.slice(0, 10)
         );
-        setDateToSend(
-          allAssignmentTeacherData.searchFilterModel.StartDate.slice(0, 10)
-        );
+        // setDateToSend(
+        //   allAssignmentTeacherData.searchFilterModel.StartDate.slice(0, 10)
+        // );
       });
       if (subjectIdFromDashboard) {
         setSubject(subjectIdFromDashboard);
@@ -333,7 +331,7 @@ const Assignment = () => {
           subject,
           section,
           shift,
-          dateToSend
+          JSON.stringify(date).slice(1, 11)
         )
       );
     }
@@ -349,7 +347,7 @@ const Assignment = () => {
           section,
           shift,
           subject,
-          dateToSend
+          JSON.stringify(date).slice(1, 11)
         )
       );
       setOpenPopup(true);
@@ -414,7 +412,7 @@ const Assignment = () => {
             ? allOtherOptions.section[0].Key
             : "",
           allOtherOptions.shift.length > 0 ? allOtherOptions.shift[0].Key : "",
-          dateToSend
+          JSON.stringify(date)?.slice(1, 11)
         )
       );
     }
@@ -550,8 +548,6 @@ const Assignment = () => {
                   label="Current Year"
                   value={date}
                   onChange={(e) => {
-                    const newDate = new Date(e);
-                    setDateToSend(newDate.toLocaleDateString()?.slice(0, 10));
                     setDate(e);
                   }}
                 />
@@ -598,6 +594,8 @@ const Assignment = () => {
             </Grid>
           </Grid>
         </MobileTopSelectContainer>
+        {/* {dateToSend && <h5>This date for api {dateToSend}</h5>}
+        {date && <h5>This date for datepicker {JSON.stringify(date)}</h5>} */}
         {loading ? (
           <LoadingComp />
         ) : (
