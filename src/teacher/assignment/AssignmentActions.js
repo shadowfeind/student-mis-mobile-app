@@ -205,6 +205,8 @@ export const postTeacherAssignmentAction =
           dbModelLstForStudentSection: students,
         });
 
+        console.log("this is jsonData", jsonData);
+
         await axiosInstance.post(
           `/api/TeacherAssignment/Post`,
           jsonData,

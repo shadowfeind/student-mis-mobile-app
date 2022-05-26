@@ -75,7 +75,14 @@ const Dashboard = () => {
               dashboardContent.searchFilterModel.ddlSubjectForTeacher?.map(
                 (s) => (
                   <Link key={s.$id} to={`/subject-view/${s.Key}`}>
-                    <DashboardCard subject={s} key={s.$id} />
+                    <DashboardCard
+                      subject={s}
+                      key={s.$id}
+                      subCount={
+                        dashboardContent.searchFilterModel
+                          .totalAssignmentByTeacherAccordingToSubject
+                      }
+                    />
                   </Link>
                 )
               )}

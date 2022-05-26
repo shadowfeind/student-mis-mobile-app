@@ -95,9 +95,15 @@ const ExamMarkApprovalBulk = ({
           <TableHead>
             <TableRow>
               {/* <StyledTableCell>Roll No.</StyledTableCell> */}
-              <StyledTableCell align="left">FullName</StyledTableCell>
+              <StyledTableCell align="left">
+                FullName (Roll No.)
+              </StyledTableCell>
               <StyledTableCell align="left">Mark Obtained(TH)</StyledTableCell>
-              <StyledTableCell align="left">Mark Obtained(PT)</StyledTableCell>
+              {bulk[0]?.FullMarkPractical !== null && (
+                <StyledTableCell align="left">
+                  Mark Obtained(PT)
+                </StyledTableCell>
+              )}
               {/* <StyledTableCell align="left">Status</StyledTableCell> */}
               <StyledTableCell align="left">Full Mark</StyledTableCell>
               <StyledTableCell align="left">Full Mark(PT)</StyledTableCell>
@@ -109,7 +115,7 @@ const ExamMarkApprovalBulk = ({
                 <StyledTableRow key={subject.IDHREmployee}>
                   {/* <StyledTableCell>{subject.RollNo}</StyledTableCell> */}
                   <StyledTableCell align="left">
-                    {subject.FullName}
+                    {subject.FullName} ({subject.RollNo})
                   </StyledTableCell>
 
                   <StyledTableCell align="left">
@@ -130,24 +136,32 @@ const ExamMarkApprovalBulk = ({
                       }
                     />
                   </StyledTableCell>
-                  <StyledTableCell align="left">
-                    <TextField
-                      id={`practical_${subject.IDHREmployee}`}
-                      value={subject.ObtainedMarkPractical}
-                      name="ObtainedMarkPractical"
-                      type="number"
-                      variant="outlined"
-                      inputProps={{ tabIndex: "2" }}
-                      onChange={(e) =>
-                        onChangeHandler(
-                          subject,
-                          e.target.value,
-                          e.target.name,
-                          index
-                        )
-                      }
-                    />
-                  </StyledTableCell>
+                  {subject.FullMarkPractical !== null && (
+                    <StyledTableCell align="left">
+                      <TextField
+                        id={`practical_${subject.IDHREmployee}`}
+                        value={subject.ObtainedMarkPractical}
+                        name="ObtainedMarkPractical"
+                        type="number"
+                        variant="outlined"
+                        inputProps={{
+                          tabIndex: "2",
+                          style: {
+                            padding: "4px",
+                          },
+                        }}
+                        onChange={(e) =>
+                          onChangeHandler(
+                            subject,
+                            e.target.value,
+                            e.target.name,
+                            index
+                          )
+                        }
+                      />
+                    </StyledTableCell>
+                  )}
+
                   {/* <StyledTableCell align="left">
                     <FormControl
                       variant="filled"
@@ -188,41 +202,41 @@ const ExamMarkApprovalBulk = ({
                 </StyledTableRow>
               ))}
           </TableBody>
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "start",
-              marginBottom: "10px",
-            }}
-          >
-            <Button
-              variant="contained"
-              color="secondary"
-              onClick={() => setOpenPopup(false)}
-              style={{
-                margin: "10px 0 0 10px",
-                padding: "5px 10px",
-                fontsize: "12px",
-              }}
-            >
-              CANCEL
-            </Button>
-            <Button
-              variant="contained"
-              color="primary"
-              type="submit"
-              style={{
-                margin: "10px 0 0 10px",
-                padding: "5px 10px",
-                fontsize: "12px",
-              }}
-              onClick={formCheckSubmitHandler}
-            >
-              SUBMIT
-            </Button>
-          </div>
         </Table>
       </TableContainer>
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "start",
+          marginBottom: "10px",
+        }}
+      >
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={() => setOpenPopup(false)}
+          style={{
+            margin: "10px 0 0 10px",
+            padding: "5px 10px",
+            fontsize: "12px",
+          }}
+        >
+          CANCEL
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          type="submit"
+          style={{
+            margin: "10px 0 0 10px",
+            padding: "5px 10px",
+            fontsize: "12px",
+          }}
+          onClick={formCheckSubmitHandler}
+        >
+          SUBMIT
+        </Button>
+      </div>
     </>
   );
 };

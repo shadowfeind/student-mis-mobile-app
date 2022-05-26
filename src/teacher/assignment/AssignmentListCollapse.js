@@ -303,7 +303,7 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
                 )}
               </div>
             </div>
-            {item.DocumentSubmitted && (
+            {item.DocumentName && (
               <div
                 style={{
                   paddingLeft: "18px",
@@ -312,7 +312,7 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
                 <img
                   width="30px"
                   height="30px"
-                  src={`${API_URL}${item.DocumentSubmitted}`}
+                  src={`${API_URL}${item.DocumentName}`}
                 />
               </div>
             )}
@@ -328,6 +328,9 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
         </ListForTable>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <div className={classes.collapse}>
+            <p>
+              <span>Student Name</span> : {item?.FullName}
+            </p>
             <p>
               <span>Assignment Name</span> : {item.AssignmentName.slice(0, 10)}
             </p>

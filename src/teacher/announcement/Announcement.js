@@ -195,7 +195,7 @@ const Announcement = () => {
                   value={date}
                   onChange={(e) => {
                     const newDate = new Date(e);
-                    setDateToSend(newDate.toLocaleDateString()?.slice(0, 10));
+                    setDateToSend(JSON.stringify(e).slice(1, 11));
                     setDate(e);
                   }}
                 />

@@ -421,7 +421,7 @@ const ExamMarkApproval = () => {
       <Popup
         openPopup={openPopup}
         setOpenPopup={setOpenPopup}
-        title="Bulk Edit"
+        title="Exam Marks"
       >
         {loadingBulk ? (
           <LoadingComp />
