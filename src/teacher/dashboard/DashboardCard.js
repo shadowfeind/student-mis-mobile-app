@@ -96,9 +96,11 @@ export const DashboardCard = ({ subject, subCount }) => {
           <IconButton aria-label="add to favorites">
             <AssignmentIcon style={{ fontSize: "16px" }} />
             <h6>Assignment</h6>
-            <span className={classes.badge}>
-              {currentSubCount && currentSubCount?.totalAssignmentcount}
-            </span>
+            {currentSubCount?.totalAssignmentcount > 0 && (
+              <span className={classes.badge}>
+                {currentSubCount?.totalAssignmentcount}
+              </span>
+            )}
           </IconButton>
         </Link>
         <Link to={`/resources/${subject.Key}`}>

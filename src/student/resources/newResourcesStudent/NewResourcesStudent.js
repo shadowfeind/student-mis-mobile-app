@@ -185,6 +185,16 @@ const NewResourcesStudent = () => {
         setDdlShift(newResourcesStudent.searchFilterModel.ddlAcademicShift);
         setDdlSection(newResourcesStudent.searchFilterModel.ddlSection);
         setDdlFacultySubject(newResourcesStudent.searchFilterModel.ddlSubject);
+        dispatch(
+          getNewResourcesStudentListAction(
+            newResourcesStudent.searchFilterModel.ddlSubject[0]?.Key,
+            newResourcesStudent.searchFilterModel.idAcademicYear,
+            newResourcesStudent.searchFilterModel.idFacultyProgramLink,
+            newResourcesStudent.searchFilterModel.section,
+            newResourcesStudent.searchFilterModel.idShift,
+            newResourcesStudent.searchFilterModel.level
+          )
+        );
       });
       if (subjectIdFromDashboard) {
         unstable_batchedUpdates(() => {

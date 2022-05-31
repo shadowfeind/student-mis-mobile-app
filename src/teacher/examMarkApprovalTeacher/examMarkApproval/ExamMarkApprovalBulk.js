@@ -41,6 +41,12 @@ const useStyles = makeStyles({
   table: {
     minWidth: 700,
   },
+  input: {
+    "& input": {
+      padding: "8px",
+      fontSize: "12px",
+    },
+  },
 });
 
 const ExamMarkApprovalBulk = ({
@@ -90,7 +96,7 @@ const ExamMarkApprovalBulk = ({
   }, [bulkData]);
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer style={{ maxHeight: "260px" }} component={Paper}>
         <Table className={classes.table} aria-label="customized table">
           <TableHead>
             <TableRow>
@@ -98,15 +104,17 @@ const ExamMarkApprovalBulk = ({
               <StyledTableCell align="left">
                 FullName (Roll No.)
               </StyledTableCell>
-              <StyledTableCell align="left">Mark Obtained(TH)</StyledTableCell>
+              <StyledTableCell align="left" width="20%">
+                TH
+              </StyledTableCell>
               {bulk[0]?.FullMarkPractical !== null && (
-                <StyledTableCell align="left">
-                  Mark Obtained(PT)
+                <StyledTableCell align="left" width="20%">
+                  PT
                 </StyledTableCell>
               )}
               {/* <StyledTableCell align="left">Status</StyledTableCell> */}
-              <StyledTableCell align="left">Full Mark</StyledTableCell>
-              <StyledTableCell align="left">Full Mark(PT)</StyledTableCell>
+              <StyledTableCell align="left">FM</StyledTableCell>
+              <StyledTableCell align="left">FM (PT)</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -125,6 +133,7 @@ const ExamMarkApprovalBulk = ({
                       value={subject.ObtainedMark}
                       type="number"
                       variant="outlined"
+                      className={classes.input}
                       inputProps={{ tabIndex: "1" }}
                       onChange={(e) =>
                         onChangeHandler(

@@ -181,13 +181,22 @@ const ExamMarkApproval = () => {
 
   useEffect(() => {
     if (examMarkApprovalInitialDatas) {
-      unstable_batchedUpdates(() => {
-        setDdlSchedule(
-          examMarkApprovalInitialDatas.searchFilterModel.ddlSubjectForTeacher
-        );
-      });
+      setDdlSchedule(
+        examMarkApprovalInitialDatas.searchFilterModel.ddlSubjectForTeacher
+      );
+      setSchedule(
+        examMarkApprovalInitialDatas.searchFilterModel.ddlSubjectForTeacher[0]
+          ?.Key
+      );
+      dispatch(
+        getAllOtherOptionsForSelectTeacherAction(
+          examMarkApprovalInitialDatas.modelDb.IDHREmployee,
+          examMarkApprovalInitialDatas.searchFilterModel.ddlSubjectForTeacher[0]
+            ?.Key
+        )
+      );
     }
-  }, [examMarkApprovalInitialDatas, dispatch]);
+  }, [examMarkApprovalInitialDatas]);
 
   useEffect(() => {
     dispatch({ type: GET_ALL_EXAM_MARK_APPROVAL_SEARCHDATA_RESET });
@@ -207,35 +216,17 @@ const ExamMarkApproval = () => {
     if (allOtherOptions) {
       unstable_batchedUpdates(() => {
         setAcademicYearDdl(allOtherOptions.year && allOtherOptions.year);
-        setAcaYear(
-          allOtherOptions.year.length > 0 ? allOtherOptions.year[0]?.Key : ""
-        );
+        setAcaYear(allOtherOptions.year[0]?.Key);
         setProgramDdl(allOtherOptions.program && allOtherOptions.program);
-        setProgramValue(
-          allOtherOptions.program.length > 0
-            ? allOtherOptions.program[0]?.Key
-            : ""
-        );
+        setProgramValue(allOtherOptions.program[0]?.Key);
         setDdlClass(allOtherOptions.classId && allOtherOptions.classId);
-        setClassId(
-          allOtherOptions.classId.length > 0
-            ? allOtherOptions.classId[0]?.Key
-            : ""
-        );
+        setClassId(allOtherOptions.classId[0]?.Key);
         setDdlSection(allOtherOptions.section && allOtherOptions.section);
-        setSection(
-          allOtherOptions.section.length > 0
-            ? allOtherOptions.section[0]?.Key
-            : ""
-        );
+        setSection(allOtherOptions.section[0]?.Key);
         setDdlShift(allOtherOptions.shift && allOtherOptions.shift);
-        setShift(
-          allOtherOptions.shift.length > 0 ? allOtherOptions.shift[0]?.Key : ""
-        );
+        setShift(allOtherOptions.shift[0]?.Key);
         setDdlEvent(allOtherOptions.event && allOtherOptions.event);
-        setEvent(
-          allOtherOptions.event.length > 0 ? allOtherOptions.event[0]?.Key : ""
-        );
+        setEvent(allOtherOptions.event[0]?.Key);
       });
     }
   }, [allOtherOptions, dispatch]);

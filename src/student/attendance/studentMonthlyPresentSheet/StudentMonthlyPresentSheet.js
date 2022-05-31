@@ -127,6 +127,10 @@ const StudentMonthlyPresentSheet = () => {
         setDdlSubject(
           allStudentAttendanceData.searchFilterModel.ddlSubjectAttendance
         );
+        setSubject(
+          allStudentAttendanceData.searchFilterModel.ddlSubjectAttendance[0]
+            ?.Key
+        );
         setDdlNepMonth(allStudentAttendanceData.searchFilterModel.ddlnpMonth);
         setDate(
           allStudentAttendanceData.searchFilterModel.currentDate.slice(0, 10)
@@ -140,6 +144,20 @@ const StudentMonthlyPresentSheet = () => {
         setClassId(allStudentAttendanceData.searchFilterModel.level);
         setShift(allStudentAttendanceData.searchFilterModel.idShift);
         setSection(allStudentAttendanceData.searchFilterModel.section);
+        dispatch(
+          getListStudentAttendanceAction(
+            allStudentAttendanceData.searchFilterModel.currentDate.slice(0, 10),
+            allStudentAttendanceData.searchFilterModel.npYear,
+            allStudentAttendanceData.searchFilterModel.npMonth,
+            allStudentAttendanceData.searchFilterModel.idAcademicYear,
+            allStudentAttendanceData.searchFilterModel.idFacultyProgramLink,
+            allStudentAttendanceData.searchFilterModel.level,
+            allStudentAttendanceData.searchFilterModel.ddlSubjectAttendance[0]
+              ?.Key,
+            allStudentAttendanceData.searchFilterModel.section,
+            allStudentAttendanceData.searchFilterModel.idShift
+          )
+        );
       });
     }
   }, [allStudentAttendanceData, dispatch]);

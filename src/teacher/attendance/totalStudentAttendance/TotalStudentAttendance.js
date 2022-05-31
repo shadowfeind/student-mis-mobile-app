@@ -48,6 +48,16 @@ const useStyles = makeStyles((theme) => ({
   customInput: {
     minWidth: "200px",
   },
+  keydate: {
+    "& input": {
+      fontSize: "12px",
+      // padding: "12px",
+    },
+    "& label": {
+      fontSize: "12px",
+      // padding: "12px",
+    },
+  },
 }));
 
 const tableHeader = [
@@ -66,12 +76,12 @@ const TotalStudentAttendance = () => {
   const [ddlSection, setDdlSection] = useState([]);
   const [ddlSubject, setDdlSubject] = useState([]);
 
-  const [programValue, setProgramValue] = useState();
-  const [classId, setClassId] = useState();
-  const [acaYear, setAcaYear] = useState();
-  const [shift, setShift] = useState();
-  const [section, setSection] = useState();
-  const [subject, setSubject] = useState();
+  const [programValue, setProgramValue] = useState("");
+  const [classId, setClassId] = useState("");
+  const [acaYear, setAcaYear] = useState("");
+  const [shift, setShift] = useState("");
+  const [section, setSection] = useState("");
+  const [subject, setSubject] = useState("");
   const [errors, setErrors] = useState({});
   const [startDate, setStartDate] = useState();
   const [endDate, setEndDate] = useState();
@@ -167,14 +177,30 @@ const TotalStudentAttendance = () => {
       setProgramDdl(
         allTotalStudentAttendanceData.searchFilterModel.ddlFacultyProgramLink
       );
+      setProgramValue(
+        allTotalStudentAttendanceData.searchFilterModel.ddlFacultyProgramLink[0]
+          .Key
+      );
       setDdlClass(allTotalStudentAttendanceData.searchFilterModel.ddlClass);
+      setClassId(
+        allTotalStudentAttendanceData.searchFilterModel.ddlClass[0].Key
+      );
       setAcademicYearDdl(
         allTotalStudentAttendanceData.searchFilterModel.ddlAcademicYear
+      );
+      setAcaYear(
+        allTotalStudentAttendanceData.searchFilterModel.ddlAcademicYear[0].Key
       );
       setDdlShift(
         allTotalStudentAttendanceData.searchFilterModel.ddlAcademicShift
       );
+      setShift(
+        allTotalStudentAttendanceData.searchFilterModel.ddlAcademicShift[0].Key
+      );
       setDdlSection(allTotalStudentAttendanceData.searchFilterModel.ddlSection);
+      setSection(
+        allTotalStudentAttendanceData.searchFilterModel.ddlSection[0].Key
+      );
       setStartDate(
         allTotalStudentAttendanceData.searchFilterModel.currentDate.slice(0, 10)
       );
@@ -187,6 +213,7 @@ const TotalStudentAttendance = () => {
   useEffect(() => {
     if (subjectOptions) {
       setDdlSubject(subjectOptions);
+      setSubject(subjectOptions[0].Key);
     }
   }, [subjectOptions]);
 
@@ -331,6 +358,7 @@ const TotalStudentAttendance = () => {
                   name="StartDate"
                   label="Start Year"
                   value={startDate}
+                  className={classes.keydate}
                   onChange={(e) => {
                     const newDate = new Date(e);
                     setStartDate(newDate.toLocaleDateString().slice(0, 10));
@@ -349,6 +377,7 @@ const TotalStudentAttendance = () => {
                   name="EndDate"
                   label="End Year"
                   value={endDate}
+                  className={classes.keydate}
                   onChange={(e) => {
                     const newDate = new Date(e);
                     setEndDate(newDate.toLocaleDateString().slice(0, 10));

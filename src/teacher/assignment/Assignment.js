@@ -57,6 +57,16 @@ const useStyles = makeStyles((theme) => ({
   customInput: {
     minWidth: "200px",
   },
+  keydate: {
+    "& input": {
+      fontSize: "12px",
+      // padding: "12px",
+    },
+    "& label": {
+      fontSize: "12px",
+      // padding: "12px",
+    },
+  },
 }));
 
 const Assignment = () => {
@@ -278,6 +288,9 @@ const Assignment = () => {
         setDdlSubject(
           allAssignmentTeacherData.searchFilterModel.ddlSubjectForTeacher
         );
+        setSubject(
+          allAssignmentTeacherData.searchFilterModel.ddlSubjectForTeacher[0].Key
+        );
         setDdlClass(
           allAssignmentTeacherData.searchFilterModel.ddlLevelPrimitive
         );
@@ -287,6 +300,13 @@ const Assignment = () => {
         setDdlSection(allAssignmentTeacherData.searchFilterModel.ddlSection);
         setDate(
           allAssignmentTeacherData.searchFilterModel.StartDate.slice(0, 10)
+        );
+        dispatch(
+          getAllOtherOptionsForSelectAction(
+            allAssignmentTeacherData.modelDb.IDHREmployee,
+            allAssignmentTeacherData.searchFilterModel.ddlSubjectForTeacher[0]
+              .Key
+          )
         );
         // setDateToSend(
         //   allAssignmentTeacherData.searchFilterModel.StartDate.slice(0, 10)
@@ -547,6 +567,7 @@ const Assignment = () => {
                   name="CurrentYear"
                   label="Current Year"
                   value={date}
+                  className={classes.keydate}
                   onChange={(e) => {
                     setDate(e);
                   }}

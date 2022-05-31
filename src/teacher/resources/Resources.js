@@ -233,6 +233,9 @@ const Resources = () => {
     if (allInitialData) {
       unstable_batchedUpdates(() => {
         setDdlSubject(allInitialData.searchFilterModel.ddlSubjectForTeacher);
+        setSubject(
+          allInitialData.searchFilterModel.ddlSubjectForTeacher[0]?.Key
+        );
         setDdlClass(allInitialData.searchFilterModel.ddlLevelPrimitive);
         setAcademicYearDdl(allInitialData.searchFilterModel.ddlAcademicYear);
         setDdlShift(allInitialData.searchFilterModel.ddlAcademicShift);

@@ -125,6 +125,12 @@ const OldQuestions = () => {
   useEffect(() => {
     if (oldQuestions) {
       setDdlClass(oldQuestions.searchFilterModel.ddlClass);
+      setClassId(oldQuestions.searchFilterModel.ddlClass[0]?.Key);
+      dispatch(
+        getSubjectOptionsForOldQuestionsStudentAction(
+          oldQuestions.searchFilterModel.ddlClass[0]?.Key
+        )
+      );
     }
   }, [dispatch, oldQuestions]);
 
@@ -133,15 +139,22 @@ const OldQuestions = () => {
     dispatch(getAllOldQuestionsStudentAction());
   }, []);
 
-  useEffect(() => {
-    if (listOldQuestionsStudent) {
-      setTableData(listOldQuestionsStudent.dbModelStudentLst);
-    }
-  }, [listOldQuestionsStudent]);
+  // useEffect(() => {
+  //   if (listOldQuestionsStudent) {
+  //     setTableData(listOldQuestionsStudent.dbModelStudentLst);
+  //   }
+  // }, [listOldQuestionsStudent]);
 
   useEffect(() => {
     if (subjectOptions) {
       setDdlFacultySubject([...subjectOptions.subject]);
+      setFacultySubject(subjectOptions.subject[0]?.Key);
+      dispatch(
+        getListOldQuestionsStudentAction(
+          classId,
+          subjectOptions.subject[0]?.Key
+        )
+      );
     }
   }, [subjectOptions]);
 

@@ -302,7 +302,11 @@ const PersonalInformation = () => {
                   ></div>
                   <div>
                     <h5>Total Classes</h5>
-                    <p>5</p>
+                    <p>
+                      {
+                        getAllPersonalInformation?.TotalSubjectForTeacherAssigned
+                      }
+                    </p>
                   </div>
                 </div>
                 <div className={classes.profileContainerDetails}>

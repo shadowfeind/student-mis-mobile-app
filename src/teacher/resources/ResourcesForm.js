@@ -111,7 +111,7 @@ const ResourcesForm = ({ setOpenPopup, searchFilterModel, dbModel }) => {
         errors={errors.CourseDescription}
       />
 
-      <div style={{ height: "5px" }}></div>
+      <div style={{ height: "10px" }}></div>
       <InputControl
         name="ImageUploaded"
         // label="Select File"
@@ -119,6 +119,7 @@ const ResourcesForm = ({ setOpenPopup, searchFilterModel, dbModel }) => {
         type="file"
         errors={errors.image}
       />
+      <div style={{ height: "10px" }}></div>
       <button
         style={{
           backgroundColor: "#253053",
@@ -131,10 +132,10 @@ const ResourcesForm = ({ setOpenPopup, searchFilterModel, dbModel }) => {
       >
         Take a photo
       </button>
-      <div style={{ height: "5px" }}></div>
+      <div style={{ height: "10px" }}></div>
 
       {imgSrc && <img src={imgSrc} height={200} width={200} />}
-      <div style={{ height: "5px" }}></div>
+      <div style={{ height: "10px" }}></div>
       <CheckBoxControl
         label="isActive"
         value={values.IsActive}

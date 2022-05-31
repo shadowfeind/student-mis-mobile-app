@@ -45,6 +45,16 @@ const useStyles = makeStyles((theme) => ({
     position: "absolute",
     right: "10px",
   },
+  keydate: {
+    "& input": {
+      fontSize: "12px",
+      // padding: "12px",
+    },
+    "& label": {
+      fontSize: "12px",
+      // padding: "12px",
+    },
+  },
 }));
 
 const tableHeader = [
@@ -130,36 +140,13 @@ const Announcement = () => {
     if (announcement) {
       setDate(announcement?.searchFilterModel?.CreatedDate?.slice(0, 10));
       setDateToSend(announcement?.searchFilterModel?.CreatedDate?.slice(0, 10));
-      setTableData(announcement?.dbModelLst);
+      dispatch(
+        getListTeacherAnnouncementAction(
+          announcement?.searchFilterModel?.CreatedDate?.slice(0, 10)
+        )
+      );
     }
   }, [dispatch, announcement]);
-
-  useEffect(() => {
-    if (announcementList) {
-      setTableData(announcementList.dbModelLst);
-    }
-  }, [announcementList]);
-
-  const {
-    TableContainer,
-    TblHead,
-    TblPagination,
-    tableDataAfterPagingAndSorting,
-  } = useCustomTable(tableData, tableHeader, filterFn);
-
-  const handleSearch = (e) => {
-    setFilterFn({
-      fn: (item) => {
-        if (e.target.value === "") {
-          return item;
-        } else {
-          return item.filter((x) =>
-            x.NewsHeading.toLowerCase().includes(e.target.value)
-          );
-        }
-      },
-    });
-  };
 
   const listSearchHandler = () => {
     dispatch(getListTeacherAnnouncementAction(dateToSend));
@@ -169,18 +156,6 @@ const Announcement = () => {
     <>
       <CustomContainer>
         <Toolbar>
-          {/* <InputControl
-            className={classes.searchInput}
-            label="Search Announcement"
-            InputProps={{
-              startAdornment: (
-                <InputAdornment announcement="start">
-                  <Search />
-                </InputAdornment>
-              ),
-            }}
-            onChange={handleSearch}
-          /> */}
           <Grid item xs={12}>
             <div style={{ marginLeft: "12px" }}>
               <div style={{ height: "15px" }}></div>
@@ -193,6 +168,7 @@ const Announcement = () => {
                   name="CurrentYear"
                   label="Current Year"
                   value={date}
+                  className={classes.keydate}
                   onChange={(e) => {
                     const newDate = new Date(e);
                     setDateToSend(JSON.stringify(e).slice(1, 11));

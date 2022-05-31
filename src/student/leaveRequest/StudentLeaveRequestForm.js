@@ -10,6 +10,7 @@ import {
   studentPostLeaveRequestAction,
   studentPutLeaveRequestAction,
 } from "./StudentLeaveRequestActions";
+import { Camera, CameraResultType, CameraSource } from "@capacitor/camera";
 
 const initialFormValues = {
   IDLeaveRequest: 0,
@@ -81,9 +82,34 @@ const StudentLeaveRequestForm = ({
     setImage(event.target.files[0]);
   };
 
+  const takePicture = async () => {
+    const image = await Camera.getPhoto({
+      quality: 90,
+      allowEditing: false,
+      resultType: CameraResultType.Uri,
+      source: CameraSource.Prompt,
+      // source: CameraSource.Camera,
+    });
+
+    console.log("image", image);
+    const imageUrl = image?.path || image?.webPath;
+    setImgSrc(Capacitor.convertFileSrc(imageUrl));
+    console.log("imageurl", imageUrl);
+
+    const result = await fetch(Capacitor.convertFileSrc(imageUrl));
+    console.log("my result", result);
+    const blob = await result.blob();
+    const file = new File([blob], "image.jpeg", { type: blob.type });
+    console.log("my file", file);
+    setImage(file);
+  };
+
   useEffect(() => {
     if (leaveRequestCreate) {
-      setValues({ ...leaveRequestCreate.dbModel });
+      setValues({
+        ...leaveRequestCreate.dbModel,
+        ReceiverID: leaveRequestCreate?.ddlTeacher[0].Key,
+      });
     }
   }, [leaveRequestCreate]);
 
@@ -96,7 +122,7 @@ const StudentLeaveRequestForm = ({
   const gender = [{ Key: "", Value: "" }];
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <div style={{ padding: "12px" }}>
       <SelectControl
         name="ReceiverID"
         label="ReceiverID"
@@ -111,6 +137,7 @@ const StudentLeaveRequestForm = ({
         }
         errors={errors.ReceiverID}
       />
+      <div style={{ height: "10px" }}></div>
       <InputControl
         name="LeaveDecription"
         label="Leave Decription*"
@@ -123,6 +150,7 @@ const StudentLeaveRequestForm = ({
         onChange={handleInputChange}
         errors={errors.LeaveDecription}
       />
+      <div style={{ height: "10px" }}></div>
       <DatePickerControl
         name="FromDate"
         label="FromDate*"
@@ -130,6 +158,7 @@ const StudentLeaveRequestForm = ({
         onChange={handleInputChange}
         errors={errors.FromDate}
       />
+      <div style={{ height: "10px" }}></div>
       <DatePickerControl
         name="ToDate"
         label="ToDate*"
@@ -137,6 +166,7 @@ const StudentLeaveRequestForm = ({
         onChange={handleInputChange}
         errors={errors.ToDate}
       />
+      <div style={{ height: "10px" }}></div>
       <SelectControl
         name="Status"
         label="Status"
@@ -150,6 +180,7 @@ const StudentLeaveRequestForm = ({
             : gender
         }
       />
+      <div style={{ height: "10px" }}></div>
       <SelectControl
         name="IsActive"
         label="IsActive"
@@ -163,11 +194,25 @@ const StudentLeaveRequestForm = ({
             : gender
         }
       />
-      <InputControl
+      <div style={{ height: "10px" }}></div>
+      {/* <InputControl
         name="ImageUploaded"
         onChange={(e) => handleImage(e)}
         type="file"
-      />
+      /> */}
+      <button
+        style={{
+          backgroundColor: "#253053",
+          color: "#fff",
+          padding: "6px 14px",
+          display: "block",
+          marginLeft: "5px",
+        }}
+        onClick={() => takePicture()}
+      >
+        Take a photo
+      </button>
+      <div style={{ height: "10px" }}></div>
       <img
         src={
           imgSrc
@@ -200,11 +245,12 @@ const StudentLeaveRequestForm = ({
           color="primary"
           type="submit"
           style={{ margin: "10px 0 0 10px" }}
+          onClick={handleSubmit}
         >
           SUBMIT
         </Button>
       </div>
-    </Form>
+    </div>
   );
 };
 

@@ -126,19 +126,24 @@ const Announcement = () => {
   useEffect(() => {
     if (announcement) {
       setDate(announcement?.searchFilterModel?.CreatedDate?.slice(0, 10));
-      setTableData(announcement?.dbModelLst);
+      dispatch(
+        getListStudentAnnouncementAction(
+          announcement?.searchFilterModel?.CreatedDate?.slice(0, 10)
+        )
+      );
+      // setTableData(announcement?.dbModelLst);
     }
   }, [dispatch, announcement]);
 
-  useEffect(() => {
-    dispatch({ type: "GET_LINK", payload: "/announcement" });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch({ type: "GET_LINK", payload: "/announcement" });
+  // }, [dispatch]);
 
-  useEffect(() => {
-    if (announcementList) {
-      setTableData(announcementList.dbModelLst);
-    }
-  }, [announcementList]);
+  // useEffect(() => {
+  //   if (announcementList) {
+  //     setTableData(announcementList.dbModelLst);
+  //   }
+  // }, [announcementList]);
 
   // const {
   //   TableContainer,

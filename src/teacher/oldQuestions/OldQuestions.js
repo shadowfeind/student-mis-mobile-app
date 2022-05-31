@@ -115,6 +115,12 @@ const OldQuestions = () => {
   useEffect(() => {
     if (oldQuestionsTeacher) {
       setDdlClass(oldQuestionsTeacher.searchFilterModel.ddlClass);
+      setClassId(oldQuestionsTeacher.searchFilterModel.ddlClass[0].Key);
+      dispatch(
+        getSubjectOldQuestionsAction(
+          oldQuestionsTeacher.searchFilterModel.ddlClass[0].Key
+        )
+      );
     }
   }, [dispatch, oldQuestionsTeacher]);
 
@@ -126,6 +132,10 @@ const OldQuestions = () => {
   useEffect(() => {
     if (subjectOldQuestions) {
       setDdlFacultySubject([...subjectOldQuestions]);
+      setFacultySubject(subjectOldQuestions[0]?.Key);
+      dispatch(
+        getListOldQuestionsTeacherAction(classId, subjectOldQuestions[0]?.Key)
+      );
     }
   }, [subjectOldQuestions]);
 

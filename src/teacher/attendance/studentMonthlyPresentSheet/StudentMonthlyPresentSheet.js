@@ -50,6 +50,16 @@ const useStyles = makeStyles((theme) => ({
   customInput: {
     minWidth: "200px",
   },
+  keydate: {
+    "& input": {
+      fontSize: "12px",
+      // padding: "12px",
+    },
+    "& label": {
+      fontSize: "12px",
+      // padding: "12px",
+    },
+  },
 }));
 
 const StudentMonthlyPresentSheet = () => {
@@ -212,6 +222,10 @@ const StudentMonthlyPresentSheet = () => {
       );
       setDdlSubject(
         allStudentMonthlyPresentSheetData.searchFilterModel.ddlSubjectForTeacher
+      );
+      setSubject(
+        allStudentMonthlyPresentSheetData.searchFilterModel
+          .ddlSubjectForTeacher[0].Key
       );
       setDdlClass(
         allStudentMonthlyPresentSheetData.searchFilterModel.ddlLevelPrimitive
@@ -451,6 +465,7 @@ const StudentMonthlyPresentSheet = () => {
                   name="CurrentYear"
                   label="Current Year"
                   value={date}
+                  className={classes.keydate}
                   onChange={(e) => {
                     const newDate = new Date(e);
                     setDate(newDate.toLocaleDateString().slice(0, 10));

@@ -254,6 +254,15 @@ const Assignment = () => {
         setProgramValue(assignment.searchFilterModel.idFacultyProgramLink);
         setClassId(assignment.searchFilterModel.level);
         setShift(assignment.searchFilterModel.idShift);
+        dispatch(
+          getAssignmentListStudentAction(
+            assignment.searchFilterModel.idAcademicYear,
+            assignment.searchFilterModel.idFacultyProgramLink,
+            assignment.searchFilterModel.level,
+            assignment.searchFilterModel.idShift,
+            assignment.searchFilterModel.ddlSubject[0]?.Key
+          )
+        );
       });
       if (subjectIdFromDashboard) {
         setFacultySubject(subjectIdFromDashboard);
@@ -275,11 +284,11 @@ const Assignment = () => {
     dispatch(getAllAssignmentStudentAction()); //every time component is mounted this api must be called
   }, []);
 
-  useEffect(() => {
-    if (assignmentList) {
-      setTableData(assignmentList.dbstuentSubmissionLst);
-    }
-  }, [assignmentList]);
+  // useEffect(() => {
+  //   if (assignmentList) {
+  //     setTableData(assignmentList.dbstuentSubmissionLst);
+  //   }
+  // }, [assignmentList]);
 
   const handleExamScheduleSearch = (value) => {
     dispatch(
