@@ -463,7 +463,7 @@ const StudentMonthlyPresentSheet = () => {
                   inputVariant="outlined"
                   format="MM-dd-yyyy"
                   name="CurrentYear"
-                  label="Current Year"
+                  label="Current Date"
                   value={date}
                   className={classes.keydate}
                   onChange={(e) => {

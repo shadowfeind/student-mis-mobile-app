@@ -291,7 +291,7 @@ const TotalStudentAttendance = () => {
                 errors={errors.acaYear}
               />
             </Grid>
-            <Grid item xs={12}>
+            {/* <Grid item xs={12}>
               <div style={{ height: "10px" }}></div>
               <SelectControl
                 name="Program/Faculty"
@@ -301,7 +301,7 @@ const TotalStudentAttendance = () => {
                 options={programDdl ? programDdl : test}
                 errors={errors.programValue}
               />
-            </Grid>
+            </Grid> */}
             <Grid item xs={12}>
               <div style={{ height: "10px" }}></div>
               <SelectControl
@@ -356,7 +356,7 @@ const TotalStudentAttendance = () => {
                   inputVariant="outlined"
                   format="MM-dd-yyyy"
                   name="StartDate"
-                  label="Start Year"
+                  label="From Date"
                   value={startDate}
                   className={classes.keydate}
                   onChange={(e) => {
@@ -375,7 +375,7 @@ const TotalStudentAttendance = () => {
                   inputVariant="outlined"
                   format="MM-dd-yyyy"
                   name="EndDate"
-                  label="End Year"
+                  label="To Date"
                   value={endDate}
                   className={classes.keydate}
                   onChange={(e) => {

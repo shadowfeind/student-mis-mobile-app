@@ -1,156 +1,4 @@
-// import React, { useState } from "react";
-// import { Button, Collapse, makeStyles } from "@material-ui/core";
-// import ExpandLess from "@material-ui/icons/ExpandLess";
-// import ExpandMore from "@material-ui/icons/ExpandMore";
-// import CloudDownloadIcon from "@material-ui/icons/CloudDownload";
-// import EditIcon from "@material-ui/icons/Edit";
-// import DeleteIcon from "@material-ui/icons/Delete";
-// import ListForTable from "../../components/ListForTable";
-// import {
-//   getSingleAssignmentAction,
-//   getSingleToEditTeacherAssignmentAction,
-// } from "./AssignmentActions";
-// import { useDispatch } from "react-redux";
-// import { useHistory } from "react-router-dom";
-// import LockIcon from "@material-ui/icons/Lock";
-
-// const useStyles = makeStyles((theme) => ({
-//   collapse: {
-//     padding: "16px",
-//     borderBottom: "1px solid #d3d3d3",
-//     "& span": {
-//       fontWeight: "bolder",
-//     },
-//   },
-//   button: {
-//     marginRight: "10px",
-//     padding: "5px",
-//     minWidth: "10px",
-//     fontSize: "12px",
-//   },
-// }));
-
-// const dateInPast = (firstDate, secondDate) => {
-//   if (
-//     new Date(firstDate).setHours(0, 0, 0, 0) <=
-//     new Date(secondDate).setHours(0, 0, 0, 0)
-//   ) {
-//     return true;
-//   }
-
-//   return false;
-// };
-
-// const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
-//   const [open, setOpen] = useState(false);
-//   const history = useHistory();
-//   const dispatch = useDispatch();
-//   const classes = useStyles();
-//   const downloadHandler = (id) => {
-//     dispatch(downloadAssignmentAction(id));
-//   };
-//   const updateHandler = (id) => {
-//     dispatch(getSingleToEditTeacherAssignmentAction(id));
-//     setOpenPopup3(true);
-//   };
-//   const downloadSubmittedHandler = (id) => {
-//     dispatch(downloadSubmittedAssignmentAction(id));
-//   };
-//   const handleClick = () => {
-//     setOpen(!open);
-//   };
-
-//   return (
-//     <>
-//       <ListForTable onClick={handleClick}>
-//         <p>
-//           {/* <span
-//             style={{
-//               padding: "8px 10px",
-//               borderRadius: "50%",
-//               fontSize: "12px",
-//               color: "#fff",
-//               backgroundColor: "#253053",
-//             }}
-//           >
-//             {item.FullName[0]}
-//           </span> */}
-//           <span style={{ paddingLeft: "12px" }}>
-//             {item.FullName}
-//             <br />
-//             <span style={{ fontSize: "12px", paddingLeft: "12px" }}>
-//               {item.AssignmentDate.slice(0, 10)} / {item.DueDate.slice(0, 10)}
-//             </span>
-//           </span>{" "}
-//           <span
-//             style={{ fontSize: "10px", color: "#444", paddingLeft: "10px" }}
-//           >
-//             {item.SubmittedDate ? (
-//               <span style={{ color: "green" }}>Submitted</span>
-//             ) : (
-//               <span style={{ color: "red" }}>Pending</span>
-//             )}
-//           </span>
-//         </p>
-//         <div>{open ? <ExpandLess /> : <ExpandMore />}</div>
-//       </ListForTable>
-//       <Collapse in={open} timeout="auto" unmountOnExit>
-//         <div className={classes.collapse}>
-//           <p>
-//             <span>Assignment Name</span> : {item.AssignmentName.slice(0, 10)}
-//           </p>
-//           <p>
-//             <span>Assignment Date</span> : {item.AssignmentDate.slice(0, 10)}
-//           </p>
-//           <p>
-//             <span>DueDate</span> : {item.DueDate.slice(0, 10)}
-//           </p>
-//           <p>
-//             <span>Total Mark</span> :{item.TotalMark}
-//           </p>
-//           <p>
-//             <span>Obtained Marks</span> : {item.ObtainedMarks}
-//           </p>
-//           <p>
-//             <Button
-//               variant="outlined"
-//               color="primary"
-//               className={classes.button}
-//               onClick={() => downloadHandler(item.IDAssignment)}
-//             >
-//               Teacher &nbsp;
-//               <CloudDownloadIcon style={{ fontSize: 12 }} />
-//             </Button>
-//             {item.DocumentSubmitted !== null && (
-//               <Button
-//                 variant="outlined"
-//                 color="primary"
-//                 className={classes.button}
-//                 onClick={() => downloadSubmittedHandler(item.IDAssignment)}
-//               >
-//                 Student &nbsp;
-//                 <CloudDownloadIcon style={{ fontSize: 12 }} />
-//               </Button>
-//             )}
-//             <Button
-//               variant="outlined"
-//               color="primary"
-//               className={classes.button}
-//               onClick={() => updateHandler(item.IDAssignment)}
-//             >
-//               <EditIcon style={{ fontSize: 12 }} />
-//               &nbsp; Edit
-//             </Button>
-//           </p>
-//         </div>
-//       </Collapse>
-//     </>
-//   );
-// };
-
-// export default AssignmentListCollapse;
-
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import FilerobotImageEditor, {
   TABS,
   TOOLS,
@@ -174,6 +22,7 @@ import { useHistory } from "react-router-dom";
 import LockIcon from "@material-ui/icons/Lock";
 import Popup from "../../components/Popup";
 import { API_URL } from "../../constants";
+import * as markerjs2 from "markerjs2";
 
 const useStyles = makeStyles((theme) => ({
   collapse: {
@@ -220,6 +69,9 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
   const dispatch = useDispatch();
   const classes = useStyles();
 
+  const sourceImage = useRef(null);
+  const sampleImage = useRef(null);
+
   const { singleTeacherAssignment } = useSelector(
     (state) => state.getSingleToEditTeacherAssignment
   );
@@ -252,6 +104,60 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
     setIsImgEditorShown(true);
     setOpenPopup(true);
   };
+
+  function showMarkerArea(sampleImage) {
+    if (sourceImage.current !== null) {
+      // debugger;
+      // create a marker.js MarkerArea
+      const markerArea = new markerjs2.MarkerArea(sourceImage.current);
+      markerArea.targetRoot = sourceImage.current.parentElement;
+      // attach an event handler to assign annotated image back to our image element
+      markerArea.addEventListener("render", async (event) => {
+        sampleImage.src = event.dataUrl;
+        const blob = await fetch(event.dataUrl).then((it) => it.blob());
+        const file = new File([blob], "fileName.jpg", {
+          type: "image/jpeg",
+          lastModified: new Date(),
+        });
+        dispatch(
+          putSingleToEditTeacherAssignmentStudentAction(
+            file,
+            singleTeacherAssignment?.dbTeacherAssignmentModel
+          )
+        );
+      });
+      // launch marker.js
+      markerArea.show();
+    }
+    // const markerArea = new markerjs2.MarkerArea(sourceImage.current);
+    // since the container div is set to position: relative it is now our positioning root
+    // end we have to let marker.js know that
+    // markerArea.targetRoot = sourceImage;
+    // markerArea.addEventListener("render", (event) => {
+    //   console.log("event", event);
+    //   target.src = event.dataUrl;
+    //   // save the state of MarkerArea
+    //   maState = event.state;
+    // });
+    // markerArea.show();
+    // // if previous state is present - restore it
+    // if (maState) {
+    //   markerArea.restoreState(maState);
+    // }
+  }
+
+  // useEffect(() => {
+  //   if (imgToEdit && sampleImage.current !== null) {
+  //     debugger;
+  //     showMarkerArea(sampleImage);
+  //   }
+  // }, [imgToEdit, sampleImage]);
+
+  sampleImage.current !== null &&
+    sampleImage.current.addEventListener("click", () => {
+      showMarkerArea(sampleImage.current);
+    });
+
   const handleClick = () => {
     setOpen(!open);
   };
@@ -292,7 +198,7 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
                 // fontWeight: "bolder",
               }}
             >
-              {item.AssignmentName?.slice(0, 18)}
+              {item.FullName?.slice(0, 18)}
               <div
                 style={{ fontSize: "10px", color: "#444", marginTop: "-3px" }}
               >
@@ -329,9 +235,6 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
         <Collapse in={open} timeout="auto" unmountOnExit>
           <div className={classes.collapse}>
             <p>
-              <span>Student Name</span> : {item?.FullName}
-            </p>
-            <p>
               <span>Assignment Name</span> : {item.AssignmentName.slice(0, 10)}
             </p>
             <p>
@@ -356,22 +259,23 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
                 Teacher &nbsp;
                 <CloudDownloadIcon style={{ fontSize: 12 }} />
               </Button>
-              {item.DocumentSubmitted !== null && (
-                <Button
-                  variant="contained"
-                  color="primary"
-                  className={classes.button}
-                  onClick={() =>
-                    downloadSubmittedHandler(
-                      item.DocumentSubmitted,
-                      item.IDAssignment
-                    )
-                  }
-                >
-                  Student &nbsp;
-                  <CloudDownloadIcon style={{ fontSize: 12 }} />
-                </Button>
-              )}
+              {item.DocumentSubmitted !== null &&
+                item.DocumentSubmitted !== "/Upload/TeacherAssignment/" && (
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    className={classes.button}
+                    onClick={() =>
+                      downloadSubmittedHandler(
+                        item.DocumentSubmitted,
+                        item.IDAssignment
+                      )
+                    }
+                  >
+                    Student &nbsp;
+                    <CloudDownloadIcon style={{ fontSize: 12 }} />
+                  </Button>
+                )}
               <Button
                 variant="contained"
                 color="primary"
@@ -386,6 +290,44 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
         </Collapse>
 
         <Popup
+          openPopup={openPopup}
+          setOpenPopup={setOpenPopup}
+          title="Edit Assignment"
+        >
+          {imgToEdit && (
+            // <img src={imgToEdit} ref={imageRef} style={{ width: "100%" }} />
+
+            <div
+              style={{
+                position: "relative",
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingTop: "50px",
+              }}
+            >
+              <img
+                ref={sourceImage}
+                src={imgToEdit}
+                crossOrigin="anonymous"
+                style={{ maxWidth: "600px", maxHeight: "80%" }}
+              />
+              <img
+                ref={sampleImage}
+                src={imgToEdit}
+                crossOrigin="anonymous"
+                style={{
+                  maxWidth: "600px",
+                  maxHeight: "100%",
+                  position: "absolute",
+                }}
+              />
+            </div>
+          )}
+        </Popup>
+
+        {/* <Popup
           openPopup={openPopup}
           setOpenPopup={setOpenPopup}
           title="Edit Assignment"
@@ -408,7 +350,7 @@ const AssignmentListCollapse = ({ item, setOpenPopup3 }) => {
               defaultToolId={TOOLS.TEXT} // or 'Text'
             />
           )}
-        </Popup>
+        </Popup> */}
       </div>
     </div>
   );

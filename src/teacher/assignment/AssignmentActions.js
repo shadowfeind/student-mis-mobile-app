@@ -367,23 +367,23 @@ export const putSingleToEditTeacherAssignmentStudentAction =
   (image, singleAssignment) => async (dispatch) => {
     try {
       dispatch({ type: PUT_SINGLE_TO_EDIT_TEACHER_ASSIGNMENT_REQUEST });
-      function dataURLtoFile(dataurl, filename) {
-        let arr = dataurl.split(","),
-          mime = arr[0].match(/:(.*?);/)[1],
-          bstr = atob(arr[1]),
-          n = bstr.length,
-          u8arr = new Uint8Array(n);
+      // function dataURLtoFile(dataurl, filename) {
+      //   let arr = dataurl.split(","),
+      //     mime = arr[0].match(/:(.*?);/)[1],
+      //     bstr = atob(arr[1]),
+      //     n = bstr.length,
+      //     u8arr = new Uint8Array(n);
 
-        while (n--) {
-          u8arr[n] = bstr.charCodeAt(n);
-        }
+      //   while (n--) {
+      //     u8arr[n] = bstr.charCodeAt(n);
+      //   }
 
-        return new File([u8arr], filename, { type: mime });
-      }
+      //   return new File([u8arr], filename, { type: mime });
+      // }
 
-      let file = dataURLtoFile(image.imageBase64, image.fullName);
+      // let file = dataURLtoFile(image.imageBase64, image.fullName);
       let formData = new FormData();
-      formData.append("ImageUploaded", file);
+      formData.append("ImageUploaded", image);
 
       const { data: newImage } = await axiosInstance.post(
         `/api/TeacherAssignment/FileUpload`,

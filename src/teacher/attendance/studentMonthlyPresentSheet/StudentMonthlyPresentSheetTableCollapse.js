@@ -127,11 +127,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C1 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C1 == "P"
                           ? "green"
                           : s.C1 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -141,11 +141,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C2 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C2 == "P"
                           ? "green"
                           : s.C2 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -155,11 +155,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C3 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C3 == "P"
                           ? "green"
                           : s.C3 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -169,11 +169,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C4 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C4 == "P"
                           ? "green"
                           : s.C4 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -183,11 +183,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C5 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C5 == "P"
                           ? "green"
                           : s.C5 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -197,11 +197,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C6 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C6 == "P"
                           ? "green"
                           : s.C6 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -211,11 +211,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C7 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C7 == "P"
                           ? "green"
                           : s.C7 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -225,11 +225,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C8 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C8 == "P"
                           ? "green"
                           : s.C8 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -239,11 +239,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C9 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C9 == "P"
                           ? "green"
                           : s.C9 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -253,11 +253,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C10 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C10 == "P"
                           ? "green"
                           : s.C10 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -267,11 +267,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C11 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C11 == "P"
                           ? "green"
                           : s.C11 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -281,11 +281,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C12 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C12 == "P"
                           ? "green"
                           : s.C12 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -295,11 +295,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C13 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C13 == "P"
                           ? "green"
                           : s.C13 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -309,11 +309,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C14 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C14 == "P"
                           ? "green"
                           : s.C14 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -323,11 +323,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C15 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C15 == "P"
                           ? "green"
                           : s.C15 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -337,11 +337,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C16 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C16 == "P"
                           ? "green"
                           : s.C16 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -351,11 +351,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C17 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C17 == "P"
                           ? "green"
                           : s.C17 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -365,11 +365,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C18 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C18 == "P"
                           ? "green"
                           : s.C18 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -379,11 +379,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C19 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C19 == "P"
                           ? "green"
                           : s.C19 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -393,11 +393,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C20 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C20 == "P"
                           ? "green"
                           : s.C20 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -407,11 +407,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C21 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C21 == "P"
                           ? "green"
                           : s.C21 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -421,11 +421,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C22 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C22 == "P"
                           ? "green"
                           : s.C22 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -435,11 +435,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C23 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C23 == "P"
                           ? "green"
                           : s.C23 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -449,11 +449,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C24 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C24 == "P"
                           ? "green"
                           : s.C24 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -463,11 +463,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C25 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C25 == "P"
                           ? "green"
                           : s.C25 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -477,11 +477,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C26 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C26 == "P"
                           ? "green"
                           : s.C26 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -491,11 +491,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C27 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C27 == "P"
                           ? "green"
                           : s.C27 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -505,11 +505,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C28 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C28 == "P"
                           ? "green"
                           : s.C28 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -519,11 +519,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C29 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C29 == "P"
                           ? "green"
                           : s.C29 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -533,11 +533,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C30 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C30 == "P"
                           ? "green"
                           : s.C30 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
@@ -547,11 +547,11 @@ const StudentMonthlyPresentSheetTableCollapse = ({ students }) => {
                     style={{
                       backgroundColor:
                         s.C31 == "A"
-                          ? "red"
+                          ? "grey"
                           : s.C31 == "P"
                           ? "green"
                           : s.C31 == "H"
-                          ? "blue"
+                          ? "red"
                           : "white",
                     }}
                   >
