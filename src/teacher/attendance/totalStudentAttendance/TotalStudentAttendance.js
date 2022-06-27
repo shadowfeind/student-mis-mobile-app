@@ -179,33 +179,39 @@ const TotalStudentAttendance = () => {
       );
       setProgramValue(
         allTotalStudentAttendanceData.searchFilterModel.ddlFacultyProgramLink[0]
-          .Key
+          ?.Key
       );
       setDdlClass(allTotalStudentAttendanceData.searchFilterModel.ddlClass);
       setClassId(
-        allTotalStudentAttendanceData.searchFilterModel.ddlClass[0].Key
+        allTotalStudentAttendanceData.searchFilterModel.ddlClass[0]?.Key
       );
       setAcademicYearDdl(
         allTotalStudentAttendanceData.searchFilterModel.ddlAcademicYear
       );
       setAcaYear(
-        allTotalStudentAttendanceData.searchFilterModel.ddlAcademicYear[0].Key
+        allTotalStudentAttendanceData.searchFilterModel.ddlAcademicYear[0]?.Key
       );
       setDdlShift(
         allTotalStudentAttendanceData.searchFilterModel.ddlAcademicShift
       );
       setShift(
-        allTotalStudentAttendanceData.searchFilterModel.ddlAcademicShift[0].Key
+        allTotalStudentAttendanceData.searchFilterModel.ddlAcademicShift[0]?.Key
       );
       setDdlSection(allTotalStudentAttendanceData.searchFilterModel.ddlSection);
       setSection(
-        allTotalStudentAttendanceData.searchFilterModel.ddlSection[0].Key
+        allTotalStudentAttendanceData.searchFilterModel.ddlSection[0]?.Key
       );
       setStartDate(
-        allTotalStudentAttendanceData.searchFilterModel.currentDate.slice(0, 10)
+        allTotalStudentAttendanceData.searchFilterModel.currentDate?.slice(
+          0,
+          10
+        )
       );
       setEndDate(
-        allTotalStudentAttendanceData.searchFilterModel.currentDate.slice(0, 10)
+        allTotalStudentAttendanceData.searchFilterModel.currentDate?.slice(
+          0,
+          10
+        )
       );
     }
   }, [allTotalStudentAttendanceData, dispatch]);
@@ -213,7 +219,7 @@ const TotalStudentAttendance = () => {
   useEffect(() => {
     if (subjectOptions) {
       setDdlSubject(subjectOptions);
-      setSubject(subjectOptions[0].Key);
+      setSubject(subjectOptions[0]?.Key);
     }
   }, [subjectOptions]);
 
@@ -380,7 +386,7 @@ const TotalStudentAttendance = () => {
                   className={classes.keydate}
                   onChange={(e) => {
                     const newDate = new Date(e);
-                    setEndDate(newDate.toLocaleDateString().slice(0, 10));
+                    setEndDate(newDate.toLocaleDateString()?.slice(0, 10));
                   }}
                 />
               </MuiPickersUtilsProvider>
@@ -423,7 +429,7 @@ const TotalStudentAttendance = () => {
           listTotalStudentAttendanceData?.dbStudentClassAttendanceModelLst?.map(
             (item) => {
               const currentAttendance =
-                listTotalStudentAttendanceData.dbModelTotalStudentAttendanceCountLst.filter(
+                listTotalStudentAttendanceData.dbModelTotalStudentAttendanceCountLst?.filter(
                   (a) => a.IDHREmployee === item.IDHREmployee
                 );
               return (

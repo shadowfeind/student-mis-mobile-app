@@ -9,7 +9,7 @@ import {
   ThemeProvider,
 } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
-
+import { AppUpdate } from "@robingenz/capacitor-app-update";
 import BottomNavigationMis from "./components/BottomNavigationMis";
 
 import { useLocation } from "react-router-dom";
@@ -127,6 +127,21 @@ const useStyles = makeStyles({
 const App = () => {
   const classes = useStyles();
   const location = useLocation();
+
+  //android app update code
+  // useEffect(() => {
+  //   const getCurrentAppVersion = async () => {
+  //     const result = await AppUpdate.getAppUpdateInfo();
+  //     console.log("current version", result.currentVersion);
+  //     console.log("available version", result.availableVersion);
+  //     if (result.currentVersion !== result.availableVersion) {
+  //       await AppUpdate.performImmediateUpdate();
+  //     }
+  //   };
+
+  //   getCurrentAppVersion();
+  // }, []);
+  //android app update code
 
   return (
     <ThemeProvider theme={theme}>

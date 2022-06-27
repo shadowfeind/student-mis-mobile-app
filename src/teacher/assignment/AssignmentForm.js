@@ -87,6 +87,7 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
   const [imgSrc, setImgSrc] = useState(null);
   const [lstStudents, setLstStudents] = useState([]);
   const [selectedStudents, setSelectedStudents] = useState([]);
+  const [submitDisabler, setSubmitDisabler] = useState(false);
 
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -105,7 +106,8 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
 
     temp.TotalMark = !fieldValues.TotalMark ? "This feild is required" : "";
 
-    temp.image = !image ? "This feild is required" : "";
+    temp.lstStudents =
+      selectedStudents?.length < 1 ? "Select atleast one student" : "";
 
     temp.DueDate =
       fieldValues.DueDate == null || fieldValues.DueDate == ""
@@ -195,8 +197,8 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(selectedStudents);
     if (validate()) {
+      setSubmitDisabler(true);
       dispatch(postTeacherAssignmentAction(image, values, selectedStudents));
     }
   };
@@ -327,7 +329,9 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
             width={200}
           />
         )}
-
+        <div style={{ textAlign: "center", color: "red" }}>
+          {errors.lstStudents && errors.lstStudents}
+        </div>
         <div
           style={{
             display: "flex",
@@ -351,13 +355,14 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
             variant="contained"
             color="primary"
             type="submit"
+            disabled={submitDisabler}
             style={{
               margin: "10px 0 0 10px",
               padding: "5px 10px",
               fontsize: "12px",
             }}
           >
-            SUBMIT
+            {submitDisabler ? "PROCESSING..." : "SUBMIT"}
           </Button>
         </div>
       </Form>

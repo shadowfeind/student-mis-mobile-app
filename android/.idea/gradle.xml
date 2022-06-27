@@ -16,6 +16,7 @@
             <option value="$PROJECT_DIR$/../node_modules/@capacitor/camera/android" />
             <option value="$PROJECT_DIR$/../node_modules/@capacitor/push-notifications/android" />
             <option value="$PROJECT_DIR$/../node_modules/@capacitor/toast/android" />
+            <option value="$PROJECT_DIR$/../node_modules/@robingenz/capacitor-app-update/android" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

@@ -162,30 +162,8 @@ const StudentMonthlyPresentSheet = () => {
       type: "success",
     });
     dispatch({ type: POST_LIST_STUDENT_PRESENT_RESET });
-    // setOpenPopup(false);
-    // dispatch(
-    //   getListStudentPresentAction(
-    //     acaYear,
-    //     programValue,
-    //     classId,
-    //     subject,
-    //     section,
-    //     shift,
-    //     nepYear,
-    //     nepMonth,
-    //     date
-    //   )
-    // );
   }
-  //eng date api not working
-  //   if (engDateError) {
-  //     setNotify({
-  //       isOpen: true,
-  //       message: engDateError,
-  //       type: "error",
-  //     });
-  //     dispatch({ type: GET_ENGLISH_DATE_RESET });
-  //   }
+
   if (getListStudentPresentError) {
     setNotify({
       isOpen: true,
@@ -210,11 +188,10 @@ const StudentMonthlyPresentSheet = () => {
     });
     dispatch({ type: GET_LIST_FOR_PRESENT_STUDENT_RESET });
   }
-
   useEffect(() => {
-    if (!allStudentMonthlyPresentSheetData) {
-      dispatch(getAllStudentPresentSheetDataAction());
-    }
+    dispatch(getAllStudentPresentSheetDataAction());
+  }, []);
+  useEffect(() => {
     if (allStudentMonthlyPresentSheetData) {
       setProgramDdl(
         allStudentMonthlyPresentSheetData.searchFilterModel
@@ -226,6 +203,13 @@ const StudentMonthlyPresentSheet = () => {
       setSubject(
         allStudentMonthlyPresentSheetData.searchFilterModel
           .ddlSubjectForTeacher[0].Key
+      );
+      dispatch(
+        getAllOtherOptionsForSelectAction(
+          allStudentMonthlyPresentSheetData.modelDb.IDHREmployee,
+          allStudentMonthlyPresentSheetData.searchFilterModel
+            .ddlSubjectForTeacher[0].Key
+        )
       );
       setDdlClass(
         allStudentMonthlyPresentSheetData.searchFilterModel.ddlLevelPrimitive
@@ -255,12 +239,6 @@ const StudentMonthlyPresentSheet = () => {
       setNepYear(allStudentMonthlyPresentSheetData.searchFilterModel.npYear);
     }
   }, [allStudentMonthlyPresentSheetData, dispatch]);
-
-  // useEffect(() => {
-  //   if (subjectOptions) {
-  //     setDdlSubject(subjectOptions);
-  //   }
-  // }, [subjectOptions]);
 
   const validate = () => {
     let temp = {};
@@ -463,7 +441,7 @@ const StudentMonthlyPresentSheet = () => {
                   inputVariant="outlined"
                   format="MM-dd-yyyy"
                   name="CurrentYear"
-                  label="Current Date"
+                  label="Current Year"
                   value={date}
                   className={classes.keydate}
                   onChange={(e) => {

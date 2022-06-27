@@ -65,10 +65,10 @@ axiosInstance.interceptors.request.use(async (req) => {
   const userSession = JSON.parse(localStorage.getItem("blueberryToken"));
   const user = jwt_decode(userSession?.AccessToken);
   const isExpired = user.exp - moment().unix() < 1;
-  console.log(user.exp);
-  console.log(moment.unix(user.exp));
-  console.log(moment().unix());
-  console.log("isExpired", isExpired);
+  // console.log(user.exp);
+  // console.log(moment.unix(user.exp));
+  // console.log(moment().unix());
+  // console.log("isExpired", isExpired);
 
   if (!isExpired) return req;
 
@@ -81,7 +81,7 @@ axiosInstance.interceptors.request.use(async (req) => {
   const JSONdata = JSON.stringify(dataForRefreshToken);
   const config = { headers: { "Content-Type": "application/json" } };
 
-  console.log(JSONdata);
+  // console.log(JSONdata);
 
   try {
     const { data } = await axios.post(
@@ -89,7 +89,7 @@ axiosInstance.interceptors.request.use(async (req) => {
       JSONdata,
       config
     );
-    console.log(data);
+    // console.log(data);
 
     data.IDHRRole = userSession.IDHRRole;
 
