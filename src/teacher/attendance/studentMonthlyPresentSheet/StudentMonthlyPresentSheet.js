@@ -191,6 +191,7 @@ const StudentMonthlyPresentSheet = () => {
   useEffect(() => {
     dispatch(getAllStudentPresentSheetDataAction());
   }, []);
+
   useEffect(() => {
     if (allStudentMonthlyPresentSheetData) {
       setProgramDdl(
@@ -202,13 +203,13 @@ const StudentMonthlyPresentSheet = () => {
       );
       setSubject(
         allStudentMonthlyPresentSheetData.searchFilterModel
-          .ddlSubjectForTeacher[0].Key
+          .ddlSubjectForTeacher[0]?.Key
       );
       dispatch(
         getAllOtherOptionsForSelectAction(
           allStudentMonthlyPresentSheetData.modelDb.IDHREmployee,
           allStudentMonthlyPresentSheetData.searchFilterModel
-            .ddlSubjectForTeacher[0].Key
+            .ddlSubjectForTeacher[0]?.Key
         )
       );
       setDdlClass(
@@ -268,7 +269,7 @@ const StudentMonthlyPresentSheet = () => {
           shift,
           nepYear,
           nepMonth,
-          date
+          JSON.stringify(date).slice(1, 11)
         )
       );
       history.push("/attendance/table-details");
@@ -279,7 +280,7 @@ const StudentMonthlyPresentSheet = () => {
     if (validate()) {
       dispatch(
         getListForUpdateStudentPresentAction(
-          date,
+          JSON.stringify(date).slice(1, 11),
           nepYear,
           nepMonth,
           acaYear,
@@ -297,13 +298,13 @@ const StudentMonthlyPresentSheet = () => {
   const nepMonthHandler = (value) => {
     setNepMonth(value);
     if (nepYear) {
-      dispatch(getEnglishDateAction(value, nepYear));
+      dispatch(getEnglishDateAction(nepYear, value));
     }
   };
   const nepYearHandler = (value) => {
     setNepYear(value);
     if (nepMonth) {
-      dispatch(getEnglishDateAction(nepMonth, value));
+      dispatch(getEnglishDateAction(value, nepMonth));
     }
   };
 
@@ -320,22 +321,34 @@ const StudentMonthlyPresentSheet = () => {
   useEffect(() => {
     if (allOtherOptions) {
       setAcaYear(
-        allOtherOptions.year.length > 0 ? allOtherOptions.year[0].Key : ""
+        allOtherOptions.year.length > 0 ? allOtherOptions.year[0]?.Key : ""
       );
       setProgramValue(
-        allOtherOptions.program.length > 0 ? allOtherOptions.program[0].Key : ""
+        allOtherOptions.program.length > 0
+          ? allOtherOptions.program[0]?.Key
+          : ""
       );
       setClassId(
-        allOtherOptions.classId.length > 0 ? allOtherOptions.classId[0].Key : ""
+        allOtherOptions.classId.length > 0
+          ? allOtherOptions.classId[0]?.Key
+          : ""
       );
       setSection(
-        allOtherOptions.section.length > 0 ? allOtherOptions.section[0].Key : ""
+        allOtherOptions.section.length > 0
+          ? allOtherOptions.section[0]?.Key
+          : ""
       );
       setShift(
-        allOtherOptions.shift.length > 0 ? allOtherOptions.shift[0].Key : ""
+        allOtherOptions.shift.length > 0 ? allOtherOptions.shift[0]?.Key : ""
       );
     }
   }, [allOtherOptions]);
+
+  useEffect(() => {
+    if (engDate) {
+      setDate(engDate?.Key);
+    }
+  }, [engDate]);
 
   return (
     <>
@@ -439,14 +452,14 @@ const StudentMonthlyPresentSheet = () => {
                   disableToolbar
                   variant="inline"
                   inputVariant="outlined"
-                  format="MM-dd-yyyy"
+                  format="dd-MM-yyyy"
                   name="CurrentYear"
                   label="Current Year"
                   value={date}
                   className={classes.keydate}
                   onChange={(e) => {
-                    const newDate = new Date(e);
-                    setDate(newDate.toLocaleDateString().slice(0, 10));
+                    // const newDate = new Date(e);
+                    setDate(e);
                   }}
                 />
               </MuiPickersUtilsProvider>

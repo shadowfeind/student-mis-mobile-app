@@ -254,8 +254,8 @@ const TotalStudentAttendance = () => {
           subject,
           section,
           shift,
-          startDate,
-          endDate
+          JSON.stringify(startDate).slice(1, 11),
+          JSON.stringify(endDate).slice(1, 11)
         )
       );
     }
@@ -360,14 +360,13 @@ const TotalStudentAttendance = () => {
                   disableToolbar
                   variant="inline"
                   inputVariant="outlined"
-                  format="MM-dd-yyyy"
+                  format="dd-MM-yyyy"
                   name="StartDate"
                   label="From Date"
                   value={startDate}
                   className={classes.keydate}
                   onChange={(e) => {
-                    const newDate = new Date(e);
-                    setStartDate(newDate.toLocaleDateString().slice(0, 10));
+                    setStartDate(e);
                   }}
                 />
               </MuiPickersUtilsProvider>
@@ -379,14 +378,13 @@ const TotalStudentAttendance = () => {
                   disableToolbar
                   variant="inline"
                   inputVariant="outlined"
-                  format="MM-dd-yyyy"
+                  format="dd-MM-yyyy"
                   name="EndDate"
                   label="To Date"
                   value={endDate}
                   className={classes.keydate}
                   onChange={(e) => {
-                    const newDate = new Date(e);
-                    setEndDate(newDate.toLocaleDateString()?.slice(0, 10));
+                    setEndDate(e);
                   }}
                 />
               </MuiPickersUtilsProvider>

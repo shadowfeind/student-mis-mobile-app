@@ -18,68 +18,17 @@
       <change beforePath="$PROJECT_DIR$/.gradle/7.0/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.0/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0/javaCompile/javaCompile.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.0/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.0/javaCompile/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/capacitor.build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/capacitor.build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/capacitor.plugins.json" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/capacitor.plugins.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1512.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1512.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/1547.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/1547.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/2331.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/2331.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3782.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3782.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/3880.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/3880.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/6436.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/6436.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7908.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7908.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7968.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7968.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/7989.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/7989.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8081.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8081.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8107.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8107.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8377.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8377.chunk.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/8534.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/8534.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/9746.chunk.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/9746.chunk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/assets/public/index.bundle.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/assets/public/index.bundle.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/io/ionic/studentmis/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/io/ionic/studentmis/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/styles.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/capacitor.settings.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/capacitor.settings.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" afterPath="$PROJECT_DIR$/../package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/components/BottomNavigationMis.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/components/BottomNavigationMis.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/constants.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/constants.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/assignment/assignment/AssignmentEditForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/assignment/assignment/AssignmentEditForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/leaveRequest/StudentLeaveRequestActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/leaveRequest/StudentLeaveRequestActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/leaveRequest/StudentLeaveRequestForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/leaveRequest/StudentLeaveRequestForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/leaveRequest/StudentLeaveRequestListCollapse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/leaveRequest/StudentLeaveRequestListCollapse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/student/login/LoginActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/student/login/LoginActions.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/Assignment.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/Assignment.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentEditForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentEditForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentListCollapse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/assignment/AssignmentListCollapse.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheet.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheet.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetMobileTable.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetMobileTable.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetTableCollapse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetTableCollapse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetUpdateForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/attendance/studentMonthlyPresentSheet/StudentMonthlyPresentSheetUpdateForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../src/teacher/attendance/totalStudentAttendance/TotalStudentAttendance.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/attendance/totalStudentAttendance/TotalStudentAttendance.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/examMarkApprovalTeacher/examMarkApproval/ExamMarkApproval.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/examMarkApprovalTeacher/examMarkApproval/ExamMarkApproval.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/examMarkApprovalTeacher/examMarkApproval/ExamMarkApprovalBulk.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/examMarkApprovalTeacher/examMarkApproval/ExamMarkApprovalBulk.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/leaveRequest/TeacherLeaveRequestActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/leaveRequest/TeacherLeaveRequestActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/leaveRequest/TeacherLeaveRequestApproveForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/leaveRequest/TeacherLeaveRequestApproveForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/leaveRequest/TeacherLeaveRequestForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/leaveRequest/TeacherLeaveRequestForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/leaveRequest/inbox/InboxListCollapse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/leaveRequest/inbox/InboxListCollapse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/leaveRequest/sent/SentListCollapse.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/leaveRequest/sent/SentListCollapse.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/resources/Resources.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/resources/Resources.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../src/teacher/resources/ResourcesForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/../src/teacher/resources/ResourcesForm.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/../yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
