@@ -68,14 +68,16 @@ const StudentMonthlyPresentSheetUpdateForm = () => {
 
   useEffect(() => {
     if (getListForUpdateStudentPresent) {
-      let tempAttendance =
-        getListForUpdateStudentPresent?.dbStudentClassAttendanceModelAttendanceLst?.map(
-          (x) => {
-            return { ...x, IsPresent: true };
-          }
-        );
-      setStuAttendance([...tempAttendance]);
-      setChecked(true);
+      // let tempAttendance =
+      //   getListForUpdateStudentPresent?.dbStudentClassAttendanceModelAttendanceLst?.map(
+      //     (x) => {
+      //       return { ...x, IsPresent: true };
+      //     }
+      //   );
+      setStuAttendance([
+        ...getListForUpdateStudentPresent?.dbStudentClassAttendanceModelAttendanceLst,
+      ]);
+      // setChecked(true);
     }
   }, [getListForUpdateStudentPresent]);
 

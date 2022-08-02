@@ -1,18 +1,24 @@
-import React, { useEffect, Suspense, lazy } from "react";
+import React, { Suspense, lazy, useEffect } from "react";
 import "./App.css";
 import Header from "./components/Header";
-import SideMenu from "./components/SideMenu";
 import {
   createTheme,
   CssBaseline,
   makeStyles,
   ThemeProvider,
 } from "@material-ui/core";
-import { Route, Switch } from "react-router-dom";
-import { AppUpdate } from "@robingenz/capacitor-app-update";
+import { Route, Switch, useHistory } from "react-router-dom";
 import BottomNavigationMis from "./components/BottomNavigationMis";
-
+import {
+  ActionPerformed,
+  PushNotificationSchema,
+  PushNotifications,
+  Token,
+} from "@capacitor/push-notifications";
 import { useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { getFCMTokenAction } from "./student/login/LoginActions";
 
 const TeacherLeaveRequest = lazy(() =>
   import("./teacher/leaveRequest/TeacherLeaveRequest")
@@ -46,13 +52,9 @@ const AcademicGradingStudent = lazy(() =>
 const ExamDivisionStudent = lazy(() =>
   import("./student/examDivision/ExamDivision")
 );
-// const ExamSchedule = lazy(() => import("./student/examSchedule/ExamSchedule"));
 const ClassScheduleStudent = lazy(() =>
   import("./student/classSchedule/ClassSchedule")
 );
-
-// const ExamMarkEntry = lazy(() =>
-//   import("./student/examMarkEntry/ExamMarkEntry")
 
 const AssignmentFrontStudent = lazy(() =>
   import("./student/assignment/AssignmentFront")
@@ -127,21 +129,76 @@ const useStyles = makeStyles({
 const App = () => {
   const classes = useStyles();
   const location = useLocation();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-  //android app update code
-  // useEffect(() => {
-  //   const getCurrentAppVersion = async () => {
-  //     const result = await AppUpdate.getAppUpdateInfo();
-  //     console.log("current version", result.currentVersion);
-  //     console.log("available version", result.availableVersion);
-  //     if (result.currentVersion !== result.availableVersion) {
-  //       await AppUpdate.performImmediateUpdate();
-  //     }
-  //   };
+  const { redirectUrl } = useSelector((state) => state.notificationRedirect);
+  const { userInfo } = useSelector((state) => state.userLogin);
 
-  //   getCurrentAppVersion();
-  // }, []);
-  //android app update code
+  const register = () => {
+    console.log("Initializing HomePage");
+
+    // Register with Apple / Google to receive push via APNS/FCM
+    PushNotifications.register();
+
+    // On success, we should be able to receive notifications
+    PushNotifications.addListener("registration", (token) => {
+      console.log("token is", token.value);
+      dispatch(getFCMTokenAction(token.value));
+    });
+
+    // Some issue with our setup and push will not work
+    PushNotifications.addListener("registrationError", (error) => {
+      console.log("Error on registration: " + JSON.stringify(error));
+    });
+
+    // Show us the notification payload if the app is open on our device
+    PushNotifications.addListener(
+      "pushNotificationReceived",
+      (notification) => {
+        alert(notification.title + notification.body);
+      }
+    );
+
+    // Method called when tapping on a notification
+    PushNotifications.addListener(
+      "pushNotificationActionPerformed",
+      (notification) => {
+        dispatch({ type: "NOTIFICATION_REDIRECT", payload: "redirect" });
+      }
+    );
+  };
+
+  useEffect(() => {
+    PushNotifications.checkPermissions().then((res) => {
+      if (res.receive !== "granted") {
+        PushNotifications.requestPermissions().then((res) => {
+          if (res.receive === "denied") {
+            console.log("Push Notification permission denied");
+          } else {
+            console.log("Push Notification permission granted");
+            register();
+          }
+        });
+      } else {
+        register();
+      }
+    });
+  }, []);
+
+  useEffect(() => {
+    if (redirectUrl == "redirect") {
+      dispatch({ type: "NOTIFICATION_REDIRECT", payload: "" });
+      if (userInfo) {
+        if (userInfo.IDHRRole == 5) {
+          history.push("/announcement");
+        } else if (userInfo.IDHRRole == 8) {
+          history.push("/student-announcement");
+        } else {
+        }
+      }
+    }
+  }, [redirectUrl, userInfo]);
 
   return (
     <ThemeProvider theme={theme}>

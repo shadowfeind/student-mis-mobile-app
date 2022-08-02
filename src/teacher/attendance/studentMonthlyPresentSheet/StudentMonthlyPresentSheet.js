@@ -37,6 +37,7 @@ import MobileTopSelectContainer from "../../../components/MobileTopSelectContain
 import SearchIcon from "@material-ui/icons/Search";
 import EditIcon from "@material-ui/icons/Edit";
 import { useHistory } from "react-router-dom";
+import LoadingComp from "../../../components/LoadingComp";
 
 const useStyles = makeStyles((theme) => ({
   searchInput: {
@@ -106,9 +107,11 @@ const StudentMonthlyPresentSheet = () => {
     error: allStudentMonthlyPresentSheetDataError,
   } = useSelector((state) => state.getAllStudentMonthlyPresentSheet);
 
-  const { allOtherOptions, error: allOtherOptionsError } = useSelector(
-    (state) => state.getAllOtherOptionsForSelect
-  );
+  const {
+    allOtherOptions,
+    error: allOtherOptionsError,
+    loading: allOtherOptionsLoading,
+  } = useSelector((state) => state.getAllOtherOptionsForSelect);
 
   const { engDate, error: engDateError } = useSelector(
     (state) => state.getEnglishDate
@@ -467,6 +470,7 @@ const StudentMonthlyPresentSheet = () => {
             <Grid item xs={12}>
               <div style={{ marginBottom: "70px" }}>
                 <Button
+                  disabled={allOtherOptionsLoading}
                   variant="contained"
                   color="primary"
                   type="submit"
@@ -476,6 +480,7 @@ const StudentMonthlyPresentSheet = () => {
                   <EditIcon />
                 </Button>
                 <Button
+                  disabled={allOtherOptionsLoading}
                   variant="contained"
                   color="primary"
                   type="submit"
@@ -487,6 +492,7 @@ const StudentMonthlyPresentSheet = () => {
               </div>
             </Grid>
           </Grid>
+          {allOtherOptionsLoading && <LoadingComp />}
         </MobileTopSelectContainer>
         {/* {getListStudentPresent && (
           <StudentMonthlyPresentSheetTableCollapse

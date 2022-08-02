@@ -70,46 +70,4 @@ public class MainActivity extends BridgeActivity {
         }
     }
 
-//     @Override
-//     public void onStart(){
-//         super.onStart();
-//         UpdateApp();
-//     }
-
-//     public void UpdateApp(){
-//         AppUpdateManager appUpdateManager = AppUpdateManagerFactory.create(this);
-//         Task<AppUpdateInfo> appUpdateInfoTask = appUpdateManager.getAppUpdateInfo();
-//         // Checks that the platform will allow the specified type of update.
-//         appUpdateInfoTask.addOnSuccessListener(result -> {
-
-//             if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
-// //                requestUpdate(result);
-//                 android.view.ContextThemeWrapper ctw = new android.view.ContextThemeWrapper(this,R.style.Theme_AlertDialog);
-//                 final android.app.AlertDialog.Builder alertDialogBuilder = new android.app.AlertDialog.Builder(ctw);
-//                 alertDialogBuilder.setTitle("Update NTT Netmagic");
-//                 alertDialogBuilder.setCancelable(false);
-//                 alertDialogBuilder.setIcon(R.drawable.icons_google_play);
-//                 alertDialogBuilder.setMessage("Fitness Trainer recommends that you update to the latest version for a seamless & enhanced performance of the app.");
-//                 alertDialogBuilder.setPositiveButton("Update", new DialogInterface.OnClickListener() {
-//                     public void onClick(DialogInterface dialog, int id) {
-//                         try{
-//                             startActivity(new Intent("android.intent.action.VIEW", Uri.parse("market://details?id="+getPackageName())));
-//                         }
-//                         catch (ActivityNotFoundException e){
-//                             startActivity(new Intent("android.intent.action.VIEW", Uri.parse("https://play.google.com/store/apps/details?id="+getPackageName())));
-//                         }
-//                     }
-//                 });
-//                 alertDialogBuilder.setNegativeButton("No Thanks",new DialogInterface.OnClickListener() {
-//                     public void onClick(DialogInterface dialog, int id) {
-
-//                     }
-//                 });
-//                 alertDialogBuilder.show();
-
-//             } else {
-
-//             }
-//         });
-//     }
 }

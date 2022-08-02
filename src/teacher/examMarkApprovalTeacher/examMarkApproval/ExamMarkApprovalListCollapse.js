@@ -57,8 +57,17 @@ const ExamMarkApprovalListCollapse = ({ item }) => {
             >
               {item.RollNo}
             </span>
-            <span style={{ paddingLeft: "12px" }}>{item.FullName}</span>{" "}
+            <span style={{ paddingLeft: "8px" }}>{item.FullName}</span>{" "}
           </p>
+          <div>
+            {" "}
+            <h6 style={{ margin: "0", color: "#666" }}>
+              <span>Marks</span> :{item.ObtainedMark}
+            </h6>
+            <h6 style={{ margin: "0", color: "#666" }}>
+              <span>Practical Marks</span> : {item.ObtainedMarkPractical}
+            </h6>
+          </div>
           <div>
             {open ? (
               <ExpandLess style={{ color: "#d1d1d1" }} />

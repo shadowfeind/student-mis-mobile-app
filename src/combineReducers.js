@@ -22,6 +22,7 @@ import {
 
 import {
   getFCMTokenReducer,
+  notificationRedirectReducer,
   userLoginReducer,
 } from "./student/login/LoginReducers";
 
@@ -253,6 +254,7 @@ import {
 export const reducers = combineReducers({
   getFCMToken: getFCMTokenReducer,
   userLogin: userLoginReducer,
+  notificationRedirect: notificationRedirectReducer,
   getHeaderContent: getHeaderContentReducer,
   getDashboardContentStudent: getDashboardContentStudentReducer,
   //user profile reducers starts

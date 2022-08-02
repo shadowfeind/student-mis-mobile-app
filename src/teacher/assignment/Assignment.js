@@ -107,7 +107,7 @@ const Assignment = () => {
   const { allAssignmentTeacherData, error: allAssignmentTeacherDataError } =
     useSelector((state) => state.getAllAssignmentTeacher);
 
-  const { allOtherOptions, error: allOtherOptionsError } = useSelector(
+  const { allOtherOptions, error: allOtherOptionsError, loading: allOtherOptionsLoading, } = useSelector(
     (state) => state.getAllOtherOptionsForAssignmentSelect
   );
 
@@ -591,6 +591,7 @@ const Assignment = () => {
             <div style={{ height: "10px", width: "10px" }}></div>
             <Grid item xs={12}>
               <Button
+              disabled={allOtherOptionsLoading}
                 variant="contained"
                 color="primary"
                 type="submit"
@@ -600,6 +601,7 @@ const Assignment = () => {
                 <AddBoxIcon />
               </Button>
               <Button
+              disabled={allOtherOptionsLoading}
                 variant="contained"
                 color="primary"
                 type="submit"
@@ -628,6 +630,7 @@ const Assignment = () => {
           <LoadingComp />
         ) : ( */}
         <MobileBody>
+        {allOtherOptionsLoading && <LoadingComp />}
           {getListTeacherAssignment?.dbTeacherAssignmentLstBySection.map(
             (item) => (
               <AssignmentListCollapse

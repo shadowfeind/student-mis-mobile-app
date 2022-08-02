@@ -32,3 +32,12 @@ export const getFCMTokenReducer = (state = {}, action) => {
       return state;
   }
 };
+
+export const notificationRedirectReducer = (state = {}, action) => {
+  switch (action.type) {
+    case "NOTIFICATION_REDIRECT":
+      return { loading: false, redirectUrl: action.payload };
+    default:
+      return state;
+  }
+};

@@ -1,6 +1,6 @@
 {
 	"appId": "io.ionic.studentmis",
-	"appName": "student-mis-mobile-app",
+	"appName": "VidyCube",
 	"bundledWebRuntime": false,
 	"npmClient": "yarn",
 	"webDir": "dist",

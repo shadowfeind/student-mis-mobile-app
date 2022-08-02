@@ -311,9 +311,9 @@ const PersonalInformation = () => {
                 </div>
                 <div className={classes.profileContainerDetails}>
                   <h4>About</h4>
-                  <p>
+                  {/* <p>
                     <LocationOnIcon /> <span>Lives at </span>Tinkune, Kathmandu
-                  </p>
+                  </p> */}
                   <p>
                     <DraftsIcon /> <span>Email at </span> {headerContent.Email}
                   </p>
@@ -321,13 +321,21 @@ const PersonalInformation = () => {
                     <MobileScreenShareIcon /> <span>Call at </span>{" "}
                     {headerContent.MobileNumber}
                   </p>
-                  <p>
+                  {/* <p>
                     <PermIdentityIcon /> <span>Main Guardian Name </span>Suresh
                     M. Sanu
                   </p>
                   <p>
                     <ContactPhoneIcon /> <span>Guardian Contact </span>
                     9812345678
+                  </p> */}
+                  <p>
+                    <PermIdentityIcon /> <span>Sex </span>{" "}
+                    {getAllPersonalInformation?.Sex}
+                  </p>
+                  <p>
+                    <ContactPhoneIcon /> <span>DOB </span>
+                    {getAllPersonalInformation?.DOB?.slice(0, 10)}
                   </p>
                 </div>
               </>

@@ -309,9 +309,9 @@ const PersonalInformation = () => {
                 </div>
                 <div className={classes.profileContainerDetails}>
                   <h4>About</h4>
-                  <p>
+                  {/* <p>
                     <LocationOnIcon /> <span>Lives at </span>Tinkune, Kathmandu
-                  </p>
+                  </p> */}
                   <p>
                     <DraftsIcon /> <span>Email at </span>
                     {headerContent.Email}
