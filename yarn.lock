@@ -990,6 +990,11 @@
   dependencies:
     tslib "^2.1.0"
 
+"@capacitor/ios@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@capacitor/ios/-/ios-4.0.1.tgz#f148cfca542936e50d941f810e52462176268cb7"
+  integrity sha512-46qigDiPKHXxihSSjXDIbuF8/1O9xWVgMzJpEFJhhhav+vHy6/SDc2liKLhmqCwH2OzZGxk+IlSGlkc4Oyorkw==
+
 "@capacitor/push-notifications@^1.0.9":
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/@capacitor/push-notifications/-/push-notifications-1.0.9.tgz#8a8398cdbd17a06f1b3d003f60897bd6db7bd1fe"

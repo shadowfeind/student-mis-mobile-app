@@ -1,0 +1,17 @@
+{
+	"appId": "io.ionic.studentmis",
+	"appName": "VidyCube",
+	"bundledWebRuntime": false,
+	"npmClient": "yarn",
+	"webDir": "dist",
+	"cordova": {},
+	"plugins": {
+		"PushNotifications": {
+			"presentationOptions": [
+				"badge",
+				"sound",
+				"alert"
+			]
+		}
+	}
+}
