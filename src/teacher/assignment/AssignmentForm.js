@@ -257,7 +257,7 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
         </Table>
       </TableContainer>
       <div style={{ height: "30px" }}></div>
-      <Form onSubmit={handleSubmit}>
+      <>
         <InputControl
           name="AssignmentName"
           label="Assignment Name"
@@ -354,7 +354,7 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
           <Button
             variant="contained"
             color="primary"
-            type="submit"
+            onClick={handleSubmit}
             disabled={submitDisabler}
             style={{
               margin: "10px 0 0 10px",
@@ -365,7 +365,7 @@ const AssignmentForm = ({ students, setOpenPopup, formDatas }) => {
             {submitDisabler ? "PROCESSING..." : "SUBMIT"}
           </Button>
         </div>
-      </Form>
+      </>
     </>
   );
 };

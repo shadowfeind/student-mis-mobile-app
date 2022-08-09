@@ -18,6 +18,7 @@ import Drawer from "@material-ui/core/Drawer";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import Notification from "./Notification";
 import { UPLOADPHOTO_STUDENT_RESET } from "../student/pid/uploadPhoto/UploadPhotoConstants";
+import { Capacitor } from "@capacitor/core";
 
 const useStyles = makeStyles({
   root: {
@@ -132,7 +133,12 @@ const Header = () => {
     // <div style={{ marginBottom: "55px" }}>
     <div>
       <AppBar position="static">
-        <Toolbar className={classes.root}>
+        <Toolbar
+          className={classes.root}
+          style={{
+            paddingTop: Capacitor.getPlatform() === "ios" ? "40px" : "0px",
+          }}
+        >
           <IconButton
             edge="start"
             color="inherit"
